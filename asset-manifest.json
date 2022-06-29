@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.7d5f7d69.css",
-    "main.js": "/static/js/main.5a6bb6ee.js",
-    "static/media/blueprint-icons-20.eot?": "/static/media/blueprint-icons-20.12b358c6d8dbe8756615.eot",
-    "static/media/blueprint-icons-20.ttf?": "/static/media/blueprint-icons-20.3fd95ab7e829aa1d9ba0.ttf",
-    "static/media/blueprint-icons-16.eot?": "/static/media/blueprint-icons-16.c98f9776ee5bbd2aa668.eot",
-    "static/media/blueprint-icons-16.ttf?": "/static/media/blueprint-icons-16.74dbfc60db44217ef15d.ttf",
-    "static/media/blueprint-icons-20.woff?": "/static/media/blueprint-icons-20.68fac169b07ae937267a.woff",
-    "static/media/blueprint-icons-16.woff?": "/static/media/blueprint-icons-16.f5fd4d64b81b471c0402.woff",
-    "static/media/blueprint-icons-20.woff2?": "/static/media/blueprint-icons-20.14aa945151de662f422e.woff2",
-    "static/media/blueprint-icons-16.woff2?": "/static/media/blueprint-icons-16.a12444a68ba6fe9089da.woff2",
-    "index.html": "/index.html",
-    "main.7d5f7d69.css.map": "/static/css/main.7d5f7d69.css.map",
-    "main.5a6bb6ee.js.map": "/static/js/main.5a6bb6ee.js.map"
+    "main.css": "/dexterous/static/css/main.02566792.css",
+    "main.js": "/dexterous/static/js/main.59351b65.js",
+    "static/media/blueprint-icons-20.eot?": "/dexterous/static/media/blueprint-icons-20.12b358c6d8dbe8756615.eot",
+    "static/media/blueprint-icons-20.ttf?": "/dexterous/static/media/blueprint-icons-20.3fd95ab7e829aa1d9ba0.ttf",
+    "static/media/blueprint-icons-16.eot?": "/dexterous/static/media/blueprint-icons-16.c98f9776ee5bbd2aa668.eot",
+    "static/media/blueprint-icons-16.ttf?": "/dexterous/static/media/blueprint-icons-16.74dbfc60db44217ef15d.ttf",
+    "static/media/blueprint-icons-20.woff?": "/dexterous/static/media/blueprint-icons-20.68fac169b07ae937267a.woff",
+    "static/media/blueprint-icons-16.woff?": "/dexterous/static/media/blueprint-icons-16.f5fd4d64b81b471c0402.woff",
+    "static/media/blueprint-icons-20.woff2?": "/dexterous/static/media/blueprint-icons-20.14aa945151de662f422e.woff2",
+    "static/media/blueprint-icons-16.woff2?": "/dexterous/static/media/blueprint-icons-16.a12444a68ba6fe9089da.woff2",
+    "index.html": "/dexterous/index.html",
+    "main.02566792.css.map": "/dexterous/static/css/main.02566792.css.map",
+    "main.59351b65.js.map": "/dexterous/static/js/main.59351b65.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d5f7d69.css",
-    "static/js/main.5a6bb6ee.js"
+    "static/css/main.02566792.css",
+    "static/js/main.59351b65.js"
   ]
 }
