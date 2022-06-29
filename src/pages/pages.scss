@@ -1,0 +1,32 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+@import "../assets/variables.scss";
+
+
+#home {
+  min-height: calc( 100vh - $footer-height );
+}
+
+
+#home > #cache-notice {
+  display: flex;
+  justify-content: center;
+  padding: 20px $pt-grid-size;
+}
+
+
+#home > #cache-notice > .bp4-callout {
+  width: 50%;
+}
+
+
+/**
+ * MOBILE STYLES
+ *
+ * @note: cannot use css variables as media query values :(
+**/
+
+@media only screen and (max-width: $screen-size-desktop) {
+  #home > #cache-notice > .bp4-callout {
+    width: 100%;
+  }
+}

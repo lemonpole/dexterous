@@ -1,0 +1,59 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+@import "../../assets/variables";
+
+
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $pt-grid-size;
+}
+
+
+.pokemon-list > .bp4-card {
+  flex-basis: 15%;
+  width: 15%;
+  height: $poke-list-card-height;
+  text-align: center;
+}
+
+
+.pokemon-list > .bp4-card > article {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.pokemon-list > .bp4-card > article:first-child {
+  height: $poke-list-name-height;
+}
+
+
+.pokemon-list > .bp4-card > article:nth-child(2) {
+  height: $poke-list-badge-height;
+}
+
+
+.pokemon-list > .bp4-card > article:last-child {
+  height: $poke-list-sprite-height;
+}
+
+
+.pokemon-list > .bp4-card img {
+  width: auto;
+  height: 100%;
+}
+
+
+/**
+ * MOBILE STYLES
+ *
+ * @note: cannot use css variables as media query values :(
+**/
+
+@media only screen and (max-width: $screen-size-desktop) {
+  .pokemon-list > .bp4-card {
+    flex-basis: 45%;
+  }
+}

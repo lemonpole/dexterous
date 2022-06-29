@@ -1,0 +1,60 @@
+@import "../../assets/variables";
+
+
+#header {
+  display: flex;
+  width: 100%;
+}
+
+
+#header div.bp4-navbar-group:first-child  {
+  // parent flex container
+  flex-basis: $header-logo-container-width;
+
+  // we are also a flex container
+  justify-content: center;
+  margin-right: 0;
+  overflow: hidden;
+  cursor: default;
+
+  div.bp4-navbar-heading {
+    margin-right: 0;
+  }
+}
+
+
+#header > div.bp4-navbar-group:last-child {
+  flex-grow: 3;
+}
+
+
+/**
+ * MOBILE STYLES
+ *
+ * @note: cannot use css variables as media query values :(
+**/
+
+@media only screen and (max-width: $screen-size-desktop) {
+  #header {
+    justify-content: space-between;
+  }
+
+  #header div.bp4-navbar-group:first-child {
+    justify-content: normal;
+  }
+
+  #header > div.bp4-navbar-group:last-child {
+    flex-grow: 0;
+  }
+
+  // hide logo when search is active
+  #header.search-active > div.bp4-navbar-group:first-child {
+    flex-basis: 0;
+  }
+
+  // expand search bar when active
+  #header.search-active > div.bp4-navbar-group:last-child {
+    flex-basis: 100%;
+  }
+
+}
