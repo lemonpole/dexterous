@@ -37,7 +37,7 @@ export default function Home( props: HomeProps ) {
   return (
     <div id="home" className="container">
       {/* SHOW FIRST RUN CACHE NOTICE */}
-      {state.firstRun && (
+      {!state.cacheLoaded && (
         <section id="cache-notice">
           <Callout
             title={'Creating cache'}

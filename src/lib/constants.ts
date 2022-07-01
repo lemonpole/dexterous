@@ -1,7 +1,7 @@
 export const Application = {
   LANGUAGE_CODE_EN                          : 'en',
   LOCAL_STORAGE_THEME_KEY                   : 'dexterous_theme',
-  LOCAL_STORAGE_FIRST_RUN_KEY               : 'dexterous_first_run',
+  LOCAL_STORAGE_CACHE_LOADED_KEY            : 'dexterous_cache_loaded',
   IGNORED_MOVE_TYPES                        : [ 'unknown', 'shadow' ],
   IGNORED_GAMES                             : [ 'colosseum', 'xd' ],
   IGNORED_LEARN_METHODS                     : [ 'machine', 'tutor', 'egg' ],
@@ -20,7 +20,7 @@ export const ReduxActions = {
   POKEMON_UPDATE                            : '/pokemon/update',
   MOVE_TYPES_UPDATE                         : '/moveTypes/update',
   GAME_VERSIONS_UPDATE                      : '/gameVersions/update',
-  FIRST_RUN_UPDATE                          : '/firstrun/update',
+  CACHE_LOADED_UPDATE                       : '/cacheLoaded/update',
 };
 
 

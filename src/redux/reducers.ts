@@ -45,10 +45,10 @@ export function gameVersionReducer( state: typeof INITIAL_STATE.gameVersions, ac
 }
 
 
-export function firstRunReducer( state: typeof INITIAL_STATE.firstRun, action: AppAction<boolean> ) {
+export function cacheLoadedReducer( state: typeof INITIAL_STATE.cacheLoaded, action: AppAction<boolean> ) {
   switch( action.type ) {
-    case Constants.ReduxActions.FIRST_RUN_UPDATE:
-      localStorage.setItem( Constants.Application.LOCAL_STORAGE_FIRST_RUN_KEY, JSON.stringify( action.payload ) );
+    case Constants.ReduxActions.CACHE_LOADED_UPDATE:
+      localStorage.setItem( Constants.Application.LOCAL_STORAGE_CACHE_LOADED_KEY, JSON.stringify( action.payload ) );
       return action.payload as boolean;
     default:
       return state;

@@ -51,7 +51,7 @@ export default function App() {
   // toggle first run flag off once pokemon list is loaded
   React.useEffect( () => {
     if( state.pokemon && state.pokemon.length === Constants.Application.POKEMON_INITIAL_LIMIT_NUM ) {
-      dispatch({ type: Constants.ReduxActions.FIRST_RUN_UPDATE, payload: false });
+      dispatch({ type: Constants.ReduxActions.CACHE_LOADED_UPDATE, payload: true });
     }
   }, [ state.pokemon, dispatch ]);
 

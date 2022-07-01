@@ -7,7 +7,7 @@ export interface AppState {
   theme: boolean;
   moveTypes: MoveType[];
   gameVersions: GameVersion[];
-  firstRun: boolean;
+  cacheLoaded: boolean;
 }
 
 
@@ -30,5 +30,5 @@ export const INITIAL_STATE: AppState = {
   theme: localStorage.getItem( Constants.Application.LOCAL_STORAGE_THEME_KEY ) === 'true',
   moveTypes: [],
   gameVersions: [],
-  firstRun: localStorage.getItem( Constants.Application.LOCAL_STORAGE_FIRST_RUN_KEY ) === 'false' || !localStorage.getItem( Constants.Application.LOCAL_STORAGE_FIRST_RUN_KEY ),
+  cacheLoaded: localStorage.getItem( Constants.Application.LOCAL_STORAGE_CACHE_LOADED_KEY ) === 'true',
 }

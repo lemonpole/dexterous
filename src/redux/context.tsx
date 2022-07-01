@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pokemon, Type as MoveType, Version as GameVersion } from 'pokenode-ts';
 import { AppAction, AppDispatch, AppState, INITIAL_STATE } from './state';
-import { pokemonReducer, themeReducer, moveTypeReducer, gameVersionReducer, firstRunReducer } from './reducers';
+import { pokemonReducer, themeReducer, moveTypeReducer, gameVersionReducer, cacheLoadedReducer } from './reducers';
 
 
 function appReducer( state: AppState, action: AppAction<boolean> | AppAction<Pokemon[]> | AppAction<MoveType[]> | AppAction<GameVersion[]> ) {
@@ -10,7 +10,7 @@ function appReducer( state: AppState, action: AppAction<boolean> | AppAction<Pok
     theme: themeReducer( state.theme, action as AppAction<boolean> ),
     moveTypes: moveTypeReducer( state.moveTypes, action as AppAction<MoveType[]> ),
     gameVersions: gameVersionReducer( state.gameVersions, action as AppAction<GameVersion[]> ),
-    firstRun: firstRunReducer( state.firstRun, action as AppAction<boolean> ),
+    cacheLoaded: cacheLoadedReducer( state.cacheLoaded, action as AppAction<boolean> ),
   });
 }
 
