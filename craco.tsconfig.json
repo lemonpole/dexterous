@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dxtr/app": [ "src/app" ],
+      "@dxtr/components": [ "src/components" ],
+      "@dxtr/components/*": [ "src/components/*" ],
+      "@dxtr/lib": [ "src/lib" ],
+      "@dxtr/lib/*": [ "src/lib/*" ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ]
+  }
+}

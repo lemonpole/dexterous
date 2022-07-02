@@ -6,7 +6,8 @@ Uses the following APIs and technologies:
 
 - https://pokeapi.co/
 - Node v14.x
-- React v17.x
+- React v18.x
+
 
 ## Getting Started
 

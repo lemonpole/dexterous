@@ -1,23 +1,45 @@
-import ReactDOM from 'react-dom';
-import App from './app';
-import { HashRouter } from 'react-router-dom';
-import { AppStateProvider } from 'redux/context';
-import 'assets/global.scss';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from '@dxtr/app';
+import { ChakraProvider, ColorModeScript, theme } from '@chakra-ui/react';
 
+
+/**
+ * The index component should contain only
+ * HOC that encapsulate the App component.
+ *
+ * @component Index
+ */
 
 function Index() {
   return (
-    <AppStateProvider>
-      <HashRouter>
+    <React.StrictMode>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ChakraProvider>
         <App />
-      </HashRouter>
-    </AppStateProvider>
+      </ChakraProvider>
+    </React.StrictMode>
   );
 }
 
 
-// render the app
-ReactDOM.render(
-  <Index />,
-  document.getElementById( 'root' )
-);
+/**
+ * React bootstrapping logic.
+ *
+ * @function anonymous
+ */
+
+(() => {
+  // grab the root container
+  const container = document.getElementById( 'root' );
+
+  if( !container ) {
+    throw new Error( 'Failed to find the root element.' );
+  }
+
+  // render the react application
+  ReactDOM
+    .createRoot( container )
+    .render( <Index /> )
+  ;
+})();
