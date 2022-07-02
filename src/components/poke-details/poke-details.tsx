@@ -326,7 +326,9 @@ export default function PokeDetails( props: PokeDetailsProps ) {
 
       <MoveTypesGrid {...props} />
 
-      <EvolutionGrid {...props} />
+      {Object.keys( props.evolutionChain ).length > 0 && (
+        <EvolutionGrid {...props} />
+      )}
 
       <MoveSetGrid {...props} />
     </section>

@@ -62,6 +62,11 @@ export default function Poke( props: PokeProps ) {
       return;
     }
 
+    if( !pokemonSpecies.evolution_chain ) {
+      setPokemonEvolutionChain({} as EvolutionChain);
+      return;
+    }
+
     API
       .getUtilityClient()
       .getResourceByUrl( pokemonSpecies.evolution_chain.url )

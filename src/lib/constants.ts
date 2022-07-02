@@ -8,7 +8,7 @@ export const Application = {
   POKEDEX_CACHE_MAX_AGE                     : 31557600000,                                  // expire cache in 1 year
   POKEMON_DB_BASE_URL                       : 'https://pokemondb.net/pokedex/',
   POKEMON_INITIAL_OFFSET_NUM                : 0,
-  POKEMON_INITIAL_LIMIT_NUM                 : 500,
+  POKEMON_INITIAL_LIMIT_NUM                 : 999,
   POKEMON_PER_PAGE                          : 50,                                           // how many pokemon to load at a time when using the infinite scroller
   SCREEN_SIZE_DESKTOP                       : 1024,
   SEARCH_TRIGGER_TRESHOLD                   : 2,                                            // how many keys to press before calling filter function
