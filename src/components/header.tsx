@@ -1,5 +1,5 @@
 import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
-import { Box, IconButton, Stack, StackDivider, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { Box, IconButton, Stack, StackDivider, Text, useColorMode } from '@chakra-ui/react';
 import { Constants } from '@dxtr/lib';
 
 
@@ -21,13 +21,13 @@ export default function Header() {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      bg={useColorModeValue( Constants.Theme.COLOR_FOREGROUND[ 0 ], Constants.Theme.COLOR_FOREGROUND[ 1 ] )}
+      bg="foreground"
       borderBottom="1px"
       borderColor="inherit"
       borderStyle="solid"
-      h={Constants.Theme.HEADER_HEIGHT}
       w="full"
-      p={Constants.Theme.HORIZONTAL_RYTHM}
+      h={Constants.Application.HEADER_HEIGHT}
+      p={Constants.Application.RYTHM_BOX}
     >
       <Text>
         <b>dex</b>terous
@@ -45,7 +45,7 @@ export default function Header() {
         <IconButton
           aria-label="Toggle Dark/Light Theme"
           variant="ghost"
-          icon={colorMode === Constants.Theme.MODE_LIGHT
+          icon={colorMode === Constants.Application.COLOR_MODE_LIGHT
             ? <MoonIcon onClick={toggleColorMode} />
             : <SunIcon onClick={toggleColorMode} />
           }

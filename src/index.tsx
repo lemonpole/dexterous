@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
-import { ChakraProvider, ColorModeScript, theme } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript, extendTheme, theme } from '@chakra-ui/react';
+import { Constants } from '@dxtr/lib';
 
 
 /**
@@ -15,7 +16,7 @@ function Index() {
   return (
     <React.StrictMode>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <ChakraProvider>
+      <ChakraProvider theme={extendTheme( Constants.Theme )}>
         <App />
       </ChakraProvider>
     </React.StrictMode>

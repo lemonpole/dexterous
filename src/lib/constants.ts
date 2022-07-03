@@ -1,12 +1,18 @@
 export const Application = {
-  POKEMON_LABEL: 'Pokémon'
+  COLOR_MODE_LIGHT  : 'light',
+  HEADER_HEIGHT     : '60px',
+  POKEMON_LABEL     : 'Pokémon',
+  RYTHM_BOX         : 2,            // vertical and horizontal spacing
 };
 
 
 export const Theme = {
-  HEADER_HEIGHT: '60px',
-  MODE_LIGHT: 'light',
-  COLOR_FOREGROUND: [ 'gray.50', 'gray.700' ],
-  VERTICAL_RYTHM: 2,
-  HORIZONTAL_RYTHM: 2,
+  semanticTokens: {
+    colors: {
+      foreground: {
+        _light: 'gray.50',
+        _dark: 'gray.700',
+      }
+    },
+  },
 };
