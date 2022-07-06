@@ -3,3 +3,8 @@ export const Application = {
   HEADER_HEIGHT     : '60px',
   POKEMON_LABEL     : 'Pokémon',
 };
+
+
+export const ReduxActions = {
+  POKEMON_UPDATE                            : '/pokemon/update',
+};

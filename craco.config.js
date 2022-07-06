@@ -8,6 +8,7 @@ module.exports = {
       '@dxtr/components': path.resolve( __dirname, 'src/components/' ),
       '@dxtr/containers': path.resolve( __dirname, 'src/containers/' ),
       '@dxtr/lib': path.resolve( __dirname, 'src/lib/' ),
+      '@dxtr/redux': path.resolve( __dirname, 'src/redux/' ),
     }
   }
 };

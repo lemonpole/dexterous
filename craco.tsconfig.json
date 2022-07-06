@@ -8,7 +8,9 @@
       "@dxtr/containers": [ "src/containers" ],
       "@dxtr/containers/*": [ "src/containers/*" ],
       "@dxtr/lib": [ "src/lib" ],
-      "@dxtr/lib/*": [ "src/lib/*" ]
+      "@dxtr/lib/*": [ "src/lib/*" ],
+      "@dxtr/redux": [ "src/redux" ],
+      "@dxtr/redux/*": [ "src/redux/*" ]
     },
     "typeRoots": [
       "./node_modules/@types",

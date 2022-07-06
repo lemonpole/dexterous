@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChevronRightIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
 import {
   useColorMode, useDisclosure,
@@ -8,8 +9,8 @@ import {
   List, ListItem, ListIcon,
 } from '@chakra-ui/react';
 import { Constants } from '@dxtr/lib';
-import { PokemonSampleData } from '@dxtr/lib/util';
 import { NavBar, PokemonBadge } from '@dxtr/components';
+import { AppStateContext } from '@dxtr/redux/context';
 
 
 /**
@@ -38,6 +39,7 @@ function ThemeToggleButton() {
  */
 
 function SearchButton() {
+  const { state } = React.useContext( AppStateContext );
   const { isOpen, onOpen, onClose } = useDisclosure();
   const label = `Search ${Constants.Application.POKEMON_LABEL}`;
 
@@ -64,7 +66,7 @@ function SearchButton() {
           </ModalHeader>
           <ModalBody>
             <List spacing={3}>
-              {PokemonSampleData.map( pokemon => (
+              {state.pokemon.map( pokemon => (
                 <ListItem
                   key={pokemon.id}
                   display="flex"
@@ -79,7 +81,7 @@ function SearchButton() {
                     <Text fontSize="xs" opacity="0.5" fontFamily="mono">#{pokemon.id}</Text>
                     <Text textStyle="h2">{pokemon.name}</Text>
                     <HStack>
-                      {pokemon.types.map( type => (
+                      {pokemon.types.map( ( type: any ) => (
                         <PokemonBadge
                           key={type}
                           size="sm"

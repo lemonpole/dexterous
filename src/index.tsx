@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
 import { ChakraProvider, ColorModeScript, extendTheme, theme } from '@chakra-ui/react';
 import { Theme } from '@dxtr/lib';
+import { AppStateProvider } from '@dxtr/redux/context';
 
 
 /**
@@ -17,7 +18,9 @@ function Index() {
     <React.StrictMode>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <ChakraProvider theme={extendTheme( Theme )}>
-        <App />
+        <AppStateProvider>
+          <App />
+        </AppStateProvider>
       </ChakraProvider>
     </React.StrictMode>
   );
