@@ -3,6 +3,8 @@ import { PokemonSampleData } from '@dxtr/lib/util';
 
 export interface AppState {
   pokemon: any[];
+  filter: string;
+  searching: boolean;
 }
 
 
@@ -12,9 +14,18 @@ export interface AppAction<T> {
 }
 
 
-export type AppDispatch = React.Dispatch<AppAction<any[]>>;
+export type AppActions = (
+  AppAction<any[]>
+  | AppAction<string>
+  | AppAction<boolean>
+);
+
+
+export type AppDispatch = React.Dispatch<AppActions>;
 
 
 export const INITIAL_STATE: AppState = {
   pokemon: PokemonSampleData,
+  filter: '',
+  searching: false,
 };

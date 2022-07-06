@@ -4,8 +4,3 @@ export const Application = {
   POKEMON_LABEL                             : 'Pokémon',
   SEARCH_TRIGGER_TRESHOLD                   : 2,                  // how many keys to press before calling filter function
 };
-
-
-export const ReduxActions = {
-  POKEMON_UPDATE                            : '/pokemon/update',
-};

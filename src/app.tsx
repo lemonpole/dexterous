@@ -1,8 +1,16 @@
-import { Header } from '@dxtr/containers';
+import { Header, SearchOverlay } from '@dxtr/containers';
 
+
+/**
+ * @component
+ * @name App
+ */
 
 export default function App() {
   return (
-    <Header />
+    <>
+      <SearchOverlay />
+      <Header />
+    </>
   );
 }

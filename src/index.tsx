@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
 import { ChakraProvider, ColorModeScript, extendTheme, theme } from '@chakra-ui/react';
+import { AppStateProvider } from '@dxtr/redux';
 import { Theme } from '@dxtr/lib';
-import { AppStateProvider } from '@dxtr/redux/context';
 
 
 /**
  * The index component should contain only
  * HOC that encapsulate the App component.
  *
- * @component Index
+ * @component
+ * @name Index
  */
 
 function Index() {
@@ -30,7 +31,8 @@ function Index() {
 /**
  * React bootstrapping logic.
  *
- * @function anonymous
+ * @function
+ * @name anonymous
  */
 
 (() => {

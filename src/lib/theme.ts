@@ -5,7 +5,7 @@
  * @module
  */
 
-import { ComponentSingleStyleConfig } from '@chakra-ui/react';
+import { ComponentMultiStyleConfig, ComponentSingleStyleConfig } from '@chakra-ui/react';
 
 
 const NavBar: ComponentSingleStyleConfig = {
@@ -94,6 +94,24 @@ const PokemonBadge: ComponentSingleStyleConfig = {
 };
 
 
+const PokemonList: ComponentMultiStyleConfig = {
+  parts: [ 'list', 'item' ],
+  baseStyle: {
+    list: {
+      spacing: '3',
+    },
+    item: {
+      display: 'flex',
+      alignItems: 'center',
+      paddingX: 4,
+      paddingY: 2,
+      cursor: 'pointer',
+      borderRadius: 'base',
+    },
+  },
+};
+
+
 const Theme = {
   semanticTokens: {
     colors: {
@@ -105,7 +123,8 @@ const Theme = {
   },
   components: {
     NavBar,
-    PokemonBadge
+    PokemonBadge,
+    PokemonList,
   }
 };
 

@@ -1,13 +1,6 @@
 import React from 'react';
-import { AppAction, AppDispatch, AppState, INITIAL_STATE } from './state';
-import * as reducers from './reducers';
-
-
-function appReducer( state: AppState, action: AppAction<any[]> ) {
-  return ({
-    pokemon: reducers.pokemon( state.pokemon, action as AppAction<any[]> ),
-  });
-}
+import reducers from './reducers';
+import { AppDispatch, AppState, INITIAL_STATE } from './state';
 
 
 export const AppStateContext = React.createContext<{ state: AppState, dispatch: AppDispatch }>({
@@ -17,7 +10,7 @@ export const AppStateContext = React.createContext<{ state: AppState, dispatch: 
 
 
 export function AppStateProvider( props: { children: React.ReactNode }) {
-  const [ state, dispatch ] = React.useReducer( appReducer, INITIAL_STATE );
+  const [ state, dispatch ] = React.useReducer( reducers, INITIAL_STATE );
 
   return (
     <AppStateContext.Provider value={{ state, dispatch }}>

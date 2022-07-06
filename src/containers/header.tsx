@@ -1,16 +1,10 @@
 import React from 'react';
-import { ChevronRightIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
-import {
-  useColorMode, useDisclosure,
-  Text, IconButton, HStack,
-  Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay,
-  InputGroup, InputLeftElement, Input,
-  Stack, StackDivider,
-  List, ListItem, ListIcon,
-} from '@chakra-ui/react';
+import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
+import { useColorMode, Text, IconButton, Stack, StackDivider } from '@chakra-ui/react';
+import { AppStateContext } from '@dxtr/redux';
+import { searchingUpdate } from '@dxtr/redux/actions';
 import { Constants } from '@dxtr/lib';
-import { NavBar, PokemonBadge } from '@dxtr/components';
-import { AppStateContext } from '@dxtr/redux/context';
+import { NavBar } from '@dxtr/components';
 
 
 /**
@@ -35,107 +29,34 @@ function ThemeToggleButton() {
 
 /**
  * @component
- * @name SearchButton
- */
-
-function SearchButton() {
-  const { state } = React.useContext( AppStateContext );
-  const [ filter, setFilter ] = React.useState( '' );
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const label = `Search ${Constants.Application.POKEMON_LABEL}`;
-
-  return (
-    <>
-      <IconButton
-        aria-label={label}
-        variant="ghost"
-        icon={<SearchIcon />}
-        onClick={onOpen}
-      />
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        scrollBehavior="inside"
-      >
-        <ModalOverlay />
-        <ModalContent background="chakra-body-bg" my="24">
-          <ModalHeader>
-            <InputGroup>
-              <InputLeftElement children={<SearchIcon />} />
-              <Input
-                value={filter}
-                variant="flushed"
-                type="search"
-                placeholder={label}
-                onChange={event => setFilter( event.target.value )}
-              />
-            </InputGroup>
-          </ModalHeader>
-          <ModalBody>
-            <List spacing={3}>
-              {state.pokemon
-                .filter( pokemon => (
-                  filter.length > Constants.Application.SEARCH_TRIGGER_TRESHOLD
-                  && pokemon.name.toLowerCase().indexOf( filter.toLowerCase() ) >= 0
-                ))
-                .map( pokemon => (
-                  <ListItem
-                    key={pokemon.id}
-                    display="flex"
-                    alignItems="center"
-                    backgroundColor="foreground"
-                    px="4" py="2"
-                    cursor="pointer"
-                    borderRadius="base"
-                  >
-                    <ListIcon as={ChevronRightIcon} boxSize="2em" />
-                    <Stack spacing="0">
-                      <Text fontSize="xs" opacity="0.5" fontFamily="mono">#{pokemon.id}</Text>
-                      <Text textStyle="h2">{pokemon.name}</Text>
-                      <HStack>
-                        {pokemon.types.map( ( type: any ) => (
-                          <PokemonBadge
-                            key={type}
-                            size="sm"
-                            variant={type.toLocaleLowerCase()}
-                          >
-                            {type}
-                          </PokemonBadge>
-                        ))}
-                      </HStack>
-                    </Stack>
-                  </ListItem>
-                ))
-              }
-            </List>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
-  );
-}
-
-
-/**
- * @component
  * @name Header
  */
 
 export default function Header() {
+  const { dispatch } = React.useContext( AppStateContext );
+
   return (
     <NavBar as="header">
+      {/* LOGO */}
       <Text
         fontWeight="hairline"
         letterSpacing="wide"
       >
         <b>dex</b>terous
       </Text>
+
+      {/* SEARCH AND THEME BUTTONS */}
       <Stack
         as="article"
         direction="row"
         divider={<StackDivider />}
       >
-        <SearchButton />
+        <IconButton
+          aria-label={`Search ${Constants.Application.POKEMON_LABEL}`}
+          variant="ghost"
+          icon={<SearchIcon />}
+          onClick={() => dispatch( searchingUpdate( true ) )}
+        />
         <ThemeToggleButton />
       </Stack>
     </NavBar>
