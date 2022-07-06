@@ -40,6 +40,7 @@ function ThemeToggleButton() {
 
 function SearchButton() {
   const { state } = React.useContext( AppStateContext );
+  const [ filter, setFilter ] = React.useState( '' );
   const { isOpen, onOpen, onClose } = useDisclosure();
   const label = `Search ${Constants.Application.POKEMON_LABEL}`;
 
@@ -61,39 +62,51 @@ function SearchButton() {
           <ModalHeader>
             <InputGroup>
               <InputLeftElement children={<SearchIcon />} />
-              <Input variant="flushed" type="search" placeholder={label} />
+              <Input
+                value={filter}
+                variant="flushed"
+                type="search"
+                placeholder={label}
+                onChange={event => setFilter( event.target.value )}
+              />
             </InputGroup>
           </ModalHeader>
           <ModalBody>
             <List spacing={3}>
-              {state.pokemon.map( pokemon => (
-                <ListItem
-                  key={pokemon.id}
-                  display="flex"
-                  alignItems="center"
-                  backgroundColor="foreground"
-                  px="4" py="2"
-                  cursor="pointer"
-                  borderRadius="base"
-                >
-                  <ListIcon as={ChevronRightIcon} boxSize="2em" />
-                  <Stack spacing="0">
-                    <Text fontSize="xs" opacity="0.5" fontFamily="mono">#{pokemon.id}</Text>
-                    <Text textStyle="h2">{pokemon.name}</Text>
-                    <HStack>
-                      {pokemon.types.map( ( type: any ) => (
-                        <PokemonBadge
-                          key={type}
-                          size="sm"
-                          variant={type.toLocaleLowerCase()}
-                        >
-                          {type}
-                        </PokemonBadge>
-                      ))}
-                    </HStack>
-                  </Stack>
-                </ListItem>
-              ))}
+              {state.pokemon
+                .filter( pokemon => (
+                  filter.length > Constants.Application.SEARCH_TRIGGER_TRESHOLD
+                  && pokemon.name.toLowerCase().indexOf( filter.toLowerCase() ) >= 0
+                ))
+                .map( pokemon => (
+                  <ListItem
+                    key={pokemon.id}
+                    display="flex"
+                    alignItems="center"
+                    backgroundColor="foreground"
+                    px="4" py="2"
+                    cursor="pointer"
+                    borderRadius="base"
+                  >
+                    <ListIcon as={ChevronRightIcon} boxSize="2em" />
+                    <Stack spacing="0">
+                      <Text fontSize="xs" opacity="0.5" fontFamily="mono">#{pokemon.id}</Text>
+                      <Text textStyle="h2">{pokemon.name}</Text>
+                      <HStack>
+                        {pokemon.types.map( ( type: any ) => (
+                          <PokemonBadge
+                            key={type}
+                            size="sm"
+                            variant={type.toLocaleLowerCase()}
+                          >
+                            {type}
+                          </PokemonBadge>
+                        ))}
+                      </HStack>
+                    </Stack>
+                  </ListItem>
+                ))
+              }
             </List>
           </ModalBody>
         </ModalContent>
