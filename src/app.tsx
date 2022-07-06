@@ -1,4 +1,4 @@
-import { Header } from '@dxtr/components';
+import { Header } from '@dxtr/containers';
 
 
 export default function App() {

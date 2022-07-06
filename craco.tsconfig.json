@@ -5,6 +5,8 @@
       "@dxtr/app": [ "src/app" ],
       "@dxtr/components": [ "src/components" ],
       "@dxtr/components/*": [ "src/components/*" ],
+      "@dxtr/containers": [ "src/containers" ],
+      "@dxtr/containers/*": [ "src/containers/*" ],
       "@dxtr/lib": [ "src/lib" ],
       "@dxtr/lib/*": [ "src/lib/*" ]
     },
