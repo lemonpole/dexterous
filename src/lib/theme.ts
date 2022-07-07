@@ -97,12 +97,10 @@ const PokemonBadge: ComponentSingleStyleConfig = {
 const PokemonList: ComponentMultiStyleConfig = {
   parts: [ 'list', 'item' ],
   baseStyle: {
-    list: {
-      spacing: '3',
-    },
     item: {
       display: 'flex',
       alignItems: 'center',
+      height: 24,
       paddingX: 4,
       paddingY: 2,
       cursor: 'pointer',
@@ -120,6 +118,21 @@ const Theme = {
         _dark: 'gray.700',
       },
     },
+  },
+  colors: {
+    // generated from: https://smart-swatch.netlify.app/#937DC2
+    brand: {
+      50: '#f3edff',
+      100: '#d5caea',
+      200: '#b7a8d7',
+      300: '#9a86c6',
+      400: '#7d63b5',
+      500: '#64499b',
+      600: '#4e3979',
+      700: '#372958',
+      800: '#211736',
+      900: '#0d0617',
+    }
   },
   components: {
     NavBar,

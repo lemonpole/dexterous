@@ -1,6 +1,6 @@
 import React from 'react';
 import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
-import { useColorMode, Text, IconButton, Stack, StackDivider } from '@chakra-ui/react';
+import { chakra, useColorMode, Text, IconButton, Stack, StackDivider } from '@chakra-ui/react';
 import { AppStateContext } from '@dxtr/redux';
 import { searchingUpdate } from '@dxtr/redux/actions';
 import { Constants } from '@dxtr/lib';
@@ -41,8 +41,10 @@ export default function Header() {
       <Text
         fontWeight="hairline"
         letterSpacing="wide"
+        cursor="default"
       >
-        <b>dex</b>terous
+        <chakra.b color="brand.300">dex</chakra.b>
+        terous
       </Text>
 
       {/* SEARCH AND THEME BUTTONS */}

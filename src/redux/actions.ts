@@ -1,3 +1,6 @@
+import { AppState } from './state';
+
+
 export const ReduxActions = {
   FILTER_UPDATE     : '/filter/update',
   POKEMON_UPDATE    : '/pokemon/update',
@@ -5,7 +8,7 @@ export const ReduxActions = {
 };
 
 
-export function searchingUpdate( payload: boolean ) {
+export function searchingUpdate( payload: AppState['searching'] ) {
   return {
     type: ReduxActions.SEARCHING_UPDATE,
     payload
@@ -13,9 +16,17 @@ export function searchingUpdate( payload: boolean ) {
 }
 
 
-export function filterUpdate( payload: string ) {
+export function filterUpdate( payload: AppState['filter'] ) {
   return {
     type: ReduxActions.FILTER_UPDATE,
+    payload
+  };
+}
+
+
+export function pokemonUpdate( payload: AppState['pokemon'] ) {
+  return {
+    type: ReduxActions.POKEMON_UPDATE,
     payload
   };
 }

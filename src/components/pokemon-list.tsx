@@ -1,11 +1,11 @@
 import PokemonBadge from './pokemon-badge';
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   useMultiStyleConfig, createStylesContext,
   ComponentDefaultProps,
   List, ListItem, ListIcon,
-  Stack, HStack, Text
+  Stack, HStack, Text, Image
 } from '@chakra-ui/react';
+import { Constants, Types, util } from '@dxtr/lib';
 
 
 // this is needed to provide styles
@@ -28,6 +28,7 @@ export function PokemonList( props: ComponentDefaultProps ) {
   return (
     <List
       sx={styles.list}
+      spacing={3}
       {...rest}
     >
       <StylesProvider value={styles}>
@@ -39,7 +40,7 @@ export function PokemonList( props: ComponentDefaultProps ) {
 
 
 interface PokemonListItemProps extends ComponentDefaultProps {
-  data: any;
+  data: Types.Pokemon;
 }
 
 
@@ -52,42 +53,50 @@ interface PokemonListItemProps extends ComponentDefaultProps {
  */
 
 export function PokemonListItem( props: PokemonListItemProps ) {
-  const styles = useStyles();
   const { data, ...rest } = props;
+  const styles = useStyles();
+  const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ data.pokemon_species_id.toString() ])
+
+  const SpriteIcon = () => (
+    <Image
+      src={spriteUrl}
+      boxSize="16"
+      objectFit="contain"
+    />
+  );
 
   return (
     <ListItem sx={styles.item} {...rest}>
-      <ListIcon
-        as={ChevronRightIcon}
-        boxSize="2em"
-      />
-      <Stack spacing="1">
-        <Text
-          fontSize="xs"
-          opacity="0.5"
-          fontFamily="mono"
-        >
-          #{data.id}
-        </Text>
-        <Text
-          textStyle="h2"
-          textTransform="uppercase"
-          fontWeight="thin"
-        >
-          {data.name}
-        </Text>
-        <HStack>
-          {data.types.map( ( type: string ) => (
-            <PokemonBadge
-              key={type}
-              size="sm"
-              variant={type.toLocaleLowerCase()}
-            >
-              {type}
-            </PokemonBadge>
-          ))}
-        </HStack>
-      </Stack>
+      <HStack>
+        <ListIcon as={SpriteIcon} />
+        <Stack spacing="1">
+          <Text
+            fontSize="xs"
+            opacity="0.5"
+            fontFamily="mono"
+          >
+            #{data.id}
+          </Text>
+          <Text
+            textStyle="h2"
+            textTransform="uppercase"
+            fontWeight="thin"
+          >
+            {data.name}
+          </Text>
+          <HStack>
+            {data.pokemon_v2_pokemontypes.map( ( type: any ) => (
+              <PokemonBadge
+                key={type.pokemon_v2_type.name}
+                size="sm"
+                variant={type.pokemon_v2_type.name.toLowerCase()}
+              >
+                {type.pokemon_v2_type.name}
+              </PokemonBadge>
+            ))}
+          </HStack>
+        </Stack>
+      </HStack>
     </ListItem>
   );
 }

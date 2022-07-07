@@ -2,30 +2,30 @@ import { ReduxActions } from './actions';
 import { AppAction, AppActions, AppState, INITIAL_STATE } from './state';
 
 
-function pokemon( state: typeof INITIAL_STATE.pokemon, action: AppAction<any[]> ) {
+function pokemon( state: typeof INITIAL_STATE.pokemon, action: AppAction<typeof INITIAL_STATE.pokemon> ) {
   switch( action.type ) {
     case ReduxActions.POKEMON_UPDATE:
-      return action.payload as any[];
+      return action.payload as typeof state;
     default:
       return state;
   }
 }
 
 
-function filter( state: typeof INITIAL_STATE.filter, action: AppAction<string> ) {
+function filter( state: typeof INITIAL_STATE.filter, action: AppAction<typeof INITIAL_STATE.filter> ) {
   switch( action.type ) {
     case ReduxActions.FILTER_UPDATE:
-      return action.payload as string;
+      return action.payload as typeof state;
     default:
       return state;
   }
 }
 
 
-function searching( state: typeof INITIAL_STATE.searching, action: AppAction<boolean> ) {
+function searching( state: typeof INITIAL_STATE.searching, action: AppAction<typeof INITIAL_STATE.searching> ) {
   switch( action.type ) {
     case ReduxActions.SEARCHING_UPDATE:
-      return action.payload as boolean;
+      return action.payload as typeof state;
     default:
       return state;
   }
@@ -34,8 +34,8 @@ function searching( state: typeof INITIAL_STATE.searching, action: AppAction<boo
 
 export default function reducers( state: AppState, action: AppActions ) {
   return ({
-    pokemon: pokemon( state.pokemon, action as AppAction<any[]> ),
-    filter: filter( state.filter, action as AppAction<string> ),
-    searching: searching( state.searching, action as AppAction<boolean> ),
+    pokemon: pokemon( state.pokemon, action as AppAction<typeof state.pokemon> ),
+    filter: filter( state.filter, action as AppAction<typeof state.filter> ),
+    searching: searching( state.searching, action as AppAction<typeof state.searching> ),
   });
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { SearchIcon } from '@chakra-ui/icons';
+import { Search2Icon, SmallCloseIcon } from '@chakra-ui/icons';
 import {
   Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay,
-  InputGroup, InputLeftElement, Input,
+  InputGroup, InputLeftElement, Input, InputRightElement,
 } from '@chakra-ui/react';
 import { Constants } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
@@ -32,28 +32,41 @@ export default function SearchOverlay() {
       <ModalOverlay />
       <ModalContent background="chakra-body-bg" my="24">
         <ModalHeader>
-          <InputGroup>
-            <InputLeftElement children={<SearchIcon />} />
+          <InputGroup size="lg">
+            <InputLeftElement children={<Search2Icon color="brand.300" />} />
             <Input
               value={state.filter}
               variant="flushed"
-              type="search"
+              type="text"
               placeholder={`Search ${Constants.Application.POKEMON_LABEL}`}
               onChange={event => dispatch( filterUpdate( event.target.value ))}
+              // only add a border when we have search results
+              _focusVisible={{ borderColor: data.length > 0 ? 'inherit' : 'transparent' }}
+              borderColor={data.length > 0 ? 'inherit' : 'transparent'}
             />
+            {data.length > 0 && (
+              <InputRightElement
+                children={<SmallCloseIcon />}
+                onClick={() => dispatch( filterUpdate( '' ) )}
+                cursor="pointer"
+                opacity="0.5"
+              />
+            )}
           </InputGroup>
         </ModalHeader>
-        <ModalBody>
-          <PokemonList>
-            {data.map( pokemon => (
-              <PokemonListItem
-                key={pokemon.id}
-                backgroundColor="foreground"
-                data={pokemon}
-              />
-            ))}
-          </PokemonList>
-        </ModalBody>
+        {data.length > 0 && (
+          <ModalBody>
+            <PokemonList>
+              {data.map( pokemon => (
+                <PokemonListItem
+                  key={pokemon.id}
+                  backgroundColor="foreground"
+                  data={pokemon}
+                />
+              ))}
+            </PokemonList>
+          </ModalBody>
+        )}
       </ModalContent>
     </Modal>
   );
