@@ -1,9 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider, ColorModeScript, extendTheme, theme } from '@chakra-ui/react';
 import { AppStateProvider } from '@dxtr/redux';
-import { Theme } from '@dxtr/lib';
+import { Constants, Theme } from '@dxtr/lib';
+
+
+/**
+ * Apollo client.
+ *
+ * @constant
+ */
+
+const client = new ApolloClient({
+  uri: Constants.Application.API_BASE_URL,
+  cache: new InMemoryCache(),
+});
 
 
 /**
@@ -19,9 +32,11 @@ function Index() {
     <React.StrictMode>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <ChakraProvider theme={extendTheme( Theme )}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
+        <ApolloProvider client={client}>
+          <AppStateProvider>
+            <App />
+          </AppStateProvider>
+        </ApolloProvider>
       </ChakraProvider>
     </React.StrictMode>
   );
