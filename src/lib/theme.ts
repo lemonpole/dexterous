@@ -5,7 +5,7 @@
  * @module
  */
 
-import { ComponentMultiStyleConfig, ComponentSingleStyleConfig } from '@chakra-ui/react';
+import { ComponentMultiStyleConfig, ComponentSingleStyleConfig, ComponentStyleConfig } from '@chakra-ui/react';
 
 
 const NavBar: ComponentSingleStyleConfig = {
@@ -117,6 +117,14 @@ const ProgressiveImage: ComponentSingleStyleConfig = {
 };
 
 
+const Heading: ComponentStyleConfig = {
+  baseStyle: {
+    textTransform: 'uppercase',
+    fontVariant: [ 'small-caps' ]
+  },
+};
+
+
 const Theme = {
   semanticTokens: {
     colors: {
@@ -142,6 +150,7 @@ const Theme = {
     }
   },
   components: {
+    Heading,
     NavBar,
     PokemonBadge,
     PokemonList,

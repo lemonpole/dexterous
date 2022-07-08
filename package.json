@@ -2,6 +2,7 @@
   "name": "dexterous",
   "version": "2.0.0",
   "private": true,
+  "homepage": "https://lemonpole.github.io/dexterous/",
   "scripts": {
     "build": "craco build",
     "start": "craco start"
@@ -15,7 +16,8 @@
     "framer-motion": "^6.3.16",
     "graphql": "^16.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "6"
   },
   "devDependencies": {
     "@craco/craco": "^6.4.3",

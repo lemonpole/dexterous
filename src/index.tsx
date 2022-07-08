@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
+import { HashRouter } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider, ColorModeScript, extendTheme, theme } from '@chakra-ui/react';
 import { AppStateProvider } from '@dxtr/redux';
@@ -21,7 +22,7 @@ const client = new ApolloClient({
 
 /**
  * The index component should contain only
- * HOC that encapsulate the App component.
+ * HOCs that encapsulate the App component.
  *
  * @component
  * @name Index
@@ -34,7 +35,9 @@ function Index() {
       <ChakraProvider theme={extendTheme( Theme )}>
         <ApolloProvider client={client}>
           <AppStateProvider>
-            <App />
+            <HashRouter>
+              <App />
+            </HashRouter>
           </AppStateProvider>
         </ApolloProvider>
       </ChakraProvider>

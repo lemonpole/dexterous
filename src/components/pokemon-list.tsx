@@ -42,6 +42,7 @@ export function PokemonList( props: ComponentDefaultProps ) {
 
 interface PokemonListItemProps extends ComponentDefaultProps {
   data: Types.Pokemon;
+  onClick: ( name: string ) => void;
 }
 
 
@@ -54,7 +55,7 @@ interface PokemonListItemProps extends ComponentDefaultProps {
  */
 
 export function PokemonListItem( props: PokemonListItemProps ) {
-  const { data, ...rest } = props;
+  const { data, onClick, ...rest } = props;
   const styles = useStyles();
   const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ data.pokemon_species_id.toString() ]);
 
@@ -68,7 +69,11 @@ export function PokemonListItem( props: PokemonListItemProps ) {
   );
 
   return (
-    <ListItem sx={styles.item} {...rest}>
+    <ListItem
+      sx={styles.item}
+      onClick={() => onClick( data.name )}
+      {...rest}
+    >
       <HStack>
         <ListIcon as={SpriteIcon} />
         <Stack spacing="1">

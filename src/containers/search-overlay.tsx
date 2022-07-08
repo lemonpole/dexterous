@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search2Icon, SmallCloseIcon } from '@chakra-ui/icons';
 import {
   Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay,
@@ -17,6 +18,7 @@ import { PokemonList, PokemonListItem } from '@dxtr/components';
 
 export default function SearchOverlay() {
   const { state, dispatch } = React.useContext( AppStateContext );
+  const navigate = useNavigate();
 
   const data = state.pokemon.filter( pokemon => (
     state.filter.length >= Constants.Application.SEARCH_TRIGGER_TRESHOLD
@@ -63,6 +65,10 @@ export default function SearchOverlay() {
                   key={pokemon.id}
                   backgroundColor="foreground"
                   data={pokemon}
+                  onClick={name => {
+                    dispatch( searchingUpdate( false ) );
+                    navigate( `/${name}` );
+                  }}
                 />
               ))}
             </PokemonList>

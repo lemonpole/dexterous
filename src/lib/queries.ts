@@ -16,3 +16,17 @@ export const GET_POKEMON = gql`
     }
   }
 `;
+
+
+export const GET_POKEMON_DETAILS = gql`
+  query getPokemonDetails( $id: Int!, $lang: String = "en" ) {
+    pokemon_v2_pokemonspecies_by_pk( id: $id ) {
+      pokemon_v2_pokemonspeciesflavortexts(
+        where: { pokemon_v2_language: { name: { _eq: $lang } } },
+        limit: 1
+      ) {
+        flavor_text
+      }
+    }
+  }
+`;
