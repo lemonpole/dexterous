@@ -5,6 +5,7 @@ export const Application = {
   POKEMON_INITIAL_LIMIT_NUM                 : 10,
   POKEMON_PER_PAGE                          : 50,                                           // how many pokemon to load at a time when using the infinite scroller
   POKEMON_LABEL                             : 'Pokémon',
+  SCREEN_SIZE_DESKTOP                       : 1024,
   SEARCH_TRIGGER_TRESHOLD                   : 2,                                            // how many keys to press before calling filter function
 };
 
