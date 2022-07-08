@@ -28,6 +28,7 @@ export default function SearchOverlay() {
       isOpen={state.searching}
       onClose={() => dispatch( searchingUpdate( false ) )}
       scrollBehavior="inside"
+      size="xl"
     >
       <ModalOverlay />
       <ModalContent background="chakra-body-bg" my="24">

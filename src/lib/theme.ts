@@ -110,6 +110,13 @@ const PokemonList: ComponentMultiStyleConfig = {
 };
 
 
+const ProgressiveImage: ComponentSingleStyleConfig = {
+  baseStyle: {
+    transition: 'filter 0.3s ease-out'
+  }
+};
+
+
 const Theme = {
   semanticTokens: {
     colors: {
@@ -138,6 +145,7 @@ const Theme = {
     NavBar,
     PokemonBadge,
     PokemonList,
+    ProgressiveImage,
   }
 };
 

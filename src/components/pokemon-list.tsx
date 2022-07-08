@@ -1,9 +1,10 @@
 import PokemonBadge from './pokemon-badge';
+import ProgressiveImage from './progressive-image';
 import {
   useMultiStyleConfig, createStylesContext,
   ComponentDefaultProps,
   List, ListItem, ListIcon,
-  Stack, HStack, Text, Image
+  Stack, HStack, Text
 } from '@chakra-ui/react';
 import { Constants, Types, util } from '@dxtr/lib';
 
@@ -55,11 +56,12 @@ interface PokemonListItemProps extends ComponentDefaultProps {
 export function PokemonListItem( props: PokemonListItemProps ) {
   const { data, ...rest } = props;
   const styles = useStyles();
-  const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ data.pokemon_species_id.toString() ])
+  const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ data.pokemon_species_id.toString() ]);
 
+  // @todo: turn into a chakra component
   const SpriteIcon = () => (
-    <Image
-      src={spriteUrl}
+    <ProgressiveImage
+      lowQualitySrc={spriteUrl}
       boxSize="16"
       objectFit="contain"
     />

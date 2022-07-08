@@ -7,6 +7,8 @@
       "@dxtr/components/*": [ "src/components/*" ],
       "@dxtr/containers": [ "src/containers" ],
       "@dxtr/containers/*": [ "src/containers/*" ],
+      "@dxtr/hooks": [ "src/hooks" ],
+      "@dxtr/hooks/*": [ "src/hooks/*" ],
       "@dxtr/lib": [ "src/lib" ],
       "@dxtr/lib/*": [ "src/lib/*" ],
       "@dxtr/redux": [ "src/redux" ],

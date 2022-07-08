@@ -17,9 +17,9 @@ export function formatString( template: string, values: string[] ) {
     for( const key in args ) {
       out = template.replace(new RegExp("\\{" + key + "\\}", "gi"), args[key]);
     }
-
-    return out;
   }
+
+  return out;
 }
 
 
