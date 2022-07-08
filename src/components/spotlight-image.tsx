@@ -9,6 +9,7 @@ interface SpotlightImageProps {
   brightness?: number;
   coverImageOffset?: number;
   height?: number;
+  pokemonId?: number | string;
   scaleAmt?: number;
 }
 
@@ -19,6 +20,9 @@ interface SpotlightImageProps {
  */
 
 export default function SpotlightImage( props: SpotlightImageProps ) {
+  const bgImageSrc = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ props.pokemonId?.toString() || '1' ]);
+  const coverImageSrc = util.formatString( Constants.PokemonSpriteURLs.OFFICIAL_ARTWORK, [ props.pokemonId?.toString() || '1' ]);
+
   return (
     <Flex
       position="relative"
@@ -30,7 +34,7 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
       overflow="hidden"
     >
       <ProgressiveImage
-        lowQualitySrc={util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ '1' ])}
+        lowQualitySrc={bgImageSrc}
         objectFit="fill"
         filter="auto"
         blur={props.blurAmt || '20px'}
@@ -48,8 +52,8 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
         height={props.height || Constants.Application.SPOTLIGHT_IMAGE_HEIGHT}
       >
         <ProgressiveImage
-          lowQualitySrc={util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ '1' ])}
-          highQualitySrc={util.formatString( Constants.PokemonSpriteURLs.OFFICIAL_ARTWORK, [ '1' ])}
+          lowQualitySrc={bgImageSrc}
+          highQualitySrc={coverImageSrc}
           width="auto"
           height={( props.height || Constants.Application.SPOTLIGHT_IMAGE_HEIGHT ) - ( props.coverImageOffset || 100 )}
         />

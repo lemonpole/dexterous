@@ -23,9 +23,10 @@ function PokemonDetailsSkeleton() {
         <SpotlightImage />
       </Skeleton>
       <SkeletonText
-        m="4"
+        margin="4"
         noOfLines={4}
         spacing="4"
+        skeletonHeight="4"
       />
     </React.Fragment>
   );
@@ -53,7 +54,7 @@ export default function PokemonDetails( props: PokemonDetailsProps ) {
 
   return (
     <React.Fragment>
-      <SpotlightImage />
+      <SpotlightImage pokemonId={basicInfo.id} />
       <Heading
         as="h1"
         paddingY="4"
