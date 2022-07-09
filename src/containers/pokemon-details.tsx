@@ -94,7 +94,7 @@ export default function PokemonDetails( props: PokemonDetailsProps ) {
           </Text>
           <Alert status="success" variant="left-accent">
             <AlertIcon />
-            <Text>
+            <Text fontSize="sm">
               For full details, view {basicInfo.name.toUpperCase()}'s Pokédex entry on&nbsp;
               <Link isExternal href={Constants.Application.POKEMON_DB_BASE_URL + basicInfo.name}>
                 PokemonDB

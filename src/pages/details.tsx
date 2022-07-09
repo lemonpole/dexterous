@@ -23,6 +23,8 @@ export default function Details() {
           isOpen
           size="lg"
           onClose={() => navigate( '/' )}
+          // @note: resolves a chakra scroll bar error
+          blockScrollOnMount={false}
         >
           <DrawerOverlay />
           <DrawerContent>

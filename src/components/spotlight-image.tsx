@@ -1,5 +1,5 @@
 import ProgressiveImage from './progressive-image';
-import { Box, Container, Flex, Heading } from '@chakra-ui/react';
+import { Box, Container, Flex, Heading, useBreakpointValue } from '@chakra-ui/react';
 import { Constants, util } from '@dxtr/lib';
 
 
@@ -23,13 +23,20 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
   const bgImageSrc = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ props.pokemonId?.toString() || '1' ]);
   const coverImageSrc = util.formatString( Constants.PokemonSpriteURLs.OFFICIAL_ARTWORK, [ props.pokemonId?.toString() || '1' ]);
 
+  // offset height if on mobile
+  const baseHeight = props.height || Constants.Application.SPOTLIGHT_IMAGE_HEIGHT;
+  const heightOffset = {
+    base: baseHeight - parseInt( Constants.Application.HEADER_HEIGHT ),
+    lg: baseHeight
+  };
+
   return (
     <Flex
       position="relative"
       justifyContent="center"
       alignItems="center"
       width="full"
-      height={props.height || Constants.Application.SPOTLIGHT_IMAGE_HEIGHT}
+      height={heightOffset}
       backgroundColor={props.backgroundColor || 'black'}
       overflow="hidden"
     >
@@ -41,7 +48,7 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
         brightness={props.brightness || 0.75}
         transform={`scale(${props.scaleAmt || 3})`}
         width="full"
-        height={props.height || Constants.Application.SPOTLIGHT_IMAGE_HEIGHT}
+        height="full"
       />
       <Container
         centerContent
@@ -49,13 +56,13 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
         position="absolute"
         top="0"
         width="full"
-        height={props.height || Constants.Application.SPOTLIGHT_IMAGE_HEIGHT}
+        height="full"
       >
         <ProgressiveImage
           lowQualitySrc={bgImageSrc}
           highQualitySrc={coverImageSrc}
           width="auto"
-          height={( props.height || Constants.Application.SPOTLIGHT_IMAGE_HEIGHT ) - ( props.coverImageOffset || 100 )}
+          height={baseHeight - ( props.coverImageOffset || 100 )}
         />
       </Container>
       <Box
