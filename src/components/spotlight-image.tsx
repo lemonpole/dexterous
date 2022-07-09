@@ -1,5 +1,5 @@
 import ProgressiveImage from './progressive-image';
-import { Box, Container, Flex, Heading, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Container, Flex, Heading } from '@chakra-ui/react';
 import { Constants, util } from '@dxtr/lib';
 
 
