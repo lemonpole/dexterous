@@ -18,15 +18,14 @@ interface ProgressiveImageProps extends ComponentDefaultProps {
 
 export default function ProgressiveImage( props: ProgressiveImageProps ) {
   const { lowQualitySrc, highQualitySrc, ...rest } = props;
-  const [ imgSrc, { imgBlur }] = useProgressiveImg( lowQualitySrc, highQualitySrc || lowQualitySrc );
+  const [ imgSrc, imgBlur ] = useProgressiveImg( lowQualitySrc, highQualitySrc || lowQualitySrc );
   const styles = useStyleConfig( 'ProgressiveImage' );
 
   return (
     <Image
       sx={styles}
       src={imgSrc}
-      filter="auto"
-      blur={!!imgBlur && '0.5em'}
+      filter={imgBlur ? 'blur(20px)' : ''}
       {...rest}
     />
   );

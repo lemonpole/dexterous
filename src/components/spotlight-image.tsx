@@ -71,7 +71,7 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
           color="white"
           fontFamily="mono"
         >
-          #1
+          #{props.pokemonId}
         </Heading>
       </Box>
     </Flex>
