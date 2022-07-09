@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Drawer, DrawerContent, DrawerOverlay } from '@chakra-ui/react';
 import { Constants } from '@dxtr/lib';
 import { DeviceDetector } from '@dxtr/components';
-import { PokemonDetails } from '@dxtr/containers';
+import { Pokedex } from '@dxtr/containers';
 
 
 /**
@@ -28,7 +28,7 @@ export default function Details() {
         >
           <DrawerOverlay />
           <DrawerContent>
-            <PokemonDetails name={params.name as string} />
+            <Pokedex name={params.name as string} />
           </DrawerContent>
         </Drawer>
       </DeviceDetector.DesktopView>
@@ -36,7 +36,7 @@ export default function Details() {
       {/* RENDER IN FULL ON MOBILE */}
       <DeviceDetector.MobileView>
         <Box marginTop={Constants.Application.HEADER_HEIGHT}>
-          <PokemonDetails name={params.name as string} />
+          <Pokedex name={params.name as string} />
         </Box>
       </DeviceDetector.MobileView>
     </React.Fragment>

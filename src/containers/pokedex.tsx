@@ -11,12 +11,12 @@ import {
 } from '@chakra-ui/react';
 
 
-interface PokemonDetailsProps {
+interface PokedexProps {
   name: string;
 }
 
 
-function PokemonDetailsSkeleton() {
+function PokedexSkeleton() {
   return (
     <React.Fragment>
       <Skeleton>
@@ -35,10 +35,10 @@ function PokemonDetailsSkeleton() {
 
 /**
  * @component
- * @name PokemonDetails
+ * @name Pokedex
  */
 
-export default function PokemonDetails( props: PokemonDetailsProps ) {
+export default function Pokedex( props: PokedexProps ) {
   const { state } = React.useContext( AppStateContext );
   const basicInfo = state.pokemon.find( pokemon => pokemon.name.toLowerCase() === props.name.toLowerCase() );
 
@@ -49,7 +49,7 @@ export default function PokemonDetails( props: PokemonDetailsProps ) {
   );
 
   if( speciesInfoLoading || !basicInfo || !speciesInfo ) {
-    return <PokemonDetailsSkeleton />;
+    return <PokedexSkeleton />;
   }
 
   return (
