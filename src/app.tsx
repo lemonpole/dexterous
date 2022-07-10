@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Constants, Types, Queries } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
-import { pokemonUpdate } from '@dxtr/redux/actions';
+import { pokemonTypesUpdate, pokemonUpdate } from '@dxtr/redux/actions';
 import { Header, SearchOverlay } from '@dxtr/containers';
 import { Details, Home } from '@dxtr/pages';
 import { DeviceDetector } from '@dxtr/components';
@@ -17,17 +17,24 @@ import { DeviceDetector } from '@dxtr/components';
 export default function App() {
   // query for initial pokemon data
   const { dispatch } = React.useContext( AppStateContext );
-  const { data, loading } = useQuery<Types.PokemonResponse, Types.PokemonRequestVars>(
+  const { data: pokemonTypes } = useQuery<Types.PokemonTypesResponse>( Queries.GET_POKEMON_TYPES );
+  const { data: pokemonData } = useQuery<Types.PokemonResponse, Types.PokemonRequestVars>(
     Queries.GET_POKEMON,
     { variables: { limit: Constants.Application.POKEMON_INITIAL_LIMIT_NUM } }
   );
 
   // load into redux state
   React.useEffect( () => {
-    if( data && !loading ) {
-      dispatch( pokemonUpdate( data.pokemon_v2_pokemon ) );
+    if( pokemonData ) {
+      dispatch( pokemonUpdate( pokemonData.pokemon_v2_pokemon ) );
     }
-  }, [ dispatch, data, loading ]);
+  }, [ dispatch, pokemonData ]);
+
+  React.useEffect( () => {
+    if( pokemonTypes ) {
+      dispatch( pokemonTypesUpdate( pokemonTypes.pokemon_v2_type ) );
+    }
+  }, [ pokemonTypes, dispatch ]);
 
   return (
     <React.Fragment>

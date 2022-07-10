@@ -16,6 +16,11 @@ interface PokedexProps {
 }
 
 
+/**
+ * @component
+ * @name PokedexSkeleton
+ */
+
 function PokedexSkeleton() {
   return (
     <React.Fragment>

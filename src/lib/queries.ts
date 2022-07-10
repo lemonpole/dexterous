@@ -30,3 +30,22 @@ export const GET_POKEMON_DETAILS = gql`
     }
   }
 `;
+
+
+export const GET_POKEMON_TYPES = gql`
+  query getAllTypes {
+    pokemon_v2_type {
+      name
+      id
+      pokemon_v2_typeefficacies {
+        id
+        damage_factor
+        target_type_id
+        pokemonV2TypeByTargetTypeId {
+          id
+          name
+        }
+      }
+    }
+  }
+`;

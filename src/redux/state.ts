@@ -2,8 +2,9 @@ import { Types } from '@dxtr/lib';
 
 
 export interface AppState {
-  pokemon: Types.Pokemon[];
   filter: string;
+  pokemon: Types.Pokemon[];
+  pokemonTypes: Types.PokemonType[];
   searching: boolean;
 }
 
@@ -19,7 +20,8 @@ export type AppDispatch = React.Dispatch<AppActions>;
 
 
 export const INITIAL_STATE: AppState = {
-  pokemon: [],
   filter: '',
+  pokemon: [],
+  pokemonTypes: [],
   searching: false,
 };
