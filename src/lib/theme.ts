@@ -8,6 +8,111 @@
 import { ComponentMultiStyleConfig, ComponentSingleStyleConfig, ComponentStyleConfig } from '@chakra-ui/react';
 
 
+// pokemon type colors and variant styles
+const pokemonTypeBase = {
+  color: 'white',
+  fontFamily: 'mono',
+  fontWeight: 'bold',
+  textAlign: 'center',
+  textShadow: '1px 1px black',
+  textTransform: 'uppercase',
+};
+
+
+const pokemonTypeVariants = {
+  bug: {
+    backgroundColor: '#729f3f',
+    ...pokemonTypeBase,
+  },
+  fire: {
+    backgroundColor: '#fd7d24',
+    ...pokemonTypeBase,
+  },
+  flying: {
+    backgroundColor: '#8899ff',
+    ...pokemonTypeBase,
+  },
+  grass: {
+    backgroundColor: '#9bcc50',
+    ...pokemonTypeBase,
+  },
+  normal: {
+    backgroundColor: '#a4acaf',
+    ...pokemonTypeBase,
+  },
+  poison: {
+    backgroundColor: '#b97fc9',
+    ...pokemonTypeBase,
+  },
+  water: {
+    backgroundColor: '#4592c4',
+    ...pokemonTypeBase,
+  },
+  fighting: {
+    backgroundColor: '#d56723',
+    ...pokemonTypeBase,
+  },
+  ground: {
+    backgroundColor: '#ddbb55',
+    ...pokemonTypeBase,
+  },
+  rock: {
+    backgroundColor: '#a38c21',
+    ...pokemonTypeBase,
+  },
+  ghost: {
+    backgroundColor: '#7b62a3',
+    ...pokemonTypeBase,
+  },
+  steel: {
+    backgroundColor: '#9eb7b8',
+    ...pokemonTypeBase,
+  },
+  electric: {
+    backgroundColor: '#eed535',
+    ...pokemonTypeBase,
+  },
+  psychic: {
+    backgroundColor: '#f366b9',
+    ...pokemonTypeBase,
+  },
+  ice: {
+    backgroundColor: '#51c4e7',
+    ...pokemonTypeBase,
+  },
+  dragon: {
+    backgroundColor: '#7766ee',
+    ...pokemonTypeBase,
+  },
+  dark: {
+    backgroundColor: '#707070',
+    ...pokemonTypeBase,
+  },
+  fairy: {
+    backgroundColor: '#fdb9e9',
+    ...pokemonTypeBase,
+  },
+};
+
+
+// damage modifier variants
+const damageModifierVariants = {
+  0.25: {
+    color: '#7c0000',
+  },
+  0.5: {
+    color: '#a40000',
+  },
+  2: {
+    color: '#4e9a06',
+  },
+  4: {
+    color: '#73d216',
+  },
+};
+
+
+// custom chakra components
 const NavBar: ComponentSingleStyleConfig = {
   baseStyle: {
     zIndex: 'docked',
@@ -23,74 +128,12 @@ const NavBar: ComponentSingleStyleConfig = {
     borderStyle: 'solid',
     width: 'full',
     padding: 2,
-    // height: Constants.Application.HEADER_HEIGHT,
   },
 };
 
 
 const PokemonBadge: ComponentSingleStyleConfig = {
-  baseStyle: {
-    textTransform: 'uppercase',
-    fontFamily: 'mono',
-    fontWeight: 'bold',
-    textShadow: '1px 1px black',
-  },
-  variants: {
-    bug: {
-      backgroundColor: '#729f3f',
-    },
-    fire: {
-      backgroundColor: '#fd7d24',
-    },
-    flying: {
-      backgroundColor: '#8899ff',
-    },
-    grass: {
-      backgroundColor: '#9bcc50',
-    },
-    normal: {
-      backgroundColor: '#a4acaf',
-    },
-    poison: {
-      backgroundColor: '#b97fc9',
-    },
-    water: {
-      backgroundColor: '#4592c4',
-    },
-    fighting: {
-      backgroundColor: '#d56723',
-    },
-    ground: {
-      backgroundColor: '#ddbb55',
-    },
-    rock: {
-      backgroundColor: '#a38c21',
-    },
-    ghost: {
-      backgroundColor: '#7b62a3',
-    },
-    steel: {
-      backgroundColor: '#9eb7b8',
-    },
-    electric: {
-      backgroundColor: '#eed535',
-    },
-    psychic: {
-      backgroundColor: '#f366b9',
-    },
-    ice: {
-      backgroundColor: '#51c4e7',
-    },
-    dragon: {
-      backgroundColor: '#7766ee',
-    },
-    dark: {
-      backgroundColor: '#707070',
-    },
-    fairy: {
-      backgroundColor: '#fdb9e9',
-    },
-  }
+  variants: pokemonTypeVariants,
 };
 
 
@@ -117,6 +160,7 @@ const ProgressiveImage: ComponentSingleStyleConfig = {
 };
 
 
+// chakra component overrides
 const Heading: ComponentStyleConfig = {
   baseStyle: {
     textTransform: 'uppercase',
@@ -125,6 +169,15 @@ const Heading: ComponentStyleConfig = {
 };
 
 
+const Text: ComponentStyleConfig = {
+  variants: {
+    ...pokemonTypeVariants,
+    ...damageModifierVariants
+  }
+};
+
+
+// chakra theme object
 const Theme = {
   semanticTokens: {
     colors: {
@@ -155,6 +208,7 @@ const Theme = {
     PokemonBadge,
     PokemonList,
     ProgressiveImage,
+    Text,
   }
 };
 

@@ -40,7 +40,7 @@ export interface Pokemon extends GenericAPIResource {
 
 
 export interface PokemonType extends GenericAPIResource {
-  pokemon_v2_typeefficacies: PokemonEfficacy;
+  pokemon_v2_typeefficacies: PokemonEfficacy[];
 }
 
 

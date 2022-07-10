@@ -5,9 +5,11 @@ import { AppStateContext } from '@dxtr/redux';
 import { Constants, Queries, Types } from '@dxtr/lib';
 import { PokemonBadge, SpotlightImage } from '@dxtr/components';
 import {
-  Heading, Text,
+  Heading, Link, Text,
   HStack, Stack, VStack,
-  Skeleton, SkeletonText, Alert, AlertIcon, Link
+  Skeleton, SkeletonText,
+  Alert, AlertIcon,
+  SimpleGrid
 } from '@chakra-ui/react';
 
 
@@ -107,6 +109,30 @@ export default function Pokedex( props: PokedexProps ) {
               </Link>
             </Text>
           </Alert>
+        </Stack>
+
+        <Stack width="full">
+          <Heading as="h3" size="md">
+            Type Defenses
+          </Heading>
+          <SimpleGrid minChildWidth="50%" width="full">
+            {state.pokemonTypes.map( pokemonType => {
+              const typeMap = basicInfo.pokemon_v2_pokemontypes.map( sourceType => sourceType.pokemon_v2_type.name );
+              const modifiers = pokemonType.pokemon_v2_typeefficacies.filter( targetType => typeMap.includes( targetType.pokemonV2TypeByTargetTypeId.name ) );
+              const totalDamage = modifiers.map( modifier => modifier.damage_factor ).reduce( ( total, damage ) => ( damage * total ) / 100, 1.0 );
+
+              if( totalDamage === 1 ) {
+                return null;
+              }
+
+              return (
+                <HStack key={pokemonType.id} width="full" height="10">
+                  <Text w="50%" h="full" lineHeight="10" variant={pokemonType.name.toLowerCase()}>{pokemonType.name}</Text>
+                  <Text w="50%" h="full" lineHeight="10" variant={totalDamage.toString()} textAlign="center" fontFamily="mono">{totalDamage}x</Text>
+                </HStack>
+              );
+            })}
+          </SimpleGrid>
         </Stack>
       </VStack>
     </React.Fragment>
