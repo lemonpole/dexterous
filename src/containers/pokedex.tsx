@@ -116,22 +116,29 @@ export default function Pokedex( props: PokedexProps ) {
             Type Defenses
           </Heading>
           <SimpleGrid minChildWidth="50%" width="full">
-            {state.pokemonTypes.map( pokemonType => {
-              const typeMap = basicInfo.pokemon_v2_pokemontypes.map( sourceType => sourceType.pokemon_v2_type.name );
-              const modifiers = pokemonType.pokemon_v2_typeefficacies.filter( targetType => typeMap.includes( targetType.pokemonV2TypeByTargetTypeId.name ) );
-              const totalDamage = modifiers.map( modifier => modifier.damage_factor ).reduce( ( total, damage ) => ( damage * total ) / 100, 1.0 );
+            {state
+              .pokemonTypes
+              .map( pokemonType => {
+                const typeMap = basicInfo.pokemon_v2_pokemontypes.map( sourceType => sourceType.pokemon_v2_type.name );
+                const damageModifiers = pokemonType.pokemon_v2_typeefficacies.filter( targetType => typeMap.includes( targetType.pokemonV2TypeByTargetTypeId.name ) );
+                const total = damageModifiers.map( modifier => modifier.damage_factor ).reduce( ( total, modifier ) => ( modifier * total ) / 100, 1.0 );
+                return { pokemonType, total };
+              })
+              .sort( ( a, b ) => b.total - a.total )
+              .map( damage => {
+                // skip normal damage
+                if( damage.total === 1 ) {
+                  return null;
+                }
 
-              if( totalDamage === 1 ) {
-                return null;
-              }
-
-              return (
-                <HStack key={pokemonType.id} width="full" height="10">
-                  <Text w="50%" h="full" lineHeight="10" variant={pokemonType.name.toLowerCase()}>{pokemonType.name}</Text>
-                  <Text w="50%" h="full" lineHeight="10" variant={totalDamage.toString()} textAlign="center" fontFamily="mono">{totalDamage}x</Text>
-                </HStack>
-              );
-            })}
+                return (
+                  <HStack key={damage.pokemonType.id} width="full" height="10">
+                    <Text w="50%" h="full" lineHeight="10" variant={damage.pokemonType.name.toLowerCase()}>{damage.pokemonType.name}</Text>
+                    <Text w="50%" h="full" lineHeight="10" variant={damage.total.toString()} textAlign="center" fontFamily="mono">{damage.total}x</Text>
+                  </HStack>
+                )
+              })
+            }
           </SimpleGrid>
         </Stack>
       </VStack>
