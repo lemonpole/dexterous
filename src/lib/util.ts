@@ -1,3 +1,6 @@
+import * as Types from './types';
+
+
 /**
  * A simple string templating formatter.
  *
@@ -37,4 +40,31 @@ export function leftPadInt( num: number, min = 2 ) {
     numStr = '0' + numStr;
   }
   return numStr;
+}
+
+
+/**
+ * Calculates final damage modifier value by
+ * multiplying the damage dealt per type.
+ *
+ * e.g.:  - poison -> grass
+ *        - water(2) x poison(0.5)
+ *        - = 1
+ *
+ * @param modifierList The list of damage modifiers to parse.
+ */
+
+export function calculateDamageModifier( modifierList: Types.PokemonEfficacy[] ) {
+  // base damage is 100 so we'll divide by this amount
+  // to get more meaningful damage numbers like:
+  //
+  // - 0.5 = half damage
+  // - 2.0 = double damage
+  const modifierOffset = 100;
+
+  // calculate the total and return
+  return modifierList
+    .map( modifier => modifier.damage_factor )
+    .reduce( ( total, modifier ) => ( modifier * total ) / modifierOffset, 1.0 )
+  ;
 }

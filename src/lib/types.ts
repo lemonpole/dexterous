@@ -44,8 +44,7 @@ export interface PokemonType extends GenericAPIResource {
 }
 
 
-export interface PokemonSpecies {
-  name: string;
+export interface PokemonSpecies extends GenericAPIResource {
   pokemon_v2_pokemonspeciesflavortexts: PokemonSpeciesFlavorText[];
 }
 

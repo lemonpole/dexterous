@@ -27,6 +27,29 @@ export const GET_POKEMON_DETAILS = gql`
       ) {
         flavor_text
       }
+      pokemon_v2_evolutionchain {
+        id
+        pokemon_v2_pokemonspecies {
+          id
+          name
+          pokemon_v2_pokemonevolutions {
+            min_affection
+            min_level
+            min_beauty
+            min_happiness
+            time_of_day
+            pokemon_v2_evolutiontrigger {
+              name
+              id
+            }
+            pokemon_v2_item {
+              cost
+              id
+              name
+            }
+          }
+        }
+      }
     }
   }
 `;

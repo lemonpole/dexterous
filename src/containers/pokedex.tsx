@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { AppStateContext } from '@dxtr/redux';
-import { Constants, Queries, Types } from '@dxtr/lib';
+import { Constants, Queries, Types, util } from '@dxtr/lib';
 import { PokemonBadge, SpotlightImage } from '@dxtr/components';
 import {
   Heading, Link, Text,
@@ -119,9 +119,13 @@ export default function Pokedex( props: PokedexProps ) {
             {state
               .pokemonTypes
               .map( pokemonType => {
+                // grab the types that the current
+                // pokemon is weak/immune to
                 const typeMap = basicInfo.pokemon_v2_pokemontypes.map( sourceType => sourceType.pokemon_v2_type.name );
                 const damageModifiers = pokemonType.pokemon_v2_typeefficacies.filter( targetType => typeMap.includes( targetType.pokemonV2TypeByTargetTypeId.name ) );
-                const total = damageModifiers.map( modifier => modifier.damage_factor ).reduce( ( total, modifier ) => ( modifier * total ) / 100, 1.0 );
+
+                // calculate the total damage modifier
+                const total = util.calculateDamageModifier( damageModifiers );
                 return { pokemonType, total };
               })
               .sort( ( a, b ) => b.total - a.total )
