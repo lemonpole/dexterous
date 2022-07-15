@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
+import PackageInfo from '@dxtr/package';
 import { HashRouter } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider, ColorModeScript, extendTheme, theme } from '@chakra-ui/react';
 import { AppStateProvider } from '@dxtr/redux';
-import { Constants, Theme } from '@dxtr/lib';
+import { Theme } from '@dxtr/lib';
 
 
 /**
@@ -15,7 +16,7 @@ import { Constants, Theme } from '@dxtr/lib';
  */
 
 const client = new ApolloClient({
-  uri: Constants.Application.API_BASE_URL,
+  uri: PackageInfo.codegen.schema,
   cache: new InMemoryCache(),
 });
 

@@ -2,14 +2,15 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { AppStateContext } from '@dxtr/redux';
-import { Constants, Queries, Types, util } from '@dxtr/lib';
+import { Constants, GraphQL, util } from '@dxtr/lib';
 import { PokemonBadge, SpotlightImage } from '@dxtr/components';
 import {
-  Heading, Link, Text,
+  Heading, Link, Text, Image,
   HStack, Stack, VStack,
   Skeleton, SkeletonText,
   Alert, AlertIcon,
-  SimpleGrid
+  SimpleGrid,
+  Flex,
 } from '@chakra-ui/react';
 
 
@@ -50,12 +51,12 @@ export default function Pokedex( props: PokedexProps ) {
   const basicInfo = state.pokemon.find( pokemon => pokemon.name.toLowerCase() === props.name.toLowerCase() );
 
   // load pokemon species details
-  const { data: speciesInfo, loading: speciesInfoLoading } = useQuery<Types.PokemonSpeciesResponse, Types.PokemonSpeciesRequestVars>(
-    Queries.GET_POKEMON_DETAILS,
+  const { data: speciesInfo } = useQuery<GraphQL.PokemonDetailsQuery, GraphQL.PokemonDetailsQueryVariables>(
+    GraphQL.PokemonDetailsDocument,
     { variables: { id: basicInfo?.id || 1 } }
   );
 
-  if( speciesInfoLoading || !basicInfo || !speciesInfo ) {
+  if( !basicInfo || !speciesInfo ) {
     return <PokedexSkeleton />;
   }
 
@@ -78,11 +79,11 @@ export default function Pokedex( props: PokedexProps ) {
         <HStack>
           {basicInfo.pokemon_v2_pokemontypes.map( type => (
             <PokemonBadge
-              key={type.pokemon_v2_type.name}
+              key={type.pokemon_v2_type?.name}
               size="sm"
-              variant={type.pokemon_v2_type.name.toLowerCase()}
+              variant={type.pokemon_v2_type?.name?.toLowerCase()}
             >
-              {type.pokemon_v2_type.name}
+              {type.pokemon_v2_type?.name}
             </PokemonBadge>
           ))}
         </HStack>
@@ -93,8 +94,8 @@ export default function Pokedex( props: PokedexProps ) {
           </Heading>
           <Text fontStyle="italic">
             {speciesInfo
-              .pokemon_v2_pokemonspecies_by_pk
-              .pokemon_v2_pokemonspeciesflavortexts[ 0 ]
+              ?.pokemon_v2_pokemonspecies_by_pk
+              ?.pokemon_v2_pokemonspeciesflavortexts[ 0 ]
               .flavor_text
               .replace( /[\n|\f]+/g, ' ' )
             }
@@ -121,8 +122,8 @@ export default function Pokedex( props: PokedexProps ) {
               .map( pokemonType => {
                 // grab the types that the current
                 // pokemon is weak/immune to
-                const typeMap = basicInfo.pokemon_v2_pokemontypes.map( sourceType => sourceType.pokemon_v2_type.name );
-                const damageModifiers = pokemonType.pokemon_v2_typeefficacies.filter( targetType => typeMap.includes( targetType.pokemonV2TypeByTargetTypeId.name ) );
+                const typeMap = basicInfo.pokemon_v2_pokemontypes.map( sourceType => sourceType?.pokemon_v2_type?.name );
+                const damageModifiers = pokemonType.pokemon_v2_typeefficacies.filter( targetType => typeMap.includes( targetType?.pokemonV2TypeByTargetTypeId?.name ) );
 
                 // calculate the total damage modifier
                 const total = util.calculateDamageModifier( damageModifiers );
@@ -144,6 +145,57 @@ export default function Pokedex( props: PokedexProps ) {
               })
             }
           </SimpleGrid>
+        </Stack>
+
+        <Stack width="full">
+          <Heading as="h3" size="md">
+            Evolutions
+          </Heading>
+          {speciesInfo
+            .pokemon_v2_pokemonspecies_by_pk
+            ?.pokemon_v2_evolutionchain
+            ?.pokemon_v2_pokemonspecies_aggregate.nodes
+            .map( evolution => {
+              // bail early if no previous evolution exists
+              const prev = state.pokemon.find( pokemon => pokemon.id === evolution.evolves_from_species_id );
+
+              if( !prev ) {
+                return null;
+              }
+
+              // grab sprite urls
+              const prevSpriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ prev.id.toString() ]);
+              const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ evolution.id.toString() ]);
+
+              return (
+                <SimpleGrid
+                  key={`${evolution.id}/${evolution.name}`}
+                  columns={3}
+                  width="full"
+                >
+                  <VStack>
+                    <Image
+                      src={prevSpriteUrl}
+                      boxSize="16"
+                      objectFit="contain"
+                    />
+                    <Text>{prev.name}</Text>
+                  </VStack>
+                  <Flex justifyContent="center" alignItems="center">
+                    <Text>TBD: Details</Text>
+                  </Flex>
+                  <VStack>
+                    <Image
+                      src={spriteUrl}
+                      boxSize="16"
+                      objectFit="contain"
+                    />
+                    <Text>{evolution.name}</Text>
+                  </VStack>
+                </SimpleGrid>
+              );
+            })
+          }
         </Stack>
       </VStack>
     </React.Fragment>

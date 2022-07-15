@@ -1,4 +1,4 @@
-import * as Types from './types';
+import * as GraphQL from './graphql';
 
 
 /**
@@ -54,7 +54,7 @@ export function leftPadInt( num: number, min = 2 ) {
  * @param modifierList The list of damage modifiers to parse.
  */
 
-export function calculateDamageModifier( modifierList: Types.PokemonEfficacy[] ) {
+export function calculateDamageModifier( modifierList: GraphQL.PokemonTypesQuery['pokemon_v2_type'][number]['pokemon_v2_typeefficacies'] ) {
   // base damage is 100 so we'll divide by this amount
   // to get more meaningful damage numbers like:
   //

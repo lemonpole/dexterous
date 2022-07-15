@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Constants, Types, Queries } from '@dxtr/lib';
+import { Constants, GraphQL } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
 import { pokemonTypesUpdate, pokemonUpdate } from '@dxtr/redux/actions';
 import { Header, SearchOverlay } from '@dxtr/containers';
@@ -17,9 +17,9 @@ import { DeviceDetector } from '@dxtr/components';
 export default function App() {
   // query for initial pokemon data
   const { dispatch } = React.useContext( AppStateContext );
-  const { data: pokemonTypes } = useQuery<Types.PokemonTypesResponse>( Queries.GET_POKEMON_TYPES );
-  const { data: pokemonData } = useQuery<Types.PokemonResponse, Types.PokemonRequestVars>(
-    Queries.GET_POKEMON,
+  const { data: pokemonTypes } = useQuery<GraphQL.PokemonTypesQuery>( GraphQL.PokemonTypesDocument );
+  const { data: pokemonData } = useQuery<GraphQL.PokemonQuery, GraphQL.PokemonQueryVariables>(
+    GraphQL.PokemonDocument,
     { variables: { limit: Constants.Application.POKEMON_INITIAL_LIMIT_NUM } }
   );
 

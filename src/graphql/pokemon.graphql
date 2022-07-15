@@ -1,0 +1,13 @@
+query pokemon( $limit: Int! ) {
+  pokemon_v2_pokemon( limit: $limit ) {
+    id
+    name
+    pokemon_species_id
+    pokemon_v2_pokemontypes {
+      pokemon_v2_type {
+        id
+        name
+      }
+    }
+  }
+}

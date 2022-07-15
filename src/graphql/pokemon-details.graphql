@@ -1,0 +1,33 @@
+query pokemonDetails($id: Int!, $lang: String = "en") {
+  pokemon_v2_pokemonspecies_by_pk(id: $id) {
+    pokemon_v2_pokemonspeciesflavortexts(where: {pokemon_v2_language: {name: {_eq: $lang}}}, limit: 1) {
+      flavor_text
+    }
+    pokemon_v2_evolutionchain {
+      id
+      pokemon_v2_pokemonspecies_aggregate(order_by: {order: asc}) {
+        nodes {
+          id
+          name
+          evolves_from_species_id
+          order
+          is_baby
+          is_legendary
+          is_mythical
+          pokemon_v2_pokemonevolutions {
+            id
+            min_affection
+            min_beauty
+            min_happiness
+            min_level
+            time_of_day
+            pokemon_v2_item {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

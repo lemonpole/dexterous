@@ -1,11 +1,11 @@
 import PokemonBadge from './pokemon-badge';
+import { Constants, GraphQL, util } from '@dxtr/lib';
 import {
   useMultiStyleConfig, createStylesContext,
   ComponentDefaultProps,
   List, ListItem, ListIcon,
   Stack, HStack, Text, Image
 } from '@chakra-ui/react';
-import { Constants, Types, util } from '@dxtr/lib';
 
 
 // this is needed to provide styles
@@ -40,7 +40,7 @@ export function PokemonList( props: ComponentDefaultProps ) {
 
 
 interface PokemonListItemProps extends ComponentDefaultProps {
-  data: Types.Pokemon;
+  data: GraphQL.PokemonQuery[ 'pokemon_v2_pokemon' ][number];
   onClick: ( name: string ) => void;
 }
 
@@ -56,7 +56,7 @@ interface PokemonListItemProps extends ComponentDefaultProps {
 export function PokemonListItem( props: PokemonListItemProps ) {
   const { data, onClick, ...rest } = props;
   const styles = useStyles();
-  const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ data.pokemon_species_id.toString() ]);
+  const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ data?.pokemon_species_id?.toString() || '' ]);
 
   // @todo: turn into a chakra component
   const SpriteIcon = () => (

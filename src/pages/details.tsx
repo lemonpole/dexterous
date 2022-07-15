@@ -27,7 +27,7 @@ export default function Details() {
           blockScrollOnMount={false}
         >
           <DrawerOverlay />
-          <DrawerContent>
+          <DrawerContent overflowY="scroll">
             <Pokedex name={params.name as string} />
           </DrawerContent>
         </Drawer>

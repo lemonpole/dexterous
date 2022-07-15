@@ -1,10 +1,10 @@
-import { Types } from '@dxtr/lib';
+import { GraphQL } from '@dxtr/lib';
 
 
 export interface AppState {
   filter: string;
-  pokemon: Types.Pokemon[];
-  pokemonTypes: Types.PokemonType[];
+  pokemon: GraphQL.PokemonQuery['pokemon_v2_pokemon']
+  pokemonTypes: GraphQL.PokemonTypesQuery['pokemon_v2_type'];
   searching: boolean;
 }
 

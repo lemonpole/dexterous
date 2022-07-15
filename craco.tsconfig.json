@@ -11,6 +11,7 @@
       "@dxtr/hooks/*": [ "src/hooks/*" ],
       "@dxtr/lib": [ "src/lib" ],
       "@dxtr/lib/*": [ "src/lib/*" ],
+      "@dxtr/package": [ "package.json" ],
       "@dxtr/pages": [ "src/pages" ],
       "@dxtr/pages/*": [ "src/pages/*" ],
       "@dxtr/redux": [ "src/redux" ],

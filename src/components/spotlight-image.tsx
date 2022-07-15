@@ -37,6 +37,7 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
       alignItems="center"
       width="full"
       height={heightOffset}
+      minHeight={heightOffset}
       backgroundColor={props.backgroundColor || 'black'}
       overflow="hidden"
     >
