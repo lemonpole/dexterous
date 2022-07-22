@@ -25,13 +25,16 @@ query pokemonDetails($id: Int!, $lang: String = "en") {
               pokemon_v2_evolutiontrigger {
                 name
               }
-              pokemon_v2_item {
-                name
-              }
               pokemon_v2_location {
                 name
               }
               pokemon_v2_move {
+                name
+              }
+              pokemonV2ItemByHeldItemId {
+                name
+              }
+              pokemon_v2_item {
                 name
               }
             }
