@@ -14,19 +14,26 @@ query pokemonDetails($id: Int!, $lang: String = "en") {
           is_baby
           is_legendary
           is_mythical
-          pokemon_v2_pokemonevolutions {
-            id
-            min_affection
-            min_beauty
-            min_happiness
-            min_level
-            time_of_day
-            pokemon_v2_item {
-              id
-              name
-            }
-            pokemon_v2_evolutiontrigger {
-              name
+          pokemon_v2_pokemonevolutions_aggregate {
+            nodes {
+              min_affection
+              min_beauty
+              min_happiness
+              min_level
+              needs_overworld_rain
+              time_of_day
+              pokemon_v2_evolutiontrigger {
+                name
+              }
+              pokemon_v2_item {
+                name
+              }
+              pokemon_v2_location {
+                name
+              }
+              pokemon_v2_move {
+                name
+              }
             }
           }
         }
