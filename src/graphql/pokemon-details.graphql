@@ -25,6 +25,9 @@ query pokemonDetails($id: Int!, $lang: String = "en") {
               id
               name
             }
+            pokemon_v2_evolutiontrigger {
+              name
+            }
           }
         }
       }
