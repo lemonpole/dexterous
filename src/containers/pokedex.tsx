@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { AppStateContext } from '@dxtr/redux';
@@ -49,6 +50,7 @@ function PokedexSkeleton() {
 export default function Pokedex( props: PokedexProps ) {
   const { state } = React.useContext( AppStateContext );
   const basicInfo = state.pokemon.find( pokemon => pokemon.name.toLowerCase() === props.name.toLowerCase() );
+  const navigate = useNavigate();
 
   // load pokemon species details
   const { data: speciesInfo } = useQuery<GraphQL.PokemonDetailsQuery, GraphQL.PokemonDetailsQueryVariables>(
@@ -193,7 +195,10 @@ export default function Pokedex( props: PokedexProps ) {
                   columns={3}
                   width="full"
                 >
-                  <VStack>
+                  <VStack
+                    onClick={() => prev.name.toLowerCase() !== basicInfo.name.toLowerCase() && navigate( `/${prev.name.toLowerCase()}` )}
+                    cursor={prev.name.toLowerCase() !== basicInfo.name.toLowerCase() ? 'pointer' : 'default'}
+                  >
                     <Image
                       src={prevSpriteUrl}
                       boxSize="16"
@@ -218,7 +223,10 @@ export default function Pokedex( props: PokedexProps ) {
                       }
                     </Text>
                   </Flex>
-                  <VStack>
+                  <VStack
+                    onClick={() => evolution.name.toLowerCase() !== basicInfo.name.toLowerCase() && navigate( `/${evolution.name.toLowerCase()}` )}
+                    cursor={evolution.name.toLowerCase() !== basicInfo.name.toLowerCase() ? 'pointer' : 'default'}
+                  >
                     <Image
                       src={spriteUrl}
                       boxSize="16"
