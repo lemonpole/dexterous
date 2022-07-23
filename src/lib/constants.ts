@@ -19,10 +19,12 @@ export const PokemonSpriteURLs = {
 
 
 export const EvolutionConditions: Record<string, any> = {
+  'use-item': 'Use',
   min_affection: 'Affection {0} or more',
   min_happiness: 'Friendship {0} or more',
   min_level: 'Level {0}',
-  pokemon_v2_item: 'Use {0}',
+  pokemon_v2_item: '{0}',
   pokemonV2ItemByHeldItemId: 'Holding {0}',
   time_of_day: 'During {0}',
+  trade: 'Trade',
 };

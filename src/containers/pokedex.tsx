@@ -210,6 +210,7 @@ export default function Pokedex( props: PokedexProps ) {
                       fontStyle="italic"
                       fontSize="sm"
                     >
+                      {Constants.EvolutionConditions[ evolutionDetails.pokemon_v2_evolutiontrigger?.name || '' ]}&nbsp;
                       {conditions
                         .filter( condition => condition && condition.length > 0 )
                         .join( ', ' )
