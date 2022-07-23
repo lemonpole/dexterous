@@ -115,20 +115,30 @@ const damageModifierVariants = {
 // custom chakra components
 const NavBar: ComponentSingleStyleConfig = {
   baseStyle: {
-    zIndex: 'docked',
-    pos: 'fixed',
-    top: 0,
-    left: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     bg: 'foreground',
-    borderBottom: '1px',
-    borderColor: 'inherit',
     borderStyle: 'solid',
     width: 'full',
     padding: 2,
   },
+  variants: {
+    header: {
+      zIndex: 'docked',
+      pos: 'fixed',
+      top: 0,
+      left: 0,
+      borderBottom: '1px',
+      borderBottomColor: 'chakra-border-color',
+    },
+    footer: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      borderTop: '1px',
+      borderTopColor: 'chakra-border-color',
+    }
+  }
 };
 
 

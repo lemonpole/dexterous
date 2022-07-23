@@ -36,7 +36,7 @@ export default function Header() {
   const { dispatch } = React.useContext( AppStateContext );
 
   return (
-    <NavBar as="header">
+    <NavBar as="header" variant="header">
       {/* LOGO */}
       <Text
         fontWeight="hairline"

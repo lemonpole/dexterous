@@ -1,5 +1,6 @@
 export const Application = {
   COLOR_MODE_LIGHT                          : 'light',
+  FOOTER_HEIGHT                             : '100px',
   HEADER_HEIGHT                             : '60px',
   POKEMON_DB_BASE_URL                       : 'https://pokemondb.net/pokedex/',
   POKEMON_INITIAL_LIMIT_NUM                 : 150,

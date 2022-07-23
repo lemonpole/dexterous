@@ -106,7 +106,7 @@ export default function Pokedex( props: PokedexProps ) {
               For full details, view {basicInfo.name.toUpperCase()}'s Pokédex entry on&nbsp;
               <Link isExternal href={Constants.Application.POKEMON_DB_BASE_URL + basicInfo.name}>
                 PokemonDB
-                <ExternalLinkIcon mx='1' />
+                <ExternalLinkIcon mx="1" />
               </Link>
             </Text>
           </Alert>

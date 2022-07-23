@@ -17,7 +17,10 @@ export default function NavBar( props: ComponentDefaultProps ) {
   return (
     <Box
       sx={styles}
-      h={Constants.Application.HEADER_HEIGHT}
+      h={variant === 'footer'
+        ? Constants.Application.FOOTER_HEIGHT
+        : Constants.Application.HEADER_HEIGHT
+      }
       {...rest}
     >
       {children}
