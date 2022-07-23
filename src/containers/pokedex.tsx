@@ -167,6 +167,25 @@ export default function Pokedex( props: PokedexProps ) {
               const prevSpriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ prev.id.toString() ]);
               const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ evolution.id.toString() ]);
 
+              // grab just the first evolution details item
+              // @todo: instead grab by latest generation id.
+              const [ evolutionDetails ] = evolution.pokemon_v2_pokemonevolutions_aggregate.nodes;
+              console.log( evolutionDetails );
+
+              const conditions = Object.keys( evolutionDetails ).map( evolutionDetailKey => {
+                const evolutionDetail = ( evolutionDetails as Record<string, any> & GraphQL.Pokemon_V2_Pokemonevolution )[ evolutionDetailKey ];
+                const evolutionDetailLabel = evolutionDetail?.name || evolutionDetail;
+
+                if( !evolutionDetailLabel || !Constants.EvolutionConditions[ evolutionDetailKey ] ) {
+                  return null;
+                }
+
+                return util.formatString(
+                  Constants.EvolutionConditions[ evolutionDetailKey ],
+                  [ evolutionDetailLabel ],
+                );
+              });
+
               return (
                 <SimpleGrid
                   key={`${evolution.id}/${evolution.name}`}
@@ -179,10 +198,23 @@ export default function Pokedex( props: PokedexProps ) {
                       boxSize="16"
                       objectFit="contain"
                     />
-                    <Text>{prev.name}</Text>
+                    <Text variant="pokemon">{prev.name}</Text>
                   </VStack>
                   <Flex justifyContent="center" alignItems="center">
-                    <Text>TBD: Details</Text>
+                    <Text
+                      align="center"
+                      fontFamily="mono"
+                      variant="muted"
+                      textTransform="capitalize"
+                      fontStyle="italic"
+                      fontSize="sm"
+                    >
+                      {conditions
+                        .filter( condition => condition && condition.length > 0 )
+                        .join( ', ' )
+                        .replace( '-', ' ' )
+                      }
+                    </Text>
                   </Flex>
                   <VStack>
                     <Image
@@ -190,7 +222,7 @@ export default function Pokedex( props: PokedexProps ) {
                       boxSize="16"
                       objectFit="contain"
                     />
-                    <Text>{evolution.name}</Text>
+                    <Text variant="pokemon">{evolution.name}</Text>
                   </VStack>
                 </SimpleGrid>
               );

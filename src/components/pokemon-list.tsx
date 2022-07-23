@@ -78,15 +78,14 @@ export function PokemonListItem( props: PokemonListItemProps ) {
         <Stack spacing="1">
           <Text
             fontSize="xs"
-            opacity="0.5"
             fontFamily="mono"
+            variant="muted"
           >
             #{data.id}
           </Text>
           <Text
             textStyle="h2"
-            textTransform="uppercase"
-            fontWeight="thin"
+            variant="pokemon"
           >
             {data.name}
           </Text>

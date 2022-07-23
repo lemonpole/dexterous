@@ -172,7 +172,15 @@ const Heading: ComponentStyleConfig = {
 const Text: ComponentStyleConfig = {
   variants: {
     ...pokemonTypeVariants,
-    ...damageModifierVariants
+    ...damageModifierVariants,
+    muted: {
+      opacity: '0.5',
+    },
+    pokemon: {
+      textTransform: 'uppercase',
+      fontVariant: [ 'small-caps' ],
+      fontWeight: 'hairline',
+    }
   }
 };
 

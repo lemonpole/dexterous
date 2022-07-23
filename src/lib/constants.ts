@@ -15,3 +15,13 @@ export const PokemonSpriteURLs = {
   DEFAULT                                   : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{0}.png',
   OFFICIAL_ARTWORK                          : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{0}.png',
 };
+
+
+export const EvolutionConditions: Record<string, any> = {
+  min_affection: 'Affection {0} or more',
+  min_happiness: 'Friendship {0} or more',
+  min_level: 'Level {0}',
+  pokemon_v2_item: 'Use {0}',
+  pokemonV2ItemByHeldItemId: 'Holding {1}',
+  time_of_day: 'During {0}',
+};
