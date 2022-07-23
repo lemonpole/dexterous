@@ -170,8 +170,9 @@ export default function Pokedex( props: PokedexProps ) {
               // grab just the first evolution details item
               // @todo: instead grab by latest generation id.
               const [ evolutionDetails ] = evolution.pokemon_v2_pokemonevolutions_aggregate.nodes;
-              console.log( evolutionDetails );
 
+              // build evolution condition string to
+              // display in evolution grid below
               const conditions = Object.keys( evolutionDetails ).map( evolutionDetailKey => {
                 const evolutionDetail = ( evolutionDetails as Record<string, any> & GraphQL.Pokemon_V2_Pokemonevolution )[ evolutionDetailKey ];
                 const evolutionDetailLabel = evolutionDetail?.name || evolutionDetail;
