@@ -7,7 +7,6 @@
     "build": "craco build",
     "dev": "concurrently \"yarn start\" \"yarn generate --watch\"",
     "generate": "graphql-codegen",
-    "prestart": "yarn generate",
     "start": "craco start"
   },
   "dependencies": {
