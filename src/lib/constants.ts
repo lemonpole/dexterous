@@ -3,7 +3,7 @@ export const Application = {
   FOOTER_HEIGHT                             : '100px',
   HEADER_HEIGHT                             : '60px',
   POKEMON_DB_BASE_URL                       : 'https://pokemondb.net/pokedex/',
-  POKEMON_INITIAL_LIMIT_NUM                 : 150,
+  POKEMON_INITIAL_LIMIT_NUM                 : 999,
   POKEMON_PER_PAGE                          : 50,                                           // how many pokemon to load at a time when using the infinite scroller
   POKEMON_LABEL                             : 'Pokémon',
   SCREEN_SIZE_DESKTOP                       : 1024,
