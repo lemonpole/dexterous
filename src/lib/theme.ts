@@ -135,6 +135,7 @@ const NavBar: ComponentSingleStyleConfig = {
     footer: {
       flexDirection: 'column',
       alignItems: 'flex-start',
+      justifyContent: 'space-around',
       borderTop: '1px',
       borderTopColor: 'chakra-border-color',
     }
