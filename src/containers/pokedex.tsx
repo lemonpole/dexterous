@@ -10,13 +10,39 @@ import {
   HStack, Stack, VStack,
   Skeleton, SkeletonText,
   Alert, AlertIcon,
-  SimpleGrid,
-  Flex,
+  SimpleGrid, Flex,
 } from '@chakra-ui/react';
 
 
 interface PokedexProps {
   name: string;
+}
+
+
+type IterablePokemonEvolutionDetails = Record<string, any> & GraphQL.Pokemon_V2_Pokemonevolution;
+
+
+/**
+ * Builds a single string combining all of the
+ * requirements for the pokemon to evolve
+ *
+ * @param details The pokemon evolution conditions object.
+ */
+
+function buildEvolutionConditions( details: IterablePokemonEvolutionDetails ) {
+  return Object.keys( details ).map( detailKey => {
+    const detail = details[ detailKey ];
+    const label = detail?.name || detail;
+
+    if( !label || !Constants.EvolutionConditions[ detailKey ] ) {
+      return null;
+    }
+
+    return util.formatString(
+      Constants.EvolutionConditions[ detailKey ],
+      [ label ],
+    );
+  });
 }
 
 
@@ -169,25 +195,11 @@ export default function Pokedex( props: PokedexProps ) {
               const prevSpriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ prev.id.toString() ]);
               const spriteUrl = util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ evolution.id.toString() ]);
 
-              // grab just the first evolution details item
-              // @todo: instead grab by latest generation id.
-              const [ evolutionDetails ] = evolution.pokemon_v2_pokemonevolutions_aggregate.nodes;
-
               // build evolution condition string to
               // display in evolution grid below
-              const conditions = Object.keys( evolutionDetails ).map( evolutionDetailKey => {
-                const evolutionDetail = ( evolutionDetails as Record<string, any> & GraphQL.Pokemon_V2_Pokemonevolution )[ evolutionDetailKey ];
-                const evolutionDetailLabel = evolutionDetail?.name || evolutionDetail;
-
-                if( !evolutionDetailLabel || !Constants.EvolutionConditions[ evolutionDetailKey ] ) {
-                  return null;
-                }
-
-                return util.formatString(
-                  Constants.EvolutionConditions[ evolutionDetailKey ],
-                  [ evolutionDetailLabel ],
-                );
-              });
+              const [ evolutionDetails ] = evolution.pokemon_v2_pokemonevolutions_aggregate.nodes;
+              const evolutionTrigger = Constants.EvolutionConditions[ evolutionDetails.pokemon_v2_evolutiontrigger?.name || '' ];
+              const evolutionConditions = buildEvolutionConditions( evolutionDetails as IterablePokemonEvolutionDetails );
 
               return (
                 <SimpleGrid
@@ -215,8 +227,8 @@ export default function Pokedex( props: PokedexProps ) {
                       fontStyle="italic"
                       fontSize="sm"
                     >
-                      {Constants.EvolutionConditions[ evolutionDetails.pokemon_v2_evolutiontrigger?.name || '' ]}&nbsp;
-                      {conditions
+                      {evolutionTrigger}&nbsp;
+                      {evolutionConditions
                         .filter( condition => condition && condition.length > 0 )
                         .join( ', ' )
                         .replace( '-', ' ' )
