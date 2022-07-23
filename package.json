@@ -3,6 +3,10 @@
   "version": "2.0.0",
   "private": true,
   "homepage": "https://lemonpole.github.io/dexterous/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lemonpole/dexterous/"
+  },
   "scripts": {
     "build": "craco build",
     "dev": "concurrently \"yarn start\" \"yarn generate --watch\"",
