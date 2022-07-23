@@ -70,13 +70,31 @@ function PokedexSkeleton() {
 
 /**
  * @component
+ * @name PokemonEvolutionName
+ */
+
+function PokemonEvolutionName( props: { children: React.ReactNode; name: string; current: string; } ) {
+  const navigate = useNavigate();
+
+  return (
+    <VStack
+      onClick={() => props.name.toLowerCase() !== props.current.toLowerCase() && navigate( `/${props.name.toLowerCase()}` )}
+      cursor={props.name.toLowerCase() !== props.current.toLowerCase() ? 'pointer' : 'default'}
+    >
+      {props.children}
+    </VStack>
+  );
+}
+
+
+/**
+ * @component
  * @name Pokedex
  */
 
 export default function Pokedex( props: PokedexProps ) {
   const { state } = React.useContext( AppStateContext );
   const basicInfo = state.pokemon.find( pokemon => pokemon.name.toLowerCase() === props.name.toLowerCase() );
-  const navigate = useNavigate();
 
   // load pokemon species details
   const { data: speciesInfo } = useQuery<GraphQL.PokemonDetailsQuery, GraphQL.PokemonDetailsQueryVariables>(
@@ -207,9 +225,9 @@ export default function Pokedex( props: PokedexProps ) {
                   columns={3}
                   width="full"
                 >
-                  <VStack
-                    onClick={() => prev.name.toLowerCase() !== basicInfo.name.toLowerCase() && navigate( `/${prev.name.toLowerCase()}` )}
-                    cursor={prev.name.toLowerCase() !== basicInfo.name.toLowerCase() ? 'pointer' : 'default'}
+                  <PokemonEvolutionName
+                    name={prev.name}
+                    current={basicInfo.name}
                   >
                     <Image
                       src={prevSpriteUrl}
@@ -217,7 +235,7 @@ export default function Pokedex( props: PokedexProps ) {
                       objectFit="contain"
                     />
                     <Text variant="pokemon">{prev.name}</Text>
-                  </VStack>
+                  </PokemonEvolutionName>
                   <Flex justifyContent="center" alignItems="center">
                     <Text
                       align="center"
@@ -235,9 +253,9 @@ export default function Pokedex( props: PokedexProps ) {
                       }
                     </Text>
                   </Flex>
-                  <VStack
-                    onClick={() => evolution.name.toLowerCase() !== basicInfo.name.toLowerCase() && navigate( `/${evolution.name.toLowerCase()}` )}
-                    cursor={evolution.name.toLowerCase() !== basicInfo.name.toLowerCase() ? 'pointer' : 'default'}
+                  <PokemonEvolutionName
+                    name={evolution.name}
+                    current={basicInfo.name}
                   >
                     <Image
                       src={spriteUrl}
@@ -245,7 +263,7 @@ export default function Pokedex( props: PokedexProps ) {
                       objectFit="contain"
                     />
                     <Text variant="pokemon">{evolution.name}</Text>
-                  </VStack>
+                  </PokemonEvolutionName>
                 </SimpleGrid>
               );
             })
