@@ -3,6 +3,10 @@
   "version": "2.0.0",
   "private": true,
   "homepage": "https://lemonpole.github.io/dexterous/",
+  "bugs": {
+    "url": "https://github.com/lemonpole/dexterous/issues",
+    "email": "help@steverivera.io"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lemonpole/dexterous/"

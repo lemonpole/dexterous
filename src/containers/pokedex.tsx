@@ -1,12 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { AppStateContext } from '@dxtr/redux';
 import { Constants, GraphQL, util } from '@dxtr/lib';
-import { PokemonBadge, SpotlightImage } from '@dxtr/components';
+import { ExternalLink, PokemonBadge, SpotlightImage } from '@dxtr/components';
 import {
-  Heading, Link, Text, Image,
+  Heading, Text, Image,
   HStack, Stack, VStack,
   Skeleton, SkeletonText,
   Alert, AlertIcon,
@@ -150,10 +149,9 @@ export default function Pokedex( props: PokedexProps ) {
             <AlertIcon />
             <Text fontSize="sm">
               For full details, view {basicInfo.name.toUpperCase()}'s Pokédex entry on&nbsp;
-              <Link isExternal href={Constants.Application.POKEMON_DB_BASE_URL + basicInfo.name}>
+              <ExternalLink href={Constants.Application.POKEMON_DB_BASE_URL + basicInfo.name}>
                 PokemonDB
-                <ExternalLinkIcon mx="1" />
-              </Link>
+              </ExternalLink>
             </Text>
           </Alert>
         </Stack>

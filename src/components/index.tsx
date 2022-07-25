@@ -5,3 +5,4 @@ export { default as ProgressiveImage } from './progressive-image';
 export { default as DeviceDetector } from './device-detector';
 export { default as SpotlightImage } from './spotlight-image';
 export { default as TextLogo } from './text-logo';
+export { default as ExternalLink } from './external-link';

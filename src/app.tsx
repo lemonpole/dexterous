@@ -2,14 +2,12 @@ import React from 'react';
 import PackageInfo from '@dxtr/package';
 import { Route, Routes } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Link } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Constants, GraphQL } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
 import { pokemonTypesUpdate, pokemonUpdate } from '@dxtr/redux/actions';
 import { Header, SearchOverlay } from '@dxtr/containers';
 import { Details, Home } from '@dxtr/pages';
-import { DeviceDetector, NavBar } from '@dxtr/components';
+import { DeviceDetector, ExternalLink, NavBar } from '@dxtr/components';
 
 
 /**
@@ -66,15 +64,13 @@ export default function App() {
       <NavBar as="footer" variant="footer" fontSize="sm">
         <p>
           An&nbsp;
-          <Link isExternal href={PackageInfo.repository.url}>
+          <ExternalLink href={PackageInfo.repository.url}>
             open source
-            <ExternalLinkIcon mx="1" />
-          </Link>
+          </ExternalLink>
           Pokédex built using&nbsp;
-          <Link isExternal href="https://pokeapi.co">
+          <ExternalLink href="https://pokeapi.co">
             PokéAPI
-            <ExternalLinkIcon mx="1" />
-          </Link>.
+          </ExternalLink>.
         </p>
         <p>
           All content is &copy; Nintendo, Game Freak, and The Pokémon Company.
