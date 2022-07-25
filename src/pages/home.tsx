@@ -2,7 +2,8 @@ import PackageInfo from '@dxtr/package';
 import { Outlet } from 'react-router-dom';
 import { Constants } from '@dxtr/lib';
 import { ExternalLink, TextLogo } from '@dxtr/components';
-import { Box, Heading, ListItem, SimpleGrid, Stack, Text, UnorderedList } from '@chakra-ui/react';
+import { BellIcon, EditIcon } from '@chakra-ui/icons';
+import { Box, Heading, List, ListIcon, ListItem, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 
 
 /**
@@ -48,20 +49,22 @@ export default function Home() {
           <Heading as="h2">
             Support / Contributing
           </Heading>
-          <UnorderedList>
+          <List>
             <ListItem>
+              <ListIcon as={EditIcon} />
               Want to contribute?&nbsp;
               <ExternalLink href={PackageInfo.repository.url + '/pulls'}>
                 Submit a Pull Request.
               </ExternalLink>
             </ListItem>
             <ListItem>
+              <ListIcon as={BellIcon} />
               Found a bug?&nbsp;
               <ExternalLink href={PackageInfo.bugs.url}>
                 Please file an issue.
               </ExternalLink>
             </ListItem>
-          </UnorderedList>
+          </List>
         </Stack>
       </SimpleGrid>
     </Box>
