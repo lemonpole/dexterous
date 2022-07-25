@@ -21,6 +21,9 @@ export default function Home() {
         textAlign="justify"
         columns={[ 1, null, 2 ]}
         marginTop={Constants.Application.HEADER_HEIGHT}
+        // fill content to make footer stick
+        // to the bottom of the page
+        minH={`calc(100vh - ${Constants.Application.HEADER_HEIGHT} - ${Constants.Application.FOOTER_HEIGHT})`}
       >
         <Stack>
           <Heading as="h2">
