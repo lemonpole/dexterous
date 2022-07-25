@@ -1,10 +1,10 @@
 import React from 'react';
 import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
-import { chakra, useColorMode, Text, IconButton, Stack, StackDivider } from '@chakra-ui/react';
+import { useColorMode, IconButton, Stack, StackDivider } from '@chakra-ui/react';
 import { AppStateContext } from '@dxtr/redux';
 import { searchingUpdate } from '@dxtr/redux/actions';
 import { Constants } from '@dxtr/lib';
-import { NavBar } from '@dxtr/components';
+import { NavBar, TextLogo } from '@dxtr/components';
 
 
 /**
@@ -38,14 +38,7 @@ export default function Header() {
   return (
     <NavBar as="header" variant="header">
       {/* LOGO */}
-      <Text
-        fontWeight="hairline"
-        letterSpacing="wide"
-        cursor="default"
-      >
-        <chakra.b color="brand.300">dex</chakra.b>
-        terous
-      </Text>
+      <TextLogo />
 
       {/* SEARCH AND THEME BUTTONS */}
       <Stack
