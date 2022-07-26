@@ -11,7 +11,7 @@ import {
 
 
 const GRID_PROPS = {
-  spacing: 10,
+  spacing: 5,
   width: 'full',
   minChildWidth: [ '150px', '250px' ],
 };

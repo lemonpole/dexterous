@@ -25,14 +25,14 @@ export default function Home() {
       <VStack
         align="flex-start"
         marginTop={Constants.Application.HEADER_HEIGHT}
-        paddingY="10"
+        paddingY="5"
       >
         <Heading as="h2">Featured</Heading>
         <PokemonGrid />
       </VStack>
 
       <SimpleGrid
-        spacing="10"
+        spacing="5"
         textAlign="justify"
         columns={[ 1, null, 2 ]}
       >
