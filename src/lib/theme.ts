@@ -148,6 +148,20 @@ const PokemonBadge: ComponentSingleStyleConfig = {
 };
 
 
+const PokemonCard: ComponentSingleStyleConfig = {
+  baseStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    bg: 'foreground',
+    boxShadow: 'md',
+    height: '220px',
+    border: '1px',
+    borderColor: 'chakra-border-color',
+  }
+};
+
+
 const PokemonList: ComponentMultiStyleConfig = {
   parts: [ 'list', 'item' ],
   baseStyle: {
@@ -225,6 +239,7 @@ const Theme = {
     Heading,
     NavBar,
     PokemonBadge,
+    PokemonCard,
     PokemonList,
     ProgressiveImage,
     Text,

@@ -2,6 +2,7 @@ import { GraphQL } from '@dxtr/lib';
 
 
 export interface AppState {
+  featured: GraphQL.PokemonQuery['pokemon_v2_pokemon'],
   filter: string;
   pokemon: GraphQL.PokemonQuery['pokemon_v2_pokemon']
   pokemonTypes: GraphQL.PokemonTypesQuery['pokemon_v2_type'];
@@ -20,6 +21,7 @@ export type AppDispatch = React.Dispatch<AppActions>;
 
 
 export const INITIAL_STATE: AppState = {
+  featured: [],
   filter: '',
   pokemon: [],
   pokemonTypes: [],

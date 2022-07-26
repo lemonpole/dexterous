@@ -2,9 +2,9 @@ import React from 'react';
 import PackageInfo from '@dxtr/package';
 import { Route, Routes } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Constants, GraphQL } from '@dxtr/lib';
+import { Constants, GraphQL, util } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
-import { pokemonTypesUpdate, pokemonUpdate } from '@dxtr/redux/actions';
+import { featuredUpdate, pokemonTypesUpdate, pokemonUpdate } from '@dxtr/redux/actions';
 import { Header, SearchOverlay } from '@dxtr/containers';
 import { Details, Home } from '@dxtr/pages';
 import { DeviceDetector, ExternalLink, NavBar } from '@dxtr/components';
@@ -36,6 +36,16 @@ export default function App() {
       dispatch( pokemonTypesUpdate( pokemonTypes.pokemon_v2_type ) );
     }
   }, [ pokemonTypes, dispatch ]);
+
+  // load featured pokemon ids into state to prevent
+  // re-shuffles when transitioning through pages
+  React.useEffect( () => {
+    if( pokemonData ) {
+      const featuredIds = util.randomArray( Constants.Application.POKEMON_FEATURED_NUM, 1, pokemonData.pokemon_v2_pokemon.length - 1 );
+      const featuredList =  pokemonData.pokemon_v2_pokemon.filter( pokemon => featuredIds.includes( pokemon.id ) );
+      dispatch( featuredUpdate( featuredList ) );
+    }
+  }, [ pokemonData, dispatch ]);
 
   return (
     <React.Fragment>

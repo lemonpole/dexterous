@@ -68,3 +68,42 @@ export function calculateDamageModifier( modifierList: GraphQL.PokemonTypesQuery
     .reduce( ( total, modifier ) => ( modifier * total ) / modifierOffset, 1.0 )
   ;
 }
+
+
+/**
+ * Randomly generate a number between the
+ * specified min and max limits.
+ *
+ * @param min   The lower bounds for random numbers.
+ * @param max   The upper bounds for random numbers.
+ */
+
+export function random( min: number, max: number ) {
+  return Math.floor( Math.random() * ( max - min + 1 ) + min );
+}
+
+
+/**
+ * Populate array of specified length
+ * with unique random numbers.
+ *
+ * @param limit The length of the array to fill.
+ * @param min   The lower bounds for random numbers.
+ * @param max   The upper bounds for random numbers.
+ */
+
+export function randomArray( limit: number, min: number, max: number ) {
+  // bail early to avoid a stack overflow
+  if( max < min ) {
+    return [];
+  }
+
+  // fill up the array with unique numbers
+  const nums = new Set<number>();
+
+  while( nums.size !== limit ) {
+    nums.add( random( min, max ) );
+  }
+
+  return Array.from( nums.values() );
+}

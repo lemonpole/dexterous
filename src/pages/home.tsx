@@ -1,61 +1,15 @@
-import React from 'react';
 import PackageInfo from '@dxtr/package';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { AppStateContext } from '@dxtr/redux';
-import { Constants, util } from '@dxtr/lib';
-import { ExternalLink, PokemonBadge, TextLogo } from '@dxtr/components';
+import { Outlet } from 'react-router-dom';
+import { Constants } from '@dxtr/lib';
+import { ExternalLink, TextLogo } from '@dxtr/components';
+import { PokemonGrid } from '@dxtr/containers';
 import { CheckCircleIcon, InfoIcon, WarningIcon } from '@chakra-ui/icons';
 import {
-  Box, Heading, Text, Image,
+  Box, Heading, Text,
   List, ListIcon, ListItem,
-  Stack, HStack, VStack,
-  Skeleton, SkeletonCircle,
+  Stack, VStack,
   SimpleGrid,
 } from '@chakra-ui/react';
-
-
-/**
- * Local module function to randomly generate a number
- * between the specified min and max limits.
- */
-
-function random( min: number, max: number ) {
-  return Math.floor( Math.random() * ( max - min + 1 ) + min );
-}
-
-
-/**
- * @component
- * @name PokemonListSkeleton
- */
-
- function PokemonListSkeleton() {
-  return (
-    <SimpleGrid
-      spacing="10"
-      width="full"
-      minChildWidth={[ '150px', '250px' ]}
-    >
-      {[ ...Array( 8 ) ].map( ( _, idx ) => (
-        <Stack
-          key={idx}
-          align="center"
-          justify="center"
-          cursor="pointer"
-          bg="foreground"
-          boxShadow="md"
-          height="220px"
-          border="1px"
-          borderColor="chakra-border-color"
-        >
-          <Skeleton h="20px" w="50%" />
-          <Skeleton h="20px" w="30%" />
-          <SkeletonCircle size="24" />
-        </Stack>
-      ))}
-    </SimpleGrid>
-  );
-}
 
 
 /**
@@ -64,19 +18,6 @@ function random( min: number, max: number ) {
  */
 
 export default function Home() {
-  const { state } = React.useContext( AppStateContext );
-  const navigate = useNavigate();
-
-  const featuredIds = React.useMemo( () =>
-    [ ...Array( 8 ) ].map( () => random( 1, state.pokemon.length - 1 ) ),
-    [ state.pokemon ]
-  );
-
-  const featuredList = React.useMemo( () =>
-    state.pokemon.filter( pokemon => featuredIds.includes( pokemon.id ) ),
-    [ state.pokemon, featuredIds ]
-  );
-
   return (
     <Box paddingX="2">
       <Outlet />
@@ -87,45 +28,7 @@ export default function Home() {
         paddingY="10"
       >
         <Heading as="h2">Featured</Heading>
-        <SimpleGrid
-          spacing="10"
-          width="full"
-          minChildWidth={[ '150px', '250px' ]}
-        >
-          {featuredList.length === 0 && <PokemonListSkeleton />}
-          {featuredList.map( pokemon => (
-            <Stack
-              key={pokemon.id}
-              align="center"
-              justify="center"
-              cursor="pointer"
-              bg="foreground"
-              boxShadow="md"
-              height="220px"
-              border="1px"
-              borderColor="chakra-border-color"
-              onClick={() => navigate( `/${pokemon.name.toLowerCase()}` )}
-            >
-              <Text variant="pokemon">{pokemon.name}</Text>
-              <HStack>
-                {pokemon.pokemon_v2_pokemontypes.map( type => (
-                  <PokemonBadge
-                    key={type.pokemon_v2_type?.name}
-                    size="sm"
-                    variant={type.pokemon_v2_type?.name?.toLowerCase()}
-                  >
-                    {type.pokemon_v2_type?.name}
-                  </PokemonBadge>
-                ))}
-              </HStack>
-              <Image
-                boxSize="24"
-                objectFit="contain"
-                src={util.formatString( Constants.PokemonSpriteURLs.DEFAULT, [ pokemon.id?.toString() || '' ])}
-              />
-            </Stack>
-          ))}
-        </SimpleGrid>
+        <PokemonGrid />
       </VStack>
 
       <SimpleGrid

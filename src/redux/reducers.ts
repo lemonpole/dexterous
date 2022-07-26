@@ -2,6 +2,16 @@ import { ReduxActions } from './actions';
 import { AppAction, AppActions, AppState, INITIAL_STATE } from './state';
 
 
+function featured( state: typeof INITIAL_STATE.featured, action: AppAction<typeof INITIAL_STATE.featured> ) {
+  switch( action.type ) {
+    case ReduxActions.FEATURED_UPDATE:
+      return action.payload as typeof state;
+    default:
+      return state;
+  }
+}
+
+
 function filter( state: typeof INITIAL_STATE.filter, action: AppAction<typeof INITIAL_STATE.filter> ) {
   switch( action.type ) {
     case ReduxActions.FILTER_UPDATE:
@@ -44,6 +54,7 @@ function searching( state: typeof INITIAL_STATE.searching, action: AppAction<typ
 
 export default function reducers( state: AppState, action: AppActions ) {
   return ({
+    featured: featured( state.featured, action as AppAction<typeof state.featured> ),
     filter: filter( state.filter, action as AppAction<typeof state.filter> ),
     pokemon: pokemon( state.pokemon, action as AppAction<typeof state.pokemon> ),
     pokemonTypes: pokemonTypes( state.pokemonTypes, action as AppAction<typeof state.pokemonTypes> ),

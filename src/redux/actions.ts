@@ -2,10 +2,11 @@ import { AppState } from './state';
 
 
 export const ReduxActions = {
-  FILTER_UPDATE         : '/filter/update',
-  POKEMON_UPDATE        : '/pokemon/update',
-  POKEMON_TYPES_UPDATE  : '/pokemonTypes/update',
-  SEARCHING_UPDATE      : '/searching/update',
+  FEATURED_UPDATE         : '/featured/update',
+  FILTER_UPDATE           : '/filter/update',
+  POKEMON_UPDATE          : '/pokemon/update',
+  POKEMON_TYPES_UPDATE    : '/pokemonTypes/update',
+  SEARCHING_UPDATE        : '/searching/update',
 };
 
 
@@ -36,6 +37,14 @@ export function pokemonUpdate( payload: AppState['pokemon'] ) {
 export function pokemonTypesUpdate( payload: AppState['pokemonTypes'] ) {
   return {
     type: ReduxActions.POKEMON_TYPES_UPDATE,
+    payload
+  };
+}
+
+
+export function featuredUpdate( payload: AppState['featured'] ) {
+  return {
+    type: ReduxActions.FEATURED_UPDATE,
     payload
   };
 }
