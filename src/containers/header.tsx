@@ -1,11 +1,10 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
+import { useColorMode, IconButton, Stack, StackDivider } from '@chakra-ui/react';
 import { AppStateContext } from '@dxtr/redux';
 import { searchingUpdate } from '@dxtr/redux/actions';
 import { Constants } from '@dxtr/lib';
-import { DeviceDetector, NavBar, TextLogo } from '@dxtr/components';
-import { ArrowBackIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
-import { useColorMode, IconButton, Stack, StackDivider } from '@chakra-ui/react';
+import { NavBar, TextLogo } from '@dxtr/components';
 
 
 /**
@@ -35,8 +34,6 @@ function ThemeToggleButton() {
 
 export default function Header() {
   const { dispatch } = React.useContext( AppStateContext );
-  const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <NavBar as="header" variant="header">
@@ -56,16 +53,6 @@ export default function Header() {
           onClick={() => dispatch( searchingUpdate( true ) )}
         />
         <ThemeToggleButton />
-        {location.pathname !== '/' && (
-          <DeviceDetector.MobileView>
-            <IconButton
-              aria-label="Home"
-              variant="ghost"
-              icon={<ArrowBackIcon />}
-              onClick={() => navigate( '/' )}
-            />
-          </DeviceDetector.MobileView>
-        )}
       </Stack>
     </NavBar>
   );
