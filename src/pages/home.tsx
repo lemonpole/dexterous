@@ -65,21 +65,21 @@ export default function Home() {
           </Heading>
           <List>
             <ListItem>
-              <ListIcon as={InfoIcon} color="brand.300" />
+              <ListIcon as={InfoIcon} />
               How does it work?&nbsp;
               <ExternalLink href={PackageInfo.repository.url}>
                 View the source code.
               </ExternalLink>
             </ListItem>
             <ListItem>
-              <ListIcon as={CheckCircleIcon} color="brand.300" />
+              <ListIcon as={CheckCircleIcon} />
               Want to contribute?&nbsp;
               <ExternalLink href={PackageInfo.repository.url + 'pulls'}>
                 Submit a Pull Request.
               </ExternalLink>
             </ListItem>
             <ListItem>
-              <ListIcon as={WarningIcon} color="brand.300" />
+              <ListIcon as={WarningIcon} />
               Found a bug?&nbsp;
               <ExternalLink href={PackageInfo.bugs.url}>
                 Please file an issue.

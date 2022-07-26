@@ -235,6 +235,13 @@ const Theme = {
       900: '#0d0617',
     }
   },
+  styles: {
+    global: {
+      a: {
+        color: 'brand.300',
+      }
+    }
+  },
   components: {
     Heading,
     NavBar,
