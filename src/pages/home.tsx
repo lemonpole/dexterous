@@ -19,14 +19,14 @@ import {
 
 export default function Home() {
   return (
-    <Box paddingX="2">
+    <Box
+      mt={Constants.Application.HEADER_HEIGHT}
+      px="2"
+      py="4"
+    >
       <Outlet />
 
-      <VStack
-        align="flex-start"
-        marginTop={Constants.Application.HEADER_HEIGHT}
-        paddingY="5"
-      >
+      <VStack align="flex-start">
         <Heading as="h2">Featured</Heading>
         <PokemonGrid />
       </VStack>
@@ -35,6 +35,7 @@ export default function Home() {
         spacing="5"
         textAlign="justify"
         columns={[ 1, null, 2 ]}
+        pt="4"
       >
         <Stack>
           <Heading as="h2">

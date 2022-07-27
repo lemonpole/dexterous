@@ -71,7 +71,11 @@ export default function App() {
       </DeviceDetector.MobileView>
 
       {/* RENDER FOOTER WITH LEGAL INFO */}
-      <NavBar as="footer" variant="footer" fontSize="sm" marginTop="5">
+      <NavBar
+        as="footer"
+        variant="footer"
+        fontSize="sm"
+      >
         <p>
           An&nbsp;
           <ExternalLink href={PackageInfo.repository.url}>

@@ -111,14 +111,14 @@ export default function Pokedex( props: PokedexProps ) {
       <Heading
         as="h1"
         paddingY="4"
-        paddingX="6"
+        paddingX="2"
       >
         {props.name}
       </Heading>
       <VStack
         align="flex-start"
-        paddingY="2"
-        paddingX="6"
+        paddingY="4"
+        paddingX="2"
         spacing="6"
       >
         <HStack>

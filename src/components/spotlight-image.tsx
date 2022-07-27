@@ -70,7 +70,6 @@ export default function SpotlightImage( props: SpotlightImageProps ) {
         position="absolute"
         top="2"
         left="2"
-        padding="2"
       >
         <Heading
           as="h2"
