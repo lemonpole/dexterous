@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/dexterous/static/js/main.cfdf120e.js",
+    "main.js": "/dexterous/static/js/main.2a8471a0.js",
     "workbox-3a3a5d2b.js.map": "/dexterous/workbox-3a3a5d2b.js.map",
     "workbox-3a3a5d2b.js": "/dexterous/workbox-3a3a5d2b.js",
     "sw.js.map": "/dexterous/sw.js.map",
     "sw.js": "/dexterous/sw.js",
     "index.html": "/dexterous/index.html",
-    "main.cfdf120e.js.map": "/dexterous/static/js/main.cfdf120e.js.map"
+    "main.2a8471a0.js.map": "/dexterous/static/js/main.2a8471a0.js.map"
   },
   "entrypoints": [
-    "static/js/main.cfdf120e.js"
+    "static/js/main.2a8471a0.js"
   ]
 }
