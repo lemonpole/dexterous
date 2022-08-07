@@ -1,7 +1,7 @@
 import PackageInfo from '@dxtr/package';
 import { Outlet } from 'react-router-dom';
 import { Constants } from '@dxtr/lib';
-import { ExternalLink, TextLogo } from '@dxtr/components';
+import { ExternalLink } from '@dxtr/components';
 import { PokemonGrid } from '@dxtr/containers';
 import { CheckCircleIcon, InfoIcon, WarningIcon } from '@chakra-ui/icons';
 import {
@@ -41,24 +41,8 @@ export default function Home() {
           <Heading as="h2">
             About
           </Heading>
-          <Text>
-            This Pokédex was created from a specific
-            need to quickly look up the types or weaknesses
-            of a Pokémon while in the heat of battle.
-          </Text>
-          <Text>
-            There are many great <b>(and free)</b> solutions out there
-            but none focus their user experience around quickly
-            searching or navigating through Pokédex entries.
-          </Text>
-          <Text>
-            The few mobile apps that exist, work well but hide much
-            of their functionality behind <b>paid features</b> or
-            force their users to watch <b>unskippable</b> ads.
-          </Text>
-          <Text>
-            Thus, <TextLogo /> was born. No ads. No gimmicks.
-          </Text>
+          <Text>This Pokédex was created to serve as a companion <em>"battle dex"</em> for casual Pokémon fans who find themselves constantly guessing at a Pokémon's weakness, type, or how they evolve.</Text>
+          <Text>It provides an intuitive interface to seamlessly navigate through Pokédex entries.</Text>
         </Stack>
         <Stack>
           <Heading as="h2" textAlign="left">
