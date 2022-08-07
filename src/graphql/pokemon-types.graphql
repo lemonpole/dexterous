@@ -1,0 +1,15 @@
+query pokemonTypes {
+  pokemon_v2_type {
+    name
+    id
+    pokemon_v2_typeefficacies {
+      id
+      damage_factor
+      target_type_id
+      pokemonV2TypeByTargetTypeId {
+        id
+        name
+      }
+    }
+  }
+}

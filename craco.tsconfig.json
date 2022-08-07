@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dxtr/app": [ "src/app" ],
+      "@dxtr/components": [ "src/components" ],
+      "@dxtr/components/*": [ "src/components/*" ],
+      "@dxtr/containers": [ "src/containers" ],
+      "@dxtr/containers/*": [ "src/containers/*" ],
+      "@dxtr/hooks": [ "src/hooks" ],
+      "@dxtr/hooks/*": [ "src/hooks/*" ],
+      "@dxtr/lib": [ "src/lib" ],
+      "@dxtr/lib/*": [ "src/lib/*" ],
+      "@dxtr/package": [ "package.json" ],
+      "@dxtr/pages": [ "src/pages" ],
+      "@dxtr/pages/*": [ "src/pages/*" ],
+      "@dxtr/redux": [ "src/redux" ],
+      "@dxtr/redux/*": [ "src/redux/*" ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ]
+  }
+}

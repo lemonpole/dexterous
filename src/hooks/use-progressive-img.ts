@@ -1,23 +1,25 @@
 import React from 'react';
+import { useBoolean } from '@chakra-ui/react';
 
 
 type HookReturn = [
   string,
-  Record<string, boolean>
+  boolean,
 ];
 
 
 function useProgressiveImg( lowQualitySrc: string, highQualitySrc: string ): HookReturn {
   const [ src, setSrc ] = React.useState( lowQualitySrc );
+  const [ isLoading, setLoading ] = useBoolean( true );
 
   React.useEffect( () => {
     setSrc( lowQualitySrc );
     const img = new Image();
     img.src = highQualitySrc;
-    img.onload = () => setSrc( highQualitySrc );
-  }, [ lowQualitySrc, highQualitySrc ]);
+    img.onload = () => { setSrc( highQualitySrc ); setLoading.off(); };
+  }, [ lowQualitySrc, highQualitySrc, setLoading ]);
 
-  return [ src, { blur: src === lowQualitySrc }];
+  return [ src, isLoading ];
 };
 
 

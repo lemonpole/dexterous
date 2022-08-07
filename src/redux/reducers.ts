@@ -1,56 +1,74 @@
-import { Pokemon, Type as MoveType, Version as GameVersion } from 'pokenode-ts';
-import { AppAction, INITIAL_STATE } from './state';
-import { Constants } from '../lib';
+import { ReduxActions } from './actions';
+import { AppAction, AppActions, AppState, INITIAL_STATE } from './state';
 
 
-export function themeReducer( state: typeof INITIAL_STATE.theme, action: AppAction<boolean> ) {
+function featured( state: typeof INITIAL_STATE.featured, action: AppAction<typeof INITIAL_STATE.featured> ) {
   switch( action.type ) {
-    case Constants.ReduxActions.THEME_UPDATE:
-      localStorage.setItem( Constants.Application.LOCAL_STORAGE_THEME_KEY, JSON.stringify( action.payload ) );
-      return action.payload as boolean;
+    case ReduxActions.FEATURED_UPDATE:
+      return action.payload as typeof state;
     default:
       return state;
   }
 }
 
 
-export function pokemonReducer( state: typeof INITIAL_STATE.pokemon, action: AppAction<Pokemon[]> ) {
+function filter( state: typeof INITIAL_STATE.filter, action: AppAction<typeof INITIAL_STATE.filter> ) {
   switch( action.type ) {
-    case Constants.ReduxActions.POKEMON_UPDATE:
-      return action.payload as Pokemon[];
+    case ReduxActions.FILTER_UPDATE:
+      return action.payload as typeof state;
     default:
       return state;
   }
 }
 
 
-export function moveTypeReducer( state: typeof INITIAL_STATE.moveTypes, action: AppAction<MoveType[]> ) {
+function pokemon( state: typeof INITIAL_STATE.pokemon, action: AppAction<typeof INITIAL_STATE.pokemon> ) {
   switch( action.type ) {
-    case Constants.ReduxActions.MOVE_TYPES_UPDATE:
-      return action
-        .payload?.filter( moveType => !Constants.Application.IGNORED_MOVE_TYPES.includes( moveType.name ) ) as MoveType[];
+    case ReduxActions.POKEMON_UPDATE:
+      return action.payload as typeof state;
     default:
       return state;
   }
 }
 
 
-export function gameVersionReducer( state: typeof INITIAL_STATE.gameVersions, action: AppAction<GameVersion[]> ) {
+function pokemonTypes( state: typeof INITIAL_STATE.pokemonTypes, action: AppAction<typeof INITIAL_STATE.pokemonTypes> ) {
   switch( action.type ) {
-    case Constants.ReduxActions.GAME_VERSIONS_UPDATE:
-      return action.payload as GameVersion[];
+    case ReduxActions.POKEMON_TYPES_UPDATE:
+      return action.payload as typeof state;
     default:
       return state;
   }
 }
 
 
-export function cacheLoadedReducer( state: typeof INITIAL_STATE.cacheLoaded, action: AppAction<boolean> ) {
+function pokemonGenerations( state: typeof INITIAL_STATE.pokemonGenerations, action: AppAction<typeof INITIAL_STATE.pokemonGenerations> ) {
   switch( action.type ) {
-    case Constants.ReduxActions.CACHE_LOADED_UPDATE:
-      localStorage.setItem( Constants.Application.LOCAL_STORAGE_CACHE_LOADED_KEY, JSON.stringify( action.payload ) );
-      return action.payload as boolean;
+    case ReduxActions.POKEMON_GENERATIONS_UPDATE:
+      return action.payload as typeof state;
     default:
       return state;
   }
+}
+
+
+function searching( state: typeof INITIAL_STATE.searching, action: AppAction<typeof INITIAL_STATE.searching> ) {
+  switch( action.type ) {
+    case ReduxActions.SEARCHING_UPDATE:
+      return action.payload as typeof state;
+    default:
+      return state;
+  }
+}
+
+
+export default function reducers( state: AppState, action: AppActions ) {
+  return ({
+    featured: featured( state.featured, action as AppAction<typeof state.featured> ),
+    filter: filter( state.filter, action as AppAction<typeof state.filter> ),
+    pokemonGenerations: pokemonGenerations( state.pokemonGenerations, action as AppAction<typeof state.pokemonGenerations> ),
+    pokemon: pokemon( state.pokemon, action as AppAction<typeof state.pokemon> ),
+    pokemonTypes: pokemonTypes( state.pokemonTypes, action as AppAction<typeof state.pokemonTypes> ),
+    searching: searching( state.searching, action as AppAction<typeof state.searching> ),
+  });
 }

@@ -1,79 +1,94 @@
-import React from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { Constants } from '../lib';
-import { PokeList } from '../components';
-import { AppStateContext } from '../redux/context';
-import { Callout, ProgressBar } from '@blueprintjs/core';
+import PackageInfo from '@dxtr/package';
+import { Outlet } from 'react-router-dom';
+import { Constants } from '@dxtr/lib';
+import { ExternalLink, TextLogo } from '@dxtr/components';
+import { PokemonGrid } from '@dxtr/containers';
+import { CheckCircleIcon, InfoIcon, WarningIcon } from '@chakra-ui/icons';
+import {
+  Box, Heading, Text,
+  List, ListIcon, ListItem,
+  Stack, VStack,
+  SimpleGrid,
+} from '@chakra-ui/react';
 
 
-interface HomeProps {
-  filter?: string;
-}
+/**
+ * @component
+ * @name Home
+ */
 
-
-export default function Home( props: HomeProps ) {
-  // set up component state
-  const { state } = React.useContext( AppStateContext );
-  const [ page, setPage ] = React.useState( 0 );
-  const [ hasMore, setHasMore ] = React.useState( false );
-  const navigate = useNavigate();
-
-  // calculate the current batch for lazy loading
-  const batch = React.useMemo( () => {
-    const offset = page * Constants.Application.POKEMON_PER_PAGE;
-    const limit = offset + Constants.Application.POKEMON_PER_PAGE;
-    const remaining = state.pokemon.slice( offset );
-
-    if( remaining.length > Constants.Application.POKEMON_PER_PAGE ) {
-      setHasMore( true );
-      return state.pokemon.slice( 0, limit );
-    }
-
-    setHasMore( false );
-    return state.pokemon;
-  }, [ page, state.pokemon ]);
-
+export default function Home() {
   return (
-    <div id="home" className="container">
-      {/* SHOW FIRST RUN CACHE NOTICE */}
-      {!state.cacheLoaded && (
-        <section id="cache-notice">
-          <Callout
-            title={'Creating cache'}
-            intent="primary"
-            icon="info-sign"
-          >
-            <p>{'Welcome! Since this is your first time, please give us a minute while the list of Pokémon is generated. There are a lot!'}</p>
-            <p>{'After this is completed this message will automatically go away.'}</p>
-            <ProgressBar intent="primary" />
-          </Callout>
-        </section>
-      )}
-
-      {/* LAZY LOAD THE ENTIRE POKEMON LIST WHEN A FILTER IS APPLIED */}
-      {!props.filter && (
-        <InfiniteScroll
-          loadMore={setPage}
-          hasMore={hasMore}
-        >
-          <PokeList
-            data={batch}
-            onClick={pokemon => navigate( `/${pokemon.name}` )}
-          />
-        </InfiniteScroll>
-      )}
-
-      {/* SHOW THE FILTERED LIST WHEN A FILTER IS APPLIED */}
-      {!!props.filter && (
-        <PokeList
-          data={state.pokemon.filter( pokemon => pokemon.name.toLowerCase().indexOf( props.filter?.toLowerCase() || '' ) >= 0 )}
-          onClick={pokemon => navigate( `/${pokemon.name}` )}
-        />
-      )}
-
-      {/* RENDER NESTED ROUTES */}
+    <Box
+      mt={Constants.Application.HEADER_HEIGHT}
+      px="2"
+      py="4"
+    >
       <Outlet />
-    </div>
+
+      <VStack align="flex-start">
+        <Heading as="h2">Featured</Heading>
+        <PokemonGrid />
+      </VStack>
+
+      <SimpleGrid
+        spacing="5"
+        textAlign="justify"
+        columns={[ 1, null, 2 ]}
+        pt="4"
+      >
+        <Stack>
+          <Heading as="h2">
+            About
+          </Heading>
+          <Text>
+            This Pokédex was created from a specific
+            need to quickly look up the types or weaknesses
+            of a Pokémon while in the heat of battle.
+          </Text>
+          <Text>
+            There are many great <b>(and free)</b> solutions out there
+            but none focus their user experience around quickly
+            searching or navigating through Pokédex entries.
+          </Text>
+          <Text>
+            The few mobile apps that exist, work well but hide much
+            of their functionality behind <b>paid features</b> or
+            force their users to watch <b>unskippable</b> ads.
+          </Text>
+          <Text>
+            Thus, <TextLogo /> was born. No ads. No gimmicks.
+          </Text>
+        </Stack>
+        <Stack>
+          <Heading as="h2" textAlign="left">
+            Support / Contributing
+          </Heading>
+          <List>
+            <ListItem>
+              <ListIcon as={InfoIcon} />
+              How does it work?&nbsp;
+              <ExternalLink href={PackageInfo.repository.url}>
+                View the source code.
+              </ExternalLink>
+            </ListItem>
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} />
+              Want to contribute?&nbsp;
+              <ExternalLink href={PackageInfo.repository.url + 'pulls'}>
+                Submit a Pull Request.
+              </ExternalLink>
+            </ListItem>
+            <ListItem>
+              <ListIcon as={WarningIcon} />
+              Found a bug?&nbsp;
+              <ExternalLink href={PackageInfo.bugs.url}>
+                Please file an issue.
+              </ExternalLink>
+            </ListItem>
+          </List>
+        </Stack>
+      </SimpleGrid>
+    </Box>
   );
 }

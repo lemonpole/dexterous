@@ -1,82 +1,70 @@
 import React from 'react';
-import classNames from 'classnames';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { Navbar } from '@blueprintjs/core';
-import { Pokemon, Type as MoveType, Version as GameVersion } from 'pokenode-ts';
-import { AppStateContext } from 'redux/context';
-import { Home, Poke } from 'pages';
-import { Constants, API } from 'lib';
-import { DeviceDetector, Header } from 'components';
+import PackageInfo from '@dxtr/package';
+import { Route, Routes } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { Constants, GraphQL, util } from '@dxtr/lib';
+import { AppStateContext } from '@dxtr/redux';
+import { featuredUpdate, pokemonGenerationsUpdate, pokemonTypesUpdate, pokemonUpdate } from '@dxtr/redux/actions';
+import { Header, SearchOverlay } from '@dxtr/containers';
+import { Details, Home } from '@dxtr/pages';
+import { DeviceDetector, ExternalLink, NavBar } from '@dxtr/components';
 
+
+/**
+ * @component
+ * @name App
+ */
 
 export default function App() {
-  // set up component state
-  const { state, dispatch } = React.useContext( AppStateContext );
-  const [ filter, setFilter ] = React.useState<string>();
-  const [ isActiveSearch, setIsActiveSearch ] = React.useState( false );
-  const location = useLocation();
-  const navigate = useNavigate();
+  // query for initial pokemon data
+  const { dispatch } = React.useContext( AppStateContext );
+  const { data: pokemonGenerations } = useQuery<GraphQL.PokemonGenerationsQuery>( GraphQL.PokemonGenerationsDocument );
+  const { data: pokemonTypes } = useQuery<GraphQL.PokemonTypesQuery>( GraphQL.PokemonTypesDocument );
+  const { data: pokemonData } = useQuery<GraphQL.PokemonQuery, GraphQL.PokemonQueryVariables>(
+    GraphQL.PokemonDocument,
+    { variables: { limit: Constants.Application.POKEMON_INITIAL_LIMIT_NUM } }
+  );
 
-  // reset search form state when transitioning through pages
+  // load into redux state
   React.useEffect( () => {
-    setFilter( '' );
-    setIsActiveSearch( false );
-  }, [ location ]);
-
-  // fetch all pokemon and their details
-  React.useEffect( () => {
-    API
-      .getPokemonClient()
-      .listPokemons( Constants.Application.POKEMON_INITIAL_OFFSET_NUM, Constants.Application.POKEMON_INITIAL_LIMIT_NUM )
-      .then( res => Promise.all( res.results.map( item => API.getPokemonClient().getPokemonByName( item.name ) ) ) )
-      .then( res => dispatch({ type: Constants.ReduxActions.POKEMON_UPDATE, payload: res as Pokemon[] }) )
-      .catch( () => null )
-    ;
-
-    API
-      .getPokemonClient()
-      .listTypes()
-      .then( res => Promise.all( res.results.map( item => API.getPokemonClient().getTypeByName( item.name ) ) ) )
-      .then( res => dispatch({ type: Constants.ReduxActions.MOVE_TYPES_UPDATE, payload: res as MoveType[] }) )
-    ;
-
-    API
-      .getGameClient()
-      .listVersions( Constants.Application.POKEMON_INITIAL_OFFSET_NUM, Constants.Application.POKEMON_INITIAL_LIMIT_NUM )
-      .then( res => Promise.all( res.results.map( item => API.getGameClient().getVersionByName( item.name ) ) ) )
-      .then( res => dispatch({ type: Constants.ReduxActions.GAME_VERSIONS_UPDATE, payload: res as GameVersion[] }) )
-    ;
-  }, [ dispatch ]);
-
-  // toggle first run flag off once pokemon list is loaded
-  React.useEffect( () => {
-    if( state.pokemon && state.pokemon.length === Constants.Application.POKEMON_INITIAL_LIMIT_NUM ) {
-      dispatch({ type: Constants.ReduxActions.CACHE_LOADED_UPDATE, payload: true });
+    if( pokemonData ) {
+      dispatch( pokemonUpdate( pokemonData.pokemon_v2_pokemon ) );
     }
-  }, [ state.pokemon, dispatch ]);
+  }, [ dispatch, pokemonData ]);
 
-  // render our markup
+  React.useEffect( () => {
+    if( pokemonTypes ) {
+      dispatch( pokemonTypesUpdate( pokemonTypes.pokemon_v2_type ) );
+    }
+  }, [ pokemonTypes, dispatch ]);
+
+  React.useEffect( () => {
+    if( pokemonGenerations ) {
+      dispatch( pokemonGenerationsUpdate( pokemonGenerations.pokemon_v2_generation ) );
+    }
+  }, [ pokemonGenerations, dispatch ]);
+
+  // load featured pokemon ids into state to prevent
+  // re-shuffles when transitioning through pages
+  React.useEffect( () => {
+    if( pokemonData ) {
+      const featuredIds = util.randomArray( Constants.Application.POKEMON_FEATURED_NUM, 1, pokemonData.pokemon_v2_pokemon.length - 1 );
+      const featuredList =  pokemonData.pokemon_v2_pokemon.filter( pokemon => featuredIds.includes( pokemon.id ) );
+      dispatch( featuredUpdate( featuredList ) );
+    }
+  }, [ pokemonData, dispatch ]);
+
   return (
-    <div
-      id="app"
-      className={classNames({ 'bp4-dark': state.theme })}
-    >
-      <Header
-        isDarkTheme={state.theme}
-        isActiveSearch={isActiveSearch}
-        searchBarValue={filter}
-        showBackButton={location.pathname !== '/'}
-        onThemeChange={() => dispatch({ type: Constants.ReduxActions.THEME_UPDATE, payload: !state.theme })}
-        onBackButtonClick={() => navigate( '/' )}
-        onSearchBarChange={setFilter}
-        onSearchBarClick={() => setIsActiveSearch( !isActiveSearch )}
-      />
+    <React.Fragment>
+      {/* RENDER HEADER */}
+      <SearchOverlay />
+      <Header />
 
       {/* RENDER ROUTE HIERARCHY FOR DESKTOP */}
       <DeviceDetector.DesktopView>
         <Routes>
-          <Route path="/" element={<Home filter={filter} />}>
-            <Route path=":name" element={<Poke />} />
+          <Route path="/" element={<Home />}>
+            <Route path=":name" element={<Details />} />
           </Route>
         </Routes>
       </DeviceDetector.DesktopView>
@@ -84,23 +72,31 @@ export default function App() {
       {/* RENDER ROUTE HIERARCHY FOR MOBILE */}
       <DeviceDetector.MobileView>
         <Routes>
-          <Route path="/" element={<Home filter={filter} />} />
-          <Route path=":name" element={<Poke filter={filter} />} />
+          <Route path="/" element={<Home />} />
+          <Route path=":name" element={<Details />} />
         </Routes>
       </DeviceDetector.MobileView>
 
-      {/* RENDER FOOTER SO WE DON'T GET SUED */}
-      <Navbar id="footer">
-        <Navbar.Group>
-          <p>
-            {'An '} <a href="https://github.com/lemonpole/dexterous" target="_blank" rel="noreferrer">{'open source '}</a>
-            {'Pokédex built using '} <a href="https://pokeapi.co" target="_blank" rel="noreferrer">{'PokéAPI'}</a>.
-          </p>
-          <p>
-            {'All content is © Nintendo, Game Freak, and The Pokémon Company.'}
-          </p>
-        </Navbar.Group>
-      </Navbar>
-    </div>
+      {/* RENDER FOOTER WITH LEGAL INFO */}
+      <NavBar
+        as="footer"
+        variant="footer"
+        fontSize="sm"
+      >
+        <p>
+          An&nbsp;
+          <ExternalLink href={PackageInfo.repository.url}>
+            open source
+          </ExternalLink>
+          Pokédex built using&nbsp;
+          <ExternalLink href="https://pokeapi.co">
+            PokéAPI
+          </ExternalLink>.
+        </p>
+        <p>
+          All content is &copy; Nintendo, Game Freak, and The Pokémon Company.
+        </p>
+      </NavBar>
+    </React.Fragment>
   );
 }

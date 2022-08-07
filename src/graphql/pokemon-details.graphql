@@ -1,0 +1,78 @@
+query pokemonDetails($id: Int!, $lang: String = "en") {
+  pokemon_v2_pokemonspecies_by_pk(id: $id) {
+    pokemon_v2_pokemonspeciesflavortexts(where: {pokemon_v2_language: {name: {_eq: $lang}}}, limit: 1) {
+      flavor_text
+    }
+    pokemon_v2_evolutionchain {
+      id
+      pokemon_v2_pokemonspecies_aggregate(order_by: {order: asc}) {
+        nodes {
+          id
+          name
+          evolves_from_species_id
+          order
+          is_baby
+          is_legendary
+          is_mythical
+          pokemon_v2_pokemonevolutions_aggregate {
+            nodes {
+              min_affection
+              min_beauty
+              min_happiness
+              min_level
+              needs_overworld_rain
+              time_of_day
+              pokemon_v2_evolutiontrigger {
+                name
+              }
+              pokemon_v2_location {
+                name
+              }
+              pokemon_v2_move {
+                name
+              }
+              pokemonV2ItemByHeldItemId {
+                name
+              }
+              pokemon_v2_item {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: $id}, pokemon_v2_movelearnmethod: {name: {_eq: "level-up"}}}) {
+    id
+    level
+    order
+    pokemon_v2_movelearnmethod {
+      name
+      id
+    }
+    pokemon_v2_move {
+      accuracy
+      id
+      name
+      pokemon_v2_generation {
+        id
+        name
+      }
+      pokemon_v2_type {
+        id
+        name
+      }
+      power
+      pp
+    }
+    pokemon_v2_versiongroup {
+      id
+      name
+      pokemon_v2_generation {
+        id
+        name
+      }
+    }
+  }
+}

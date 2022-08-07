@@ -1,5 +1,9 @@
-export { default as PokeBadge } from './poke-badge/poke-badge';
-export { default as PokeList } from './poke-list/poke-list';
-export { default as PokeDetails } from './poke-details/poke-details';
-export { default as Header } from './header/header';
-export { default as DeviceDetector } from './device-detector/device-detector';
+export { default as NavBar } from './nav-bar';
+export { default as PokemonBadge } from './pokemon-badge';
+export { PokemonList, PokemonListItem } from './pokemon-list';
+export { default as ProgressiveImage } from './progressive-image';
+export { default as DeviceDetector } from './device-detector';
+export { default as SpotlightImage } from './spotlight-image';
+export { default as TextLogo } from './text-logo';
+export { default as ExternalLink } from './external-link';
+export { default as PokemonCard } from './pokemon-card';

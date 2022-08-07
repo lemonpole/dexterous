@@ -1,13 +1,13 @@
-import { Pokemon, Type as MoveType, Version as GameVersion } from 'pokenode-ts';
-import { Constants } from '../lib';
+import { GraphQL } from '@dxtr/lib';
 
 
 export interface AppState {
-  pokemon: Pokemon[];
-  theme: boolean;
-  moveTypes: MoveType[];
-  gameVersions: GameVersion[];
-  cacheLoaded: boolean;
+  featured: GraphQL.PokemonQuery['pokemon_v2_pokemon'],
+  filter: string;
+  pokemon: GraphQL.PokemonQuery['pokemon_v2_pokemon']
+  pokemonGenerations: GraphQL.PokemonGenerationsQuery['pokemon_v2_generation'],
+  pokemonTypes: GraphQL.PokemonTypesQuery['pokemon_v2_type'];
+  searching: boolean;
 }
 
 
@@ -17,18 +17,15 @@ export interface AppAction<T> {
 }
 
 
-export type AppDispatch = React.Dispatch<
-  AppAction<boolean>
-  | AppAction<Pokemon[]>
-  | AppAction<MoveType[]>
-  | AppAction<GameVersion[]>
->;
+export type AppActions = AppAction<AppState[keyof AppState]>;
+export type AppDispatch = React.Dispatch<AppActions>;
 
 
 export const INITIAL_STATE: AppState = {
+  featured: [],
+  filter: '',
   pokemon: [],
-  theme: localStorage.getItem( Constants.Application.LOCAL_STORAGE_THEME_KEY ) === 'true',
-  moveTypes: [],
-  gameVersions: [],
-  cacheLoaded: localStorage.getItem( Constants.Application.LOCAL_STORAGE_CACHE_LOADED_KEY ) === 'true',
-}
+  pokemonGenerations: [],
+  pokemonTypes: [],
+  searching: false,
+};

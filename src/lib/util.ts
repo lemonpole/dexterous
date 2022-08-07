@@ -1,92 +1,4 @@
-import { ChainLink, NamedAPIResource, Pokemon, Type as MoveType, TypeRelations } from 'pokenode-ts';
-import * as Constants from './constants';
-
-
-export function buildMediaQuery( query: string, size: number, units = 'px' ) {
-  return `(${query}: ${size}${units})`;
-}
-
-
-/**
- * Calculates final damage modifier value by
- * multiplying the damage dealt per type.
- *
- * e.g.:  - poison -> grass
- *        - water(2) x poison(0.5)
- *        - = 1
- */
-
-export function calculateDamageModifier( moveType: MoveType, pokemon: Pokemon ) {
-  // typecast to make typescript happy
-  type IterableDamageRelations = TypeRelations & Record<string, NamedAPIResource[]>;
-  const damageRelations = moveType.damage_relations as IterableDamageRelations;
-
-  // grab the damage modifiers only
-  //
-  // @note: normal damage is filtered out as
-  //        it technically is not a modifier
-  const damageModifierKeys = Object
-    .keys( damageRelations )
-    .filter( modifierKey => modifierKey.toLowerCase().indexOf( '_damage_to' ) >= 0 )
-    .filter( modifierKey => damageRelations[ modifierKey ].some( typeRelation => {
-      // is the current pokemon's only
-      // type weak to this move?
-      if( pokemon.types.length === 1 ) {
-        return typeRelation.name === pokemon.types[ 0 ].type.name;
-      }
-
-      // is either of the pokemon's types
-      // weak to the current move?
-      return typeRelation.name === pokemon.types[ 0 ].type.name || typeRelation.name === pokemon.types[ 1 ].type.name
-    }))
-  ;
-
-  // find the modifier key for the total damage
-  // dealt and return its calculated values
-  if( damageModifierKeys.length > 0 ) {
-    const totalDamage = damageModifierKeys
-      .map( modifierKey => Constants.DamageModifiers[ modifierKey ] )
-      .reduce( ( total, modifierData ) => modifierData[ 0 ] * total, 1.0 )
-    ;
-    const totalDamageModifierKey = Object
-      .keys( Constants.DamageModifiers )
-      .find( modifierKey => Constants.DamageModifiers[ modifierKey ][ 0 ] === totalDamage )
-    ;
-    return {
-      damage: totalDamage,
-      modifierKey: totalDamageModifierKey,
-      modifierValue: Constants.DamageModifiers[ totalDamageModifierKey || '' ],
-      moveType
-    };
-  }
-
-  // otherwise, this move does normal damage
-  return {
-    damage: Constants.DamageModifiers.normal_damage_to[ 0 ],
-    modifierKey: 'normal_damage_to',
-    modifierValue:  Constants.DamageModifiers.normal_damage_to,
-    moveType
-  };
-}
-
-
-/**
- * Parse evolution chain/tree.
- *
- * - @todo: add eevee support which can have multiple branches from the same node
- */
-
-export function flattenEvolutionTree( chainLink: ChainLink, all: ChainLink[] = [] ): ChainLink[] {
-  const [ next ] = chainLink.evolves_to || [];
-
-  all.push( chainLink );
-
-  if( next ) {
-    return flattenEvolutionTree( next, all );
-  }
-
-  return all;
-}
+import * as GraphQL from './graphql';
 
 
 /**
@@ -108,9 +20,9 @@ export function formatString( template: string, values: string[] ) {
     for( const key in args ) {
       out = template.replace(new RegExp("\\{" + key + "\\}", "gi"), args[key]);
     }
-
-    return out;
   }
+
+  return out;
 }
 
 
@@ -128,4 +40,70 @@ export function leftPadInt( num: number, min = 2 ) {
     numStr = '0' + numStr;
   }
   return numStr;
+}
+
+
+/**
+ * Calculates final damage modifier value by
+ * multiplying the damage dealt per type.
+ *
+ * e.g.:  - poison -> grass
+ *        - water(2) x poison(0.5)
+ *        - = 1
+ *
+ * @param modifierList The list of damage modifiers to parse.
+ */
+
+export function calculateDamageModifier( modifierList: GraphQL.PokemonTypesQuery['pokemon_v2_type'][number]['pokemon_v2_typeefficacies'] ) {
+  // base damage is 100 so we'll divide by this amount
+  // to get more meaningful damage numbers like:
+  //
+  // - 0.5 = half damage
+  // - 2.0 = double damage
+  const modifierOffset = 100;
+
+  // calculate the total and return
+  return modifierList
+    .map( modifier => modifier.damage_factor )
+    .reduce( ( total, modifier ) => ( modifier * total ) / modifierOffset, 1.0 )
+  ;
+}
+
+
+/**
+ * Randomly generate a number between the
+ * specified min and max limits.
+ *
+ * @param min   The lower bounds for random numbers.
+ * @param max   The upper bounds for random numbers.
+ */
+
+export function random( min: number, max: number ) {
+  return Math.floor( Math.random() * ( max - min + 1 ) + min );
+}
+
+
+/**
+ * Populate array of specified length
+ * with unique random numbers.
+ *
+ * @param limit The length of the array to fill.
+ * @param min   The lower bounds for random numbers.
+ * @param max   The upper bounds for random numbers.
+ */
+
+export function randomArray( limit: number, min: number, max: number ) {
+  // bail early to avoid a stack overflow
+  if( max < min ) {
+    return [];
+  }
+
+  // fill up the array with unique numbers
+  const nums = new Set<number>();
+
+  while( nums.size !== limit ) {
+    nums.add( random( min, max ) );
+  }
+
+  return Array.from( nums.values() );
 }
