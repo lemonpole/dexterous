@@ -41,8 +41,8 @@ export default function Home() {
           <Heading as="h2">
             About
           </Heading>
-          <Text>This Pokédex was created to serve as a companion <em>"battle dex"</em> for casual Pokémon fans who find themselves constantly guessing at a Pokémon's weakness, type, or how they evolve.</Text>
-          <Text>It provides a simple and intuitive interface to seamlessly navigate through Pokédex entries.</Text>
+          <Text>An <em>ad-free</em> and lightweight Pokédex.</Text>
+          <Text>Contains the essentials (types, weaknesses, evolutions) and an intuitive interface to seamlessly navigate through Pokédex entries while playing your favorite Pokémon game.</Text>
         </Stack>
         <Stack>
           <Heading as="h2" textAlign="left">
