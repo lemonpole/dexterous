@@ -5,6 +5,7 @@ on:
   push:
     branches:
     - master
+    - ci/upgrade-node
 
 
 jobs:
@@ -13,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
     - name: Checkout
@@ -25,14 +26,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      run: yarn
+      run: npm install --legacy-peer-deps
 
     - name: Build and trigger GH pages workflow
       run: |
         git config --global user.name $user_name
         git config --global user.email $user_email
         git remote set-url origin https://${github_token}@github.com/${repository}
-        yarn deploy
+        # npm run deploy
       env:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'

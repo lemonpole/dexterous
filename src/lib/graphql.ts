@@ -72,6 +72,14 @@ export type String_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['String']>;
 };
 
+/** ordering argument of a cursor */
+export enum Cursor_Ordering {
+  /** ascending ordering of the cursor */
+  Asc = 'ASC',
+  /** descending ordering of the cursor */
+  Desc = 'DESC'
+}
+
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -226,6 +234,33 @@ export type Pokemon_V2_Ability_Aggregate = {
   nodes: Array<Pokemon_V2_Ability>;
 };
 
+export type Pokemon_V2_Ability_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Ability_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Ability_Select_Column_Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Ability_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Ability_Select_Column_Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Ability_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Ability_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Ability_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Ability_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_ability" */
 export type Pokemon_V2_Ability_Aggregate_Fields = {
   __typename?: 'pokemon_v2_ability_aggregate_fields';
@@ -287,11 +322,16 @@ export type Pokemon_V2_Ability_Bool_Exp = {
   is_main_series?: InputMaybe<Boolean_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_abilitychanges?: InputMaybe<Pokemon_V2_Abilitychange_Bool_Exp>;
+  pokemon_v2_abilitychanges_aggregate?: InputMaybe<Pokemon_V2_Abilitychange_Aggregate_Bool_Exp>;
   pokemon_v2_abilityeffecttexts?: InputMaybe<Pokemon_V2_Abilityeffecttext_Bool_Exp>;
+  pokemon_v2_abilityeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Abilityeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_abilityflavortexts?: InputMaybe<Pokemon_V2_Abilityflavortext_Bool_Exp>;
+  pokemon_v2_abilityflavortexts_aggregate?: InputMaybe<Pokemon_V2_Abilityflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_abilitynames?: InputMaybe<Pokemon_V2_Abilityname_Bool_Exp>;
+  pokemon_v2_abilitynames_aggregate?: InputMaybe<Pokemon_V2_Abilityname_Aggregate_Bool_Exp>;
   pokemon_v2_generation?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
   pokemon_v2_pokemonabilities?: InputMaybe<Pokemon_V2_Pokemonability_Bool_Exp>;
+  pokemon_v2_pokemonabilities_aggregate?: InputMaybe<Pokemon_V2_Pokemonability_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -350,6 +390,18 @@ export enum Pokemon_V2_Ability_Select_Column {
   Name = 'name'
 }
 
+/** select "pokemon_v2_ability_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_ability" */
+export enum Pokemon_V2_Ability_Select_Column_Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsMainSeries = 'is_main_series'
+}
+
+/** select "pokemon_v2_ability_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_ability" */
+export enum Pokemon_V2_Ability_Select_Column_Pokemon_V2_Ability_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsMainSeries = 'is_main_series'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Ability_Stddev_Fields = {
   __typename?: 'pokemon_v2_ability_stddev_fields';
@@ -387,6 +439,22 @@ export type Pokemon_V2_Ability_Stddev_Samp_Fields = {
 export type Pokemon_V2_Ability_Stddev_Samp_Order_By = {
   generation_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_ability" */
+export type Pokemon_V2_Ability_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Ability_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Ability_Stream_Cursor_Value_Input = {
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  is_main_series?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -484,6 +552,17 @@ export type Pokemon_V2_Abilitychange_Aggregate = {
   nodes: Array<Pokemon_V2_Abilitychange>;
 };
 
+export type Pokemon_V2_Abilitychange_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Abilitychange_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Abilitychange_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Abilitychange_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Abilitychange_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_abilitychange" */
 export type Pokemon_V2_Abilitychange_Aggregate_Fields = {
   __typename?: 'pokemon_v2_abilitychange_aggregate_fields';
@@ -546,6 +625,7 @@ export type Pokemon_V2_Abilitychange_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_ability?: InputMaybe<Pokemon_V2_Ability_Bool_Exp>;
   pokemon_v2_abilitychangeeffecttexts?: InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Bool_Exp>;
+  pokemon_v2_abilitychangeeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroup?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
   version_group_id?: InputMaybe<Int_Comparison_Exp>;
 };
@@ -645,6 +725,21 @@ export type Pokemon_V2_Abilitychange_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_abilitychange" */
+export type Pokemon_V2_Abilitychange_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Abilitychange_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Abilitychange_Stream_Cursor_Value_Input = {
+  ability_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Abilitychange_Sum_Fields = {
   __typename?: 'pokemon_v2_abilitychange_sum_fields';
@@ -723,6 +818,17 @@ export type Pokemon_V2_Abilitychangeeffecttext_Aggregate = {
   __typename?: 'pokemon_v2_abilitychangeeffecttext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Abilitychangeeffecttext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Abilitychangeeffecttext>;
+};
+
+export type Pokemon_V2_Abilitychangeeffecttext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Abilitychangeeffecttext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Abilitychangeeffecttext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_abilitychangeeffecttext" */
@@ -892,6 +998,22 @@ export type Pokemon_V2_Abilitychangeeffecttext_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_abilitychangeeffecttext" */
+export type Pokemon_V2_Abilitychangeeffecttext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Abilitychangeeffecttext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Abilitychangeeffecttext_Stream_Cursor_Value_Input = {
+  ability_change_id?: InputMaybe<Scalars['Int']>;
+  effect?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Abilitychangeeffecttext_Sum_Fields = {
   __typename?: 'pokemon_v2_abilitychangeeffecttext_sum_fields';
@@ -971,6 +1093,17 @@ export type Pokemon_V2_Abilityeffecttext_Aggregate = {
   __typename?: 'pokemon_v2_abilityeffecttext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Abilityeffecttext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Abilityeffecttext>;
+};
+
+export type Pokemon_V2_Abilityeffecttext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Abilityeffecttext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Abilityeffecttext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Abilityeffecttext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Abilityeffecttext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_abilityeffecttext" */
@@ -1148,6 +1281,23 @@ export type Pokemon_V2_Abilityeffecttext_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_abilityeffecttext" */
+export type Pokemon_V2_Abilityeffecttext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Abilityeffecttext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Abilityeffecttext_Stream_Cursor_Value_Input = {
+  ability_id?: InputMaybe<Scalars['Int']>;
+  effect?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  short_effect?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Abilityeffecttext_Sum_Fields = {
   __typename?: 'pokemon_v2_abilityeffecttext_sum_fields';
@@ -1229,6 +1379,17 @@ export type Pokemon_V2_Abilityflavortext_Aggregate = {
   __typename?: 'pokemon_v2_abilityflavortext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Abilityflavortext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Abilityflavortext>;
+};
+
+export type Pokemon_V2_Abilityflavortext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Abilityflavortext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Abilityflavortext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Abilityflavortext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Abilityflavortext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_abilityflavortext" */
@@ -1416,6 +1577,23 @@ export type Pokemon_V2_Abilityflavortext_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_abilityflavortext" */
+export type Pokemon_V2_Abilityflavortext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Abilityflavortext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Abilityflavortext_Stream_Cursor_Value_Input = {
+  ability_id?: InputMaybe<Scalars['Int']>;
+  flavor_text?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Abilityflavortext_Sum_Fields = {
   __typename?: 'pokemon_v2_abilityflavortext_sum_fields';
@@ -1502,6 +1680,17 @@ export type Pokemon_V2_Abilityname_Aggregate = {
   __typename?: 'pokemon_v2_abilityname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Abilityname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Abilityname>;
+};
+
+export type Pokemon_V2_Abilityname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Abilityname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Abilityname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Abilityname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Abilityname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_abilityname" */
@@ -1671,6 +1860,22 @@ export type Pokemon_V2_Abilityname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_abilityname" */
+export type Pokemon_V2_Abilityname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Abilityname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Abilityname_Stream_Cursor_Value_Input = {
+  ability_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Abilityname_Sum_Fields = {
   __typename?: 'pokemon_v2_abilityname_sum_fields';
@@ -1784,6 +1989,17 @@ export type Pokemon_V2_Berry_Aggregate = {
   nodes: Array<Pokemon_V2_Berry>;
 };
 
+export type Pokemon_V2_Berry_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Berry_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Berry_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Berry_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Berry_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_berry" */
 export type Pokemon_V2_Berry_Aggregate_Fields = {
   __typename?: 'pokemon_v2_berry_aggregate_fields';
@@ -1866,6 +2082,7 @@ export type Pokemon_V2_Berry_Bool_Exp = {
   natural_gift_type_id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_berryfirmness?: InputMaybe<Pokemon_V2_Berryfirmness_Bool_Exp>;
   pokemon_v2_berryflavormaps?: InputMaybe<Pokemon_V2_Berryflavormap_Bool_Exp>;
+  pokemon_v2_berryflavormaps_aggregate?: InputMaybe<Pokemon_V2_Berryflavormap_Aggregate_Bool_Exp>;
   pokemon_v2_item?: InputMaybe<Pokemon_V2_Item_Bool_Exp>;
   pokemon_v2_type?: InputMaybe<Pokemon_V2_Type_Bool_Exp>;
   size?: InputMaybe<Int_Comparison_Exp>;
@@ -2065,6 +2282,29 @@ export type Pokemon_V2_Berry_Stddev_Samp_Order_By = {
   size?: InputMaybe<Order_By>;
   smoothness?: InputMaybe<Order_By>;
   soil_dryness?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_berry" */
+export type Pokemon_V2_Berry_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Berry_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Berry_Stream_Cursor_Value_Input = {
+  berry_firmness_id?: InputMaybe<Scalars['Int']>;
+  growth_time?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+  max_harvest?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  natural_gift_power?: InputMaybe<Scalars['Int']>;
+  natural_gift_type_id?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+  smoothness?: InputMaybe<Scalars['Int']>;
+  soil_dryness?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -2282,7 +2522,9 @@ export type Pokemon_V2_Berryfirmness_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_berries?: InputMaybe<Pokemon_V2_Berry_Bool_Exp>;
+  pokemon_v2_berries_aggregate?: InputMaybe<Pokemon_V2_Berry_Aggregate_Bool_Exp>;
   pokemon_v2_berryfirmnessnames?: InputMaybe<Pokemon_V2_Berryfirmnessname_Bool_Exp>;
+  pokemon_v2_berryfirmnessnames_aggregate?: InputMaybe<Pokemon_V2_Berryfirmnessname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -2333,6 +2575,20 @@ export type Pokemon_V2_Berryfirmness_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_berryfirmness" */
+export type Pokemon_V2_Berryfirmness_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Berryfirmness_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Berryfirmness_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Berryfirmness_Sum_Fields = {
   __typename?: 'pokemon_v2_berryfirmness_sum_fields';
@@ -2375,6 +2631,17 @@ export type Pokemon_V2_Berryfirmnessname_Aggregate = {
   __typename?: 'pokemon_v2_berryfirmnessname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Berryfirmnessname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Berryfirmnessname>;
+};
+
+export type Pokemon_V2_Berryfirmnessname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Berryfirmnessname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Berryfirmnessname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Berryfirmnessname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Berryfirmnessname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_berryfirmnessname" */
@@ -2542,6 +2809,22 @@ export type Pokemon_V2_Berryfirmnessname_Stddev_Samp_Order_By = {
   berry_firmness_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_berryfirmnessname" */
+export type Pokemon_V2_Berryfirmnessname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Berryfirmnessname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Berryfirmnessname_Stream_Cursor_Value_Input = {
+  berry_firmness_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -2717,6 +3000,17 @@ export type Pokemon_V2_Berryflavor_Aggregate = {
   nodes: Array<Pokemon_V2_Berryflavor>;
 };
 
+export type Pokemon_V2_Berryflavor_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Berryflavor_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Berryflavor_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Berryflavor_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Berryflavor_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_berryflavor" */
 export type Pokemon_V2_Berryflavor_Aggregate_Fields = {
   __typename?: 'pokemon_v2_berryflavor_aggregate_fields';
@@ -2777,10 +3071,14 @@ export type Pokemon_V2_Berryflavor_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemonV2NaturesByLikesFlavorId?: InputMaybe<Pokemon_V2_Nature_Bool_Exp>;
+  pokemonV2NaturesByLikesFlavorId_aggregate?: InputMaybe<Pokemon_V2_Nature_Aggregate_Bool_Exp>;
   pokemon_v2_berryflavormaps?: InputMaybe<Pokemon_V2_Berryflavormap_Bool_Exp>;
+  pokemon_v2_berryflavormaps_aggregate?: InputMaybe<Pokemon_V2_Berryflavormap_Aggregate_Bool_Exp>;
   pokemon_v2_berryflavornames?: InputMaybe<Pokemon_V2_Berryflavorname_Bool_Exp>;
+  pokemon_v2_berryflavornames_aggregate?: InputMaybe<Pokemon_V2_Berryflavorname_Aggregate_Bool_Exp>;
   pokemon_v2_contesttype?: InputMaybe<Pokemon_V2_Contesttype_Bool_Exp>;
   pokemon_v2_natures?: InputMaybe<Pokemon_V2_Nature_Bool_Exp>;
+  pokemon_v2_natures_aggregate?: InputMaybe<Pokemon_V2_Nature_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -2874,6 +3172,21 @@ export type Pokemon_V2_Berryflavor_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_berryflavor" */
+export type Pokemon_V2_Berryflavor_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Berryflavor_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Berryflavor_Stream_Cursor_Value_Input = {
+  contest_type_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Berryflavor_Sum_Fields = {
   __typename?: 'pokemon_v2_berryflavor_sum_fields';
@@ -2944,6 +3257,17 @@ export type Pokemon_V2_Berryflavormap_Aggregate = {
   __typename?: 'pokemon_v2_berryflavormap_aggregate';
   aggregate?: Maybe<Pokemon_V2_Berryflavormap_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Berryflavormap>;
+};
+
+export type Pokemon_V2_Berryflavormap_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Berryflavormap_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Berryflavormap_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Berryflavormap_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Berryflavormap_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_berryflavormap" */
@@ -3121,6 +3445,22 @@ export type Pokemon_V2_Berryflavormap_Stddev_Samp_Order_By = {
   potency?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_berryflavormap" */
+export type Pokemon_V2_Berryflavormap_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Berryflavormap_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Berryflavormap_Stream_Cursor_Value_Input = {
+  berry_flavor_id?: InputMaybe<Scalars['Int']>;
+  berry_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  potency?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Berryflavormap_Sum_Fields = {
   __typename?: 'pokemon_v2_berryflavormap_sum_fields';
@@ -3207,6 +3547,17 @@ export type Pokemon_V2_Berryflavorname_Aggregate = {
   __typename?: 'pokemon_v2_berryflavorname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Berryflavorname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Berryflavorname>;
+};
+
+export type Pokemon_V2_Berryflavorname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Berryflavorname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Berryflavorname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Berryflavorname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Berryflavorname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_berryflavorname" */
@@ -3376,6 +3727,22 @@ export type Pokemon_V2_Berryflavorname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_berryflavorname" */
+export type Pokemon_V2_Berryflavorname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Berryflavorname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Berryflavorname_Stream_Cursor_Value_Input = {
+  berry_flavor_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Berryflavorname_Sum_Fields = {
   __typename?: 'pokemon_v2_berryflavorname_sum_fields';
@@ -3477,6 +3844,17 @@ export type Pokemon_V2_Characteristic_Aggregate = {
   nodes: Array<Pokemon_V2_Characteristic>;
 };
 
+export type Pokemon_V2_Characteristic_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Characteristic_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Characteristic_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Characteristic_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Characteristic_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_characteristic" */
 export type Pokemon_V2_Characteristic_Aggregate_Fields = {
   __typename?: 'pokemon_v2_characteristic_aggregate_fields';
@@ -3538,6 +3916,7 @@ export type Pokemon_V2_Characteristic_Bool_Exp = {
   gene_mod_5?: InputMaybe<Int_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_characteristicdescriptions?: InputMaybe<Pokemon_V2_Characteristicdescription_Bool_Exp>;
+  pokemon_v2_characteristicdescriptions_aggregate?: InputMaybe<Pokemon_V2_Characteristicdescription_Aggregate_Bool_Exp>;
   pokemon_v2_stat?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
   stat_id?: InputMaybe<Int_Comparison_Exp>;
 };
@@ -3636,6 +4015,21 @@ export type Pokemon_V2_Characteristic_Stddev_Samp_Order_By = {
   stat_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_characteristic" */
+export type Pokemon_V2_Characteristic_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Characteristic_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Characteristic_Stream_Cursor_Value_Input = {
+  gene_mod_5?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  stat_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Characteristic_Sum_Fields = {
   __typename?: 'pokemon_v2_characteristic_sum_fields';
@@ -3714,6 +4108,17 @@ export type Pokemon_V2_Characteristicdescription_Aggregate = {
   __typename?: 'pokemon_v2_characteristicdescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Characteristicdescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Characteristicdescription>;
+};
+
+export type Pokemon_V2_Characteristicdescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Characteristicdescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Characteristicdescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Characteristicdescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Characteristicdescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_characteristicdescription" */
@@ -3883,6 +4288,22 @@ export type Pokemon_V2_Characteristicdescription_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_characteristicdescription" */
+export type Pokemon_V2_Characteristicdescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Characteristicdescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Characteristicdescription_Stream_Cursor_Value_Input = {
+  characteristic_id?: InputMaybe<Scalars['Int']>;
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Characteristicdescription_Sum_Fields = {
   __typename?: 'pokemon_v2_characteristicdescription_sum_fields';
@@ -3960,6 +4381,17 @@ export type Pokemon_V2_Contestcombo_Aggregate = {
   __typename?: 'pokemon_v2_contestcombo_aggregate';
   aggregate?: Maybe<Pokemon_V2_Contestcombo_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Contestcombo>;
+};
+
+export type Pokemon_V2_Contestcombo_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Contestcombo_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Contestcombo_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Contestcombo_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Contestcombo_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_contestcombo" */
@@ -4119,6 +4551,21 @@ export type Pokemon_V2_Contestcombo_Stddev_Samp_Order_By = {
   first_move_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   second_move_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_contestcombo" */
+export type Pokemon_V2_Contestcombo_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Contestcombo_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Contestcombo_Stream_Cursor_Value_Input = {
+  first_move_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  second_move_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -4308,8 +4755,11 @@ export type Pokemon_V2_Contesteffect_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   jam?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_contesteffecteffecttexts?: InputMaybe<Pokemon_V2_Contesteffecteffecttext_Bool_Exp>;
+  pokemon_v2_contesteffecteffecttexts_aggregate?: InputMaybe<Pokemon_V2_Contesteffecteffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_contesteffectflavortexts?: InputMaybe<Pokemon_V2_Contesteffectflavortext_Bool_Exp>;
+  pokemon_v2_contesteffectflavortexts_aggregate?: InputMaybe<Pokemon_V2_Contesteffectflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -4372,6 +4822,21 @@ export type Pokemon_V2_Contesteffect_Stddev_Samp_Fields = {
   jam?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_contesteffect" */
+export type Pokemon_V2_Contesteffect_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Contesteffect_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Contesteffect_Stream_Cursor_Value_Input = {
+  appeal?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  jam?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Contesteffect_Sum_Fields = {
   __typename?: 'pokemon_v2_contesteffect_sum_fields';
@@ -4422,6 +4887,17 @@ export type Pokemon_V2_Contesteffecteffecttext_Aggregate = {
   __typename?: 'pokemon_v2_contesteffecteffecttext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Contesteffecteffecttext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Contesteffecteffecttext>;
+};
+
+export type Pokemon_V2_Contesteffecteffecttext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Contesteffecteffecttext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Contesteffecteffecttext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Contesteffecteffecttext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Contesteffecteffecttext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_contesteffecteffecttext" */
@@ -4591,6 +5067,22 @@ export type Pokemon_V2_Contesteffecteffecttext_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_contesteffecteffecttext" */
+export type Pokemon_V2_Contesteffecteffecttext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Contesteffecteffecttext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Contesteffecteffecttext_Stream_Cursor_Value_Input = {
+  contest_effect_id?: InputMaybe<Scalars['Int']>;
+  effect?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Contesteffecteffecttext_Sum_Fields = {
   __typename?: 'pokemon_v2_contesteffecteffecttext_sum_fields';
@@ -4669,6 +5161,17 @@ export type Pokemon_V2_Contesteffectflavortext_Aggregate = {
   __typename?: 'pokemon_v2_contesteffectflavortext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Contesteffectflavortext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Contesteffectflavortext>;
+};
+
+export type Pokemon_V2_Contesteffectflavortext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Contesteffectflavortext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Contesteffectflavortext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Contesteffectflavortext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Contesteffectflavortext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_contesteffectflavortext" */
@@ -4836,6 +5339,22 @@ export type Pokemon_V2_Contesteffectflavortext_Stddev_Samp_Order_By = {
   contest_effect_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_contesteffectflavortext" */
+export type Pokemon_V2_Contesteffectflavortext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Contesteffectflavortext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Contesteffectflavortext_Stream_Cursor_Value_Input = {
+  contest_effect_id?: InputMaybe<Scalars['Int']>;
+  flavor_text?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -5021,8 +5540,11 @@ export type Pokemon_V2_Contesttype_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_berryflavors?: InputMaybe<Pokemon_V2_Berryflavor_Bool_Exp>;
+  pokemon_v2_berryflavors_aggregate?: InputMaybe<Pokemon_V2_Berryflavor_Aggregate_Bool_Exp>;
   pokemon_v2_contesttypenames?: InputMaybe<Pokemon_V2_Contesttypename_Bool_Exp>;
+  pokemon_v2_contesttypenames_aggregate?: InputMaybe<Pokemon_V2_Contesttypename_Aggregate_Bool_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -5074,6 +5596,20 @@ export type Pokemon_V2_Contesttype_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_contesttype" */
+export type Pokemon_V2_Contesttype_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Contesttype_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Contesttype_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Contesttype_Sum_Fields = {
   __typename?: 'pokemon_v2_contesttype_sum_fields';
@@ -5118,6 +5654,17 @@ export type Pokemon_V2_Contesttypename_Aggregate = {
   __typename?: 'pokemon_v2_contesttypename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Contesttypename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Contesttypename>;
+};
+
+export type Pokemon_V2_Contesttypename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Contesttypename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Contesttypename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Contesttypename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Contesttypename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_contesttypename" */
@@ -5303,6 +5850,24 @@ export type Pokemon_V2_Contesttypename_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_contesttypename" */
+export type Pokemon_V2_Contesttypename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Contesttypename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Contesttypename_Stream_Cursor_Value_Input = {
+  color?: InputMaybe<Scalars['String']>;
+  contest_type_id?: InputMaybe<Scalars['Int']>;
+  flavor?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Contesttypename_Sum_Fields = {
   __typename?: 'pokemon_v2_contesttypename_sum_fields';
@@ -5462,7 +6027,9 @@ export type Pokemon_V2_Egggroup_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_egggroupnames?: InputMaybe<Pokemon_V2_Egggroupname_Bool_Exp>;
+  pokemon_v2_egggroupnames_aggregate?: InputMaybe<Pokemon_V2_Egggroupname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonegggroups?: InputMaybe<Pokemon_V2_Pokemonegggroup_Bool_Exp>;
+  pokemon_v2_pokemonegggroups_aggregate?: InputMaybe<Pokemon_V2_Pokemonegggroup_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -5513,6 +6080,20 @@ export type Pokemon_V2_Egggroup_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_egggroup" */
+export type Pokemon_V2_Egggroup_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Egggroup_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Egggroup_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Egggroup_Sum_Fields = {
   __typename?: 'pokemon_v2_egggroup_sum_fields';
@@ -5555,6 +6136,17 @@ export type Pokemon_V2_Egggroupname_Aggregate = {
   __typename?: 'pokemon_v2_egggroupname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Egggroupname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Egggroupname>;
+};
+
+export type Pokemon_V2_Egggroupname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Egggroupname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Egggroupname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Egggroupname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Egggroupname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_egggroupname" */
@@ -5724,6 +6316,22 @@ export type Pokemon_V2_Egggroupname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_egggroupname" */
+export type Pokemon_V2_Egggroupname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Egggroupname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Egggroupname_Stream_Cursor_Value_Input = {
+  egg_group_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Egggroupname_Sum_Fields = {
   __typename?: 'pokemon_v2_egggroupname_sum_fields';
@@ -5835,6 +6443,17 @@ export type Pokemon_V2_Encounter_Aggregate = {
   nodes: Array<Pokemon_V2_Encounter>;
 };
 
+export type Pokemon_V2_Encounter_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Encounter_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Encounter_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Encounter_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounter_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_encounter" */
 export type Pokemon_V2_Encounter_Aggregate_Fields = {
   __typename?: 'pokemon_v2_encounter_aggregate_fields';
@@ -5908,6 +6527,7 @@ export type Pokemon_V2_Encounter_Bool_Exp = {
   min_level?: InputMaybe<Int_Comparison_Exp>;
   pokemon_id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_encounterconditionvaluemaps?: InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Bool_Exp>;
+  pokemon_v2_encounterconditionvaluemaps_aggregate?: InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Aggregate_Bool_Exp>;
   pokemon_v2_encounterslot?: InputMaybe<Pokemon_V2_Encounterslot_Bool_Exp>;
   pokemon_v2_locationarea?: InputMaybe<Pokemon_V2_Locationarea_Bool_Exp>;
   pokemon_v2_pokemon?: InputMaybe<Pokemon_V2_Pokemon_Bool_Exp>;
@@ -6062,6 +6682,25 @@ export type Pokemon_V2_Encounter_Stddev_Samp_Order_By = {
   min_level?: InputMaybe<Order_By>;
   pokemon_id?: InputMaybe<Order_By>;
   version_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_encounter" */
+export type Pokemon_V2_Encounter_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encounter_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encounter_Stream_Cursor_Value_Input = {
+  encounter_slot_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  location_area_id?: InputMaybe<Scalars['Int']>;
+  max_level?: InputMaybe<Scalars['Int']>;
+  min_level?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  version_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -6255,7 +6894,9 @@ export type Pokemon_V2_Encountercondition_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_encounterconditionnames?: InputMaybe<Pokemon_V2_Encounterconditionname_Bool_Exp>;
+  pokemon_v2_encounterconditionnames_aggregate?: InputMaybe<Pokemon_V2_Encounterconditionname_Aggregate_Bool_Exp>;
   pokemon_v2_encounterconditionvalues?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Bool_Exp>;
+  pokemon_v2_encounterconditionvalues_aggregate?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -6306,6 +6947,20 @@ export type Pokemon_V2_Encountercondition_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_encountercondition" */
+export type Pokemon_V2_Encountercondition_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encountercondition_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encountercondition_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Encountercondition_Sum_Fields = {
   __typename?: 'pokemon_v2_encountercondition_sum_fields';
@@ -6348,6 +7003,17 @@ export type Pokemon_V2_Encounterconditionname_Aggregate = {
   __typename?: 'pokemon_v2_encounterconditionname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Encounterconditionname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Encounterconditionname>;
+};
+
+export type Pokemon_V2_Encounterconditionname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Encounterconditionname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Encounterconditionname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Encounterconditionname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounterconditionname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_encounterconditionname" */
@@ -6517,6 +7183,22 @@ export type Pokemon_V2_Encounterconditionname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_encounterconditionname" */
+export type Pokemon_V2_Encounterconditionname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encounterconditionname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encounterconditionname_Stream_Cursor_Value_Input = {
+  encounter_condition_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Encounterconditionname_Sum_Fields = {
   __typename?: 'pokemon_v2_encounterconditionname_sum_fields';
@@ -6643,6 +7325,33 @@ export type Pokemon_V2_Encounterconditionvalue_Aggregate = {
   nodes: Array<Pokemon_V2_Encounterconditionvalue>;
 };
 
+export type Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Encounterconditionvalue_Select_Column_Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Encounterconditionvalue_Select_Column_Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Encounterconditionvalue_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_encounterconditionvalue" */
 export type Pokemon_V2_Encounterconditionvalue_Aggregate_Fields = {
   __typename?: 'pokemon_v2_encounterconditionvalue_aggregate_fields';
@@ -6705,7 +7414,9 @@ export type Pokemon_V2_Encounterconditionvalue_Bool_Exp = {
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_encountercondition?: InputMaybe<Pokemon_V2_Encountercondition_Bool_Exp>;
   pokemon_v2_encounterconditionvaluemaps?: InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Bool_Exp>;
+  pokemon_v2_encounterconditionvaluemaps_aggregate?: InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Aggregate_Bool_Exp>;
   pokemon_v2_encounterconditionvaluenames?: InputMaybe<Pokemon_V2_Encounterconditionvaluename_Bool_Exp>;
+  pokemon_v2_encounterconditionvaluenames_aggregate?: InputMaybe<Pokemon_V2_Encounterconditionvaluename_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -6761,6 +7472,18 @@ export enum Pokemon_V2_Encounterconditionvalue_Select_Column {
   Name = 'name'
 }
 
+/** select "pokemon_v2_encounterconditionvalue_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_encounterconditionvalue" */
+export enum Pokemon_V2_Encounterconditionvalue_Select_Column_Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsDefault = 'is_default'
+}
+
+/** select "pokemon_v2_encounterconditionvalue_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_encounterconditionvalue" */
+export enum Pokemon_V2_Encounterconditionvalue_Select_Column_Pokemon_V2_Encounterconditionvalue_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsDefault = 'is_default'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Encounterconditionvalue_Stddev_Fields = {
   __typename?: 'pokemon_v2_encounterconditionvalue_stddev_fields';
@@ -6798,6 +7521,22 @@ export type Pokemon_V2_Encounterconditionvalue_Stddev_Samp_Fields = {
 export type Pokemon_V2_Encounterconditionvalue_Stddev_Samp_Order_By = {
   encounter_condition_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_encounterconditionvalue" */
+export type Pokemon_V2_Encounterconditionvalue_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encounterconditionvalue_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encounterconditionvalue_Stream_Cursor_Value_Input = {
+  encounter_condition_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  is_default?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -6869,6 +7608,17 @@ export type Pokemon_V2_Encounterconditionvaluemap_Aggregate = {
   __typename?: 'pokemon_v2_encounterconditionvaluemap_aggregate';
   aggregate?: Maybe<Pokemon_V2_Encounterconditionvaluemap_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Encounterconditionvaluemap>;
+};
+
+export type Pokemon_V2_Encounterconditionvaluemap_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Encounterconditionvaluemap_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Encounterconditionvaluemap_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_encounterconditionvaluemap" */
@@ -7030,6 +7780,21 @@ export type Pokemon_V2_Encounterconditionvaluemap_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_encounterconditionvaluemap" */
+export type Pokemon_V2_Encounterconditionvaluemap_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encounterconditionvaluemap_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encounterconditionvaluemap_Stream_Cursor_Value_Input = {
+  encounter_condition_value_id?: InputMaybe<Scalars['Int']>;
+  encounter_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Encounterconditionvaluemap_Sum_Fields = {
   __typename?: 'pokemon_v2_encounterconditionvaluemap_sum_fields';
@@ -7108,6 +7873,17 @@ export type Pokemon_V2_Encounterconditionvaluename_Aggregate = {
   __typename?: 'pokemon_v2_encounterconditionvaluename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Encounterconditionvaluename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Encounterconditionvaluename>;
+};
+
+export type Pokemon_V2_Encounterconditionvaluename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Encounterconditionvaluename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Encounterconditionvaluename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Encounterconditionvaluename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounterconditionvaluename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_encounterconditionvaluename" */
@@ -7275,6 +8051,22 @@ export type Pokemon_V2_Encounterconditionvaluename_Stddev_Samp_Order_By = {
   encounter_condition_value_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_encounterconditionvaluename" */
+export type Pokemon_V2_Encounterconditionvaluename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encounterconditionvaluename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encounterconditionvaluename_Stream_Cursor_Value_Input = {
+  encounter_condition_value_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -7463,8 +8255,11 @@ export type Pokemon_V2_Encountermethod_Bool_Exp = {
   name?: InputMaybe<String_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_encountermethodnames?: InputMaybe<Pokemon_V2_Encountermethodname_Bool_Exp>;
+  pokemon_v2_encountermethodnames_aggregate?: InputMaybe<Pokemon_V2_Encountermethodname_Aggregate_Bool_Exp>;
   pokemon_v2_encounterslots?: InputMaybe<Pokemon_V2_Encounterslot_Bool_Exp>;
+  pokemon_v2_encounterslots_aggregate?: InputMaybe<Pokemon_V2_Encounterslot_Aggregate_Bool_Exp>;
   pokemon_v2_locationareaencounterrates?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Bool_Exp>;
+  pokemon_v2_locationareaencounterrates_aggregate?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -7524,6 +8319,21 @@ export type Pokemon_V2_Encountermethod_Stddev_Samp_Fields = {
   order?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_encountermethod" */
+export type Pokemon_V2_Encountermethod_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encountermethod_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encountermethod_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Encountermethod_Sum_Fields = {
   __typename?: 'pokemon_v2_encountermethod_sum_fields';
@@ -7570,6 +8380,17 @@ export type Pokemon_V2_Encountermethodname_Aggregate = {
   __typename?: 'pokemon_v2_encountermethodname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Encountermethodname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Encountermethodname>;
+};
+
+export type Pokemon_V2_Encountermethodname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Encountermethodname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Encountermethodname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Encountermethodname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encountermethodname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_encountermethodname" */
@@ -7739,6 +8560,22 @@ export type Pokemon_V2_Encountermethodname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_encountermethodname" */
+export type Pokemon_V2_Encountermethodname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encountermethodname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encountermethodname_Stream_Cursor_Value_Input = {
+  encounter_method_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Encountermethodname_Sum_Fields = {
   __typename?: 'pokemon_v2_encountermethodname_sum_fields';
@@ -7844,6 +8681,17 @@ export type Pokemon_V2_Encounterslot_Aggregate = {
   nodes: Array<Pokemon_V2_Encounterslot>;
 };
 
+export type Pokemon_V2_Encounterslot_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Encounterslot_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Encounterslot_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Encounterslot_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Encounterslot_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_encounterslot" */
 export type Pokemon_V2_Encounterslot_Aggregate_Fields = {
   __typename?: 'pokemon_v2_encounterslot_aggregate_fields';
@@ -7910,6 +8758,7 @@ export type Pokemon_V2_Encounterslot_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_encountermethod?: InputMaybe<Pokemon_V2_Encountermethod_Bool_Exp>;
   pokemon_v2_encounters?: InputMaybe<Pokemon_V2_Encounter_Bool_Exp>;
+  pokemon_v2_encounters_aggregate?: InputMaybe<Pokemon_V2_Encounter_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroup?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
   rarity?: InputMaybe<Int_Comparison_Exp>;
   slot?: InputMaybe<Int_Comparison_Exp>;
@@ -8037,6 +8886,23 @@ export type Pokemon_V2_Encounterslot_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_encounterslot" */
+export type Pokemon_V2_Encounterslot_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Encounterslot_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Encounterslot_Stream_Cursor_Value_Input = {
+  encounter_method_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  rarity?: InputMaybe<Scalars['Int']>;
+  slot?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Encounterslot_Sum_Fields = {
   __typename?: 'pokemon_v2_encounterslot_sum_fields';
@@ -8153,6 +9019,17 @@ export type Pokemon_V2_Evolutionchain_Aggregate = {
   nodes: Array<Pokemon_V2_Evolutionchain>;
 };
 
+export type Pokemon_V2_Evolutionchain_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Evolutionchain_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Evolutionchain_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Evolutionchain_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Evolutionchain_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_evolutionchain" */
 export type Pokemon_V2_Evolutionchain_Aggregate_Fields = {
   __typename?: 'pokemon_v2_evolutionchain_aggregate_fields';
@@ -8213,6 +9090,7 @@ export type Pokemon_V2_Evolutionchain_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_item?: InputMaybe<Pokemon_V2_Item_Bool_Exp>;
   pokemon_v2_pokemonspecies?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  pokemon_v2_pokemonspecies_aggregate?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -8294,6 +9172,20 @@ export type Pokemon_V2_Evolutionchain_Stddev_Samp_Fields = {
 export type Pokemon_V2_Evolutionchain_Stddev_Samp_Order_By = {
   baby_trigger_item_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_evolutionchain" */
+export type Pokemon_V2_Evolutionchain_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Evolutionchain_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Evolutionchain_Stream_Cursor_Value_Input = {
+  baby_trigger_item_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -8447,7 +9339,9 @@ export type Pokemon_V2_Evolutiontrigger_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_evolutiontriggernames?: InputMaybe<Pokemon_V2_Evolutiontriggername_Bool_Exp>;
+  pokemon_v2_evolutiontriggernames_aggregate?: InputMaybe<Pokemon_V2_Evolutiontriggername_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonevolutions?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemon_v2_pokemonevolutions_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -8498,6 +9392,20 @@ export type Pokemon_V2_Evolutiontrigger_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_evolutiontrigger" */
+export type Pokemon_V2_Evolutiontrigger_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Evolutiontrigger_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Evolutiontrigger_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Evolutiontrigger_Sum_Fields = {
   __typename?: 'pokemon_v2_evolutiontrigger_sum_fields';
@@ -8540,6 +9448,17 @@ export type Pokemon_V2_Evolutiontriggername_Aggregate = {
   __typename?: 'pokemon_v2_evolutiontriggername_aggregate';
   aggregate?: Maybe<Pokemon_V2_Evolutiontriggername_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Evolutiontriggername>;
+};
+
+export type Pokemon_V2_Evolutiontriggername_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Evolutiontriggername_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Evolutiontriggername_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Evolutiontriggername_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Evolutiontriggername_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_evolutiontriggername" */
@@ -8709,6 +9628,22 @@ export type Pokemon_V2_Evolutiontriggername_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_evolutiontriggername" */
+export type Pokemon_V2_Evolutiontriggername_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Evolutiontriggername_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Evolutiontriggername_Stream_Cursor_Value_Input = {
+  evolution_trigger_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Evolutiontriggername_Sum_Fields = {
   __typename?: 'pokemon_v2_evolutiontriggername_sum_fields';
@@ -8785,6 +9720,17 @@ export type Pokemon_V2_Experience_Aggregate = {
   __typename?: 'pokemon_v2_experience_aggregate';
   aggregate?: Maybe<Pokemon_V2_Experience_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Experience>;
+};
+
+export type Pokemon_V2_Experience_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Experience_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Experience_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Experience_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Experience_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_experience" */
@@ -8960,6 +9906,22 @@ export type Pokemon_V2_Experience_Stddev_Samp_Order_By = {
   level?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_experience" */
+export type Pokemon_V2_Experience_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Experience_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Experience_Stream_Cursor_Value_Input = {
+  experience?: InputMaybe<Scalars['Int']>;
+  growth_rate_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  level?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Experience_Sum_Fields = {
   __typename?: 'pokemon_v2_experience_sum_fields';
@@ -9103,6 +10065,7 @@ export type Pokemon_V2_Gender_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_pokemonevolutions?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemon_v2_pokemonevolutions_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -9150,6 +10113,20 @@ export type Pokemon_V2_Gender_Stddev_Pop_Fields = {
 export type Pokemon_V2_Gender_Stddev_Samp_Fields = {
   __typename?: 'pokemon_v2_gender_stddev_samp_fields';
   id?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_gender" */
+export type Pokemon_V2_Gender_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Gender_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Gender_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -9457,6 +10434,17 @@ export type Pokemon_V2_Generation_Aggregate = {
   nodes: Array<Pokemon_V2_Generation>;
 };
 
+export type Pokemon_V2_Generation_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Generation_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Generation_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Generation_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_generation" */
 export type Pokemon_V2_Generation_Aggregate_Fields = {
   __typename?: 'pokemon_v2_generation_aggregate_fields';
@@ -9516,17 +10504,28 @@ export type Pokemon_V2_Generation_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_abilities?: InputMaybe<Pokemon_V2_Ability_Bool_Exp>;
+  pokemon_v2_abilities_aggregate?: InputMaybe<Pokemon_V2_Ability_Aggregate_Bool_Exp>;
   pokemon_v2_generationnames?: InputMaybe<Pokemon_V2_Generationname_Bool_Exp>;
+  pokemon_v2_generationnames_aggregate?: InputMaybe<Pokemon_V2_Generationname_Aggregate_Bool_Exp>;
   pokemon_v2_itemgameindices?: InputMaybe<Pokemon_V2_Itemgameindex_Bool_Exp>;
+  pokemon_v2_itemgameindices_aggregate?: InputMaybe<Pokemon_V2_Itemgameindex_Aggregate_Bool_Exp>;
   pokemon_v2_locationgameindices?: InputMaybe<Pokemon_V2_Locationgameindex_Bool_Exp>;
+  pokemon_v2_locationgameindices_aggregate?: InputMaybe<Pokemon_V2_Locationgameindex_Aggregate_Bool_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonformgenerations?: InputMaybe<Pokemon_V2_Pokemonformgeneration_Bool_Exp>;
+  pokemon_v2_pokemonformgenerations_aggregate?: InputMaybe<Pokemon_V2_Pokemonformgeneration_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspecies?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  pokemon_v2_pokemonspecies_aggregate?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp>;
   pokemon_v2_pokemontypepasts?: InputMaybe<Pokemon_V2_Pokemontypepast_Bool_Exp>;
+  pokemon_v2_pokemontypepasts_aggregate?: InputMaybe<Pokemon_V2_Pokemontypepast_Aggregate_Bool_Exp>;
   pokemon_v2_region?: InputMaybe<Pokemon_V2_Region_Bool_Exp>;
   pokemon_v2_typegameindices?: InputMaybe<Pokemon_V2_Typegameindex_Bool_Exp>;
+  pokemon_v2_typegameindices_aggregate?: InputMaybe<Pokemon_V2_Typegameindex_Aggregate_Bool_Exp>;
   pokemon_v2_types?: InputMaybe<Pokemon_V2_Type_Bool_Exp>;
+  pokemon_v2_types_aggregate?: InputMaybe<Pokemon_V2_Type_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroups?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
+  pokemon_v2_versiongroups_aggregate?: InputMaybe<Pokemon_V2_Versiongroup_Aggregate_Bool_Exp>;
   region_id?: InputMaybe<Int_Comparison_Exp>;
 };
 
@@ -9628,6 +10627,21 @@ export type Pokemon_V2_Generation_Stddev_Samp_Order_By = {
   region_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_generation" */
+export type Pokemon_V2_Generation_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Generation_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Generation_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  region_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Generation_Sum_Fields = {
   __typename?: 'pokemon_v2_generation_sum_fields';
@@ -9698,6 +10712,17 @@ export type Pokemon_V2_Generationname_Aggregate = {
   __typename?: 'pokemon_v2_generationname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Generationname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Generationname>;
+};
+
+export type Pokemon_V2_Generationname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Generationname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Generationname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Generationname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Generationname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_generationname" */
@@ -9865,6 +10890,22 @@ export type Pokemon_V2_Generationname_Stddev_Samp_Order_By = {
   generation_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_generationname" */
+export type Pokemon_V2_Generationname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Generationname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Generationname_Stream_Cursor_Value_Input = {
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -10076,9 +11117,13 @@ export type Pokemon_V2_Growthrate_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_experiences?: InputMaybe<Pokemon_V2_Experience_Bool_Exp>;
+  pokemon_v2_experiences_aggregate?: InputMaybe<Pokemon_V2_Experience_Aggregate_Bool_Exp>;
   pokemon_v2_growthratedescriptions?: InputMaybe<Pokemon_V2_Growthratedescription_Bool_Exp>;
+  pokemon_v2_growthratedescriptions_aggregate?: InputMaybe<Pokemon_V2_Growthratedescription_Aggregate_Bool_Exp>;
   pokemon_v2_machines?: InputMaybe<Pokemon_V2_Machine_Bool_Exp>;
+  pokemon_v2_machines_aggregate?: InputMaybe<Pokemon_V2_Machine_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspecies?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  pokemon_v2_pokemonspecies_aggregate?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -10136,6 +11181,21 @@ export type Pokemon_V2_Growthrate_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_growthrate" */
+export type Pokemon_V2_Growthrate_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Growthrate_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Growthrate_Stream_Cursor_Value_Input = {
+  formula?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Growthrate_Sum_Fields = {
   __typename?: 'pokemon_v2_growthrate_sum_fields';
@@ -10178,6 +11238,17 @@ export type Pokemon_V2_Growthratedescription_Aggregate = {
   __typename?: 'pokemon_v2_growthratedescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Growthratedescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Growthratedescription>;
+};
+
+export type Pokemon_V2_Growthratedescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Growthratedescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Growthratedescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Growthratedescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Growthratedescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_growthratedescription" */
@@ -10345,6 +11416,22 @@ export type Pokemon_V2_Growthratedescription_Stddev_Samp_Order_By = {
   growth_rate_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_growthratedescription" */
+export type Pokemon_V2_Growthratedescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Growthratedescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Growthratedescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  growth_rate_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -10717,6 +11804,17 @@ export type Pokemon_V2_Item_Aggregate = {
   nodes: Array<Pokemon_V2_Item>;
 };
 
+export type Pokemon_V2_Item_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Item_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Item_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Item_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Item_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_item" */
 export type Pokemon_V2_Item_Aggregate_Fields = {
   __typename?: 'pokemon_v2_item_aggregate_fields';
@@ -10786,19 +11884,31 @@ export type Pokemon_V2_Item_Bool_Exp = {
   item_fling_effect_id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemonV2PokemonevolutionsByHeldItemId?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemonV2PokemonevolutionsByHeldItemId_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemon_v2_berries?: InputMaybe<Pokemon_V2_Berry_Bool_Exp>;
+  pokemon_v2_berries_aggregate?: InputMaybe<Pokemon_V2_Berry_Aggregate_Bool_Exp>;
   pokemon_v2_evolutionchains?: InputMaybe<Pokemon_V2_Evolutionchain_Bool_Exp>;
+  pokemon_v2_evolutionchains_aggregate?: InputMaybe<Pokemon_V2_Evolutionchain_Aggregate_Bool_Exp>;
   pokemon_v2_itemattributemaps?: InputMaybe<Pokemon_V2_Itemattributemap_Bool_Exp>;
+  pokemon_v2_itemattributemaps_aggregate?: InputMaybe<Pokemon_V2_Itemattributemap_Aggregate_Bool_Exp>;
   pokemon_v2_itemcategory?: InputMaybe<Pokemon_V2_Itemcategory_Bool_Exp>;
   pokemon_v2_itemeffecttexts?: InputMaybe<Pokemon_V2_Itemeffecttext_Bool_Exp>;
+  pokemon_v2_itemeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Itemeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_itemflavortexts?: InputMaybe<Pokemon_V2_Itemflavortext_Bool_Exp>;
+  pokemon_v2_itemflavortexts_aggregate?: InputMaybe<Pokemon_V2_Itemflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_itemflingeffect?: InputMaybe<Pokemon_V2_Itemflingeffect_Bool_Exp>;
   pokemon_v2_itemgameindices?: InputMaybe<Pokemon_V2_Itemgameindex_Bool_Exp>;
+  pokemon_v2_itemgameindices_aggregate?: InputMaybe<Pokemon_V2_Itemgameindex_Aggregate_Bool_Exp>;
   pokemon_v2_itemnames?: InputMaybe<Pokemon_V2_Itemname_Bool_Exp>;
+  pokemon_v2_itemnames_aggregate?: InputMaybe<Pokemon_V2_Itemname_Aggregate_Bool_Exp>;
   pokemon_v2_itemsprites?: InputMaybe<Pokemon_V2_Itemsprites_Bool_Exp>;
+  pokemon_v2_itemsprites_aggregate?: InputMaybe<Pokemon_V2_Itemsprites_Aggregate_Bool_Exp>;
   pokemon_v2_machines?: InputMaybe<Pokemon_V2_Machine_Bool_Exp>;
+  pokemon_v2_machines_aggregate?: InputMaybe<Pokemon_V2_Machine_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonevolutions?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemon_v2_pokemonevolutions_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonitems?: InputMaybe<Pokemon_V2_Pokemonitem_Bool_Exp>;
+  pokemon_v2_pokemonitems_aggregate?: InputMaybe<Pokemon_V2_Pokemonitem_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -10938,6 +12048,24 @@ export type Pokemon_V2_Item_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   item_category_id?: InputMaybe<Order_By>;
   item_fling_effect_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_item" */
+export type Pokemon_V2_Item_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Item_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Item_Stream_Cursor_Value_Input = {
+  cost?: InputMaybe<Scalars['Int']>;
+  fling_power?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_category_id?: InputMaybe<Scalars['Int']>;
+  item_fling_effect_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -11139,8 +12267,11 @@ export type Pokemon_V2_Itemattribute_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_itemattributedescriptions?: InputMaybe<Pokemon_V2_Itemattributedescription_Bool_Exp>;
+  pokemon_v2_itemattributedescriptions_aggregate?: InputMaybe<Pokemon_V2_Itemattributedescription_Aggregate_Bool_Exp>;
   pokemon_v2_itemattributemaps?: InputMaybe<Pokemon_V2_Itemattributemap_Bool_Exp>;
+  pokemon_v2_itemattributemaps_aggregate?: InputMaybe<Pokemon_V2_Itemattributemap_Aggregate_Bool_Exp>;
   pokemon_v2_itemattributenames?: InputMaybe<Pokemon_V2_Itemattributename_Bool_Exp>;
+  pokemon_v2_itemattributenames_aggregate?: InputMaybe<Pokemon_V2_Itemattributename_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -11192,6 +12323,20 @@ export type Pokemon_V2_Itemattribute_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemattribute" */
+export type Pokemon_V2_Itemattribute_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemattribute_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemattribute_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemattribute_Sum_Fields = {
   __typename?: 'pokemon_v2_itemattribute_sum_fields';
@@ -11234,6 +12379,17 @@ export type Pokemon_V2_Itemattributedescription_Aggregate = {
   __typename?: 'pokemon_v2_itemattributedescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemattributedescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemattributedescription>;
+};
+
+export type Pokemon_V2_Itemattributedescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemattributedescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemattributedescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemattributedescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemattributedescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemattributedescription" */
@@ -11403,6 +12559,22 @@ export type Pokemon_V2_Itemattributedescription_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemattributedescription" */
+export type Pokemon_V2_Itemattributedescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemattributedescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemattributedescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_attribute_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemattributedescription_Sum_Fields = {
   __typename?: 'pokemon_v2_itemattributedescription_sum_fields';
@@ -11480,6 +12652,17 @@ export type Pokemon_V2_Itemattributemap_Aggregate = {
   __typename?: 'pokemon_v2_itemattributemap_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemattributemap_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemattributemap>;
+};
+
+export type Pokemon_V2_Itemattributemap_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemattributemap_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemattributemap_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemattributemap_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemattributemap_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemattributemap" */
@@ -11641,6 +12824,21 @@ export type Pokemon_V2_Itemattributemap_Stddev_Samp_Order_By = {
   item_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemattributemap" */
+export type Pokemon_V2_Itemattributemap_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemattributemap_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemattributemap_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_attribute_id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemattributemap_Sum_Fields = {
   __typename?: 'pokemon_v2_itemattributemap_sum_fields';
@@ -11719,6 +12917,17 @@ export type Pokemon_V2_Itemattributename_Aggregate = {
   __typename?: 'pokemon_v2_itemattributename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemattributename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemattributename>;
+};
+
+export type Pokemon_V2_Itemattributename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemattributename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemattributename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemattributename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemattributename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemattributename" */
@@ -11888,6 +13097,22 @@ export type Pokemon_V2_Itemattributename_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemattributename" */
+export type Pokemon_V2_Itemattributename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemattributename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemattributename_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_attribute_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemattributename_Sum_Fields = {
   __typename?: 'pokemon_v2_itemattributename_sum_fields';
@@ -12013,6 +13238,17 @@ export type Pokemon_V2_Itemcategory_Aggregate = {
   nodes: Array<Pokemon_V2_Itemcategory>;
 };
 
+export type Pokemon_V2_Itemcategory_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemcategory_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemcategory_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemcategory_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemcategory_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_itemcategory" */
 export type Pokemon_V2_Itemcategory_Aggregate_Fields = {
   __typename?: 'pokemon_v2_itemcategory_aggregate_fields';
@@ -12073,8 +13309,10 @@ export type Pokemon_V2_Itemcategory_Bool_Exp = {
   item_pocket_id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_itemcategorynames?: InputMaybe<Pokemon_V2_Itemcategoryname_Bool_Exp>;
+  pokemon_v2_itemcategorynames_aggregate?: InputMaybe<Pokemon_V2_Itemcategoryname_Aggregate_Bool_Exp>;
   pokemon_v2_itempocket?: InputMaybe<Pokemon_V2_Itempocket_Bool_Exp>;
   pokemon_v2_items?: InputMaybe<Pokemon_V2_Item_Bool_Exp>;
+  pokemon_v2_items_aggregate?: InputMaybe<Pokemon_V2_Item_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -12166,6 +13404,21 @@ export type Pokemon_V2_Itemcategory_Stddev_Samp_Order_By = {
   item_pocket_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemcategory" */
+export type Pokemon_V2_Itemcategory_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemcategory_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemcategory_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_pocket_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemcategory_Sum_Fields = {
   __typename?: 'pokemon_v2_itemcategory_sum_fields';
@@ -12236,6 +13489,17 @@ export type Pokemon_V2_Itemcategoryname_Aggregate = {
   __typename?: 'pokemon_v2_itemcategoryname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemcategoryname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemcategoryname>;
+};
+
+export type Pokemon_V2_Itemcategoryname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemcategoryname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemcategoryname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemcategoryname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemcategoryname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemcategoryname" */
@@ -12405,6 +13669,22 @@ export type Pokemon_V2_Itemcategoryname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemcategoryname" */
+export type Pokemon_V2_Itemcategoryname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemcategoryname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemcategoryname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_category_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemcategoryname_Sum_Fields = {
   __typename?: 'pokemon_v2_itemcategoryname_sum_fields';
@@ -12484,6 +13764,17 @@ export type Pokemon_V2_Itemeffecttext_Aggregate = {
   __typename?: 'pokemon_v2_itemeffecttext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemeffecttext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemeffecttext>;
+};
+
+export type Pokemon_V2_Itemeffecttext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemeffecttext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemeffecttext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemeffecttext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemeffecttext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemeffecttext" */
@@ -12661,6 +13952,23 @@ export type Pokemon_V2_Itemeffecttext_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemeffecttext" */
+export type Pokemon_V2_Itemeffecttext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemeffecttext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemeffecttext_Stream_Cursor_Value_Input = {
+  effect?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  short_effect?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemeffecttext_Sum_Fields = {
   __typename?: 'pokemon_v2_itemeffecttext_sum_fields';
@@ -12742,6 +14050,17 @@ export type Pokemon_V2_Itemflavortext_Aggregate = {
   __typename?: 'pokemon_v2_itemflavortext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemflavortext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemflavortext>;
+};
+
+export type Pokemon_V2_Itemflavortext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemflavortext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemflavortext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemflavortext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemflavortext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemflavortext" */
@@ -12929,6 +14248,23 @@ export type Pokemon_V2_Itemflavortext_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemflavortext" */
+export type Pokemon_V2_Itemflavortext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemflavortext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemflavortext_Stream_Cursor_Value_Input = {
+  flavor_text?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemflavortext_Sum_Fields = {
   __typename?: 'pokemon_v2_itemflavortext_sum_fields';
@@ -13096,7 +14432,9 @@ export type Pokemon_V2_Itemflingeffect_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_itemflingeffecteffecttexts?: InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Bool_Exp>;
+  pokemon_v2_itemflingeffecteffecttexts_aggregate?: InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_items?: InputMaybe<Pokemon_V2_Item_Bool_Exp>;
+  pokemon_v2_items_aggregate?: InputMaybe<Pokemon_V2_Item_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -13147,6 +14485,20 @@ export type Pokemon_V2_Itemflingeffect_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemflingeffect" */
+export type Pokemon_V2_Itemflingeffect_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemflingeffect_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemflingeffect_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemflingeffect_Sum_Fields = {
   __typename?: 'pokemon_v2_itemflingeffect_sum_fields';
@@ -13189,6 +14541,17 @@ export type Pokemon_V2_Itemflingeffecteffecttext_Aggregate = {
   __typename?: 'pokemon_v2_itemflingeffecteffecttext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemflingeffecteffecttext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemflingeffecteffecttext>;
+};
+
+export type Pokemon_V2_Itemflingeffecteffecttext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemflingeffecteffecttext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemflingeffecteffecttext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemflingeffecteffecttext" */
@@ -13358,6 +14721,22 @@ export type Pokemon_V2_Itemflingeffecteffecttext_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemflingeffecteffecttext" */
+export type Pokemon_V2_Itemflingeffecteffecttext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemflingeffecteffecttext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemflingeffecteffecttext_Stream_Cursor_Value_Input = {
+  effect?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_fling_effect_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemflingeffecteffecttext_Sum_Fields = {
   __typename?: 'pokemon_v2_itemflingeffecteffecttext_sum_fields';
@@ -13436,6 +14815,17 @@ export type Pokemon_V2_Itemgameindex_Aggregate = {
   __typename?: 'pokemon_v2_itemgameindex_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemgameindex_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemgameindex>;
+};
+
+export type Pokemon_V2_Itemgameindex_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemgameindex_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemgameindex_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemgameindex_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemgameindex_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemgameindex" */
@@ -13613,6 +15003,22 @@ export type Pokemon_V2_Itemgameindex_Stddev_Samp_Order_By = {
   item_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemgameindex" */
+export type Pokemon_V2_Itemgameindex_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemgameindex_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemgameindex_Stream_Cursor_Value_Input = {
+  game_index?: InputMaybe<Scalars['Int']>;
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemgameindex_Sum_Fields = {
   __typename?: 'pokemon_v2_itemgameindex_sum_fields';
@@ -13699,6 +15105,17 @@ export type Pokemon_V2_Itemname_Aggregate = {
   __typename?: 'pokemon_v2_itemname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemname>;
+};
+
+export type Pokemon_V2_Itemname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemname" */
@@ -13868,6 +15285,22 @@ export type Pokemon_V2_Itemname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itemname" */
+export type Pokemon_V2_Itemname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itemname_Sum_Fields = {
   __typename?: 'pokemon_v2_itemname_sum_fields';
@@ -14027,7 +15460,9 @@ export type Pokemon_V2_Itempocket_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_itemcategories?: InputMaybe<Pokemon_V2_Itemcategory_Bool_Exp>;
+  pokemon_v2_itemcategories_aggregate?: InputMaybe<Pokemon_V2_Itemcategory_Aggregate_Bool_Exp>;
   pokemon_v2_itempocketnames?: InputMaybe<Pokemon_V2_Itempocketname_Bool_Exp>;
+  pokemon_v2_itempocketnames_aggregate?: InputMaybe<Pokemon_V2_Itempocketname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -14078,6 +15513,20 @@ export type Pokemon_V2_Itempocket_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itempocket" */
+export type Pokemon_V2_Itempocket_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itempocket_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itempocket_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itempocket_Sum_Fields = {
   __typename?: 'pokemon_v2_itempocket_sum_fields';
@@ -14120,6 +15569,17 @@ export type Pokemon_V2_Itempocketname_Aggregate = {
   __typename?: 'pokemon_v2_itempocketname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itempocketname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itempocketname>;
+};
+
+export type Pokemon_V2_Itempocketname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itempocketname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itempocketname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itempocketname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itempocketname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itempocketname" */
@@ -14289,6 +15749,22 @@ export type Pokemon_V2_Itempocketname_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_itempocketname" */
+export type Pokemon_V2_Itempocketname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itempocketname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itempocketname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_pocket_id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Itempocketname_Sum_Fields = {
   __typename?: 'pokemon_v2_itempocketname_sum_fields';
@@ -14364,6 +15840,17 @@ export type Pokemon_V2_Itemsprites_Aggregate = {
   __typename?: 'pokemon_v2_itemsprites_aggregate';
   aggregate?: Maybe<Pokemon_V2_Itemsprites_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Itemsprites>;
+};
+
+export type Pokemon_V2_Itemsprites_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Itemsprites_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Itemsprites_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Itemsprites_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Itemsprites_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_itemsprites" */
@@ -14513,6 +16000,21 @@ export type Pokemon_V2_Itemsprites_Stddev_Samp_Fields = {
 export type Pokemon_V2_Itemsprites_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   item_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_itemsprites" */
+export type Pokemon_V2_Itemsprites_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Itemsprites_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Itemsprites_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+  sprites?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -16091,66 +17593,127 @@ export type Pokemon_V2_Language_Bool_Exp = {
   official?: InputMaybe<Boolean_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   pokemonV2LanguagenamesByLocalLanguageId?: InputMaybe<Pokemon_V2_Languagename_Bool_Exp>;
+  pokemonV2LanguagenamesByLocalLanguageId_aggregate?: InputMaybe<Pokemon_V2_Languagename_Aggregate_Bool_Exp>;
   pokemon_v2_abilitychangeeffecttexts?: InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Bool_Exp>;
+  pokemon_v2_abilitychangeeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_abilityeffecttexts?: InputMaybe<Pokemon_V2_Abilityeffecttext_Bool_Exp>;
+  pokemon_v2_abilityeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Abilityeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_abilityflavortexts?: InputMaybe<Pokemon_V2_Abilityflavortext_Bool_Exp>;
+  pokemon_v2_abilityflavortexts_aggregate?: InputMaybe<Pokemon_V2_Abilityflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_abilitynames?: InputMaybe<Pokemon_V2_Abilityname_Bool_Exp>;
+  pokemon_v2_abilitynames_aggregate?: InputMaybe<Pokemon_V2_Abilityname_Aggregate_Bool_Exp>;
   pokemon_v2_berryfirmnessnames?: InputMaybe<Pokemon_V2_Berryfirmnessname_Bool_Exp>;
+  pokemon_v2_berryfirmnessnames_aggregate?: InputMaybe<Pokemon_V2_Berryfirmnessname_Aggregate_Bool_Exp>;
   pokemon_v2_berryflavornames?: InputMaybe<Pokemon_V2_Berryflavorname_Bool_Exp>;
+  pokemon_v2_berryflavornames_aggregate?: InputMaybe<Pokemon_V2_Berryflavorname_Aggregate_Bool_Exp>;
   pokemon_v2_characteristicdescriptions?: InputMaybe<Pokemon_V2_Characteristicdescription_Bool_Exp>;
+  pokemon_v2_characteristicdescriptions_aggregate?: InputMaybe<Pokemon_V2_Characteristicdescription_Aggregate_Bool_Exp>;
   pokemon_v2_contesteffecteffecttexts?: InputMaybe<Pokemon_V2_Contesteffecteffecttext_Bool_Exp>;
+  pokemon_v2_contesteffecteffecttexts_aggregate?: InputMaybe<Pokemon_V2_Contesteffecteffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_contesteffectflavortexts?: InputMaybe<Pokemon_V2_Contesteffectflavortext_Bool_Exp>;
+  pokemon_v2_contesteffectflavortexts_aggregate?: InputMaybe<Pokemon_V2_Contesteffectflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_contesttypenames?: InputMaybe<Pokemon_V2_Contesttypename_Bool_Exp>;
+  pokemon_v2_contesttypenames_aggregate?: InputMaybe<Pokemon_V2_Contesttypename_Aggregate_Bool_Exp>;
   pokemon_v2_egggroupnames?: InputMaybe<Pokemon_V2_Egggroupname_Bool_Exp>;
+  pokemon_v2_egggroupnames_aggregate?: InputMaybe<Pokemon_V2_Egggroupname_Aggregate_Bool_Exp>;
   pokemon_v2_encounterconditionnames?: InputMaybe<Pokemon_V2_Encounterconditionname_Bool_Exp>;
+  pokemon_v2_encounterconditionnames_aggregate?: InputMaybe<Pokemon_V2_Encounterconditionname_Aggregate_Bool_Exp>;
   pokemon_v2_encounterconditionvaluenames?: InputMaybe<Pokemon_V2_Encounterconditionvaluename_Bool_Exp>;
+  pokemon_v2_encounterconditionvaluenames_aggregate?: InputMaybe<Pokemon_V2_Encounterconditionvaluename_Aggregate_Bool_Exp>;
   pokemon_v2_encountermethodnames?: InputMaybe<Pokemon_V2_Encountermethodname_Bool_Exp>;
+  pokemon_v2_encountermethodnames_aggregate?: InputMaybe<Pokemon_V2_Encountermethodname_Aggregate_Bool_Exp>;
   pokemon_v2_evolutiontriggernames?: InputMaybe<Pokemon_V2_Evolutiontriggername_Bool_Exp>;
+  pokemon_v2_evolutiontriggernames_aggregate?: InputMaybe<Pokemon_V2_Evolutiontriggername_Aggregate_Bool_Exp>;
   pokemon_v2_generationnames?: InputMaybe<Pokemon_V2_Generationname_Bool_Exp>;
+  pokemon_v2_generationnames_aggregate?: InputMaybe<Pokemon_V2_Generationname_Aggregate_Bool_Exp>;
   pokemon_v2_growthratedescriptions?: InputMaybe<Pokemon_V2_Growthratedescription_Bool_Exp>;
+  pokemon_v2_growthratedescriptions_aggregate?: InputMaybe<Pokemon_V2_Growthratedescription_Aggregate_Bool_Exp>;
   pokemon_v2_itemattributedescriptions?: InputMaybe<Pokemon_V2_Itemattributedescription_Bool_Exp>;
+  pokemon_v2_itemattributedescriptions_aggregate?: InputMaybe<Pokemon_V2_Itemattributedescription_Aggregate_Bool_Exp>;
   pokemon_v2_itemattributenames?: InputMaybe<Pokemon_V2_Itemattributename_Bool_Exp>;
+  pokemon_v2_itemattributenames_aggregate?: InputMaybe<Pokemon_V2_Itemattributename_Aggregate_Bool_Exp>;
   pokemon_v2_itemcategorynames?: InputMaybe<Pokemon_V2_Itemcategoryname_Bool_Exp>;
+  pokemon_v2_itemcategorynames_aggregate?: InputMaybe<Pokemon_V2_Itemcategoryname_Aggregate_Bool_Exp>;
   pokemon_v2_itemeffecttexts?: InputMaybe<Pokemon_V2_Itemeffecttext_Bool_Exp>;
+  pokemon_v2_itemeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Itemeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_itemflavortexts?: InputMaybe<Pokemon_V2_Itemflavortext_Bool_Exp>;
+  pokemon_v2_itemflavortexts_aggregate?: InputMaybe<Pokemon_V2_Itemflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_itemflingeffecteffecttexts?: InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Bool_Exp>;
+  pokemon_v2_itemflingeffecteffecttexts_aggregate?: InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_itemnames?: InputMaybe<Pokemon_V2_Itemname_Bool_Exp>;
+  pokemon_v2_itemnames_aggregate?: InputMaybe<Pokemon_V2_Itemname_Aggregate_Bool_Exp>;
   pokemon_v2_itempocketnames?: InputMaybe<Pokemon_V2_Itempocketname_Bool_Exp>;
+  pokemon_v2_itempocketnames_aggregate?: InputMaybe<Pokemon_V2_Itempocketname_Aggregate_Bool_Exp>;
   pokemon_v2_languagenames?: InputMaybe<Pokemon_V2_Languagename_Bool_Exp>;
+  pokemon_v2_languagenames_aggregate?: InputMaybe<Pokemon_V2_Languagename_Aggregate_Bool_Exp>;
   pokemon_v2_locationareanames?: InputMaybe<Pokemon_V2_Locationareaname_Bool_Exp>;
+  pokemon_v2_locationareanames_aggregate?: InputMaybe<Pokemon_V2_Locationareaname_Aggregate_Bool_Exp>;
   pokemon_v2_locationnames?: InputMaybe<Pokemon_V2_Locationname_Bool_Exp>;
+  pokemon_v2_locationnames_aggregate?: InputMaybe<Pokemon_V2_Locationname_Aggregate_Bool_Exp>;
   pokemon_v2_moveattributedescriptions?: InputMaybe<Pokemon_V2_Moveattributedescription_Bool_Exp>;
+  pokemon_v2_moveattributedescriptions_aggregate?: InputMaybe<Pokemon_V2_Moveattributedescription_Aggregate_Bool_Exp>;
   pokemon_v2_moveattributenames?: InputMaybe<Pokemon_V2_Moveattributename_Bool_Exp>;
+  pokemon_v2_moveattributenames_aggregate?: InputMaybe<Pokemon_V2_Moveattributename_Aggregate_Bool_Exp>;
   pokemon_v2_movebattlestylenames?: InputMaybe<Pokemon_V2_Movebattlestylename_Bool_Exp>;
+  pokemon_v2_movebattlestylenames_aggregate?: InputMaybe<Pokemon_V2_Movebattlestylename_Aggregate_Bool_Exp>;
   pokemon_v2_movedamageclassdescriptions?: InputMaybe<Pokemon_V2_Movedamageclassdescription_Bool_Exp>;
+  pokemon_v2_movedamageclassdescriptions_aggregate?: InputMaybe<Pokemon_V2_Movedamageclassdescription_Aggregate_Bool_Exp>;
   pokemon_v2_movedamageclassnames?: InputMaybe<Pokemon_V2_Movedamageclassname_Bool_Exp>;
+  pokemon_v2_movedamageclassnames_aggregate?: InputMaybe<Pokemon_V2_Movedamageclassname_Aggregate_Bool_Exp>;
   pokemon_v2_moveeffectchangeeffecttexts?: InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Bool_Exp>;
+  pokemon_v2_moveeffectchangeeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_moveeffecteffecttexts?: InputMaybe<Pokemon_V2_Moveeffecteffecttext_Bool_Exp>;
+  pokemon_v2_moveeffecteffecttexts_aggregate?: InputMaybe<Pokemon_V2_Moveeffecteffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_moveflavortexts?: InputMaybe<Pokemon_V2_Moveflavortext_Bool_Exp>;
+  pokemon_v2_moveflavortexts_aggregate?: InputMaybe<Pokemon_V2_Moveflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_movelearnmethoddescriptions?: InputMaybe<Pokemon_V2_Movelearnmethoddescription_Bool_Exp>;
+  pokemon_v2_movelearnmethoddescriptions_aggregate?: InputMaybe<Pokemon_V2_Movelearnmethoddescription_Aggregate_Bool_Exp>;
   pokemon_v2_movelearnmethodnames?: InputMaybe<Pokemon_V2_Movelearnmethodname_Bool_Exp>;
+  pokemon_v2_movelearnmethodnames_aggregate?: InputMaybe<Pokemon_V2_Movelearnmethodname_Aggregate_Bool_Exp>;
   pokemon_v2_movemetaailmentnames?: InputMaybe<Pokemon_V2_Movemetaailmentname_Bool_Exp>;
+  pokemon_v2_movemetaailmentnames_aggregate?: InputMaybe<Pokemon_V2_Movemetaailmentname_Aggregate_Bool_Exp>;
   pokemon_v2_movemetacategorydescriptions?: InputMaybe<Pokemon_V2_Movemetacategorydescription_Bool_Exp>;
+  pokemon_v2_movemetacategorydescriptions_aggregate?: InputMaybe<Pokemon_V2_Movemetacategorydescription_Aggregate_Bool_Exp>;
   pokemon_v2_movenames?: InputMaybe<Pokemon_V2_Movename_Bool_Exp>;
+  pokemon_v2_movenames_aggregate?: InputMaybe<Pokemon_V2_Movename_Aggregate_Bool_Exp>;
   pokemon_v2_movetargetdescriptions?: InputMaybe<Pokemon_V2_Movetargetdescription_Bool_Exp>;
+  pokemon_v2_movetargetdescriptions_aggregate?: InputMaybe<Pokemon_V2_Movetargetdescription_Aggregate_Bool_Exp>;
   pokemon_v2_movetargetnames?: InputMaybe<Pokemon_V2_Movetargetname_Bool_Exp>;
+  pokemon_v2_movetargetnames_aggregate?: InputMaybe<Pokemon_V2_Movetargetname_Aggregate_Bool_Exp>;
   pokemon_v2_naturenames?: InputMaybe<Pokemon_V2_Naturename_Bool_Exp>;
+  pokemon_v2_naturenames_aggregate?: InputMaybe<Pokemon_V2_Naturename_Aggregate_Bool_Exp>;
   pokemon_v2_palparkareanames?: InputMaybe<Pokemon_V2_Palparkareaname_Bool_Exp>;
+  pokemon_v2_palparkareanames_aggregate?: InputMaybe<Pokemon_V2_Palparkareaname_Aggregate_Bool_Exp>;
   pokemon_v2_pokeathlonstatnames?: InputMaybe<Pokemon_V2_Pokeathlonstatname_Bool_Exp>;
+  pokemon_v2_pokeathlonstatnames_aggregate?: InputMaybe<Pokemon_V2_Pokeathlonstatname_Aggregate_Bool_Exp>;
   pokemon_v2_pokedexdescriptions?: InputMaybe<Pokemon_V2_Pokedexdescription_Bool_Exp>;
+  pokemon_v2_pokedexdescriptions_aggregate?: InputMaybe<Pokemon_V2_Pokedexdescription_Aggregate_Bool_Exp>;
   pokemon_v2_pokedexnames?: InputMaybe<Pokemon_V2_Pokedexname_Bool_Exp>;
+  pokemon_v2_pokedexnames_aggregate?: InputMaybe<Pokemon_V2_Pokedexname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemoncolornames?: InputMaybe<Pokemon_V2_Pokemoncolorname_Bool_Exp>;
+  pokemon_v2_pokemoncolornames_aggregate?: InputMaybe<Pokemon_V2_Pokemoncolorname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonformnames?: InputMaybe<Pokemon_V2_Pokemonformname_Bool_Exp>;
+  pokemon_v2_pokemonformnames_aggregate?: InputMaybe<Pokemon_V2_Pokemonformname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonhabitatnames?: InputMaybe<Pokemon_V2_Pokemonhabitatname_Bool_Exp>;
+  pokemon_v2_pokemonhabitatnames_aggregate?: InputMaybe<Pokemon_V2_Pokemonhabitatname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonshapenames?: InputMaybe<Pokemon_V2_Pokemonshapename_Bool_Exp>;
+  pokemon_v2_pokemonshapenames_aggregate?: InputMaybe<Pokemon_V2_Pokemonshapename_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspeciesdescriptions?: InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Bool_Exp>;
+  pokemon_v2_pokemonspeciesdescriptions_aggregate?: InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspeciesflavortexts?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Bool_Exp>;
+  pokemon_v2_pokemonspeciesflavortexts_aggregate?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspeciesnames?: InputMaybe<Pokemon_V2_Pokemonspeciesname_Bool_Exp>;
+  pokemon_v2_pokemonspeciesnames_aggregate?: InputMaybe<Pokemon_V2_Pokemonspeciesname_Aggregate_Bool_Exp>;
   pokemon_v2_regionnames?: InputMaybe<Pokemon_V2_Regionname_Bool_Exp>;
+  pokemon_v2_regionnames_aggregate?: InputMaybe<Pokemon_V2_Regionname_Aggregate_Bool_Exp>;
   pokemon_v2_statnames?: InputMaybe<Pokemon_V2_Statname_Bool_Exp>;
+  pokemon_v2_statnames_aggregate?: InputMaybe<Pokemon_V2_Statname_Aggregate_Bool_Exp>;
   pokemon_v2_supercontesteffectflavortexts?: InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Bool_Exp>;
+  pokemon_v2_supercontesteffectflavortexts_aggregate?: InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_typenames?: InputMaybe<Pokemon_V2_Typename_Bool_Exp>;
+  pokemon_v2_typenames_aggregate?: InputMaybe<Pokemon_V2_Typename_Aggregate_Bool_Exp>;
   pokemon_v2_versionnames?: InputMaybe<Pokemon_V2_Versionname_Bool_Exp>;
+  pokemon_v2_versionnames_aggregate?: InputMaybe<Pokemon_V2_Versionname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -16281,6 +17844,24 @@ export type Pokemon_V2_Language_Stddev_Samp_Fields = {
   order?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_language" */
+export type Pokemon_V2_Language_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Language_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Language_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  iso639?: InputMaybe<Scalars['String']>;
+  iso3166?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  official?: InputMaybe<Scalars['Boolean']>;
+  order?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Language_Sum_Fields = {
   __typename?: 'pokemon_v2_language_sum_fields';
@@ -16327,6 +17908,17 @@ export type Pokemon_V2_Languagename_Aggregate = {
   __typename?: 'pokemon_v2_languagename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Languagename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Languagename>;
+};
+
+export type Pokemon_V2_Languagename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Languagename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Languagename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Languagename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Languagename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_languagename" */
@@ -16494,6 +18086,22 @@ export type Pokemon_V2_Languagename_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   local_language_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_languagename" */
+export type Pokemon_V2_Languagename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Languagename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Languagename_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  local_language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -16669,6 +18277,17 @@ export type Pokemon_V2_Location_Aggregate = {
   nodes: Array<Pokemon_V2_Location>;
 };
 
+export type Pokemon_V2_Location_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Location_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Location_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Location_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Location_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_location" */
 export type Pokemon_V2_Location_Aggregate_Fields = {
   __typename?: 'pokemon_v2_location_aggregate_fields';
@@ -16728,9 +18347,13 @@ export type Pokemon_V2_Location_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_locationareas?: InputMaybe<Pokemon_V2_Locationarea_Bool_Exp>;
+  pokemon_v2_locationareas_aggregate?: InputMaybe<Pokemon_V2_Locationarea_Aggregate_Bool_Exp>;
   pokemon_v2_locationgameindices?: InputMaybe<Pokemon_V2_Locationgameindex_Bool_Exp>;
+  pokemon_v2_locationgameindices_aggregate?: InputMaybe<Pokemon_V2_Locationgameindex_Aggregate_Bool_Exp>;
   pokemon_v2_locationnames?: InputMaybe<Pokemon_V2_Locationname_Bool_Exp>;
+  pokemon_v2_locationnames_aggregate?: InputMaybe<Pokemon_V2_Locationname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonevolutions?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemon_v2_pokemonevolutions_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemon_v2_region?: InputMaybe<Pokemon_V2_Region_Bool_Exp>;
   region_id?: InputMaybe<Int_Comparison_Exp>;
 };
@@ -16824,6 +18447,21 @@ export type Pokemon_V2_Location_Stddev_Samp_Fields = {
 export type Pokemon_V2_Location_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   region_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_location" */
+export type Pokemon_V2_Location_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Location_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Location_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  region_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -16968,6 +18606,17 @@ export type Pokemon_V2_Locationarea_Aggregate = {
   nodes: Array<Pokemon_V2_Locationarea>;
 };
 
+export type Pokemon_V2_Locationarea_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Locationarea_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Locationarea_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Locationarea_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Locationarea_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_locationarea" */
 export type Pokemon_V2_Locationarea_Aggregate_Fields = {
   __typename?: 'pokemon_v2_locationarea_aggregate_fields';
@@ -17031,9 +18680,12 @@ export type Pokemon_V2_Locationarea_Bool_Exp = {
   location_id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_encounters?: InputMaybe<Pokemon_V2_Encounter_Bool_Exp>;
+  pokemon_v2_encounters_aggregate?: InputMaybe<Pokemon_V2_Encounter_Aggregate_Bool_Exp>;
   pokemon_v2_location?: InputMaybe<Pokemon_V2_Location_Bool_Exp>;
   pokemon_v2_locationareaencounterrates?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Bool_Exp>;
+  pokemon_v2_locationareaencounterrates_aggregate?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Aggregate_Bool_Exp>;
   pokemon_v2_locationareanames?: InputMaybe<Pokemon_V2_Locationareaname_Bool_Exp>;
+  pokemon_v2_locationareanames_aggregate?: InputMaybe<Pokemon_V2_Locationareaname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -17139,6 +18791,22 @@ export type Pokemon_V2_Locationarea_Stddev_Samp_Order_By = {
   location_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_locationarea" */
+export type Pokemon_V2_Locationarea_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Locationarea_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Locationarea_Stream_Cursor_Value_Input = {
+  game_index?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  location_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Locationarea_Sum_Fields = {
   __typename?: 'pokemon_v2_locationarea_sum_fields';
@@ -17220,6 +18888,17 @@ export type Pokemon_V2_Locationareaencounterrate_Aggregate = {
   __typename?: 'pokemon_v2_locationareaencounterrate_aggregate';
   aggregate?: Maybe<Pokemon_V2_Locationareaencounterrate_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Locationareaencounterrate>;
+};
+
+export type Pokemon_V2_Locationareaencounterrate_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Locationareaencounterrate_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Locationareaencounterrate_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_locationareaencounterrate" */
@@ -17415,6 +19094,23 @@ export type Pokemon_V2_Locationareaencounterrate_Stddev_Samp_Order_By = {
   version_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_locationareaencounterrate" */
+export type Pokemon_V2_Locationareaencounterrate_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Locationareaencounterrate_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Locationareaencounterrate_Stream_Cursor_Value_Input = {
+  encounter_method_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  location_area_id?: InputMaybe<Scalars['Int']>;
+  rate?: InputMaybe<Scalars['Int']>;
+  version_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Locationareaencounterrate_Sum_Fields = {
   __typename?: 'pokemon_v2_locationareaencounterrate_sum_fields';
@@ -17509,6 +19205,17 @@ export type Pokemon_V2_Locationareaname_Aggregate = {
   __typename?: 'pokemon_v2_locationareaname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Locationareaname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Locationareaname>;
+};
+
+export type Pokemon_V2_Locationareaname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Locationareaname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Locationareaname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Locationareaname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Locationareaname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_locationareaname" */
@@ -17678,6 +19385,22 @@ export type Pokemon_V2_Locationareaname_Stddev_Samp_Order_By = {
   location_area_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_locationareaname" */
+export type Pokemon_V2_Locationareaname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Locationareaname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Locationareaname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  location_area_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Locationareaname_Sum_Fields = {
   __typename?: 'pokemon_v2_locationareaname_sum_fields';
@@ -17756,6 +19479,17 @@ export type Pokemon_V2_Locationgameindex_Aggregate = {
   __typename?: 'pokemon_v2_locationgameindex_aggregate';
   aggregate?: Maybe<Pokemon_V2_Locationgameindex_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Locationgameindex>;
+};
+
+export type Pokemon_V2_Locationgameindex_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Locationgameindex_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Locationgameindex_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Locationgameindex_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Locationgameindex_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_locationgameindex" */
@@ -17933,6 +19667,22 @@ export type Pokemon_V2_Locationgameindex_Stddev_Samp_Order_By = {
   location_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_locationgameindex" */
+export type Pokemon_V2_Locationgameindex_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Locationgameindex_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Locationgameindex_Stream_Cursor_Value_Input = {
+  game_index?: InputMaybe<Scalars['Int']>;
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  location_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Locationgameindex_Sum_Fields = {
   __typename?: 'pokemon_v2_locationgameindex_sum_fields';
@@ -18019,6 +19769,17 @@ export type Pokemon_V2_Locationname_Aggregate = {
   __typename?: 'pokemon_v2_locationname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Locationname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Locationname>;
+};
+
+export type Pokemon_V2_Locationname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Locationname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Locationname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Locationname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Locationname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_locationname" */
@@ -18188,6 +19949,22 @@ export type Pokemon_V2_Locationname_Stddev_Samp_Order_By = {
   location_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_locationname" */
+export type Pokemon_V2_Locationname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Locationname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Locationname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  location_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Locationname_Sum_Fields = {
   __typename?: 'pokemon_v2_locationname_sum_fields';
@@ -18272,6 +20049,17 @@ export type Pokemon_V2_Machine_Aggregate = {
   __typename?: 'pokemon_v2_machine_aggregate';
   aggregate?: Maybe<Pokemon_V2_Machine_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Machine>;
+};
+
+export type Pokemon_V2_Machine_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Machine_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Machine_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Machine_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Machine_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_machine" */
@@ -18483,6 +20271,24 @@ export type Pokemon_V2_Machine_Stddev_Samp_Order_By = {
   machine_number?: InputMaybe<Order_By>;
   move_id?: InputMaybe<Order_By>;
   version_group_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_machine" */
+export type Pokemon_V2_Machine_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Machine_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Machine_Stream_Cursor_Value_Input = {
+  growth_rate_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+  machine_number?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -18926,6 +20732,17 @@ export type Pokemon_V2_Move_Aggregate = {
   nodes: Array<Pokemon_V2_Move>;
 };
 
+export type Pokemon_V2_Move_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Move_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Move_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_move" */
 export type Pokemon_V2_Move_Aggregate_Fields = {
   __typename?: 'pokemon_v2_move_aggregate_fields';
@@ -19017,25 +20834,38 @@ export type Pokemon_V2_Move_Bool_Exp = {
   move_target_id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemonV2ContestcombosBySecondMoveId?: InputMaybe<Pokemon_V2_Contestcombo_Bool_Exp>;
+  pokemonV2ContestcombosBySecondMoveId_aggregate?: InputMaybe<Pokemon_V2_Contestcombo_Aggregate_Bool_Exp>;
   pokemonV2SupercontestcombosBySecondMoveId?: InputMaybe<Pokemon_V2_Supercontestcombo_Bool_Exp>;
+  pokemonV2SupercontestcombosBySecondMoveId_aggregate?: InputMaybe<Pokemon_V2_Supercontestcombo_Aggregate_Bool_Exp>;
   pokemon_v2_contestcombos?: InputMaybe<Pokemon_V2_Contestcombo_Bool_Exp>;
+  pokemon_v2_contestcombos_aggregate?: InputMaybe<Pokemon_V2_Contestcombo_Aggregate_Bool_Exp>;
   pokemon_v2_contesteffect?: InputMaybe<Pokemon_V2_Contesteffect_Bool_Exp>;
   pokemon_v2_contesttype?: InputMaybe<Pokemon_V2_Contesttype_Bool_Exp>;
   pokemon_v2_generation?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
   pokemon_v2_machines?: InputMaybe<Pokemon_V2_Machine_Bool_Exp>;
+  pokemon_v2_machines_aggregate?: InputMaybe<Pokemon_V2_Machine_Aggregate_Bool_Exp>;
   pokemon_v2_moveattributemaps?: InputMaybe<Pokemon_V2_Moveattributemap_Bool_Exp>;
+  pokemon_v2_moveattributemaps_aggregate?: InputMaybe<Pokemon_V2_Moveattributemap_Aggregate_Bool_Exp>;
   pokemon_v2_movechanges?: InputMaybe<Pokemon_V2_Movechange_Bool_Exp>;
+  pokemon_v2_movechanges_aggregate?: InputMaybe<Pokemon_V2_Movechange_Aggregate_Bool_Exp>;
   pokemon_v2_movedamageclass?: InputMaybe<Pokemon_V2_Movedamageclass_Bool_Exp>;
   pokemon_v2_moveeffect?: InputMaybe<Pokemon_V2_Moveeffect_Bool_Exp>;
   pokemon_v2_moveflavortexts?: InputMaybe<Pokemon_V2_Moveflavortext_Bool_Exp>;
+  pokemon_v2_moveflavortexts_aggregate?: InputMaybe<Pokemon_V2_Moveflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_movemeta?: InputMaybe<Pokemon_V2_Movemeta_Bool_Exp>;
+  pokemon_v2_movemeta_aggregate?: InputMaybe<Pokemon_V2_Movemeta_Aggregate_Bool_Exp>;
   pokemon_v2_movemetastatchanges?: InputMaybe<Pokemon_V2_Movemetastatchange_Bool_Exp>;
+  pokemon_v2_movemetastatchanges_aggregate?: InputMaybe<Pokemon_V2_Movemetastatchange_Aggregate_Bool_Exp>;
   pokemon_v2_movemetum?: InputMaybe<Pokemon_V2_Movemeta_Bool_Exp>;
   pokemon_v2_movenames?: InputMaybe<Pokemon_V2_Movename_Bool_Exp>;
+  pokemon_v2_movenames_aggregate?: InputMaybe<Pokemon_V2_Movename_Aggregate_Bool_Exp>;
   pokemon_v2_movetarget?: InputMaybe<Pokemon_V2_Movetarget_Bool_Exp>;
   pokemon_v2_pokemonevolutions?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemon_v2_pokemonevolutions_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonmoves?: InputMaybe<Pokemon_V2_Pokemonmove_Bool_Exp>;
+  pokemon_v2_pokemonmoves_aggregate?: InputMaybe<Pokemon_V2_Pokemonmove_Aggregate_Bool_Exp>;
   pokemon_v2_supercontestcombos?: InputMaybe<Pokemon_V2_Supercontestcombo_Bool_Exp>;
+  pokemon_v2_supercontestcombos_aggregate?: InputMaybe<Pokemon_V2_Supercontestcombo_Aggregate_Bool_Exp>;
   pokemon_v2_supercontesteffect?: InputMaybe<Pokemon_V2_Supercontesteffect_Bool_Exp>;
   pokemon_v2_type?: InputMaybe<Pokemon_V2_Type_Bool_Exp>;
   power?: InputMaybe<Int_Comparison_Exp>;
@@ -19309,6 +21139,33 @@ export type Pokemon_V2_Move_Stddev_Samp_Order_By = {
   type_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_move" */
+export type Pokemon_V2_Move_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Move_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Move_Stream_Cursor_Value_Input = {
+  accuracy?: InputMaybe<Scalars['Int']>;
+  contest_effect_id?: InputMaybe<Scalars['Int']>;
+  contest_type_id?: InputMaybe<Scalars['Int']>;
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  move_damage_class_id?: InputMaybe<Scalars['Int']>;
+  move_effect_chance?: InputMaybe<Scalars['Int']>;
+  move_effect_id?: InputMaybe<Scalars['Int']>;
+  move_target_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  power?: InputMaybe<Scalars['Int']>;
+  pp?: InputMaybe<Scalars['Int']>;
+  priority?: InputMaybe<Scalars['Int']>;
+  super_contest_effect_id?: InputMaybe<Scalars['Int']>;
+  type_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Move_Sum_Fields = {
   __typename?: 'pokemon_v2_move_sum_fields';
@@ -19580,8 +21437,11 @@ export type Pokemon_V2_Moveattribute_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_moveattributedescriptions?: InputMaybe<Pokemon_V2_Moveattributedescription_Bool_Exp>;
+  pokemon_v2_moveattributedescriptions_aggregate?: InputMaybe<Pokemon_V2_Moveattributedescription_Aggregate_Bool_Exp>;
   pokemon_v2_moveattributemaps?: InputMaybe<Pokemon_V2_Moveattributemap_Bool_Exp>;
+  pokemon_v2_moveattributemaps_aggregate?: InputMaybe<Pokemon_V2_Moveattributemap_Aggregate_Bool_Exp>;
   pokemon_v2_moveattributenames?: InputMaybe<Pokemon_V2_Moveattributename_Bool_Exp>;
+  pokemon_v2_moveattributenames_aggregate?: InputMaybe<Pokemon_V2_Moveattributename_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -19633,6 +21493,20 @@ export type Pokemon_V2_Moveattribute_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_moveattribute" */
+export type Pokemon_V2_Moveattribute_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveattribute_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveattribute_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Moveattribute_Sum_Fields = {
   __typename?: 'pokemon_v2_moveattribute_sum_fields';
@@ -19675,6 +21549,17 @@ export type Pokemon_V2_Moveattributedescription_Aggregate = {
   __typename?: 'pokemon_v2_moveattributedescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Moveattributedescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Moveattributedescription>;
+};
+
+export type Pokemon_V2_Moveattributedescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Moveattributedescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Moveattributedescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Moveattributedescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Moveattributedescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_moveattributedescription" */
@@ -19844,6 +21729,22 @@ export type Pokemon_V2_Moveattributedescription_Stddev_Samp_Order_By = {
   move_attribute_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_moveattributedescription" */
+export type Pokemon_V2_Moveattributedescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveattributedescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveattributedescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_attribute_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Moveattributedescription_Sum_Fields = {
   __typename?: 'pokemon_v2_moveattributedescription_sum_fields';
@@ -19921,6 +21822,17 @@ export type Pokemon_V2_Moveattributemap_Aggregate = {
   __typename?: 'pokemon_v2_moveattributemap_aggregate';
   aggregate?: Maybe<Pokemon_V2_Moveattributemap_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Moveattributemap>;
+};
+
+export type Pokemon_V2_Moveattributemap_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Moveattributemap_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Moveattributemap_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Moveattributemap_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Moveattributemap_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_moveattributemap" */
@@ -20082,6 +21994,21 @@ export type Pokemon_V2_Moveattributemap_Stddev_Samp_Order_By = {
   move_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_moveattributemap" */
+export type Pokemon_V2_Moveattributemap_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveattributemap_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveattributemap_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  move_attribute_id?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Moveattributemap_Sum_Fields = {
   __typename?: 'pokemon_v2_moveattributemap_sum_fields';
@@ -20160,6 +22087,17 @@ export type Pokemon_V2_Moveattributename_Aggregate = {
   __typename?: 'pokemon_v2_moveattributename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Moveattributename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Moveattributename>;
+};
+
+export type Pokemon_V2_Moveattributename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Moveattributename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Moveattributename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Moveattributename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Moveattributename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_moveattributename" */
@@ -20329,6 +22267,22 @@ export type Pokemon_V2_Moveattributename_Stddev_Samp_Order_By = {
   move_attribute_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_moveattributename" */
+export type Pokemon_V2_Moveattributename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveattributename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveattributename_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_attribute_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Moveattributename_Sum_Fields = {
   __typename?: 'pokemon_v2_moveattributename_sum_fields';
@@ -20488,7 +22442,9 @@ export type Pokemon_V2_Movebattlestyle_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_movebattlestylenames?: InputMaybe<Pokemon_V2_Movebattlestylename_Bool_Exp>;
+  pokemon_v2_movebattlestylenames_aggregate?: InputMaybe<Pokemon_V2_Movebattlestylename_Aggregate_Bool_Exp>;
   pokemon_v2_naturebattlestylepreferences?: InputMaybe<Pokemon_V2_Naturebattlestylepreference_Bool_Exp>;
+  pokemon_v2_naturebattlestylepreferences_aggregate?: InputMaybe<Pokemon_V2_Naturebattlestylepreference_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -20539,6 +22495,20 @@ export type Pokemon_V2_Movebattlestyle_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movebattlestyle" */
+export type Pokemon_V2_Movebattlestyle_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movebattlestyle_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movebattlestyle_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movebattlestyle_Sum_Fields = {
   __typename?: 'pokemon_v2_movebattlestyle_sum_fields';
@@ -20581,6 +22551,17 @@ export type Pokemon_V2_Movebattlestylename_Aggregate = {
   __typename?: 'pokemon_v2_movebattlestylename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movebattlestylename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movebattlestylename>;
+};
+
+export type Pokemon_V2_Movebattlestylename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movebattlestylename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movebattlestylename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movebattlestylename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movebattlestylename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movebattlestylename" */
@@ -20750,6 +22731,22 @@ export type Pokemon_V2_Movebattlestylename_Stddev_Samp_Order_By = {
   move_battle_style_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movebattlestylename" */
+export type Pokemon_V2_Movebattlestylename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movebattlestylename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movebattlestylename_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_battle_style_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movebattlestylename_Sum_Fields = {
   __typename?: 'pokemon_v2_movebattlestylename_sum_fields';
@@ -20837,6 +22834,17 @@ export type Pokemon_V2_Movechange_Aggregate = {
   __typename?: 'pokemon_v2_movechange_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movechange_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movechange>;
+};
+
+export type Pokemon_V2_Movechange_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movechange_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movechange_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movechange_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movechange_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movechange" */
@@ -21096,6 +23104,27 @@ export type Pokemon_V2_Movechange_Stddev_Samp_Order_By = {
   pp?: InputMaybe<Order_By>;
   type_id?: InputMaybe<Order_By>;
   version_group_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_movechange" */
+export type Pokemon_V2_Movechange_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movechange_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movechange_Stream_Cursor_Value_Input = {
+  accuracy?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  move_effect_chance?: InputMaybe<Scalars['Int']>;
+  move_effect_id?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+  power?: InputMaybe<Scalars['Int']>;
+  pp?: InputMaybe<Scalars['Int']>;
+  type_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -21377,10 +23406,15 @@ export type Pokemon_V2_Movedamageclass_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_movedamageclassdescriptions?: InputMaybe<Pokemon_V2_Movedamageclassdescription_Bool_Exp>;
+  pokemon_v2_movedamageclassdescriptions_aggregate?: InputMaybe<Pokemon_V2_Movedamageclassdescription_Aggregate_Bool_Exp>;
   pokemon_v2_movedamageclassnames?: InputMaybe<Pokemon_V2_Movedamageclassname_Bool_Exp>;
+  pokemon_v2_movedamageclassnames_aggregate?: InputMaybe<Pokemon_V2_Movedamageclassname_Aggregate_Bool_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
   pokemon_v2_stats?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
+  pokemon_v2_stats_aggregate?: InputMaybe<Pokemon_V2_Stat_Aggregate_Bool_Exp>;
   pokemon_v2_types?: InputMaybe<Pokemon_V2_Type_Bool_Exp>;
+  pokemon_v2_types_aggregate?: InputMaybe<Pokemon_V2_Type_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -21434,6 +23468,20 @@ export type Pokemon_V2_Movedamageclass_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movedamageclass" */
+export type Pokemon_V2_Movedamageclass_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movedamageclass_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movedamageclass_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movedamageclass_Sum_Fields = {
   __typename?: 'pokemon_v2_movedamageclass_sum_fields';
@@ -21476,6 +23524,17 @@ export type Pokemon_V2_Movedamageclassdescription_Aggregate = {
   __typename?: 'pokemon_v2_movedamageclassdescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movedamageclassdescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movedamageclassdescription>;
+};
+
+export type Pokemon_V2_Movedamageclassdescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movedamageclassdescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movedamageclassdescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movedamageclassdescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movedamageclassdescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movedamageclassdescription" */
@@ -21645,6 +23704,22 @@ export type Pokemon_V2_Movedamageclassdescription_Stddev_Samp_Order_By = {
   move_damage_class_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movedamageclassdescription" */
+export type Pokemon_V2_Movedamageclassdescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movedamageclassdescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movedamageclassdescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_damage_class_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movedamageclassdescription_Sum_Fields = {
   __typename?: 'pokemon_v2_movedamageclassdescription_sum_fields';
@@ -21723,6 +23798,17 @@ export type Pokemon_V2_Movedamageclassname_Aggregate = {
   __typename?: 'pokemon_v2_movedamageclassname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movedamageclassname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movedamageclassname>;
+};
+
+export type Pokemon_V2_Movedamageclassname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movedamageclassname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movedamageclassname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movedamageclassname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movedamageclassname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movedamageclassname" */
@@ -21890,6 +23976,22 @@ export type Pokemon_V2_Movedamageclassname_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   move_damage_class_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_movedamageclassname" */
+export type Pokemon_V2_Movedamageclassname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movedamageclassname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movedamageclassname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_damage_class_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -22097,9 +24199,13 @@ export type Pokemon_V2_Moveeffect_Bool_Exp = {
   _or?: InputMaybe<Array<Pokemon_V2_Moveeffect_Bool_Exp>>;
   id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_movechanges?: InputMaybe<Pokemon_V2_Movechange_Bool_Exp>;
+  pokemon_v2_movechanges_aggregate?: InputMaybe<Pokemon_V2_Movechange_Aggregate_Bool_Exp>;
   pokemon_v2_moveeffectchanges?: InputMaybe<Pokemon_V2_Moveeffectchange_Bool_Exp>;
+  pokemon_v2_moveeffectchanges_aggregate?: InputMaybe<Pokemon_V2_Moveeffectchange_Aggregate_Bool_Exp>;
   pokemon_v2_moveeffecteffecttexts?: InputMaybe<Pokemon_V2_Moveeffecteffecttext_Bool_Exp>;
+  pokemon_v2_moveeffecteffecttexts_aggregate?: InputMaybe<Pokemon_V2_Moveeffecteffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -22145,6 +24251,19 @@ export type Pokemon_V2_Moveeffect_Stddev_Pop_Fields = {
 export type Pokemon_V2_Moveeffect_Stddev_Samp_Fields = {
   __typename?: 'pokemon_v2_moveeffect_stddev_samp_fields';
   id?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_moveeffect" */
+export type Pokemon_V2_Moveeffect_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveeffect_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveeffect_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -22214,6 +24333,17 @@ export type Pokemon_V2_Moveeffectchange_Aggregate = {
   nodes: Array<Pokemon_V2_Moveeffectchange>;
 };
 
+export type Pokemon_V2_Moveeffectchange_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Moveeffectchange_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Moveeffectchange_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Moveeffectchange_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Moveeffectchange_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_moveeffectchange" */
 export type Pokemon_V2_Moveeffectchange_Aggregate_Fields = {
   __typename?: 'pokemon_v2_moveeffectchange_aggregate_fields';
@@ -22276,6 +24406,7 @@ export type Pokemon_V2_Moveeffectchange_Bool_Exp = {
   move_effect_id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_moveeffect?: InputMaybe<Pokemon_V2_Moveeffect_Bool_Exp>;
   pokemon_v2_moveeffectchangeeffecttexts?: InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Bool_Exp>;
+  pokemon_v2_moveeffectchangeeffecttexts_aggregate?: InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroup?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
   version_group_id?: InputMaybe<Int_Comparison_Exp>;
 };
@@ -22375,6 +24506,21 @@ export type Pokemon_V2_Moveeffectchange_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_moveeffectchange" */
+export type Pokemon_V2_Moveeffectchange_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveeffectchange_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveeffectchange_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  move_effect_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Moveeffectchange_Sum_Fields = {
   __typename?: 'pokemon_v2_moveeffectchange_sum_fields';
@@ -22453,6 +24599,17 @@ export type Pokemon_V2_Moveeffectchangeeffecttext_Aggregate = {
   __typename?: 'pokemon_v2_moveeffectchangeeffecttext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Moveeffectchangeeffecttext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Moveeffectchangeeffecttext>;
+};
+
+export type Pokemon_V2_Moveeffectchangeeffecttext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Moveeffectchangeeffecttext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Moveeffectchangeeffecttext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_moveeffectchangeeffecttext" */
@@ -22622,6 +24779,22 @@ export type Pokemon_V2_Moveeffectchangeeffecttext_Stddev_Samp_Order_By = {
   move_effect_change_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_moveeffectchangeeffecttext" */
+export type Pokemon_V2_Moveeffectchangeeffecttext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveeffectchangeeffecttext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveeffectchangeeffecttext_Stream_Cursor_Value_Input = {
+  effect?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_effect_change_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Moveeffectchangeeffecttext_Sum_Fields = {
   __typename?: 'pokemon_v2_moveeffectchangeeffecttext_sum_fields';
@@ -22701,6 +24874,17 @@ export type Pokemon_V2_Moveeffecteffecttext_Aggregate = {
   __typename?: 'pokemon_v2_moveeffecteffecttext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Moveeffecteffecttext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Moveeffecteffecttext>;
+};
+
+export type Pokemon_V2_Moveeffecteffecttext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Moveeffecteffecttext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Moveeffecteffecttext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Moveeffecteffecttext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Moveeffecteffecttext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_moveeffecteffecttext" */
@@ -22878,6 +25062,23 @@ export type Pokemon_V2_Moveeffecteffecttext_Stddev_Samp_Order_By = {
   move_effect_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_moveeffecteffecttext" */
+export type Pokemon_V2_Moveeffecteffecttext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveeffecteffecttext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveeffecteffecttext_Stream_Cursor_Value_Input = {
+  effect?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_effect_id?: InputMaybe<Scalars['Int']>;
+  short_effect?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Moveeffecteffecttext_Sum_Fields = {
   __typename?: 'pokemon_v2_moveeffecteffecttext_sum_fields';
@@ -22959,6 +25160,17 @@ export type Pokemon_V2_Moveflavortext_Aggregate = {
   __typename?: 'pokemon_v2_moveflavortext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Moveflavortext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Moveflavortext>;
+};
+
+export type Pokemon_V2_Moveflavortext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Moveflavortext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Moveflavortext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Moveflavortext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Moveflavortext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_moveflavortext" */
@@ -23144,6 +25356,23 @@ export type Pokemon_V2_Moveflavortext_Stddev_Samp_Order_By = {
   language_id?: InputMaybe<Order_By>;
   move_id?: InputMaybe<Order_By>;
   version_group_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_moveflavortext" */
+export type Pokemon_V2_Moveflavortext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Moveflavortext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Moveflavortext_Stream_Cursor_Value_Input = {
+  flavor_text?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -23361,9 +25590,13 @@ export type Pokemon_V2_Movelearnmethod_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_movelearnmethoddescriptions?: InputMaybe<Pokemon_V2_Movelearnmethoddescription_Bool_Exp>;
+  pokemon_v2_movelearnmethoddescriptions_aggregate?: InputMaybe<Pokemon_V2_Movelearnmethoddescription_Aggregate_Bool_Exp>;
   pokemon_v2_movelearnmethodnames?: InputMaybe<Pokemon_V2_Movelearnmethodname_Bool_Exp>;
+  pokemon_v2_movelearnmethodnames_aggregate?: InputMaybe<Pokemon_V2_Movelearnmethodname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonmoves?: InputMaybe<Pokemon_V2_Pokemonmove_Bool_Exp>;
+  pokemon_v2_pokemonmoves_aggregate?: InputMaybe<Pokemon_V2_Pokemonmove_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroupmovelearnmethods?: InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Bool_Exp>;
+  pokemon_v2_versiongroupmovelearnmethods_aggregate?: InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -23416,6 +25649,20 @@ export type Pokemon_V2_Movelearnmethod_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movelearnmethod" */
+export type Pokemon_V2_Movelearnmethod_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movelearnmethod_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movelearnmethod_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movelearnmethod_Sum_Fields = {
   __typename?: 'pokemon_v2_movelearnmethod_sum_fields';
@@ -23458,6 +25705,17 @@ export type Pokemon_V2_Movelearnmethoddescription_Aggregate = {
   __typename?: 'pokemon_v2_movelearnmethoddescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movelearnmethoddescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movelearnmethoddescription>;
+};
+
+export type Pokemon_V2_Movelearnmethoddescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movelearnmethoddescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movelearnmethoddescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movelearnmethoddescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movelearnmethoddescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movelearnmethoddescription" */
@@ -23627,6 +25885,22 @@ export type Pokemon_V2_Movelearnmethoddescription_Stddev_Samp_Order_By = {
   move_learn_method_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movelearnmethoddescription" */
+export type Pokemon_V2_Movelearnmethoddescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movelearnmethoddescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movelearnmethoddescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_learn_method_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movelearnmethoddescription_Sum_Fields = {
   __typename?: 'pokemon_v2_movelearnmethoddescription_sum_fields';
@@ -23705,6 +25979,17 @@ export type Pokemon_V2_Movelearnmethodname_Aggregate = {
   __typename?: 'pokemon_v2_movelearnmethodname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movelearnmethodname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movelearnmethodname>;
+};
+
+export type Pokemon_V2_Movelearnmethodname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movelearnmethodname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movelearnmethodname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movelearnmethodname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movelearnmethodname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movelearnmethodname" */
@@ -23874,6 +26159,22 @@ export type Pokemon_V2_Movelearnmethodname_Stddev_Samp_Order_By = {
   move_learn_method_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movelearnmethodname" */
+export type Pokemon_V2_Movelearnmethodname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movelearnmethodname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movelearnmethodname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_learn_method_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movelearnmethodname_Sum_Fields = {
   __typename?: 'pokemon_v2_movelearnmethodname_sum_fields';
@@ -23964,6 +26265,17 @@ export type Pokemon_V2_Movemeta_Aggregate = {
   __typename?: 'pokemon_v2_movemeta_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movemeta_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movemeta>;
+};
+
+export type Pokemon_V2_Movemeta_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movemeta_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movemeta_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movemeta_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movemeta_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movemeta" */
@@ -24303,6 +26615,32 @@ export type Pokemon_V2_Movemeta_Stddev_Samp_Order_By = {
   stat_chance?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movemeta" */
+export type Pokemon_V2_Movemeta_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movemeta_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movemeta_Stream_Cursor_Value_Input = {
+  ailment_chance?: InputMaybe<Scalars['Int']>;
+  crit_rate?: InputMaybe<Scalars['Int']>;
+  drain?: InputMaybe<Scalars['Int']>;
+  flinch_chance?: InputMaybe<Scalars['Int']>;
+  healing?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  max_hits?: InputMaybe<Scalars['Int']>;
+  max_turns?: InputMaybe<Scalars['Int']>;
+  min_hits?: InputMaybe<Scalars['Int']>;
+  min_turns?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+  move_meta_ailment_id?: InputMaybe<Scalars['Int']>;
+  move_meta_category_id?: InputMaybe<Scalars['Int']>;
+  stat_chance?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movemeta_Sum_Fields = {
   __typename?: 'pokemon_v2_movemeta_sum_fields';
@@ -24550,7 +26888,9 @@ export type Pokemon_V2_Movemetaailment_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_movemeta?: InputMaybe<Pokemon_V2_Movemeta_Bool_Exp>;
+  pokemon_v2_movemeta_aggregate?: InputMaybe<Pokemon_V2_Movemeta_Aggregate_Bool_Exp>;
   pokemon_v2_movemetaailmentnames?: InputMaybe<Pokemon_V2_Movemetaailmentname_Bool_Exp>;
+  pokemon_v2_movemetaailmentnames_aggregate?: InputMaybe<Pokemon_V2_Movemetaailmentname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -24601,6 +26941,20 @@ export type Pokemon_V2_Movemetaailment_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movemetaailment" */
+export type Pokemon_V2_Movemetaailment_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movemetaailment_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movemetaailment_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movemetaailment_Sum_Fields = {
   __typename?: 'pokemon_v2_movemetaailment_sum_fields';
@@ -24643,6 +26997,17 @@ export type Pokemon_V2_Movemetaailmentname_Aggregate = {
   __typename?: 'pokemon_v2_movemetaailmentname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movemetaailmentname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movemetaailmentname>;
+};
+
+export type Pokemon_V2_Movemetaailmentname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movemetaailmentname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movemetaailmentname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movemetaailmentname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movemetaailmentname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movemetaailmentname" */
@@ -24812,6 +27177,22 @@ export type Pokemon_V2_Movemetaailmentname_Stddev_Samp_Order_By = {
   move_meta_ailment_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movemetaailmentname" */
+export type Pokemon_V2_Movemetaailmentname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movemetaailmentname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movemetaailmentname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_meta_ailment_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movemetaailmentname_Sum_Fields = {
   __typename?: 'pokemon_v2_movemetaailmentname_sum_fields';
@@ -24971,7 +27352,9 @@ export type Pokemon_V2_Movemetacategory_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_movemeta?: InputMaybe<Pokemon_V2_Movemeta_Bool_Exp>;
+  pokemon_v2_movemeta_aggregate?: InputMaybe<Pokemon_V2_Movemeta_Aggregate_Bool_Exp>;
   pokemon_v2_movemetacategorydescriptions?: InputMaybe<Pokemon_V2_Movemetacategorydescription_Bool_Exp>;
+  pokemon_v2_movemetacategorydescriptions_aggregate?: InputMaybe<Pokemon_V2_Movemetacategorydescription_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -25022,6 +27405,20 @@ export type Pokemon_V2_Movemetacategory_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movemetacategory" */
+export type Pokemon_V2_Movemetacategory_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movemetacategory_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movemetacategory_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movemetacategory_Sum_Fields = {
   __typename?: 'pokemon_v2_movemetacategory_sum_fields';
@@ -25064,6 +27461,17 @@ export type Pokemon_V2_Movemetacategorydescription_Aggregate = {
   __typename?: 'pokemon_v2_movemetacategorydescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movemetacategorydescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movemetacategorydescription>;
+};
+
+export type Pokemon_V2_Movemetacategorydescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movemetacategorydescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movemetacategorydescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movemetacategorydescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movemetacategorydescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movemetacategorydescription" */
@@ -25233,6 +27641,22 @@ export type Pokemon_V2_Movemetacategorydescription_Stddev_Samp_Order_By = {
   move_meta_category_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movemetacategorydescription" */
+export type Pokemon_V2_Movemetacategorydescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movemetacategorydescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movemetacategorydescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_meta_category_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movemetacategorydescription_Sum_Fields = {
   __typename?: 'pokemon_v2_movemetacategorydescription_sum_fields';
@@ -25311,6 +27735,17 @@ export type Pokemon_V2_Movemetastatchange_Aggregate = {
   __typename?: 'pokemon_v2_movemetastatchange_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movemetastatchange_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movemetastatchange>;
+};
+
+export type Pokemon_V2_Movemetastatchange_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movemetastatchange_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movemetastatchange_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movemetastatchange_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movemetastatchange_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movemetastatchange" */
@@ -25488,6 +27923,22 @@ export type Pokemon_V2_Movemetastatchange_Stddev_Samp_Order_By = {
   stat_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movemetastatchange" */
+export type Pokemon_V2_Movemetastatchange_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movemetastatchange_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movemetastatchange_Stream_Cursor_Value_Input = {
+  change?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+  stat_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movemetastatchange_Sum_Fields = {
   __typename?: 'pokemon_v2_movemetastatchange_sum_fields';
@@ -25574,6 +28025,17 @@ export type Pokemon_V2_Movename_Aggregate = {
   __typename?: 'pokemon_v2_movename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movename>;
+};
+
+export type Pokemon_V2_Movename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movename" */
@@ -25741,6 +28203,22 @@ export type Pokemon_V2_Movename_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   move_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_movename" */
+export type Pokemon_V2_Movename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movename_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -25926,8 +28404,11 @@ export type Pokemon_V2_Movetarget_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
   pokemon_v2_movetargetdescriptions?: InputMaybe<Pokemon_V2_Movetargetdescription_Bool_Exp>;
+  pokemon_v2_movetargetdescriptions_aggregate?: InputMaybe<Pokemon_V2_Movetargetdescription_Aggregate_Bool_Exp>;
   pokemon_v2_movetargetnames?: InputMaybe<Pokemon_V2_Movetargetname_Bool_Exp>;
+  pokemon_v2_movetargetnames_aggregate?: InputMaybe<Pokemon_V2_Movetargetname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -25979,6 +28460,20 @@ export type Pokemon_V2_Movetarget_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movetarget" */
+export type Pokemon_V2_Movetarget_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movetarget_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movetarget_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movetarget_Sum_Fields = {
   __typename?: 'pokemon_v2_movetarget_sum_fields';
@@ -26021,6 +28516,17 @@ export type Pokemon_V2_Movetargetdescription_Aggregate = {
   __typename?: 'pokemon_v2_movetargetdescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movetargetdescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movetargetdescription>;
+};
+
+export type Pokemon_V2_Movetargetdescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movetargetdescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movetargetdescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movetargetdescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movetargetdescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movetargetdescription" */
@@ -26190,6 +28696,22 @@ export type Pokemon_V2_Movetargetdescription_Stddev_Samp_Order_By = {
   move_target_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movetargetdescription" */
+export type Pokemon_V2_Movetargetdescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movetargetdescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movetargetdescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_target_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movetargetdescription_Sum_Fields = {
   __typename?: 'pokemon_v2_movetargetdescription_sum_fields';
@@ -26268,6 +28790,17 @@ export type Pokemon_V2_Movetargetname_Aggregate = {
   __typename?: 'pokemon_v2_movetargetname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Movetargetname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Movetargetname>;
+};
+
+export type Pokemon_V2_Movetargetname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Movetargetname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Movetargetname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Movetargetname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Movetargetname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_movetargetname" */
@@ -26437,6 +28970,22 @@ export type Pokemon_V2_Movetargetname_Stddev_Samp_Order_By = {
   move_target_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_movetargetname" */
+export type Pokemon_V2_Movetargetname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Movetargetname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Movetargetname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  move_target_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Movetargetname_Sum_Fields = {
   __typename?: 'pokemon_v2_movetargetname_sum_fields';
@@ -26596,6 +29145,17 @@ export type Pokemon_V2_Nature_Aggregate = {
   nodes: Array<Pokemon_V2_Nature>;
 };
 
+export type Pokemon_V2_Nature_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Nature_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Nature_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Nature_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Nature_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_nature" */
 export type Pokemon_V2_Nature_Aggregate_Fields = {
   __typename?: 'pokemon_v2_nature_aggregate_fields';
@@ -26671,8 +29231,11 @@ export type Pokemon_V2_Nature_Bool_Exp = {
   pokemonV2StatByIncreasedStatId?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
   pokemon_v2_berryflavor?: InputMaybe<Pokemon_V2_Berryflavor_Bool_Exp>;
   pokemon_v2_naturebattlestylepreferences?: InputMaybe<Pokemon_V2_Naturebattlestylepreference_Bool_Exp>;
+  pokemon_v2_naturebattlestylepreferences_aggregate?: InputMaybe<Pokemon_V2_Naturebattlestylepreference_Aggregate_Bool_Exp>;
   pokemon_v2_naturenames?: InputMaybe<Pokemon_V2_Naturename_Bool_Exp>;
+  pokemon_v2_naturenames_aggregate?: InputMaybe<Pokemon_V2_Naturename_Aggregate_Bool_Exp>;
   pokemon_v2_naturepokeathlonstats?: InputMaybe<Pokemon_V2_Naturepokeathlonstat_Bool_Exp>;
+  pokemon_v2_naturepokeathlonstats_aggregate?: InputMaybe<Pokemon_V2_Naturepokeathlonstat_Aggregate_Bool_Exp>;
   pokemon_v2_stat?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
 };
 
@@ -26821,6 +29384,25 @@ export type Pokemon_V2_Nature_Stddev_Samp_Order_By = {
   likes_flavor_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_nature" */
+export type Pokemon_V2_Nature_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Nature_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Nature_Stream_Cursor_Value_Input = {
+  decreased_stat_id?: InputMaybe<Scalars['Int']>;
+  game_index?: InputMaybe<Scalars['Int']>;
+  hates_flavor_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  increased_stat_id?: InputMaybe<Scalars['Int']>;
+  likes_flavor_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Nature_Sum_Fields = {
   __typename?: 'pokemon_v2_nature_sum_fields';
@@ -26924,6 +29506,17 @@ export type Pokemon_V2_Naturebattlestylepreference_Aggregate = {
   __typename?: 'pokemon_v2_naturebattlestylepreference_aggregate';
   aggregate?: Maybe<Pokemon_V2_Naturebattlestylepreference_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Naturebattlestylepreference>;
+};
+
+export type Pokemon_V2_Naturebattlestylepreference_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Naturebattlestylepreference_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Naturebattlestylepreference_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Naturebattlestylepreference_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Naturebattlestylepreference_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_naturebattlestylepreference" */
@@ -27117,6 +29710,23 @@ export type Pokemon_V2_Naturebattlestylepreference_Stddev_Samp_Order_By = {
   nature_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_naturebattlestylepreference" */
+export type Pokemon_V2_Naturebattlestylepreference_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Naturebattlestylepreference_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Naturebattlestylepreference_Stream_Cursor_Value_Input = {
+  high_hp_preference?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  low_hp_preference?: InputMaybe<Scalars['Int']>;
+  move_battle_style_id?: InputMaybe<Scalars['Int']>;
+  nature_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Naturebattlestylepreference_Sum_Fields = {
   __typename?: 'pokemon_v2_naturebattlestylepreference_sum_fields';
@@ -27211,6 +29821,17 @@ export type Pokemon_V2_Naturename_Aggregate = {
   __typename?: 'pokemon_v2_naturename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Naturename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Naturename>;
+};
+
+export type Pokemon_V2_Naturename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Naturename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Naturename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Naturename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Naturename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_naturename" */
@@ -27380,6 +30001,22 @@ export type Pokemon_V2_Naturename_Stddev_Samp_Order_By = {
   nature_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_naturename" */
+export type Pokemon_V2_Naturename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Naturename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Naturename_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  nature_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Naturename_Sum_Fields = {
   __typename?: 'pokemon_v2_naturename_sum_fields';
@@ -27458,6 +30095,17 @@ export type Pokemon_V2_Naturepokeathlonstat_Aggregate = {
   __typename?: 'pokemon_v2_naturepokeathlonstat_aggregate';
   aggregate?: Maybe<Pokemon_V2_Naturepokeathlonstat_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Naturepokeathlonstat>;
+};
+
+export type Pokemon_V2_Naturepokeathlonstat_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Naturepokeathlonstat_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Naturepokeathlonstat_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Naturepokeathlonstat_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Naturepokeathlonstat_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_naturepokeathlonstat" */
@@ -27635,6 +30283,22 @@ export type Pokemon_V2_Naturepokeathlonstat_Stddev_Samp_Order_By = {
   pokeathlon_stat_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_naturepokeathlonstat" */
+export type Pokemon_V2_Naturepokeathlonstat_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Naturepokeathlonstat_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Naturepokeathlonstat_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  max_change?: InputMaybe<Scalars['Int']>;
+  nature_id?: InputMaybe<Scalars['Int']>;
+  pokeathlon_stat_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Naturepokeathlonstat_Sum_Fields = {
   __typename?: 'pokemon_v2_naturepokeathlonstat_sum_fields';
@@ -27722,6 +30386,17 @@ export type Pokemon_V2_Palpark_Aggregate = {
   __typename?: 'pokemon_v2_palpark_aggregate';
   aggregate?: Maybe<Pokemon_V2_Palpark_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Palpark>;
+};
+
+export type Pokemon_V2_Palpark_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Palpark_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Palpark_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Palpark_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Palpark_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_palpark" */
@@ -27915,6 +30590,23 @@ export type Pokemon_V2_Palpark_Stddev_Samp_Order_By = {
   rate?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_palpark" */
+export type Pokemon_V2_Palpark_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Palpark_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Palpark_Stream_Cursor_Value_Input = {
+  base_score?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  pal_park_area_id?: InputMaybe<Scalars['Int']>;
+  pokemon_species_id?: InputMaybe<Scalars['Int']>;
+  rate?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Palpark_Sum_Fields = {
   __typename?: 'pokemon_v2_palpark_sum_fields';
@@ -28090,7 +30782,9 @@ export type Pokemon_V2_Palparkarea_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_palparkareanames?: InputMaybe<Pokemon_V2_Palparkareaname_Bool_Exp>;
+  pokemon_v2_palparkareanames_aggregate?: InputMaybe<Pokemon_V2_Palparkareaname_Aggregate_Bool_Exp>;
   pokemon_v2_palparks?: InputMaybe<Pokemon_V2_Palpark_Bool_Exp>;
+  pokemon_v2_palparks_aggregate?: InputMaybe<Pokemon_V2_Palpark_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -28141,6 +30835,20 @@ export type Pokemon_V2_Palparkarea_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_palparkarea" */
+export type Pokemon_V2_Palparkarea_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Palparkarea_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Palparkarea_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Palparkarea_Sum_Fields = {
   __typename?: 'pokemon_v2_palparkarea_sum_fields';
@@ -28183,6 +30891,17 @@ export type Pokemon_V2_Palparkareaname_Aggregate = {
   __typename?: 'pokemon_v2_palparkareaname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Palparkareaname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Palparkareaname>;
+};
+
+export type Pokemon_V2_Palparkareaname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Palparkareaname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Palparkareaname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Palparkareaname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Palparkareaname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_palparkareaname" */
@@ -28352,6 +31071,22 @@ export type Pokemon_V2_Palparkareaname_Stddev_Samp_Order_By = {
   pal_park_area_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_palparkareaname" */
+export type Pokemon_V2_Palparkareaname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Palparkareaname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Palparkareaname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pal_park_area_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Palparkareaname_Sum_Fields = {
   __typename?: 'pokemon_v2_palparkareaname_sum_fields';
@@ -28511,7 +31246,9 @@ export type Pokemon_V2_Pokeathlonstat_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_naturepokeathlonstats?: InputMaybe<Pokemon_V2_Naturepokeathlonstat_Bool_Exp>;
+  pokemon_v2_naturepokeathlonstats_aggregate?: InputMaybe<Pokemon_V2_Naturepokeathlonstat_Aggregate_Bool_Exp>;
   pokemon_v2_pokeathlonstatnames?: InputMaybe<Pokemon_V2_Pokeathlonstatname_Bool_Exp>;
+  pokemon_v2_pokeathlonstatnames_aggregate?: InputMaybe<Pokemon_V2_Pokeathlonstatname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -28562,6 +31299,20 @@ export type Pokemon_V2_Pokeathlonstat_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokeathlonstat" */
+export type Pokemon_V2_Pokeathlonstat_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokeathlonstat_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokeathlonstat_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokeathlonstat_Sum_Fields = {
   __typename?: 'pokemon_v2_pokeathlonstat_sum_fields';
@@ -28604,6 +31355,17 @@ export type Pokemon_V2_Pokeathlonstatname_Aggregate = {
   __typename?: 'pokemon_v2_pokeathlonstatname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokeathlonstatname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokeathlonstatname>;
+};
+
+export type Pokemon_V2_Pokeathlonstatname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokeathlonstatname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokeathlonstatname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokeathlonstatname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokeathlonstatname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokeathlonstatname" */
@@ -28771,6 +31533,22 @@ export type Pokemon_V2_Pokeathlonstatname_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   pokeathlon_stat_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokeathlonstatname" */
+export type Pokemon_V2_Pokeathlonstatname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokeathlonstatname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokeathlonstatname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pokeathlon_stat_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -28947,6 +31725,33 @@ export type Pokemon_V2_Pokedex_Aggregate = {
   nodes: Array<Pokemon_V2_Pokedex>;
 };
 
+export type Pokemon_V2_Pokedex_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Pokedex_Select_Column_Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokedex_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Pokedex_Select_Column_Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokedex_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokedex_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokedex_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_pokedex" */
 export type Pokemon_V2_Pokedex_Aggregate_Fields = {
   __typename?: 'pokemon_v2_pokedex_aggregate_fields';
@@ -29007,9 +31812,13 @@ export type Pokemon_V2_Pokedex_Bool_Exp = {
   is_main_series?: InputMaybe<Boolean_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_pokedexdescriptions?: InputMaybe<Pokemon_V2_Pokedexdescription_Bool_Exp>;
+  pokemon_v2_pokedexdescriptions_aggregate?: InputMaybe<Pokemon_V2_Pokedexdescription_Aggregate_Bool_Exp>;
   pokemon_v2_pokedexnames?: InputMaybe<Pokemon_V2_Pokedexname_Bool_Exp>;
+  pokemon_v2_pokedexnames_aggregate?: InputMaybe<Pokemon_V2_Pokedexname_Aggregate_Bool_Exp>;
   pokemon_v2_pokedexversiongroups?: InputMaybe<Pokemon_V2_Pokedexversiongroup_Bool_Exp>;
+  pokemon_v2_pokedexversiongroups_aggregate?: InputMaybe<Pokemon_V2_Pokedexversiongroup_Aggregate_Bool_Exp>;
   pokemon_v2_pokemondexnumbers?: InputMaybe<Pokemon_V2_Pokemondexnumber_Bool_Exp>;
+  pokemon_v2_pokemondexnumbers_aggregate?: InputMaybe<Pokemon_V2_Pokemondexnumber_Aggregate_Bool_Exp>;
   pokemon_v2_region?: InputMaybe<Pokemon_V2_Region_Bool_Exp>;
   region_id?: InputMaybe<Int_Comparison_Exp>;
 };
@@ -29069,6 +31878,18 @@ export enum Pokemon_V2_Pokedex_Select_Column {
   RegionId = 'region_id'
 }
 
+/** select "pokemon_v2_pokedex_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_pokedex" */
+export enum Pokemon_V2_Pokedex_Select_Column_Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsMainSeries = 'is_main_series'
+}
+
+/** select "pokemon_v2_pokedex_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_pokedex" */
+export enum Pokemon_V2_Pokedex_Select_Column_Pokemon_V2_Pokedex_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsMainSeries = 'is_main_series'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Pokedex_Stddev_Fields = {
   __typename?: 'pokemon_v2_pokedex_stddev_fields';
@@ -29106,6 +31927,22 @@ export type Pokemon_V2_Pokedex_Stddev_Samp_Fields = {
 export type Pokemon_V2_Pokedex_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   region_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokedex" */
+export type Pokemon_V2_Pokedex_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokedex_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokedex_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  is_main_series?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  region_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -29178,6 +32015,17 @@ export type Pokemon_V2_Pokedexdescription_Aggregate = {
   __typename?: 'pokemon_v2_pokedexdescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokedexdescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokedexdescription>;
+};
+
+export type Pokemon_V2_Pokedexdescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokedexdescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokedexdescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokedexdescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokedexdescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokedexdescription" */
@@ -29347,6 +32195,22 @@ export type Pokemon_V2_Pokedexdescription_Stddev_Samp_Order_By = {
   pokedex_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokedexdescription" */
+export type Pokemon_V2_Pokedexdescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokedexdescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokedexdescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  pokedex_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokedexdescription_Sum_Fields = {
   __typename?: 'pokemon_v2_pokedexdescription_sum_fields';
@@ -29425,6 +32289,17 @@ export type Pokemon_V2_Pokedexname_Aggregate = {
   __typename?: 'pokemon_v2_pokedexname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokedexname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokedexname>;
+};
+
+export type Pokemon_V2_Pokedexname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokedexname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokedexname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokedexname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokedexname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokedexname" */
@@ -29594,6 +32469,22 @@ export type Pokemon_V2_Pokedexname_Stddev_Samp_Order_By = {
   pokedex_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokedexname" */
+export type Pokemon_V2_Pokedexname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokedexname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokedexname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pokedex_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokedexname_Sum_Fields = {
   __typename?: 'pokemon_v2_pokedexname_sum_fields';
@@ -29671,6 +32562,17 @@ export type Pokemon_V2_Pokedexversiongroup_Aggregate = {
   __typename?: 'pokemon_v2_pokedexversiongroup_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokedexversiongroup_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokedexversiongroup>;
+};
+
+export type Pokemon_V2_Pokedexversiongroup_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokedexversiongroup_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokedexversiongroup_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokedexversiongroup_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokedexversiongroup_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokedexversiongroup" */
@@ -29830,6 +32732,21 @@ export type Pokemon_V2_Pokedexversiongroup_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   pokedex_id?: InputMaybe<Order_By>;
   version_group_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokedexversiongroup" */
+export type Pokemon_V2_Pokedexversiongroup_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokedexversiongroup_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokedexversiongroup_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  pokedex_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -30154,6 +33071,33 @@ export type Pokemon_V2_Pokemon_Aggregate = {
   nodes: Array<Pokemon_V2_Pokemon>;
 };
 
+export type Pokemon_V2_Pokemon_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Pokemon_Select_Column_Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemon_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Pokemon_Select_Column_Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemon_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemon_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemon_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_pokemon" */
 export type Pokemon_V2_Pokemon_Aggregate_Fields = {
   __typename?: 'pokemon_v2_pokemon_aggregate_fields';
@@ -30226,16 +33170,26 @@ export type Pokemon_V2_Pokemon_Bool_Exp = {
   order?: InputMaybe<Int_Comparison_Exp>;
   pokemon_species_id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_encounters?: InputMaybe<Pokemon_V2_Encounter_Bool_Exp>;
+  pokemon_v2_encounters_aggregate?: InputMaybe<Pokemon_V2_Encounter_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonabilities?: InputMaybe<Pokemon_V2_Pokemonability_Bool_Exp>;
+  pokemon_v2_pokemonabilities_aggregate?: InputMaybe<Pokemon_V2_Pokemonability_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonforms?: InputMaybe<Pokemon_V2_Pokemonform_Bool_Exp>;
+  pokemon_v2_pokemonforms_aggregate?: InputMaybe<Pokemon_V2_Pokemonform_Aggregate_Bool_Exp>;
   pokemon_v2_pokemongameindices?: InputMaybe<Pokemon_V2_Pokemongameindex_Bool_Exp>;
+  pokemon_v2_pokemongameindices_aggregate?: InputMaybe<Pokemon_V2_Pokemongameindex_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonitems?: InputMaybe<Pokemon_V2_Pokemonitem_Bool_Exp>;
+  pokemon_v2_pokemonitems_aggregate?: InputMaybe<Pokemon_V2_Pokemonitem_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonmoves?: InputMaybe<Pokemon_V2_Pokemonmove_Bool_Exp>;
+  pokemon_v2_pokemonmoves_aggregate?: InputMaybe<Pokemon_V2_Pokemonmove_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspecy?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
   pokemon_v2_pokemonsprites?: InputMaybe<Pokemon_V2_Pokemonsprites_Bool_Exp>;
+  pokemon_v2_pokemonsprites_aggregate?: InputMaybe<Pokemon_V2_Pokemonsprites_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonstats?: InputMaybe<Pokemon_V2_Pokemonstat_Bool_Exp>;
+  pokemon_v2_pokemonstats_aggregate?: InputMaybe<Pokemon_V2_Pokemonstat_Aggregate_Bool_Exp>;
   pokemon_v2_pokemontypepasts?: InputMaybe<Pokemon_V2_Pokemontypepast_Bool_Exp>;
+  pokemon_v2_pokemontypepasts_aggregate?: InputMaybe<Pokemon_V2_Pokemontypepast_Aggregate_Bool_Exp>;
   pokemon_v2_pokemontypes?: InputMaybe<Pokemon_V2_Pokemontype_Bool_Exp>;
+  pokemon_v2_pokemontypes_aggregate?: InputMaybe<Pokemon_V2_Pokemontype_Aggregate_Bool_Exp>;
   weight?: InputMaybe<Int_Comparison_Exp>;
 };
 
@@ -30328,6 +33282,18 @@ export enum Pokemon_V2_Pokemon_Select_Column {
   Weight = 'weight'
 }
 
+/** select "pokemon_v2_pokemon_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_pokemon" */
+export enum Pokemon_V2_Pokemon_Select_Column_Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsDefault = 'is_default'
+}
+
+/** select "pokemon_v2_pokemon_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_pokemon" */
+export enum Pokemon_V2_Pokemon_Select_Column_Pokemon_V2_Pokemon_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsDefault = 'is_default'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Pokemon_Stddev_Fields = {
   __typename?: 'pokemon_v2_pokemon_stddev_fields';
@@ -30389,6 +33355,26 @@ export type Pokemon_V2_Pokemon_Stddev_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   pokemon_species_id?: InputMaybe<Order_By>;
   weight?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokemon" */
+export type Pokemon_V2_Pokemon_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemon_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemon_Stream_Cursor_Value_Input = {
+  base_experience?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  is_default?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['Int']>;
+  pokemon_species_id?: InputMaybe<Scalars['Int']>;
+  weight?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -30494,6 +33480,33 @@ export type Pokemon_V2_Pokemonability_Aggregate = {
   __typename?: 'pokemon_v2_pokemonability_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonability_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonability>;
+};
+
+export type Pokemon_V2_Pokemonability_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Pokemonability_Select_Column_Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonability_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Pokemonability_Select_Column_Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonability_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonability_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonability_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonability" */
@@ -30624,6 +33637,18 @@ export enum Pokemon_V2_Pokemonability_Select_Column {
   Slot = 'slot'
 }
 
+/** select "pokemon_v2_pokemonability_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_pokemonability" */
+export enum Pokemon_V2_Pokemonability_Select_Column_Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsHidden = 'is_hidden'
+}
+
+/** select "pokemon_v2_pokemonability_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_pokemonability" */
+export enum Pokemon_V2_Pokemonability_Select_Column_Pokemon_V2_Pokemonability_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsHidden = 'is_hidden'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Pokemonability_Stddev_Fields = {
   __typename?: 'pokemon_v2_pokemonability_stddev_fields';
@@ -30673,6 +33698,23 @@ export type Pokemon_V2_Pokemonability_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   pokemon_id?: InputMaybe<Order_By>;
   slot?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokemonability" */
+export type Pokemon_V2_Pokemonability_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonability_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonability_Stream_Cursor_Value_Input = {
+  ability_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  is_hidden?: InputMaybe<Scalars['Boolean']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  slot?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -30842,7 +33884,9 @@ export type Pokemon_V2_Pokemoncolor_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_pokemoncolornames?: InputMaybe<Pokemon_V2_Pokemoncolorname_Bool_Exp>;
+  pokemon_v2_pokemoncolornames_aggregate?: InputMaybe<Pokemon_V2_Pokemoncolorname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspecies?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  pokemon_v2_pokemonspecies_aggregate?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -30893,6 +33937,20 @@ export type Pokemon_V2_Pokemoncolor_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemoncolor" */
+export type Pokemon_V2_Pokemoncolor_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemoncolor_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemoncolor_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemoncolor_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemoncolor_sum_fields';
@@ -30935,6 +33993,17 @@ export type Pokemon_V2_Pokemoncolorname_Aggregate = {
   __typename?: 'pokemon_v2_pokemoncolorname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemoncolorname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemoncolorname>;
+};
+
+export type Pokemon_V2_Pokemoncolorname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemoncolorname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemoncolorname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemoncolorname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemoncolorname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemoncolorname" */
@@ -31104,6 +34173,22 @@ export type Pokemon_V2_Pokemoncolorname_Stddev_Samp_Order_By = {
   pokemon_color_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemoncolorname" */
+export type Pokemon_V2_Pokemoncolorname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemoncolorname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemoncolorname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pokemon_color_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemoncolorname_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemoncolorname_sum_fields';
@@ -31182,6 +34267,17 @@ export type Pokemon_V2_Pokemondexnumber_Aggregate = {
   __typename?: 'pokemon_v2_pokemondexnumber_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemondexnumber_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemondexnumber>;
+};
+
+export type Pokemon_V2_Pokemondexnumber_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemondexnumber_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemondexnumber_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemondexnumber_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemondexnumber_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemondexnumber" */
@@ -31359,6 +34455,22 @@ export type Pokemon_V2_Pokemondexnumber_Stddev_Samp_Order_By = {
   pokemon_species_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemondexnumber" */
+export type Pokemon_V2_Pokemondexnumber_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemondexnumber_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemondexnumber_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  pokedex_id?: InputMaybe<Scalars['Int']>;
+  pokedex_number?: InputMaybe<Scalars['Int']>;
+  pokemon_species_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemondexnumber_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemondexnumber_sum_fields';
@@ -31444,6 +34556,17 @@ export type Pokemon_V2_Pokemonegggroup_Aggregate = {
   __typename?: 'pokemon_v2_pokemonegggroup_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonegggroup_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonegggroup>;
+};
+
+export type Pokemon_V2_Pokemonegggroup_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonegggroup_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonegggroup_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonegggroup_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonegggroup_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonegggroup" */
@@ -31605,6 +34728,21 @@ export type Pokemon_V2_Pokemonegggroup_Stddev_Samp_Order_By = {
   pokemon_species_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonegggroup" */
+export type Pokemon_V2_Pokemonegggroup_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonegggroup_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonegggroup_Stream_Cursor_Value_Input = {
+  egg_group_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_species_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonegggroup_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonegggroup_sum_fields';
@@ -31717,6 +34855,33 @@ export type Pokemon_V2_Pokemonevolution_Aggregate = {
   __typename?: 'pokemon_v2_pokemonevolution_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonevolution_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonevolution>;
+};
+
+export type Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Pokemonevolution_Select_Column_Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Pokemonevolution_Select_Column_Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonevolution_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonevolution" */
@@ -32007,6 +35172,22 @@ export enum Pokemon_V2_Pokemonevolution_Select_Column {
   TurnUpsideDown = 'turn_upside_down'
 }
 
+/** select "pokemon_v2_pokemonevolution_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_pokemonevolution" */
+export enum Pokemon_V2_Pokemonevolution_Select_Column_Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  NeedsOverworldRain = 'needs_overworld_rain',
+  /** column name */
+  TurnUpsideDown = 'turn_upside_down'
+}
+
+/** select "pokemon_v2_pokemonevolution_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_pokemonevolution" */
+export enum Pokemon_V2_Pokemonevolution_Select_Column_Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  NeedsOverworldRain = 'needs_overworld_rain',
+  /** column name */
+  TurnUpsideDown = 'turn_upside_down'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Pokemonevolution_Stddev_Fields = {
   __typename?: 'pokemon_v2_pokemonevolution_stddev_fields';
@@ -32134,6 +35315,38 @@ export type Pokemon_V2_Pokemonevolution_Stddev_Samp_Order_By = {
   party_type_id?: InputMaybe<Order_By>;
   relative_physical_stats?: InputMaybe<Order_By>;
   trade_species_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokemonevolution" */
+export type Pokemon_V2_Pokemonevolution_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonevolution_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonevolution_Stream_Cursor_Value_Input = {
+  evolution_item_id?: InputMaybe<Scalars['Int']>;
+  evolution_trigger_id?: InputMaybe<Scalars['Int']>;
+  evolved_species_id?: InputMaybe<Scalars['Int']>;
+  gender_id?: InputMaybe<Scalars['Int']>;
+  held_item_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  known_move_id?: InputMaybe<Scalars['Int']>;
+  known_move_type_id?: InputMaybe<Scalars['Int']>;
+  location_id?: InputMaybe<Scalars['Int']>;
+  min_affection?: InputMaybe<Scalars['Int']>;
+  min_beauty?: InputMaybe<Scalars['Int']>;
+  min_happiness?: InputMaybe<Scalars['Int']>;
+  min_level?: InputMaybe<Scalars['Int']>;
+  needs_overworld_rain?: InputMaybe<Scalars['Boolean']>;
+  party_species_id?: InputMaybe<Scalars['Int']>;
+  party_type_id?: InputMaybe<Scalars['Int']>;
+  relative_physical_stats?: InputMaybe<Scalars['Int']>;
+  time_of_day?: InputMaybe<Scalars['String']>;
+  trade_species_id?: InputMaybe<Scalars['Int']>;
+  turn_upside_down?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** aggregate sum on columns */
@@ -32430,6 +35643,33 @@ export type Pokemon_V2_Pokemonform_Aggregate = {
   nodes: Array<Pokemon_V2_Pokemonform>;
 };
 
+export type Pokemon_V2_Pokemonform_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Pokemonform_Select_Column_Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonform_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Pokemonform_Select_Column_Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonform_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonform_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonform_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_pokemonform" */
 export type Pokemon_V2_Pokemonform_Aggregate_Fields = {
   __typename?: 'pokemon_v2_pokemonform_aggregate_fields';
@@ -32503,9 +35743,13 @@ export type Pokemon_V2_Pokemonform_Bool_Exp = {
   pokemon_id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_pokemon?: InputMaybe<Pokemon_V2_Pokemon_Bool_Exp>;
   pokemon_v2_pokemonformgenerations?: InputMaybe<Pokemon_V2_Pokemonformgeneration_Bool_Exp>;
+  pokemon_v2_pokemonformgenerations_aggregate?: InputMaybe<Pokemon_V2_Pokemonformgeneration_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonformnames?: InputMaybe<Pokemon_V2_Pokemonformname_Bool_Exp>;
+  pokemon_v2_pokemonformnames_aggregate?: InputMaybe<Pokemon_V2_Pokemonformname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonformsprites?: InputMaybe<Pokemon_V2_Pokemonformsprites_Bool_Exp>;
+  pokemon_v2_pokemonformsprites_aggregate?: InputMaybe<Pokemon_V2_Pokemonformsprites_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonformtypes?: InputMaybe<Pokemon_V2_Pokemonformtype_Bool_Exp>;
+  pokemon_v2_pokemonformtypes_aggregate?: InputMaybe<Pokemon_V2_Pokemonformtype_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroup?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
   version_group_id?: InputMaybe<Int_Comparison_Exp>;
 };
@@ -32600,6 +35844,26 @@ export enum Pokemon_V2_Pokemonform_Select_Column {
   VersionGroupId = 'version_group_id'
 }
 
+/** select "pokemon_v2_pokemonform_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_pokemonform" */
+export enum Pokemon_V2_Pokemonform_Select_Column_Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsBattleOnly = 'is_battle_only',
+  /** column name */
+  IsDefault = 'is_default',
+  /** column name */
+  IsMega = 'is_mega'
+}
+
+/** select "pokemon_v2_pokemonform_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_pokemonform" */
+export enum Pokemon_V2_Pokemonform_Select_Column_Pokemon_V2_Pokemonform_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsBattleOnly = 'is_battle_only',
+  /** column name */
+  IsDefault = 'is_default',
+  /** column name */
+  IsMega = 'is_mega'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Pokemonform_Stddev_Fields = {
   __typename?: 'pokemon_v2_pokemonform_stddev_fields';
@@ -32655,6 +35919,28 @@ export type Pokemon_V2_Pokemonform_Stddev_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   pokemon_id?: InputMaybe<Order_By>;
   version_group_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokemonform" */
+export type Pokemon_V2_Pokemonform_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonform_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonform_Stream_Cursor_Value_Input = {
+  form_name?: InputMaybe<Scalars['String']>;
+  form_order?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  is_battle_only?: InputMaybe<Scalars['Boolean']>;
+  is_default?: InputMaybe<Scalars['Boolean']>;
+  is_mega?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -32751,6 +36037,17 @@ export type Pokemon_V2_Pokemonformgeneration_Aggregate = {
   __typename?: 'pokemon_v2_pokemonformgeneration_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonformgeneration_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonformgeneration>;
+};
+
+export type Pokemon_V2_Pokemonformgeneration_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonformgeneration_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonformgeneration_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonformgeneration_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonformgeneration_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonformgeneration" */
@@ -32928,6 +36225,22 @@ export type Pokemon_V2_Pokemonformgeneration_Stddev_Samp_Order_By = {
   pokemon_form_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonformgeneration" */
+export type Pokemon_V2_Pokemonformgeneration_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonformgeneration_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonformgeneration_Stream_Cursor_Value_Input = {
+  game_index?: InputMaybe<Scalars['Int']>;
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_form_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonformgeneration_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonformgeneration_sum_fields';
@@ -33015,6 +36328,17 @@ export type Pokemon_V2_Pokemonformname_Aggregate = {
   __typename?: 'pokemon_v2_pokemonformname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonformname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonformname>;
+};
+
+export type Pokemon_V2_Pokemonformname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonformname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonformname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonformname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonformname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonformname" */
@@ -33192,6 +36516,23 @@ export type Pokemon_V2_Pokemonformname_Stddev_Samp_Order_By = {
   pokemon_form_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonformname" */
+export type Pokemon_V2_Pokemonformname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonformname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonformname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pokemon_form_id?: InputMaybe<Scalars['Int']>;
+  pokemon_name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonformname_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonformname_sum_fields';
@@ -33267,6 +36608,17 @@ export type Pokemon_V2_Pokemonformsprites_Aggregate = {
   __typename?: 'pokemon_v2_pokemonformsprites_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonformsprites_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonformsprites>;
+};
+
+export type Pokemon_V2_Pokemonformsprites_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonformsprites_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonformsprites_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonformsprites_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonformsprites_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonformsprites" */
@@ -33418,6 +36770,21 @@ export type Pokemon_V2_Pokemonformsprites_Stddev_Samp_Order_By = {
   pokemon_form_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonformsprites" */
+export type Pokemon_V2_Pokemonformsprites_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonformsprites_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonformsprites_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_form_id?: InputMaybe<Scalars['Int']>;
+  sprites?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonformsprites_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonformsprites_sum_fields';
@@ -33488,6 +36855,17 @@ export type Pokemon_V2_Pokemonformtype_Aggregate = {
   __typename?: 'pokemon_v2_pokemonformtype_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonformtype_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonformtype>;
+};
+
+export type Pokemon_V2_Pokemonformtype_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonformtype_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonformtype_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonformtype_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonformtype_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonformtype" */
@@ -33665,6 +37043,22 @@ export type Pokemon_V2_Pokemonformtype_Stddev_Samp_Order_By = {
   type_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonformtype" */
+export type Pokemon_V2_Pokemonformtype_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonformtype_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonformtype_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_form_id?: InputMaybe<Scalars['Int']>;
+  slot?: InputMaybe<Scalars['Int']>;
+  type_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonformtype_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonformtype_sum_fields';
@@ -33751,6 +37145,17 @@ export type Pokemon_V2_Pokemongameindex_Aggregate = {
   __typename?: 'pokemon_v2_pokemongameindex_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemongameindex_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemongameindex>;
+};
+
+export type Pokemon_V2_Pokemongameindex_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemongameindex_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemongameindex_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemongameindex_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemongameindex_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemongameindex" */
@@ -33928,6 +37333,22 @@ export type Pokemon_V2_Pokemongameindex_Stddev_Samp_Order_By = {
   version_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemongameindex" */
+export type Pokemon_V2_Pokemongameindex_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemongameindex_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemongameindex_Stream_Cursor_Value_Input = {
+  game_index?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  version_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemongameindex_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemongameindex_sum_fields';
@@ -34095,7 +37516,9 @@ export type Pokemon_V2_Pokemonhabitat_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_pokemonhabitatnames?: InputMaybe<Pokemon_V2_Pokemonhabitatname_Bool_Exp>;
+  pokemon_v2_pokemonhabitatnames_aggregate?: InputMaybe<Pokemon_V2_Pokemonhabitatname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspecies?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  pokemon_v2_pokemonspecies_aggregate?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -34146,6 +37569,20 @@ export type Pokemon_V2_Pokemonhabitat_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonhabitat" */
+export type Pokemon_V2_Pokemonhabitat_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonhabitat_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonhabitat_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonhabitat_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonhabitat_sum_fields';
@@ -34188,6 +37625,17 @@ export type Pokemon_V2_Pokemonhabitatname_Aggregate = {
   __typename?: 'pokemon_v2_pokemonhabitatname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonhabitatname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonhabitatname>;
+};
+
+export type Pokemon_V2_Pokemonhabitatname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonhabitatname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonhabitatname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonhabitatname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonhabitatname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonhabitatname" */
@@ -34357,6 +37805,22 @@ export type Pokemon_V2_Pokemonhabitatname_Stddev_Samp_Order_By = {
   pokemon_habitat_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonhabitatname" */
+export type Pokemon_V2_Pokemonhabitatname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonhabitatname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonhabitatname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pokemon_habitat_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonhabitatname_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonhabitatname_sum_fields';
@@ -34438,6 +37902,17 @@ export type Pokemon_V2_Pokemonitem_Aggregate = {
   __typename?: 'pokemon_v2_pokemonitem_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonitem_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonitem>;
+};
+
+export type Pokemon_V2_Pokemonitem_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonitem_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonitem_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonitem_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonitem_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonitem" */
@@ -34633,6 +38108,23 @@ export type Pokemon_V2_Pokemonitem_Stddev_Samp_Order_By = {
   version_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonitem" */
+export type Pokemon_V2_Pokemonitem_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonitem_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonitem_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  item_id?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  rarity?: InputMaybe<Scalars['Int']>;
+  version_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonitem_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonitem_sum_fields';
@@ -34734,6 +38226,17 @@ export type Pokemon_V2_Pokemonmove_Aggregate = {
   __typename?: 'pokemon_v2_pokemonmove_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonmove_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonmove>;
+};
+
+export type Pokemon_V2_Pokemonmove_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonmove_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonmove_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonmove_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonmove_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonmove" */
@@ -34963,6 +38466,25 @@ export type Pokemon_V2_Pokemonmove_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonmove" */
+export type Pokemon_V2_Pokemonmove_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonmove_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonmove_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  level?: InputMaybe<Scalars['Int']>;
+  move_id?: InputMaybe<Scalars['Int']>;
+  move_learn_method_id?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonmove_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonmove_sum_fields';
@@ -35154,7 +38676,9 @@ export type Pokemon_V2_Pokemonshape_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_pokemonshapenames?: InputMaybe<Pokemon_V2_Pokemonshapename_Bool_Exp>;
+  pokemon_v2_pokemonshapenames_aggregate?: InputMaybe<Pokemon_V2_Pokemonshapename_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspecies?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  pokemon_v2_pokemonspecies_aggregate?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -35205,6 +38729,20 @@ export type Pokemon_V2_Pokemonshape_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonshape" */
+export type Pokemon_V2_Pokemonshape_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonshape_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonshape_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonshape_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonshape_sum_fields';
@@ -35248,6 +38786,17 @@ export type Pokemon_V2_Pokemonshapename_Aggregate = {
   __typename?: 'pokemon_v2_pokemonshapename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonshapename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonshapename>;
+};
+
+export type Pokemon_V2_Pokemonshapename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonshapename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonshapename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonshapename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonshapename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonshapename" */
@@ -35423,6 +38972,23 @@ export type Pokemon_V2_Pokemonshapename_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   pokemon_shape_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokemonshapename" */
+export type Pokemon_V2_Pokemonshapename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonshapename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonshapename_Stream_Cursor_Value_Input = {
+  awesome_name?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pokemon_shape_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -35794,6 +39360,33 @@ export type Pokemon_V2_Pokemonspecies_Aggregate = {
   nodes: Array<Pokemon_V2_Pokemonspecies>;
 };
 
+export type Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Pokemonspecies_Select_Column_Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Pokemonspecies_Select_Column_Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonspecies_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_pokemonspecies" */
 export type Pokemon_V2_Pokemonspecies_Aggregate_Fields = {
   __typename?: 'pokemon_v2_pokemonspecies_aggregate_fields';
@@ -35889,7 +39482,9 @@ export type Pokemon_V2_Pokemonspecies_Bool_Exp = {
   name?: InputMaybe<String_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   pokemonV2PokemonevolutionsByPartySpeciesId?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemonV2PokemonevolutionsByPartySpeciesId_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemonV2PokemonevolutionsByTradeSpeciesId?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemonV2PokemonevolutionsByTradeSpeciesId_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemon_color_id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_habitat_id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_shape_id?: InputMaybe<Int_Comparison_Exp>;
@@ -35897,17 +39492,26 @@ export type Pokemon_V2_Pokemonspecies_Bool_Exp = {
   pokemon_v2_generation?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
   pokemon_v2_growthrate?: InputMaybe<Pokemon_V2_Growthrate_Bool_Exp>;
   pokemon_v2_palparks?: InputMaybe<Pokemon_V2_Palpark_Bool_Exp>;
+  pokemon_v2_palparks_aggregate?: InputMaybe<Pokemon_V2_Palpark_Aggregate_Bool_Exp>;
   pokemon_v2_pokemoncolor?: InputMaybe<Pokemon_V2_Pokemoncolor_Bool_Exp>;
   pokemon_v2_pokemondexnumbers?: InputMaybe<Pokemon_V2_Pokemondexnumber_Bool_Exp>;
+  pokemon_v2_pokemondexnumbers_aggregate?: InputMaybe<Pokemon_V2_Pokemondexnumber_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonegggroups?: InputMaybe<Pokemon_V2_Pokemonegggroup_Bool_Exp>;
+  pokemon_v2_pokemonegggroups_aggregate?: InputMaybe<Pokemon_V2_Pokemonegggroup_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonevolutions?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemon_v2_pokemonevolutions_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonhabitat?: InputMaybe<Pokemon_V2_Pokemonhabitat_Bool_Exp>;
   pokemon_v2_pokemons?: InputMaybe<Pokemon_V2_Pokemon_Bool_Exp>;
+  pokemon_v2_pokemons_aggregate?: InputMaybe<Pokemon_V2_Pokemon_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonshape?: InputMaybe<Pokemon_V2_Pokemonshape_Bool_Exp>;
   pokemon_v2_pokemonspecies?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+  pokemon_v2_pokemonspecies_aggregate?: InputMaybe<Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspeciesdescriptions?: InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Bool_Exp>;
+  pokemon_v2_pokemonspeciesdescriptions_aggregate?: InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspeciesflavortexts?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Bool_Exp>;
+  pokemon_v2_pokemonspeciesflavortexts_aggregate?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspeciesnames?: InputMaybe<Pokemon_V2_Pokemonspeciesname_Bool_Exp>;
+  pokemon_v2_pokemonspeciesnames_aggregate?: InputMaybe<Pokemon_V2_Pokemonspeciesname_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspecy?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
 };
 
@@ -36068,6 +39672,34 @@ export enum Pokemon_V2_Pokemonspecies_Select_Column {
   PokemonShapeId = 'pokemon_shape_id'
 }
 
+/** select "pokemon_v2_pokemonspecies_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_pokemonspecies" */
+export enum Pokemon_V2_Pokemonspecies_Select_Column_Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  FormsSwitchable = 'forms_switchable',
+  /** column name */
+  HasGenderDifferences = 'has_gender_differences',
+  /** column name */
+  IsBaby = 'is_baby',
+  /** column name */
+  IsLegendary = 'is_legendary',
+  /** column name */
+  IsMythical = 'is_mythical'
+}
+
+/** select "pokemon_v2_pokemonspecies_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_pokemonspecies" */
+export enum Pokemon_V2_Pokemonspecies_Select_Column_Pokemon_V2_Pokemonspecies_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  FormsSwitchable = 'forms_switchable',
+  /** column name */
+  HasGenderDifferences = 'has_gender_differences',
+  /** column name */
+  IsBaby = 'is_baby',
+  /** column name */
+  IsLegendary = 'is_legendary',
+  /** column name */
+  IsMythical = 'is_mythical'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Pokemonspecies_Stddev_Fields = {
   __typename?: 'pokemon_v2_pokemonspecies_stddev_fields';
@@ -36171,6 +39803,37 @@ export type Pokemon_V2_Pokemonspecies_Stddev_Samp_Order_By = {
   pokemon_color_id?: InputMaybe<Order_By>;
   pokemon_habitat_id?: InputMaybe<Order_By>;
   pokemon_shape_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokemonspecies" */
+export type Pokemon_V2_Pokemonspecies_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonspecies_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonspecies_Stream_Cursor_Value_Input = {
+  base_happiness?: InputMaybe<Scalars['Int']>;
+  capture_rate?: InputMaybe<Scalars['Int']>;
+  evolution_chain_id?: InputMaybe<Scalars['Int']>;
+  evolves_from_species_id?: InputMaybe<Scalars['Int']>;
+  forms_switchable?: InputMaybe<Scalars['Boolean']>;
+  gender_rate?: InputMaybe<Scalars['Int']>;
+  generation_id?: InputMaybe<Scalars['Int']>;
+  growth_rate_id?: InputMaybe<Scalars['Int']>;
+  has_gender_differences?: InputMaybe<Scalars['Boolean']>;
+  hatch_counter?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  is_baby?: InputMaybe<Scalars['Boolean']>;
+  is_legendary?: InputMaybe<Scalars['Boolean']>;
+  is_mythical?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['Int']>;
+  pokemon_color_id?: InputMaybe<Scalars['Int']>;
+  pokemon_habitat_id?: InputMaybe<Scalars['Int']>;
+  pokemon_shape_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -36331,6 +39994,17 @@ export type Pokemon_V2_Pokemonspeciesdescription_Aggregate = {
   __typename?: 'pokemon_v2_pokemonspeciesdescription_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonspeciesdescription_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonspeciesdescription>;
+};
+
+export type Pokemon_V2_Pokemonspeciesdescription_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonspeciesdescription_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonspeciesdescription_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonspeciesdescription" */
@@ -36500,6 +40174,22 @@ export type Pokemon_V2_Pokemonspeciesdescription_Stddev_Samp_Order_By = {
   pokemon_species_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonspeciesdescription" */
+export type Pokemon_V2_Pokemonspeciesdescription_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonspeciesdescription_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonspeciesdescription_Stream_Cursor_Value_Input = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  pokemon_species_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonspeciesdescription_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonspeciesdescription_sum_fields';
@@ -36581,6 +40271,17 @@ export type Pokemon_V2_Pokemonspeciesflavortext_Aggregate = {
   __typename?: 'pokemon_v2_pokemonspeciesflavortext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonspeciesflavortext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonspeciesflavortext>;
+};
+
+export type Pokemon_V2_Pokemonspeciesflavortext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonspeciesflavortext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonspeciesflavortext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonspeciesflavortext" */
@@ -36768,6 +40469,23 @@ export type Pokemon_V2_Pokemonspeciesflavortext_Stddev_Samp_Order_By = {
   version_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonspeciesflavortext" */
+export type Pokemon_V2_Pokemonspeciesflavortext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonspeciesflavortext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonspeciesflavortext_Stream_Cursor_Value_Input = {
+  flavor_text?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  pokemon_species_id?: InputMaybe<Scalars['Int']>;
+  version_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonspeciesflavortext_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonspeciesflavortext_sum_fields';
@@ -36855,6 +40573,17 @@ export type Pokemon_V2_Pokemonspeciesname_Aggregate = {
   __typename?: 'pokemon_v2_pokemonspeciesname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonspeciesname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonspeciesname>;
+};
+
+export type Pokemon_V2_Pokemonspeciesname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonspeciesname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonspeciesname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonspeciesname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonspeciesname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonspeciesname" */
@@ -37032,6 +40761,23 @@ export type Pokemon_V2_Pokemonspeciesname_Stddev_Samp_Order_By = {
   pokemon_species_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonspeciesname" */
+export type Pokemon_V2_Pokemonspeciesname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonspeciesname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonspeciesname_Stream_Cursor_Value_Input = {
+  genus?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  pokemon_species_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonspeciesname_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonspeciesname_sum_fields';
@@ -37107,6 +40853,17 @@ export type Pokemon_V2_Pokemonsprites_Aggregate = {
   __typename?: 'pokemon_v2_pokemonsprites_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonsprites_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonsprites>;
+};
+
+export type Pokemon_V2_Pokemonsprites_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonsprites_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonsprites_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonsprites_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonsprites_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonsprites" */
@@ -37258,6 +41015,21 @@ export type Pokemon_V2_Pokemonsprites_Stddev_Samp_Order_By = {
   pokemon_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonsprites" */
+export type Pokemon_V2_Pokemonsprites_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonsprites_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonsprites_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  sprites?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonsprites_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonsprites_sum_fields';
@@ -37329,6 +41101,17 @@ export type Pokemon_V2_Pokemonstat_Aggregate = {
   __typename?: 'pokemon_v2_pokemonstat_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemonstat_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemonstat>;
+};
+
+export type Pokemon_V2_Pokemonstat_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemonstat_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemonstat_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemonstat_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemonstat_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemonstat" */
@@ -37522,6 +41305,23 @@ export type Pokemon_V2_Pokemonstat_Stddev_Samp_Order_By = {
   stat_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemonstat" */
+export type Pokemon_V2_Pokemonstat_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemonstat_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemonstat_Stream_Cursor_Value_Input = {
+  base_stat?: InputMaybe<Scalars['Int']>;
+  effort?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  stat_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemonstat_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemonstat_sum_fields';
@@ -37616,6 +41416,17 @@ export type Pokemon_V2_Pokemontype_Aggregate = {
   __typename?: 'pokemon_v2_pokemontype_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemontype_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemontype>;
+};
+
+export type Pokemon_V2_Pokemontype_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemontype_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemontype_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemontype_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemontype_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemontype" */
@@ -37793,6 +41604,22 @@ export type Pokemon_V2_Pokemontype_Stddev_Samp_Order_By = {
   type_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_pokemontype" */
+export type Pokemon_V2_Pokemontype_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemontype_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemontype_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  slot?: InputMaybe<Scalars['Int']>;
+  type_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Pokemontype_Sum_Fields = {
   __typename?: 'pokemon_v2_pokemontype_sum_fields';
@@ -37882,6 +41709,17 @@ export type Pokemon_V2_Pokemontypepast_Aggregate = {
   __typename?: 'pokemon_v2_pokemontypepast_aggregate';
   aggregate?: Maybe<Pokemon_V2_Pokemontypepast_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Pokemontypepast>;
+};
+
+export type Pokemon_V2_Pokemontypepast_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Pokemontypepast_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Pokemontypepast_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Pokemontypepast_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Pokemontypepast_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_pokemontypepast" */
@@ -38075,6 +41913,23 @@ export type Pokemon_V2_Pokemontypepast_Stddev_Samp_Order_By = {
   pokemon_id?: InputMaybe<Order_By>;
   slot?: InputMaybe<Order_By>;
   type_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_pokemontypepast" */
+export type Pokemon_V2_Pokemontypepast_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Pokemontypepast_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Pokemontypepast_Stream_Cursor_Value_Input = {
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  pokemon_id?: InputMaybe<Scalars['Int']>;
+  slot?: InputMaybe<Scalars['Int']>;
+  type_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -38324,10 +42179,15 @@ export type Pokemon_V2_Region_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_generations?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
+  pokemon_v2_generations_aggregate?: InputMaybe<Pokemon_V2_Generation_Aggregate_Bool_Exp>;
   pokemon_v2_locations?: InputMaybe<Pokemon_V2_Location_Bool_Exp>;
+  pokemon_v2_locations_aggregate?: InputMaybe<Pokemon_V2_Location_Aggregate_Bool_Exp>;
   pokemon_v2_pokedexes?: InputMaybe<Pokemon_V2_Pokedex_Bool_Exp>;
+  pokemon_v2_pokedexes_aggregate?: InputMaybe<Pokemon_V2_Pokedex_Aggregate_Bool_Exp>;
   pokemon_v2_regionnames?: InputMaybe<Pokemon_V2_Regionname_Bool_Exp>;
+  pokemon_v2_regionnames_aggregate?: InputMaybe<Pokemon_V2_Regionname_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroupregions?: InputMaybe<Pokemon_V2_Versiongroupregion_Bool_Exp>;
+  pokemon_v2_versiongroupregions_aggregate?: InputMaybe<Pokemon_V2_Versiongroupregion_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -38381,6 +42241,20 @@ export type Pokemon_V2_Region_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_region" */
+export type Pokemon_V2_Region_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Region_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Region_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Region_Sum_Fields = {
   __typename?: 'pokemon_v2_region_sum_fields';
@@ -38423,6 +42297,17 @@ export type Pokemon_V2_Regionname_Aggregate = {
   __typename?: 'pokemon_v2_regionname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Regionname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Regionname>;
+};
+
+export type Pokemon_V2_Regionname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Regionname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Regionname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Regionname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Regionname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_regionname" */
@@ -38590,6 +42475,22 @@ export type Pokemon_V2_Regionname_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   region_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_regionname" */
+export type Pokemon_V2_Regionname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Regionname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Regionname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  region_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -38815,6 +42716,33 @@ export type Pokemon_V2_Stat_Aggregate = {
   nodes: Array<Pokemon_V2_Stat>;
 };
 
+export type Pokemon_V2_Stat_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Pokemon_V2_Stat_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Pokemon_V2_Stat_Select_Column_Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Pokemon_V2_Stat_Select_Column_Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Pokemon_V2_Stat_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Stat_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_stat" */
 export type Pokemon_V2_Stat_Aggregate_Fields = {
   __typename?: 'pokemon_v2_stat_aggregate_fields';
@@ -38879,12 +42807,18 @@ export type Pokemon_V2_Stat_Bool_Exp = {
   move_damage_class_id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemonV2NaturesByIncreasedStatId?: InputMaybe<Pokemon_V2_Nature_Bool_Exp>;
+  pokemonV2NaturesByIncreasedStatId_aggregate?: InputMaybe<Pokemon_V2_Nature_Aggregate_Bool_Exp>;
   pokemon_v2_characteristics?: InputMaybe<Pokemon_V2_Characteristic_Bool_Exp>;
+  pokemon_v2_characteristics_aggregate?: InputMaybe<Pokemon_V2_Characteristic_Aggregate_Bool_Exp>;
   pokemon_v2_movedamageclass?: InputMaybe<Pokemon_V2_Movedamageclass_Bool_Exp>;
   pokemon_v2_movemetastatchanges?: InputMaybe<Pokemon_V2_Movemetastatchange_Bool_Exp>;
+  pokemon_v2_movemetastatchanges_aggregate?: InputMaybe<Pokemon_V2_Movemetastatchange_Aggregate_Bool_Exp>;
   pokemon_v2_natures?: InputMaybe<Pokemon_V2_Nature_Bool_Exp>;
+  pokemon_v2_natures_aggregate?: InputMaybe<Pokemon_V2_Nature_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonstats?: InputMaybe<Pokemon_V2_Pokemonstat_Bool_Exp>;
+  pokemon_v2_pokemonstats_aggregate?: InputMaybe<Pokemon_V2_Pokemonstat_Aggregate_Bool_Exp>;
   pokemon_v2_statnames?: InputMaybe<Pokemon_V2_Statname_Bool_Exp>;
+  pokemon_v2_statnames_aggregate?: InputMaybe<Pokemon_V2_Statname_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -38951,6 +42885,18 @@ export enum Pokemon_V2_Stat_Select_Column {
   Name = 'name'
 }
 
+/** select "pokemon_v2_stat_aggregate_bool_exp_bool_and_arguments_columns" columns of table "pokemon_v2_stat" */
+export enum Pokemon_V2_Stat_Select_Column_Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsBattleOnly = 'is_battle_only'
+}
+
+/** select "pokemon_v2_stat_aggregate_bool_exp_bool_or_arguments_columns" columns of table "pokemon_v2_stat" */
+export enum Pokemon_V2_Stat_Select_Column_Pokemon_V2_Stat_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsBattleOnly = 'is_battle_only'
+}
+
 /** aggregate stddev on columns */
 export type Pokemon_V2_Stat_Stddev_Fields = {
   __typename?: 'pokemon_v2_stat_stddev_fields';
@@ -38994,6 +42940,23 @@ export type Pokemon_V2_Stat_Stddev_Samp_Order_By = {
   game_index?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   move_damage_class_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_stat" */
+export type Pokemon_V2_Stat_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Stat_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Stat_Stream_Cursor_Value_Input = {
+  game_index?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  is_battle_only?: InputMaybe<Scalars['Boolean']>;
+  move_damage_class_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
@@ -39074,6 +43037,17 @@ export type Pokemon_V2_Statname_Aggregate = {
   __typename?: 'pokemon_v2_statname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Statname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Statname>;
+};
+
+export type Pokemon_V2_Statname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Statname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Statname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Statname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Statname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_statname" */
@@ -39243,6 +43217,22 @@ export type Pokemon_V2_Statname_Stddev_Samp_Order_By = {
   stat_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_statname" */
+export type Pokemon_V2_Statname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Statname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Statname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  stat_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Statname_Sum_Fields = {
   __typename?: 'pokemon_v2_statname_sum_fields';
@@ -39320,6 +43310,17 @@ export type Pokemon_V2_Supercontestcombo_Aggregate = {
   __typename?: 'pokemon_v2_supercontestcombo_aggregate';
   aggregate?: Maybe<Pokemon_V2_Supercontestcombo_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Supercontestcombo>;
+};
+
+export type Pokemon_V2_Supercontestcombo_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Supercontestcombo_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Supercontestcombo_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Supercontestcombo_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Supercontestcombo_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_supercontestcombo" */
@@ -39479,6 +43480,21 @@ export type Pokemon_V2_Supercontestcombo_Stddev_Samp_Order_By = {
   first_move_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   second_move_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_supercontestcombo" */
+export type Pokemon_V2_Supercontestcombo_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Supercontestcombo_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Supercontestcombo_Stream_Cursor_Value_Input = {
+  first_move_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  second_move_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -39641,7 +43657,9 @@ export type Pokemon_V2_Supercontesteffect_Bool_Exp = {
   appeal?: InputMaybe<Int_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
   pokemon_v2_supercontesteffectflavortexts?: InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Bool_Exp>;
+  pokemon_v2_supercontesteffectflavortexts_aggregate?: InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -39695,6 +43713,20 @@ export type Pokemon_V2_Supercontesteffect_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_supercontesteffect" */
+export type Pokemon_V2_Supercontesteffect_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Supercontesteffect_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Supercontesteffect_Stream_Cursor_Value_Input = {
+  appeal?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Supercontesteffect_Sum_Fields = {
   __typename?: 'pokemon_v2_supercontesteffect_sum_fields';
@@ -39741,6 +43773,17 @@ export type Pokemon_V2_Supercontesteffectflavortext_Aggregate = {
   __typename?: 'pokemon_v2_supercontesteffectflavortext_aggregate';
   aggregate?: Maybe<Pokemon_V2_Supercontesteffectflavortext_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Supercontesteffectflavortext>;
+};
+
+export type Pokemon_V2_Supercontesteffectflavortext_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Supercontesteffectflavortext_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Supercontesteffectflavortext_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_supercontesteffectflavortext" */
@@ -39908,6 +43951,22 @@ export type Pokemon_V2_Supercontesteffectflavortext_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   super_contest_effect_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_supercontesteffectflavortext" */
+export type Pokemon_V2_Supercontesteffectflavortext_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Supercontesteffectflavortext_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Supercontesteffectflavortext_Stream_Cursor_Value_Input = {
+  flavor_text?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  super_contest_effect_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -40278,6 +44337,17 @@ export type Pokemon_V2_Type_Aggregate = {
   nodes: Array<Pokemon_V2_Type>;
 };
 
+export type Pokemon_V2_Type_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Type_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Type_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Type_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Type_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_type" */
 export type Pokemon_V2_Type_Aggregate_Fields = {
   __typename?: 'pokemon_v2_type_aggregate_fields';
@@ -40341,19 +44411,31 @@ export type Pokemon_V2_Type_Bool_Exp = {
   move_damage_class_id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemonV2PokemonevolutionsByPartyTypeId?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemonV2PokemonevolutionsByPartyTypeId_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemonV2TypeefficaciesByTargetTypeId?: InputMaybe<Pokemon_V2_Typeefficacy_Bool_Exp>;
+  pokemonV2TypeefficaciesByTargetTypeId_aggregate?: InputMaybe<Pokemon_V2_Typeefficacy_Aggregate_Bool_Exp>;
   pokemon_v2_berries?: InputMaybe<Pokemon_V2_Berry_Bool_Exp>;
+  pokemon_v2_berries_aggregate?: InputMaybe<Pokemon_V2_Berry_Aggregate_Bool_Exp>;
   pokemon_v2_generation?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
   pokemon_v2_movechanges?: InputMaybe<Pokemon_V2_Movechange_Bool_Exp>;
+  pokemon_v2_movechanges_aggregate?: InputMaybe<Pokemon_V2_Movechange_Aggregate_Bool_Exp>;
   pokemon_v2_movedamageclass?: InputMaybe<Pokemon_V2_Movedamageclass_Bool_Exp>;
   pokemon_v2_moves?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
+  pokemon_v2_moves_aggregate?: InputMaybe<Pokemon_V2_Move_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonevolutions?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
+  pokemon_v2_pokemonevolutions_aggregate?: InputMaybe<Pokemon_V2_Pokemonevolution_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonformtypes?: InputMaybe<Pokemon_V2_Pokemonformtype_Bool_Exp>;
+  pokemon_v2_pokemonformtypes_aggregate?: InputMaybe<Pokemon_V2_Pokemonformtype_Aggregate_Bool_Exp>;
   pokemon_v2_pokemontypepasts?: InputMaybe<Pokemon_V2_Pokemontypepast_Bool_Exp>;
+  pokemon_v2_pokemontypepasts_aggregate?: InputMaybe<Pokemon_V2_Pokemontypepast_Aggregate_Bool_Exp>;
   pokemon_v2_pokemontypes?: InputMaybe<Pokemon_V2_Pokemontype_Bool_Exp>;
+  pokemon_v2_pokemontypes_aggregate?: InputMaybe<Pokemon_V2_Pokemontype_Aggregate_Bool_Exp>;
   pokemon_v2_typeefficacies?: InputMaybe<Pokemon_V2_Typeefficacy_Bool_Exp>;
+  pokemon_v2_typeefficacies_aggregate?: InputMaybe<Pokemon_V2_Typeefficacy_Aggregate_Bool_Exp>;
   pokemon_v2_typegameindices?: InputMaybe<Pokemon_V2_Typegameindex_Bool_Exp>;
+  pokemon_v2_typegameindices_aggregate?: InputMaybe<Pokemon_V2_Typegameindex_Aggregate_Bool_Exp>;
   pokemon_v2_typenames?: InputMaybe<Pokemon_V2_Typename_Bool_Exp>;
+  pokemon_v2_typenames_aggregate?: InputMaybe<Pokemon_V2_Typename_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -40469,6 +44551,22 @@ export type Pokemon_V2_Type_Stddev_Samp_Order_By = {
   move_damage_class_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_type" */
+export type Pokemon_V2_Type_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Type_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Type_Stream_Cursor_Value_Input = {
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  move_damage_class_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Type_Sum_Fields = {
   __typename?: 'pokemon_v2_type_sum_fields';
@@ -40547,6 +44645,17 @@ export type Pokemon_V2_Typeefficacy_Aggregate = {
   __typename?: 'pokemon_v2_typeefficacy_aggregate';
   aggregate?: Maybe<Pokemon_V2_Typeefficacy_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Typeefficacy>;
+};
+
+export type Pokemon_V2_Typeefficacy_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Typeefficacy_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Typeefficacy_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Typeefficacy_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Typeefficacy_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_typeefficacy" */
@@ -40724,6 +44833,22 @@ export type Pokemon_V2_Typeefficacy_Stddev_Samp_Order_By = {
   target_type_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_typeefficacy" */
+export type Pokemon_V2_Typeefficacy_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Typeefficacy_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Typeefficacy_Stream_Cursor_Value_Input = {
+  damage_factor?: InputMaybe<Scalars['Int']>;
+  damage_type_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  target_type_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Typeefficacy_Sum_Fields = {
   __typename?: 'pokemon_v2_typeefficacy_sum_fields';
@@ -40810,6 +44935,17 @@ export type Pokemon_V2_Typegameindex_Aggregate = {
   __typename?: 'pokemon_v2_typegameindex_aggregate';
   aggregate?: Maybe<Pokemon_V2_Typegameindex_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Typegameindex>;
+};
+
+export type Pokemon_V2_Typegameindex_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Typegameindex_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Typegameindex_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Typegameindex_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Typegameindex_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_typegameindex" */
@@ -40987,6 +45123,22 @@ export type Pokemon_V2_Typegameindex_Stddev_Samp_Order_By = {
   type_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_typegameindex" */
+export type Pokemon_V2_Typegameindex_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Typegameindex_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Typegameindex_Stream_Cursor_Value_Input = {
+  game_index?: InputMaybe<Scalars['Int']>;
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  type_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Typegameindex_Sum_Fields = {
   __typename?: 'pokemon_v2_typegameindex_sum_fields';
@@ -41073,6 +45225,17 @@ export type Pokemon_V2_Typename_Aggregate = {
   __typename?: 'pokemon_v2_typename_aggregate';
   aggregate?: Maybe<Pokemon_V2_Typename_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Typename>;
+};
+
+export type Pokemon_V2_Typename_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Typename_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Typename_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Typename_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Typename_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_typename" */
@@ -41240,6 +45403,22 @@ export type Pokemon_V2_Typename_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   type_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_typename" */
+export type Pokemon_V2_Typename_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Typename_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Typename_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  type_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -41463,6 +45642,17 @@ export type Pokemon_V2_Version_Aggregate = {
   nodes: Array<Pokemon_V2_Version>;
 };
 
+export type Pokemon_V2_Version_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Version_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Version_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Version_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Version_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_version" */
 export type Pokemon_V2_Version_Aggregate_Fields = {
   __typename?: 'pokemon_v2_version_aggregate_fields';
@@ -41522,12 +45712,18 @@ export type Pokemon_V2_Version_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   pokemon_v2_encounters?: InputMaybe<Pokemon_V2_Encounter_Bool_Exp>;
+  pokemon_v2_encounters_aggregate?: InputMaybe<Pokemon_V2_Encounter_Aggregate_Bool_Exp>;
   pokemon_v2_locationareaencounterrates?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Bool_Exp>;
+  pokemon_v2_locationareaencounterrates_aggregate?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Aggregate_Bool_Exp>;
   pokemon_v2_pokemongameindices?: InputMaybe<Pokemon_V2_Pokemongameindex_Bool_Exp>;
+  pokemon_v2_pokemongameindices_aggregate?: InputMaybe<Pokemon_V2_Pokemongameindex_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonitems?: InputMaybe<Pokemon_V2_Pokemonitem_Bool_Exp>;
+  pokemon_v2_pokemonitems_aggregate?: InputMaybe<Pokemon_V2_Pokemonitem_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonspeciesflavortexts?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Bool_Exp>;
+  pokemon_v2_pokemonspeciesflavortexts_aggregate?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroup?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
   pokemon_v2_versionnames?: InputMaybe<Pokemon_V2_Versionname_Bool_Exp>;
+  pokemon_v2_versionnames_aggregate?: InputMaybe<Pokemon_V2_Versionname_Aggregate_Bool_Exp>;
   version_group_id?: InputMaybe<Int_Comparison_Exp>;
 };
 
@@ -41622,6 +45818,21 @@ export type Pokemon_V2_Version_Stddev_Samp_Fields = {
 export type Pokemon_V2_Version_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   version_group_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_version" */
+export type Pokemon_V2_Version_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Version_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Version_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -42030,6 +46241,17 @@ export type Pokemon_V2_Versiongroup_Aggregate = {
   nodes: Array<Pokemon_V2_Versiongroup>;
 };
 
+export type Pokemon_V2_Versiongroup_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Versiongroup_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Versiongroup_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Versiongroup_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "pokemon_v2_versiongroup" */
 export type Pokemon_V2_Versiongroup_Aggregate_Fields = {
   __typename?: 'pokemon_v2_versiongroup_aggregate_fields';
@@ -42093,20 +46315,34 @@ export type Pokemon_V2_Versiongroup_Bool_Exp = {
   name?: InputMaybe<String_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   pokemon_v2_abilitychanges?: InputMaybe<Pokemon_V2_Abilitychange_Bool_Exp>;
+  pokemon_v2_abilitychanges_aggregate?: InputMaybe<Pokemon_V2_Abilitychange_Aggregate_Bool_Exp>;
   pokemon_v2_abilityflavortexts?: InputMaybe<Pokemon_V2_Abilityflavortext_Bool_Exp>;
+  pokemon_v2_abilityflavortexts_aggregate?: InputMaybe<Pokemon_V2_Abilityflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_encounterslots?: InputMaybe<Pokemon_V2_Encounterslot_Bool_Exp>;
+  pokemon_v2_encounterslots_aggregate?: InputMaybe<Pokemon_V2_Encounterslot_Aggregate_Bool_Exp>;
   pokemon_v2_generation?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
   pokemon_v2_itemflavortexts?: InputMaybe<Pokemon_V2_Itemflavortext_Bool_Exp>;
+  pokemon_v2_itemflavortexts_aggregate?: InputMaybe<Pokemon_V2_Itemflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_machines?: InputMaybe<Pokemon_V2_Machine_Bool_Exp>;
+  pokemon_v2_machines_aggregate?: InputMaybe<Pokemon_V2_Machine_Aggregate_Bool_Exp>;
   pokemon_v2_movechanges?: InputMaybe<Pokemon_V2_Movechange_Bool_Exp>;
+  pokemon_v2_movechanges_aggregate?: InputMaybe<Pokemon_V2_Movechange_Aggregate_Bool_Exp>;
   pokemon_v2_moveeffectchanges?: InputMaybe<Pokemon_V2_Moveeffectchange_Bool_Exp>;
+  pokemon_v2_moveeffectchanges_aggregate?: InputMaybe<Pokemon_V2_Moveeffectchange_Aggregate_Bool_Exp>;
   pokemon_v2_moveflavortexts?: InputMaybe<Pokemon_V2_Moveflavortext_Bool_Exp>;
+  pokemon_v2_moveflavortexts_aggregate?: InputMaybe<Pokemon_V2_Moveflavortext_Aggregate_Bool_Exp>;
   pokemon_v2_pokedexversiongroups?: InputMaybe<Pokemon_V2_Pokedexversiongroup_Bool_Exp>;
+  pokemon_v2_pokedexversiongroups_aggregate?: InputMaybe<Pokemon_V2_Pokedexversiongroup_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonforms?: InputMaybe<Pokemon_V2_Pokemonform_Bool_Exp>;
+  pokemon_v2_pokemonforms_aggregate?: InputMaybe<Pokemon_V2_Pokemonform_Aggregate_Bool_Exp>;
   pokemon_v2_pokemonmoves?: InputMaybe<Pokemon_V2_Pokemonmove_Bool_Exp>;
+  pokemon_v2_pokemonmoves_aggregate?: InputMaybe<Pokemon_V2_Pokemonmove_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroupmovelearnmethods?: InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Bool_Exp>;
+  pokemon_v2_versiongroupmovelearnmethods_aggregate?: InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Aggregate_Bool_Exp>;
   pokemon_v2_versiongroupregions?: InputMaybe<Pokemon_V2_Versiongroupregion_Bool_Exp>;
+  pokemon_v2_versiongroupregions_aggregate?: InputMaybe<Pokemon_V2_Versiongroupregion_Aggregate_Bool_Exp>;
   pokemon_v2_versions?: InputMaybe<Pokemon_V2_Version_Bool_Exp>;
+  pokemon_v2_versions_aggregate?: InputMaybe<Pokemon_V2_Version_Aggregate_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -42223,6 +46459,22 @@ export type Pokemon_V2_Versiongroup_Stddev_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_versiongroup" */
+export type Pokemon_V2_Versiongroup_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Versiongroup_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Versiongroup_Stream_Cursor_Value_Input = {
+  generation_id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Versiongroup_Sum_Fields = {
   __typename?: 'pokemon_v2_versiongroup_sum_fields';
@@ -42300,6 +46552,17 @@ export type Pokemon_V2_Versiongroupmovelearnmethod_Aggregate = {
   __typename?: 'pokemon_v2_versiongroupmovelearnmethod_aggregate';
   aggregate?: Maybe<Pokemon_V2_Versiongroupmovelearnmethod_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Versiongroupmovelearnmethod>;
+};
+
+export type Pokemon_V2_Versiongroupmovelearnmethod_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Versiongroupmovelearnmethod_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Versiongroupmovelearnmethod_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_versiongroupmovelearnmethod" */
@@ -42461,6 +46724,21 @@ export type Pokemon_V2_Versiongroupmovelearnmethod_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_versiongroupmovelearnmethod" */
+export type Pokemon_V2_Versiongroupmovelearnmethod_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Versiongroupmovelearnmethod_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Versiongroupmovelearnmethod_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  move_learn_method_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Versiongroupmovelearnmethod_Sum_Fields = {
   __typename?: 'pokemon_v2_versiongroupmovelearnmethod_sum_fields';
@@ -42538,6 +46816,17 @@ export type Pokemon_V2_Versiongroupregion_Aggregate = {
   __typename?: 'pokemon_v2_versiongroupregion_aggregate';
   aggregate?: Maybe<Pokemon_V2_Versiongroupregion_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Versiongroupregion>;
+};
+
+export type Pokemon_V2_Versiongroupregion_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Versiongroupregion_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Versiongroupregion_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Versiongroupregion_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Versiongroupregion_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_versiongroupregion" */
@@ -42699,6 +46988,21 @@ export type Pokemon_V2_Versiongroupregion_Stddev_Samp_Order_By = {
   version_group_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "pokemon_v2_versiongroupregion" */
+export type Pokemon_V2_Versiongroupregion_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Versiongroupregion_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Versiongroupregion_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  region_id?: InputMaybe<Scalars['Int']>;
+  version_group_id?: InputMaybe<Scalars['Int']>;
+};
+
 /** aggregate sum on columns */
 export type Pokemon_V2_Versiongroupregion_Sum_Fields = {
   __typename?: 'pokemon_v2_versiongroupregion_sum_fields';
@@ -42777,6 +47081,17 @@ export type Pokemon_V2_Versionname_Aggregate = {
   __typename?: 'pokemon_v2_versionname_aggregate';
   aggregate?: Maybe<Pokemon_V2_Versionname_Aggregate_Fields>;
   nodes: Array<Pokemon_V2_Versionname>;
+};
+
+export type Pokemon_V2_Versionname_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Pokemon_V2_Versionname_Aggregate_Bool_Exp_Count>;
+};
+
+export type Pokemon_V2_Versionname_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Pokemon_V2_Versionname_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Pokemon_V2_Versionname_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "pokemon_v2_versionname" */
@@ -42944,6 +47259,22 @@ export type Pokemon_V2_Versionname_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
   language_id?: InputMaybe<Order_By>;
   version_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pokemon_v2_versionname" */
+export type Pokemon_V2_Versionname_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pokemon_V2_Versionname_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pokemon_V2_Versionname_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  language_id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  version_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
@@ -47368,900 +51699,1200 @@ export type Subscription_Root = {
   pokemon_v2_ability_aggregate: Pokemon_V2_Ability_Aggregate;
   /** fetch data from the table: "pokemon_v2_ability" using primary key columns */
   pokemon_v2_ability_by_pk?: Maybe<Pokemon_V2_Ability>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_ability" */
+  pokemon_v2_ability_stream: Array<Pokemon_V2_Ability>;
   /** fetch data from the table: "pokemon_v2_abilitychange" */
   pokemon_v2_abilitychange: Array<Pokemon_V2_Abilitychange>;
   /** fetch aggregated fields from the table: "pokemon_v2_abilitychange" */
   pokemon_v2_abilitychange_aggregate: Pokemon_V2_Abilitychange_Aggregate;
   /** fetch data from the table: "pokemon_v2_abilitychange" using primary key columns */
   pokemon_v2_abilitychange_by_pk?: Maybe<Pokemon_V2_Abilitychange>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_abilitychange" */
+  pokemon_v2_abilitychange_stream: Array<Pokemon_V2_Abilitychange>;
   /** fetch data from the table: "pokemon_v2_abilitychangeeffecttext" */
   pokemon_v2_abilitychangeeffecttext: Array<Pokemon_V2_Abilitychangeeffecttext>;
   /** fetch aggregated fields from the table: "pokemon_v2_abilitychangeeffecttext" */
   pokemon_v2_abilitychangeeffecttext_aggregate: Pokemon_V2_Abilitychangeeffecttext_Aggregate;
   /** fetch data from the table: "pokemon_v2_abilitychangeeffecttext" using primary key columns */
   pokemon_v2_abilitychangeeffecttext_by_pk?: Maybe<Pokemon_V2_Abilitychangeeffecttext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_abilitychangeeffecttext" */
+  pokemon_v2_abilitychangeeffecttext_stream: Array<Pokemon_V2_Abilitychangeeffecttext>;
   /** fetch data from the table: "pokemon_v2_abilityeffecttext" */
   pokemon_v2_abilityeffecttext: Array<Pokemon_V2_Abilityeffecttext>;
   /** fetch aggregated fields from the table: "pokemon_v2_abilityeffecttext" */
   pokemon_v2_abilityeffecttext_aggregate: Pokemon_V2_Abilityeffecttext_Aggregate;
   /** fetch data from the table: "pokemon_v2_abilityeffecttext" using primary key columns */
   pokemon_v2_abilityeffecttext_by_pk?: Maybe<Pokemon_V2_Abilityeffecttext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_abilityeffecttext" */
+  pokemon_v2_abilityeffecttext_stream: Array<Pokemon_V2_Abilityeffecttext>;
   /** fetch data from the table: "pokemon_v2_abilityflavortext" */
   pokemon_v2_abilityflavortext: Array<Pokemon_V2_Abilityflavortext>;
   /** fetch aggregated fields from the table: "pokemon_v2_abilityflavortext" */
   pokemon_v2_abilityflavortext_aggregate: Pokemon_V2_Abilityflavortext_Aggregate;
   /** fetch data from the table: "pokemon_v2_abilityflavortext" using primary key columns */
   pokemon_v2_abilityflavortext_by_pk?: Maybe<Pokemon_V2_Abilityflavortext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_abilityflavortext" */
+  pokemon_v2_abilityflavortext_stream: Array<Pokemon_V2_Abilityflavortext>;
   /** fetch data from the table: "pokemon_v2_abilityname" */
   pokemon_v2_abilityname: Array<Pokemon_V2_Abilityname>;
   /** fetch aggregated fields from the table: "pokemon_v2_abilityname" */
   pokemon_v2_abilityname_aggregate: Pokemon_V2_Abilityname_Aggregate;
   /** fetch data from the table: "pokemon_v2_abilityname" using primary key columns */
   pokemon_v2_abilityname_by_pk?: Maybe<Pokemon_V2_Abilityname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_abilityname" */
+  pokemon_v2_abilityname_stream: Array<Pokemon_V2_Abilityname>;
   /** fetch data from the table: "pokemon_v2_berry" */
   pokemon_v2_berry: Array<Pokemon_V2_Berry>;
   /** fetch aggregated fields from the table: "pokemon_v2_berry" */
   pokemon_v2_berry_aggregate: Pokemon_V2_Berry_Aggregate;
   /** fetch data from the table: "pokemon_v2_berry" using primary key columns */
   pokemon_v2_berry_by_pk?: Maybe<Pokemon_V2_Berry>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_berry" */
+  pokemon_v2_berry_stream: Array<Pokemon_V2_Berry>;
   /** fetch data from the table: "pokemon_v2_berryfirmness" */
   pokemon_v2_berryfirmness: Array<Pokemon_V2_Berryfirmness>;
   /** fetch aggregated fields from the table: "pokemon_v2_berryfirmness" */
   pokemon_v2_berryfirmness_aggregate: Pokemon_V2_Berryfirmness_Aggregate;
   /** fetch data from the table: "pokemon_v2_berryfirmness" using primary key columns */
   pokemon_v2_berryfirmness_by_pk?: Maybe<Pokemon_V2_Berryfirmness>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_berryfirmness" */
+  pokemon_v2_berryfirmness_stream: Array<Pokemon_V2_Berryfirmness>;
   /** fetch data from the table: "pokemon_v2_berryfirmnessname" */
   pokemon_v2_berryfirmnessname: Array<Pokemon_V2_Berryfirmnessname>;
   /** fetch aggregated fields from the table: "pokemon_v2_berryfirmnessname" */
   pokemon_v2_berryfirmnessname_aggregate: Pokemon_V2_Berryfirmnessname_Aggregate;
   /** fetch data from the table: "pokemon_v2_berryfirmnessname" using primary key columns */
   pokemon_v2_berryfirmnessname_by_pk?: Maybe<Pokemon_V2_Berryfirmnessname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_berryfirmnessname" */
+  pokemon_v2_berryfirmnessname_stream: Array<Pokemon_V2_Berryfirmnessname>;
   /** fetch data from the table: "pokemon_v2_berryflavor" */
   pokemon_v2_berryflavor: Array<Pokemon_V2_Berryflavor>;
   /** fetch aggregated fields from the table: "pokemon_v2_berryflavor" */
   pokemon_v2_berryflavor_aggregate: Pokemon_V2_Berryflavor_Aggregate;
   /** fetch data from the table: "pokemon_v2_berryflavor" using primary key columns */
   pokemon_v2_berryflavor_by_pk?: Maybe<Pokemon_V2_Berryflavor>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_berryflavor" */
+  pokemon_v2_berryflavor_stream: Array<Pokemon_V2_Berryflavor>;
   /** fetch data from the table: "pokemon_v2_berryflavormap" */
   pokemon_v2_berryflavormap: Array<Pokemon_V2_Berryflavormap>;
   /** fetch aggregated fields from the table: "pokemon_v2_berryflavormap" */
   pokemon_v2_berryflavormap_aggregate: Pokemon_V2_Berryflavormap_Aggregate;
   /** fetch data from the table: "pokemon_v2_berryflavormap" using primary key columns */
   pokemon_v2_berryflavormap_by_pk?: Maybe<Pokemon_V2_Berryflavormap>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_berryflavormap" */
+  pokemon_v2_berryflavormap_stream: Array<Pokemon_V2_Berryflavormap>;
   /** fetch data from the table: "pokemon_v2_berryflavorname" */
   pokemon_v2_berryflavorname: Array<Pokemon_V2_Berryflavorname>;
   /** fetch aggregated fields from the table: "pokemon_v2_berryflavorname" */
   pokemon_v2_berryflavorname_aggregate: Pokemon_V2_Berryflavorname_Aggregate;
   /** fetch data from the table: "pokemon_v2_berryflavorname" using primary key columns */
   pokemon_v2_berryflavorname_by_pk?: Maybe<Pokemon_V2_Berryflavorname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_berryflavorname" */
+  pokemon_v2_berryflavorname_stream: Array<Pokemon_V2_Berryflavorname>;
   /** fetch data from the table: "pokemon_v2_characteristic" */
   pokemon_v2_characteristic: Array<Pokemon_V2_Characteristic>;
   /** fetch aggregated fields from the table: "pokemon_v2_characteristic" */
   pokemon_v2_characteristic_aggregate: Pokemon_V2_Characteristic_Aggregate;
   /** fetch data from the table: "pokemon_v2_characteristic" using primary key columns */
   pokemon_v2_characteristic_by_pk?: Maybe<Pokemon_V2_Characteristic>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_characteristic" */
+  pokemon_v2_characteristic_stream: Array<Pokemon_V2_Characteristic>;
   /** fetch data from the table: "pokemon_v2_characteristicdescription" */
   pokemon_v2_characteristicdescription: Array<Pokemon_V2_Characteristicdescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_characteristicdescription" */
   pokemon_v2_characteristicdescription_aggregate: Pokemon_V2_Characteristicdescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_characteristicdescription" using primary key columns */
   pokemon_v2_characteristicdescription_by_pk?: Maybe<Pokemon_V2_Characteristicdescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_characteristicdescription" */
+  pokemon_v2_characteristicdescription_stream: Array<Pokemon_V2_Characteristicdescription>;
   /** fetch data from the table: "pokemon_v2_contestcombo" */
   pokemon_v2_contestcombo: Array<Pokemon_V2_Contestcombo>;
   /** fetch aggregated fields from the table: "pokemon_v2_contestcombo" */
   pokemon_v2_contestcombo_aggregate: Pokemon_V2_Contestcombo_Aggregate;
   /** fetch data from the table: "pokemon_v2_contestcombo" using primary key columns */
   pokemon_v2_contestcombo_by_pk?: Maybe<Pokemon_V2_Contestcombo>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_contestcombo" */
+  pokemon_v2_contestcombo_stream: Array<Pokemon_V2_Contestcombo>;
   /** fetch data from the table: "pokemon_v2_contesteffect" */
   pokemon_v2_contesteffect: Array<Pokemon_V2_Contesteffect>;
   /** fetch aggregated fields from the table: "pokemon_v2_contesteffect" */
   pokemon_v2_contesteffect_aggregate: Pokemon_V2_Contesteffect_Aggregate;
   /** fetch data from the table: "pokemon_v2_contesteffect" using primary key columns */
   pokemon_v2_contesteffect_by_pk?: Maybe<Pokemon_V2_Contesteffect>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_contesteffect" */
+  pokemon_v2_contesteffect_stream: Array<Pokemon_V2_Contesteffect>;
   /** fetch data from the table: "pokemon_v2_contesteffecteffecttext" */
   pokemon_v2_contesteffecteffecttext: Array<Pokemon_V2_Contesteffecteffecttext>;
   /** fetch aggregated fields from the table: "pokemon_v2_contesteffecteffecttext" */
   pokemon_v2_contesteffecteffecttext_aggregate: Pokemon_V2_Contesteffecteffecttext_Aggregate;
   /** fetch data from the table: "pokemon_v2_contesteffecteffecttext" using primary key columns */
   pokemon_v2_contesteffecteffecttext_by_pk?: Maybe<Pokemon_V2_Contesteffecteffecttext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_contesteffecteffecttext" */
+  pokemon_v2_contesteffecteffecttext_stream: Array<Pokemon_V2_Contesteffecteffecttext>;
   /** fetch data from the table: "pokemon_v2_contesteffectflavortext" */
   pokemon_v2_contesteffectflavortext: Array<Pokemon_V2_Contesteffectflavortext>;
   /** fetch aggregated fields from the table: "pokemon_v2_contesteffectflavortext" */
   pokemon_v2_contesteffectflavortext_aggregate: Pokemon_V2_Contesteffectflavortext_Aggregate;
   /** fetch data from the table: "pokemon_v2_contesteffectflavortext" using primary key columns */
   pokemon_v2_contesteffectflavortext_by_pk?: Maybe<Pokemon_V2_Contesteffectflavortext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_contesteffectflavortext" */
+  pokemon_v2_contesteffectflavortext_stream: Array<Pokemon_V2_Contesteffectflavortext>;
   /** fetch data from the table: "pokemon_v2_contesttype" */
   pokemon_v2_contesttype: Array<Pokemon_V2_Contesttype>;
   /** fetch aggregated fields from the table: "pokemon_v2_contesttype" */
   pokemon_v2_contesttype_aggregate: Pokemon_V2_Contesttype_Aggregate;
   /** fetch data from the table: "pokemon_v2_contesttype" using primary key columns */
   pokemon_v2_contesttype_by_pk?: Maybe<Pokemon_V2_Contesttype>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_contesttype" */
+  pokemon_v2_contesttype_stream: Array<Pokemon_V2_Contesttype>;
   /** fetch data from the table: "pokemon_v2_contesttypename" */
   pokemon_v2_contesttypename: Array<Pokemon_V2_Contesttypename>;
   /** fetch aggregated fields from the table: "pokemon_v2_contesttypename" */
   pokemon_v2_contesttypename_aggregate: Pokemon_V2_Contesttypename_Aggregate;
   /** fetch data from the table: "pokemon_v2_contesttypename" using primary key columns */
   pokemon_v2_contesttypename_by_pk?: Maybe<Pokemon_V2_Contesttypename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_contesttypename" */
+  pokemon_v2_contesttypename_stream: Array<Pokemon_V2_Contesttypename>;
   /** fetch data from the table: "pokemon_v2_egggroup" */
   pokemon_v2_egggroup: Array<Pokemon_V2_Egggroup>;
   /** fetch aggregated fields from the table: "pokemon_v2_egggroup" */
   pokemon_v2_egggroup_aggregate: Pokemon_V2_Egggroup_Aggregate;
   /** fetch data from the table: "pokemon_v2_egggroup" using primary key columns */
   pokemon_v2_egggroup_by_pk?: Maybe<Pokemon_V2_Egggroup>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_egggroup" */
+  pokemon_v2_egggroup_stream: Array<Pokemon_V2_Egggroup>;
   /** fetch data from the table: "pokemon_v2_egggroupname" */
   pokemon_v2_egggroupname: Array<Pokemon_V2_Egggroupname>;
   /** fetch aggregated fields from the table: "pokemon_v2_egggroupname" */
   pokemon_v2_egggroupname_aggregate: Pokemon_V2_Egggroupname_Aggregate;
   /** fetch data from the table: "pokemon_v2_egggroupname" using primary key columns */
   pokemon_v2_egggroupname_by_pk?: Maybe<Pokemon_V2_Egggroupname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_egggroupname" */
+  pokemon_v2_egggroupname_stream: Array<Pokemon_V2_Egggroupname>;
   /** fetch data from the table: "pokemon_v2_encounter" */
   pokemon_v2_encounter: Array<Pokemon_V2_Encounter>;
   /** fetch aggregated fields from the table: "pokemon_v2_encounter" */
   pokemon_v2_encounter_aggregate: Pokemon_V2_Encounter_Aggregate;
   /** fetch data from the table: "pokemon_v2_encounter" using primary key columns */
   pokemon_v2_encounter_by_pk?: Maybe<Pokemon_V2_Encounter>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encounter" */
+  pokemon_v2_encounter_stream: Array<Pokemon_V2_Encounter>;
   /** fetch data from the table: "pokemon_v2_encountercondition" */
   pokemon_v2_encountercondition: Array<Pokemon_V2_Encountercondition>;
   /** fetch aggregated fields from the table: "pokemon_v2_encountercondition" */
   pokemon_v2_encountercondition_aggregate: Pokemon_V2_Encountercondition_Aggregate;
   /** fetch data from the table: "pokemon_v2_encountercondition" using primary key columns */
   pokemon_v2_encountercondition_by_pk?: Maybe<Pokemon_V2_Encountercondition>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encountercondition" */
+  pokemon_v2_encountercondition_stream: Array<Pokemon_V2_Encountercondition>;
   /** fetch data from the table: "pokemon_v2_encounterconditionname" */
   pokemon_v2_encounterconditionname: Array<Pokemon_V2_Encounterconditionname>;
   /** fetch aggregated fields from the table: "pokemon_v2_encounterconditionname" */
   pokemon_v2_encounterconditionname_aggregate: Pokemon_V2_Encounterconditionname_Aggregate;
   /** fetch data from the table: "pokemon_v2_encounterconditionname" using primary key columns */
   pokemon_v2_encounterconditionname_by_pk?: Maybe<Pokemon_V2_Encounterconditionname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encounterconditionname" */
+  pokemon_v2_encounterconditionname_stream: Array<Pokemon_V2_Encounterconditionname>;
   /** fetch data from the table: "pokemon_v2_encounterconditionvalue" */
   pokemon_v2_encounterconditionvalue: Array<Pokemon_V2_Encounterconditionvalue>;
   /** fetch aggregated fields from the table: "pokemon_v2_encounterconditionvalue" */
   pokemon_v2_encounterconditionvalue_aggregate: Pokemon_V2_Encounterconditionvalue_Aggregate;
   /** fetch data from the table: "pokemon_v2_encounterconditionvalue" using primary key columns */
   pokemon_v2_encounterconditionvalue_by_pk?: Maybe<Pokemon_V2_Encounterconditionvalue>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encounterconditionvalue" */
+  pokemon_v2_encounterconditionvalue_stream: Array<Pokemon_V2_Encounterconditionvalue>;
   /** fetch data from the table: "pokemon_v2_encounterconditionvaluemap" */
   pokemon_v2_encounterconditionvaluemap: Array<Pokemon_V2_Encounterconditionvaluemap>;
   /** fetch aggregated fields from the table: "pokemon_v2_encounterconditionvaluemap" */
   pokemon_v2_encounterconditionvaluemap_aggregate: Pokemon_V2_Encounterconditionvaluemap_Aggregate;
   /** fetch data from the table: "pokemon_v2_encounterconditionvaluemap" using primary key columns */
   pokemon_v2_encounterconditionvaluemap_by_pk?: Maybe<Pokemon_V2_Encounterconditionvaluemap>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encounterconditionvaluemap" */
+  pokemon_v2_encounterconditionvaluemap_stream: Array<Pokemon_V2_Encounterconditionvaluemap>;
   /** fetch data from the table: "pokemon_v2_encounterconditionvaluename" */
   pokemon_v2_encounterconditionvaluename: Array<Pokemon_V2_Encounterconditionvaluename>;
   /** fetch aggregated fields from the table: "pokemon_v2_encounterconditionvaluename" */
   pokemon_v2_encounterconditionvaluename_aggregate: Pokemon_V2_Encounterconditionvaluename_Aggregate;
   /** fetch data from the table: "pokemon_v2_encounterconditionvaluename" using primary key columns */
   pokemon_v2_encounterconditionvaluename_by_pk?: Maybe<Pokemon_V2_Encounterconditionvaluename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encounterconditionvaluename" */
+  pokemon_v2_encounterconditionvaluename_stream: Array<Pokemon_V2_Encounterconditionvaluename>;
   /** fetch data from the table: "pokemon_v2_encountermethod" */
   pokemon_v2_encountermethod: Array<Pokemon_V2_Encountermethod>;
   /** fetch aggregated fields from the table: "pokemon_v2_encountermethod" */
   pokemon_v2_encountermethod_aggregate: Pokemon_V2_Encountermethod_Aggregate;
   /** fetch data from the table: "pokemon_v2_encountermethod" using primary key columns */
   pokemon_v2_encountermethod_by_pk?: Maybe<Pokemon_V2_Encountermethod>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encountermethod" */
+  pokemon_v2_encountermethod_stream: Array<Pokemon_V2_Encountermethod>;
   /** fetch data from the table: "pokemon_v2_encountermethodname" */
   pokemon_v2_encountermethodname: Array<Pokemon_V2_Encountermethodname>;
   /** fetch aggregated fields from the table: "pokemon_v2_encountermethodname" */
   pokemon_v2_encountermethodname_aggregate: Pokemon_V2_Encountermethodname_Aggregate;
   /** fetch data from the table: "pokemon_v2_encountermethodname" using primary key columns */
   pokemon_v2_encountermethodname_by_pk?: Maybe<Pokemon_V2_Encountermethodname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encountermethodname" */
+  pokemon_v2_encountermethodname_stream: Array<Pokemon_V2_Encountermethodname>;
   /** fetch data from the table: "pokemon_v2_encounterslot" */
   pokemon_v2_encounterslot: Array<Pokemon_V2_Encounterslot>;
   /** fetch aggregated fields from the table: "pokemon_v2_encounterslot" */
   pokemon_v2_encounterslot_aggregate: Pokemon_V2_Encounterslot_Aggregate;
   /** fetch data from the table: "pokemon_v2_encounterslot" using primary key columns */
   pokemon_v2_encounterslot_by_pk?: Maybe<Pokemon_V2_Encounterslot>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_encounterslot" */
+  pokemon_v2_encounterslot_stream: Array<Pokemon_V2_Encounterslot>;
   /** fetch data from the table: "pokemon_v2_evolutionchain" */
   pokemon_v2_evolutionchain: Array<Pokemon_V2_Evolutionchain>;
   /** fetch aggregated fields from the table: "pokemon_v2_evolutionchain" */
   pokemon_v2_evolutionchain_aggregate: Pokemon_V2_Evolutionchain_Aggregate;
   /** fetch data from the table: "pokemon_v2_evolutionchain" using primary key columns */
   pokemon_v2_evolutionchain_by_pk?: Maybe<Pokemon_V2_Evolutionchain>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_evolutionchain" */
+  pokemon_v2_evolutionchain_stream: Array<Pokemon_V2_Evolutionchain>;
   /** fetch data from the table: "pokemon_v2_evolutiontrigger" */
   pokemon_v2_evolutiontrigger: Array<Pokemon_V2_Evolutiontrigger>;
   /** fetch aggregated fields from the table: "pokemon_v2_evolutiontrigger" */
   pokemon_v2_evolutiontrigger_aggregate: Pokemon_V2_Evolutiontrigger_Aggregate;
   /** fetch data from the table: "pokemon_v2_evolutiontrigger" using primary key columns */
   pokemon_v2_evolutiontrigger_by_pk?: Maybe<Pokemon_V2_Evolutiontrigger>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_evolutiontrigger" */
+  pokemon_v2_evolutiontrigger_stream: Array<Pokemon_V2_Evolutiontrigger>;
   /** fetch data from the table: "pokemon_v2_evolutiontriggername" */
   pokemon_v2_evolutiontriggername: Array<Pokemon_V2_Evolutiontriggername>;
   /** fetch aggregated fields from the table: "pokemon_v2_evolutiontriggername" */
   pokemon_v2_evolutiontriggername_aggregate: Pokemon_V2_Evolutiontriggername_Aggregate;
   /** fetch data from the table: "pokemon_v2_evolutiontriggername" using primary key columns */
   pokemon_v2_evolutiontriggername_by_pk?: Maybe<Pokemon_V2_Evolutiontriggername>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_evolutiontriggername" */
+  pokemon_v2_evolutiontriggername_stream: Array<Pokemon_V2_Evolutiontriggername>;
   /** fetch data from the table: "pokemon_v2_experience" */
   pokemon_v2_experience: Array<Pokemon_V2_Experience>;
   /** fetch aggregated fields from the table: "pokemon_v2_experience" */
   pokemon_v2_experience_aggregate: Pokemon_V2_Experience_Aggregate;
   /** fetch data from the table: "pokemon_v2_experience" using primary key columns */
   pokemon_v2_experience_by_pk?: Maybe<Pokemon_V2_Experience>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_experience" */
+  pokemon_v2_experience_stream: Array<Pokemon_V2_Experience>;
   /** fetch data from the table: "pokemon_v2_gender" */
   pokemon_v2_gender: Array<Pokemon_V2_Gender>;
   /** fetch aggregated fields from the table: "pokemon_v2_gender" */
   pokemon_v2_gender_aggregate: Pokemon_V2_Gender_Aggregate;
   /** fetch data from the table: "pokemon_v2_gender" using primary key columns */
   pokemon_v2_gender_by_pk?: Maybe<Pokemon_V2_Gender>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_gender" */
+  pokemon_v2_gender_stream: Array<Pokemon_V2_Gender>;
   /** fetch data from the table: "pokemon_v2_generation" */
   pokemon_v2_generation: Array<Pokemon_V2_Generation>;
   /** fetch aggregated fields from the table: "pokemon_v2_generation" */
   pokemon_v2_generation_aggregate: Pokemon_V2_Generation_Aggregate;
   /** fetch data from the table: "pokemon_v2_generation" using primary key columns */
   pokemon_v2_generation_by_pk?: Maybe<Pokemon_V2_Generation>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_generation" */
+  pokemon_v2_generation_stream: Array<Pokemon_V2_Generation>;
   /** fetch data from the table: "pokemon_v2_generationname" */
   pokemon_v2_generationname: Array<Pokemon_V2_Generationname>;
   /** fetch aggregated fields from the table: "pokemon_v2_generationname" */
   pokemon_v2_generationname_aggregate: Pokemon_V2_Generationname_Aggregate;
   /** fetch data from the table: "pokemon_v2_generationname" using primary key columns */
   pokemon_v2_generationname_by_pk?: Maybe<Pokemon_V2_Generationname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_generationname" */
+  pokemon_v2_generationname_stream: Array<Pokemon_V2_Generationname>;
   /** fetch data from the table: "pokemon_v2_growthrate" */
   pokemon_v2_growthrate: Array<Pokemon_V2_Growthrate>;
   /** fetch aggregated fields from the table: "pokemon_v2_growthrate" */
   pokemon_v2_growthrate_aggregate: Pokemon_V2_Growthrate_Aggregate;
   /** fetch data from the table: "pokemon_v2_growthrate" using primary key columns */
   pokemon_v2_growthrate_by_pk?: Maybe<Pokemon_V2_Growthrate>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_growthrate" */
+  pokemon_v2_growthrate_stream: Array<Pokemon_V2_Growthrate>;
   /** fetch data from the table: "pokemon_v2_growthratedescription" */
   pokemon_v2_growthratedescription: Array<Pokemon_V2_Growthratedescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_growthratedescription" */
   pokemon_v2_growthratedescription_aggregate: Pokemon_V2_Growthratedescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_growthratedescription" using primary key columns */
   pokemon_v2_growthratedescription_by_pk?: Maybe<Pokemon_V2_Growthratedescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_growthratedescription" */
+  pokemon_v2_growthratedescription_stream: Array<Pokemon_V2_Growthratedescription>;
   /** fetch data from the table: "pokemon_v2_item" */
   pokemon_v2_item: Array<Pokemon_V2_Item>;
   /** fetch aggregated fields from the table: "pokemon_v2_item" */
   pokemon_v2_item_aggregate: Pokemon_V2_Item_Aggregate;
   /** fetch data from the table: "pokemon_v2_item" using primary key columns */
   pokemon_v2_item_by_pk?: Maybe<Pokemon_V2_Item>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_item" */
+  pokemon_v2_item_stream: Array<Pokemon_V2_Item>;
   /** fetch data from the table: "pokemon_v2_itemattribute" */
   pokemon_v2_itemattribute: Array<Pokemon_V2_Itemattribute>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemattribute" */
   pokemon_v2_itemattribute_aggregate: Pokemon_V2_Itemattribute_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemattribute" using primary key columns */
   pokemon_v2_itemattribute_by_pk?: Maybe<Pokemon_V2_Itemattribute>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemattribute" */
+  pokemon_v2_itemattribute_stream: Array<Pokemon_V2_Itemattribute>;
   /** fetch data from the table: "pokemon_v2_itemattributedescription" */
   pokemon_v2_itemattributedescription: Array<Pokemon_V2_Itemattributedescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemattributedescription" */
   pokemon_v2_itemattributedescription_aggregate: Pokemon_V2_Itemattributedescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemattributedescription" using primary key columns */
   pokemon_v2_itemattributedescription_by_pk?: Maybe<Pokemon_V2_Itemattributedescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemattributedescription" */
+  pokemon_v2_itemattributedescription_stream: Array<Pokemon_V2_Itemattributedescription>;
   /** fetch data from the table: "pokemon_v2_itemattributemap" */
   pokemon_v2_itemattributemap: Array<Pokemon_V2_Itemattributemap>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemattributemap" */
   pokemon_v2_itemattributemap_aggregate: Pokemon_V2_Itemattributemap_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemattributemap" using primary key columns */
   pokemon_v2_itemattributemap_by_pk?: Maybe<Pokemon_V2_Itemattributemap>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemattributemap" */
+  pokemon_v2_itemattributemap_stream: Array<Pokemon_V2_Itemattributemap>;
   /** fetch data from the table: "pokemon_v2_itemattributename" */
   pokemon_v2_itemattributename: Array<Pokemon_V2_Itemattributename>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemattributename" */
   pokemon_v2_itemattributename_aggregate: Pokemon_V2_Itemattributename_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemattributename" using primary key columns */
   pokemon_v2_itemattributename_by_pk?: Maybe<Pokemon_V2_Itemattributename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemattributename" */
+  pokemon_v2_itemattributename_stream: Array<Pokemon_V2_Itemattributename>;
   /** fetch data from the table: "pokemon_v2_itemcategory" */
   pokemon_v2_itemcategory: Array<Pokemon_V2_Itemcategory>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemcategory" */
   pokemon_v2_itemcategory_aggregate: Pokemon_V2_Itemcategory_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemcategory" using primary key columns */
   pokemon_v2_itemcategory_by_pk?: Maybe<Pokemon_V2_Itemcategory>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemcategory" */
+  pokemon_v2_itemcategory_stream: Array<Pokemon_V2_Itemcategory>;
   /** fetch data from the table: "pokemon_v2_itemcategoryname" */
   pokemon_v2_itemcategoryname: Array<Pokemon_V2_Itemcategoryname>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemcategoryname" */
   pokemon_v2_itemcategoryname_aggregate: Pokemon_V2_Itemcategoryname_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemcategoryname" using primary key columns */
   pokemon_v2_itemcategoryname_by_pk?: Maybe<Pokemon_V2_Itemcategoryname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemcategoryname" */
+  pokemon_v2_itemcategoryname_stream: Array<Pokemon_V2_Itemcategoryname>;
   /** fetch data from the table: "pokemon_v2_itemeffecttext" */
   pokemon_v2_itemeffecttext: Array<Pokemon_V2_Itemeffecttext>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemeffecttext" */
   pokemon_v2_itemeffecttext_aggregate: Pokemon_V2_Itemeffecttext_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemeffecttext" using primary key columns */
   pokemon_v2_itemeffecttext_by_pk?: Maybe<Pokemon_V2_Itemeffecttext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemeffecttext" */
+  pokemon_v2_itemeffecttext_stream: Array<Pokemon_V2_Itemeffecttext>;
   /** fetch data from the table: "pokemon_v2_itemflavortext" */
   pokemon_v2_itemflavortext: Array<Pokemon_V2_Itemflavortext>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemflavortext" */
   pokemon_v2_itemflavortext_aggregate: Pokemon_V2_Itemflavortext_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemflavortext" using primary key columns */
   pokemon_v2_itemflavortext_by_pk?: Maybe<Pokemon_V2_Itemflavortext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemflavortext" */
+  pokemon_v2_itemflavortext_stream: Array<Pokemon_V2_Itemflavortext>;
   /** fetch data from the table: "pokemon_v2_itemflingeffect" */
   pokemon_v2_itemflingeffect: Array<Pokemon_V2_Itemflingeffect>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemflingeffect" */
   pokemon_v2_itemflingeffect_aggregate: Pokemon_V2_Itemflingeffect_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemflingeffect" using primary key columns */
   pokemon_v2_itemflingeffect_by_pk?: Maybe<Pokemon_V2_Itemflingeffect>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemflingeffect" */
+  pokemon_v2_itemflingeffect_stream: Array<Pokemon_V2_Itemflingeffect>;
   /** fetch data from the table: "pokemon_v2_itemflingeffecteffecttext" */
   pokemon_v2_itemflingeffecteffecttext: Array<Pokemon_V2_Itemflingeffecteffecttext>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemflingeffecteffecttext" */
   pokemon_v2_itemflingeffecteffecttext_aggregate: Pokemon_V2_Itemflingeffecteffecttext_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemflingeffecteffecttext" using primary key columns */
   pokemon_v2_itemflingeffecteffecttext_by_pk?: Maybe<Pokemon_V2_Itemflingeffecteffecttext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemflingeffecteffecttext" */
+  pokemon_v2_itemflingeffecteffecttext_stream: Array<Pokemon_V2_Itemflingeffecteffecttext>;
   /** fetch data from the table: "pokemon_v2_itemgameindex" */
   pokemon_v2_itemgameindex: Array<Pokemon_V2_Itemgameindex>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemgameindex" */
   pokemon_v2_itemgameindex_aggregate: Pokemon_V2_Itemgameindex_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemgameindex" using primary key columns */
   pokemon_v2_itemgameindex_by_pk?: Maybe<Pokemon_V2_Itemgameindex>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemgameindex" */
+  pokemon_v2_itemgameindex_stream: Array<Pokemon_V2_Itemgameindex>;
   /** fetch data from the table: "pokemon_v2_itemname" */
   pokemon_v2_itemname: Array<Pokemon_V2_Itemname>;
   /** fetch aggregated fields from the table: "pokemon_v2_itemname" */
   pokemon_v2_itemname_aggregate: Pokemon_V2_Itemname_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemname" using primary key columns */
   pokemon_v2_itemname_by_pk?: Maybe<Pokemon_V2_Itemname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemname" */
+  pokemon_v2_itemname_stream: Array<Pokemon_V2_Itemname>;
   /** fetch data from the table: "pokemon_v2_itempocket" */
   pokemon_v2_itempocket: Array<Pokemon_V2_Itempocket>;
   /** fetch aggregated fields from the table: "pokemon_v2_itempocket" */
   pokemon_v2_itempocket_aggregate: Pokemon_V2_Itempocket_Aggregate;
   /** fetch data from the table: "pokemon_v2_itempocket" using primary key columns */
   pokemon_v2_itempocket_by_pk?: Maybe<Pokemon_V2_Itempocket>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itempocket" */
+  pokemon_v2_itempocket_stream: Array<Pokemon_V2_Itempocket>;
   /** fetch data from the table: "pokemon_v2_itempocketname" */
   pokemon_v2_itempocketname: Array<Pokemon_V2_Itempocketname>;
   /** fetch aggregated fields from the table: "pokemon_v2_itempocketname" */
   pokemon_v2_itempocketname_aggregate: Pokemon_V2_Itempocketname_Aggregate;
   /** fetch data from the table: "pokemon_v2_itempocketname" using primary key columns */
   pokemon_v2_itempocketname_by_pk?: Maybe<Pokemon_V2_Itempocketname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itempocketname" */
+  pokemon_v2_itempocketname_stream: Array<Pokemon_V2_Itempocketname>;
   /** An array relationship */
   pokemon_v2_itemsprites: Array<Pokemon_V2_Itemsprites>;
   /** An aggregate relationship */
   pokemon_v2_itemsprites_aggregate: Pokemon_V2_Itemsprites_Aggregate;
   /** fetch data from the table: "pokemon_v2_itemsprites" using primary key columns */
   pokemon_v2_itemsprites_by_pk?: Maybe<Pokemon_V2_Itemsprites>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_itemsprites" */
+  pokemon_v2_itemsprites_stream: Array<Pokemon_V2_Itemsprites>;
   /** fetch data from the table: "pokemon_v2_language" */
   pokemon_v2_language: Array<Pokemon_V2_Language>;
   /** fetch aggregated fields from the table: "pokemon_v2_language" */
   pokemon_v2_language_aggregate: Pokemon_V2_Language_Aggregate;
   /** fetch data from the table: "pokemon_v2_language" using primary key columns */
   pokemon_v2_language_by_pk?: Maybe<Pokemon_V2_Language>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_language" */
+  pokemon_v2_language_stream: Array<Pokemon_V2_Language>;
   /** fetch data from the table: "pokemon_v2_languagename" */
   pokemon_v2_languagename: Array<Pokemon_V2_Languagename>;
   /** fetch aggregated fields from the table: "pokemon_v2_languagename" */
   pokemon_v2_languagename_aggregate: Pokemon_V2_Languagename_Aggregate;
   /** fetch data from the table: "pokemon_v2_languagename" using primary key columns */
   pokemon_v2_languagename_by_pk?: Maybe<Pokemon_V2_Languagename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_languagename" */
+  pokemon_v2_languagename_stream: Array<Pokemon_V2_Languagename>;
   /** fetch data from the table: "pokemon_v2_location" */
   pokemon_v2_location: Array<Pokemon_V2_Location>;
   /** fetch aggregated fields from the table: "pokemon_v2_location" */
   pokemon_v2_location_aggregate: Pokemon_V2_Location_Aggregate;
   /** fetch data from the table: "pokemon_v2_location" using primary key columns */
   pokemon_v2_location_by_pk?: Maybe<Pokemon_V2_Location>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_location" */
+  pokemon_v2_location_stream: Array<Pokemon_V2_Location>;
   /** fetch data from the table: "pokemon_v2_locationarea" */
   pokemon_v2_locationarea: Array<Pokemon_V2_Locationarea>;
   /** fetch aggregated fields from the table: "pokemon_v2_locationarea" */
   pokemon_v2_locationarea_aggregate: Pokemon_V2_Locationarea_Aggregate;
   /** fetch data from the table: "pokemon_v2_locationarea" using primary key columns */
   pokemon_v2_locationarea_by_pk?: Maybe<Pokemon_V2_Locationarea>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_locationarea" */
+  pokemon_v2_locationarea_stream: Array<Pokemon_V2_Locationarea>;
   /** fetch data from the table: "pokemon_v2_locationareaencounterrate" */
   pokemon_v2_locationareaencounterrate: Array<Pokemon_V2_Locationareaencounterrate>;
   /** fetch aggregated fields from the table: "pokemon_v2_locationareaencounterrate" */
   pokemon_v2_locationareaencounterrate_aggregate: Pokemon_V2_Locationareaencounterrate_Aggregate;
   /** fetch data from the table: "pokemon_v2_locationareaencounterrate" using primary key columns */
   pokemon_v2_locationareaencounterrate_by_pk?: Maybe<Pokemon_V2_Locationareaencounterrate>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_locationareaencounterrate" */
+  pokemon_v2_locationareaencounterrate_stream: Array<Pokemon_V2_Locationareaencounterrate>;
   /** fetch data from the table: "pokemon_v2_locationareaname" */
   pokemon_v2_locationareaname: Array<Pokemon_V2_Locationareaname>;
   /** fetch aggregated fields from the table: "pokemon_v2_locationareaname" */
   pokemon_v2_locationareaname_aggregate: Pokemon_V2_Locationareaname_Aggregate;
   /** fetch data from the table: "pokemon_v2_locationareaname" using primary key columns */
   pokemon_v2_locationareaname_by_pk?: Maybe<Pokemon_V2_Locationareaname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_locationareaname" */
+  pokemon_v2_locationareaname_stream: Array<Pokemon_V2_Locationareaname>;
   /** fetch data from the table: "pokemon_v2_locationgameindex" */
   pokemon_v2_locationgameindex: Array<Pokemon_V2_Locationgameindex>;
   /** fetch aggregated fields from the table: "pokemon_v2_locationgameindex" */
   pokemon_v2_locationgameindex_aggregate: Pokemon_V2_Locationgameindex_Aggregate;
   /** fetch data from the table: "pokemon_v2_locationgameindex" using primary key columns */
   pokemon_v2_locationgameindex_by_pk?: Maybe<Pokemon_V2_Locationgameindex>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_locationgameindex" */
+  pokemon_v2_locationgameindex_stream: Array<Pokemon_V2_Locationgameindex>;
   /** fetch data from the table: "pokemon_v2_locationname" */
   pokemon_v2_locationname: Array<Pokemon_V2_Locationname>;
   /** fetch aggregated fields from the table: "pokemon_v2_locationname" */
   pokemon_v2_locationname_aggregate: Pokemon_V2_Locationname_Aggregate;
   /** fetch data from the table: "pokemon_v2_locationname" using primary key columns */
   pokemon_v2_locationname_by_pk?: Maybe<Pokemon_V2_Locationname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_locationname" */
+  pokemon_v2_locationname_stream: Array<Pokemon_V2_Locationname>;
   /** fetch data from the table: "pokemon_v2_machine" */
   pokemon_v2_machine: Array<Pokemon_V2_Machine>;
   /** fetch aggregated fields from the table: "pokemon_v2_machine" */
   pokemon_v2_machine_aggregate: Pokemon_V2_Machine_Aggregate;
   /** fetch data from the table: "pokemon_v2_machine" using primary key columns */
   pokemon_v2_machine_by_pk?: Maybe<Pokemon_V2_Machine>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_machine" */
+  pokemon_v2_machine_stream: Array<Pokemon_V2_Machine>;
   /** fetch data from the table: "pokemon_v2_move" */
   pokemon_v2_move: Array<Pokemon_V2_Move>;
   /** fetch aggregated fields from the table: "pokemon_v2_move" */
   pokemon_v2_move_aggregate: Pokemon_V2_Move_Aggregate;
   /** fetch data from the table: "pokemon_v2_move" using primary key columns */
   pokemon_v2_move_by_pk?: Maybe<Pokemon_V2_Move>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_move" */
+  pokemon_v2_move_stream: Array<Pokemon_V2_Move>;
   /** fetch data from the table: "pokemon_v2_moveattribute" */
   pokemon_v2_moveattribute: Array<Pokemon_V2_Moveattribute>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveattribute" */
   pokemon_v2_moveattribute_aggregate: Pokemon_V2_Moveattribute_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveattribute" using primary key columns */
   pokemon_v2_moveattribute_by_pk?: Maybe<Pokemon_V2_Moveattribute>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveattribute" */
+  pokemon_v2_moveattribute_stream: Array<Pokemon_V2_Moveattribute>;
   /** fetch data from the table: "pokemon_v2_moveattributedescription" */
   pokemon_v2_moveattributedescription: Array<Pokemon_V2_Moveattributedescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveattributedescription" */
   pokemon_v2_moveattributedescription_aggregate: Pokemon_V2_Moveattributedescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveattributedescription" using primary key columns */
   pokemon_v2_moveattributedescription_by_pk?: Maybe<Pokemon_V2_Moveattributedescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveattributedescription" */
+  pokemon_v2_moveattributedescription_stream: Array<Pokemon_V2_Moveattributedescription>;
   /** fetch data from the table: "pokemon_v2_moveattributemap" */
   pokemon_v2_moveattributemap: Array<Pokemon_V2_Moveattributemap>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveattributemap" */
   pokemon_v2_moveattributemap_aggregate: Pokemon_V2_Moveattributemap_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveattributemap" using primary key columns */
   pokemon_v2_moveattributemap_by_pk?: Maybe<Pokemon_V2_Moveattributemap>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveattributemap" */
+  pokemon_v2_moveattributemap_stream: Array<Pokemon_V2_Moveattributemap>;
   /** fetch data from the table: "pokemon_v2_moveattributename" */
   pokemon_v2_moveattributename: Array<Pokemon_V2_Moveattributename>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveattributename" */
   pokemon_v2_moveattributename_aggregate: Pokemon_V2_Moveattributename_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveattributename" using primary key columns */
   pokemon_v2_moveattributename_by_pk?: Maybe<Pokemon_V2_Moveattributename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveattributename" */
+  pokemon_v2_moveattributename_stream: Array<Pokemon_V2_Moveattributename>;
   /** fetch data from the table: "pokemon_v2_movebattlestyle" */
   pokemon_v2_movebattlestyle: Array<Pokemon_V2_Movebattlestyle>;
   /** fetch aggregated fields from the table: "pokemon_v2_movebattlestyle" */
   pokemon_v2_movebattlestyle_aggregate: Pokemon_V2_Movebattlestyle_Aggregate;
   /** fetch data from the table: "pokemon_v2_movebattlestyle" using primary key columns */
   pokemon_v2_movebattlestyle_by_pk?: Maybe<Pokemon_V2_Movebattlestyle>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movebattlestyle" */
+  pokemon_v2_movebattlestyle_stream: Array<Pokemon_V2_Movebattlestyle>;
   /** fetch data from the table: "pokemon_v2_movebattlestylename" */
   pokemon_v2_movebattlestylename: Array<Pokemon_V2_Movebattlestylename>;
   /** fetch aggregated fields from the table: "pokemon_v2_movebattlestylename" */
   pokemon_v2_movebattlestylename_aggregate: Pokemon_V2_Movebattlestylename_Aggregate;
   /** fetch data from the table: "pokemon_v2_movebattlestylename" using primary key columns */
   pokemon_v2_movebattlestylename_by_pk?: Maybe<Pokemon_V2_Movebattlestylename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movebattlestylename" */
+  pokemon_v2_movebattlestylename_stream: Array<Pokemon_V2_Movebattlestylename>;
   /** fetch data from the table: "pokemon_v2_movechange" */
   pokemon_v2_movechange: Array<Pokemon_V2_Movechange>;
   /** fetch aggregated fields from the table: "pokemon_v2_movechange" */
   pokemon_v2_movechange_aggregate: Pokemon_V2_Movechange_Aggregate;
   /** fetch data from the table: "pokemon_v2_movechange" using primary key columns */
   pokemon_v2_movechange_by_pk?: Maybe<Pokemon_V2_Movechange>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movechange" */
+  pokemon_v2_movechange_stream: Array<Pokemon_V2_Movechange>;
   /** fetch data from the table: "pokemon_v2_movedamageclass" */
   pokemon_v2_movedamageclass: Array<Pokemon_V2_Movedamageclass>;
   /** fetch aggregated fields from the table: "pokemon_v2_movedamageclass" */
   pokemon_v2_movedamageclass_aggregate: Pokemon_V2_Movedamageclass_Aggregate;
   /** fetch data from the table: "pokemon_v2_movedamageclass" using primary key columns */
   pokemon_v2_movedamageclass_by_pk?: Maybe<Pokemon_V2_Movedamageclass>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movedamageclass" */
+  pokemon_v2_movedamageclass_stream: Array<Pokemon_V2_Movedamageclass>;
   /** fetch data from the table: "pokemon_v2_movedamageclassdescription" */
   pokemon_v2_movedamageclassdescription: Array<Pokemon_V2_Movedamageclassdescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_movedamageclassdescription" */
   pokemon_v2_movedamageclassdescription_aggregate: Pokemon_V2_Movedamageclassdescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_movedamageclassdescription" using primary key columns */
   pokemon_v2_movedamageclassdescription_by_pk?: Maybe<Pokemon_V2_Movedamageclassdescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movedamageclassdescription" */
+  pokemon_v2_movedamageclassdescription_stream: Array<Pokemon_V2_Movedamageclassdescription>;
   /** fetch data from the table: "pokemon_v2_movedamageclassname" */
   pokemon_v2_movedamageclassname: Array<Pokemon_V2_Movedamageclassname>;
   /** fetch aggregated fields from the table: "pokemon_v2_movedamageclassname" */
   pokemon_v2_movedamageclassname_aggregate: Pokemon_V2_Movedamageclassname_Aggregate;
   /** fetch data from the table: "pokemon_v2_movedamageclassname" using primary key columns */
   pokemon_v2_movedamageclassname_by_pk?: Maybe<Pokemon_V2_Movedamageclassname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movedamageclassname" */
+  pokemon_v2_movedamageclassname_stream: Array<Pokemon_V2_Movedamageclassname>;
   /** fetch data from the table: "pokemon_v2_moveeffect" */
   pokemon_v2_moveeffect: Array<Pokemon_V2_Moveeffect>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveeffect" */
   pokemon_v2_moveeffect_aggregate: Pokemon_V2_Moveeffect_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveeffect" using primary key columns */
   pokemon_v2_moveeffect_by_pk?: Maybe<Pokemon_V2_Moveeffect>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveeffect" */
+  pokemon_v2_moveeffect_stream: Array<Pokemon_V2_Moveeffect>;
   /** fetch data from the table: "pokemon_v2_moveeffectchange" */
   pokemon_v2_moveeffectchange: Array<Pokemon_V2_Moveeffectchange>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveeffectchange" */
   pokemon_v2_moveeffectchange_aggregate: Pokemon_V2_Moveeffectchange_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveeffectchange" using primary key columns */
   pokemon_v2_moveeffectchange_by_pk?: Maybe<Pokemon_V2_Moveeffectchange>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveeffectchange" */
+  pokemon_v2_moveeffectchange_stream: Array<Pokemon_V2_Moveeffectchange>;
   /** fetch data from the table: "pokemon_v2_moveeffectchangeeffecttext" */
   pokemon_v2_moveeffectchangeeffecttext: Array<Pokemon_V2_Moveeffectchangeeffecttext>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveeffectchangeeffecttext" */
   pokemon_v2_moveeffectchangeeffecttext_aggregate: Pokemon_V2_Moveeffectchangeeffecttext_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveeffectchangeeffecttext" using primary key columns */
   pokemon_v2_moveeffectchangeeffecttext_by_pk?: Maybe<Pokemon_V2_Moveeffectchangeeffecttext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveeffectchangeeffecttext" */
+  pokemon_v2_moveeffectchangeeffecttext_stream: Array<Pokemon_V2_Moveeffectchangeeffecttext>;
   /** fetch data from the table: "pokemon_v2_moveeffecteffecttext" */
   pokemon_v2_moveeffecteffecttext: Array<Pokemon_V2_Moveeffecteffecttext>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveeffecteffecttext" */
   pokemon_v2_moveeffecteffecttext_aggregate: Pokemon_V2_Moveeffecteffecttext_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveeffecteffecttext" using primary key columns */
   pokemon_v2_moveeffecteffecttext_by_pk?: Maybe<Pokemon_V2_Moveeffecteffecttext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveeffecteffecttext" */
+  pokemon_v2_moveeffecteffecttext_stream: Array<Pokemon_V2_Moveeffecteffecttext>;
   /** fetch data from the table: "pokemon_v2_moveflavortext" */
   pokemon_v2_moveflavortext: Array<Pokemon_V2_Moveflavortext>;
   /** fetch aggregated fields from the table: "pokemon_v2_moveflavortext" */
   pokemon_v2_moveflavortext_aggregate: Pokemon_V2_Moveflavortext_Aggregate;
   /** fetch data from the table: "pokemon_v2_moveflavortext" using primary key columns */
   pokemon_v2_moveflavortext_by_pk?: Maybe<Pokemon_V2_Moveflavortext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_moveflavortext" */
+  pokemon_v2_moveflavortext_stream: Array<Pokemon_V2_Moveflavortext>;
   /** fetch data from the table: "pokemon_v2_movelearnmethod" */
   pokemon_v2_movelearnmethod: Array<Pokemon_V2_Movelearnmethod>;
   /** fetch aggregated fields from the table: "pokemon_v2_movelearnmethod" */
   pokemon_v2_movelearnmethod_aggregate: Pokemon_V2_Movelearnmethod_Aggregate;
   /** fetch data from the table: "pokemon_v2_movelearnmethod" using primary key columns */
   pokemon_v2_movelearnmethod_by_pk?: Maybe<Pokemon_V2_Movelearnmethod>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movelearnmethod" */
+  pokemon_v2_movelearnmethod_stream: Array<Pokemon_V2_Movelearnmethod>;
   /** fetch data from the table: "pokemon_v2_movelearnmethoddescription" */
   pokemon_v2_movelearnmethoddescription: Array<Pokemon_V2_Movelearnmethoddescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_movelearnmethoddescription" */
   pokemon_v2_movelearnmethoddescription_aggregate: Pokemon_V2_Movelearnmethoddescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_movelearnmethoddescription" using primary key columns */
   pokemon_v2_movelearnmethoddescription_by_pk?: Maybe<Pokemon_V2_Movelearnmethoddescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movelearnmethoddescription" */
+  pokemon_v2_movelearnmethoddescription_stream: Array<Pokemon_V2_Movelearnmethoddescription>;
   /** fetch data from the table: "pokemon_v2_movelearnmethodname" */
   pokemon_v2_movelearnmethodname: Array<Pokemon_V2_Movelearnmethodname>;
   /** fetch aggregated fields from the table: "pokemon_v2_movelearnmethodname" */
   pokemon_v2_movelearnmethodname_aggregate: Pokemon_V2_Movelearnmethodname_Aggregate;
   /** fetch data from the table: "pokemon_v2_movelearnmethodname" using primary key columns */
   pokemon_v2_movelearnmethodname_by_pk?: Maybe<Pokemon_V2_Movelearnmethodname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movelearnmethodname" */
+  pokemon_v2_movelearnmethodname_stream: Array<Pokemon_V2_Movelearnmethodname>;
   /** An array relationship */
   pokemon_v2_movemeta: Array<Pokemon_V2_Movemeta>;
   /** An aggregate relationship */
   pokemon_v2_movemeta_aggregate: Pokemon_V2_Movemeta_Aggregate;
   /** fetch data from the table: "pokemon_v2_movemeta" using primary key columns */
   pokemon_v2_movemeta_by_pk?: Maybe<Pokemon_V2_Movemeta>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movemeta" */
+  pokemon_v2_movemeta_stream: Array<Pokemon_V2_Movemeta>;
   /** fetch data from the table: "pokemon_v2_movemetaailment" */
   pokemon_v2_movemetaailment: Array<Pokemon_V2_Movemetaailment>;
   /** fetch aggregated fields from the table: "pokemon_v2_movemetaailment" */
   pokemon_v2_movemetaailment_aggregate: Pokemon_V2_Movemetaailment_Aggregate;
   /** fetch data from the table: "pokemon_v2_movemetaailment" using primary key columns */
   pokemon_v2_movemetaailment_by_pk?: Maybe<Pokemon_V2_Movemetaailment>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movemetaailment" */
+  pokemon_v2_movemetaailment_stream: Array<Pokemon_V2_Movemetaailment>;
   /** fetch data from the table: "pokemon_v2_movemetaailmentname" */
   pokemon_v2_movemetaailmentname: Array<Pokemon_V2_Movemetaailmentname>;
   /** fetch aggregated fields from the table: "pokemon_v2_movemetaailmentname" */
   pokemon_v2_movemetaailmentname_aggregate: Pokemon_V2_Movemetaailmentname_Aggregate;
   /** fetch data from the table: "pokemon_v2_movemetaailmentname" using primary key columns */
   pokemon_v2_movemetaailmentname_by_pk?: Maybe<Pokemon_V2_Movemetaailmentname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movemetaailmentname" */
+  pokemon_v2_movemetaailmentname_stream: Array<Pokemon_V2_Movemetaailmentname>;
   /** fetch data from the table: "pokemon_v2_movemetacategory" */
   pokemon_v2_movemetacategory: Array<Pokemon_V2_Movemetacategory>;
   /** fetch aggregated fields from the table: "pokemon_v2_movemetacategory" */
   pokemon_v2_movemetacategory_aggregate: Pokemon_V2_Movemetacategory_Aggregate;
   /** fetch data from the table: "pokemon_v2_movemetacategory" using primary key columns */
   pokemon_v2_movemetacategory_by_pk?: Maybe<Pokemon_V2_Movemetacategory>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movemetacategory" */
+  pokemon_v2_movemetacategory_stream: Array<Pokemon_V2_Movemetacategory>;
   /** fetch data from the table: "pokemon_v2_movemetacategorydescription" */
   pokemon_v2_movemetacategorydescription: Array<Pokemon_V2_Movemetacategorydescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_movemetacategorydescription" */
   pokemon_v2_movemetacategorydescription_aggregate: Pokemon_V2_Movemetacategorydescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_movemetacategorydescription" using primary key columns */
   pokemon_v2_movemetacategorydescription_by_pk?: Maybe<Pokemon_V2_Movemetacategorydescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movemetacategorydescription" */
+  pokemon_v2_movemetacategorydescription_stream: Array<Pokemon_V2_Movemetacategorydescription>;
   /** fetch data from the table: "pokemon_v2_movemetastatchange" */
   pokemon_v2_movemetastatchange: Array<Pokemon_V2_Movemetastatchange>;
   /** fetch aggregated fields from the table: "pokemon_v2_movemetastatchange" */
   pokemon_v2_movemetastatchange_aggregate: Pokemon_V2_Movemetastatchange_Aggregate;
   /** fetch data from the table: "pokemon_v2_movemetastatchange" using primary key columns */
   pokemon_v2_movemetastatchange_by_pk?: Maybe<Pokemon_V2_Movemetastatchange>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movemetastatchange" */
+  pokemon_v2_movemetastatchange_stream: Array<Pokemon_V2_Movemetastatchange>;
   /** fetch data from the table: "pokemon_v2_movename" */
   pokemon_v2_movename: Array<Pokemon_V2_Movename>;
   /** fetch aggregated fields from the table: "pokemon_v2_movename" */
   pokemon_v2_movename_aggregate: Pokemon_V2_Movename_Aggregate;
   /** fetch data from the table: "pokemon_v2_movename" using primary key columns */
   pokemon_v2_movename_by_pk?: Maybe<Pokemon_V2_Movename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movename" */
+  pokemon_v2_movename_stream: Array<Pokemon_V2_Movename>;
   /** fetch data from the table: "pokemon_v2_movetarget" */
   pokemon_v2_movetarget: Array<Pokemon_V2_Movetarget>;
   /** fetch aggregated fields from the table: "pokemon_v2_movetarget" */
   pokemon_v2_movetarget_aggregate: Pokemon_V2_Movetarget_Aggregate;
   /** fetch data from the table: "pokemon_v2_movetarget" using primary key columns */
   pokemon_v2_movetarget_by_pk?: Maybe<Pokemon_V2_Movetarget>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movetarget" */
+  pokemon_v2_movetarget_stream: Array<Pokemon_V2_Movetarget>;
   /** fetch data from the table: "pokemon_v2_movetargetdescription" */
   pokemon_v2_movetargetdescription: Array<Pokemon_V2_Movetargetdescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_movetargetdescription" */
   pokemon_v2_movetargetdescription_aggregate: Pokemon_V2_Movetargetdescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_movetargetdescription" using primary key columns */
   pokemon_v2_movetargetdescription_by_pk?: Maybe<Pokemon_V2_Movetargetdescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movetargetdescription" */
+  pokemon_v2_movetargetdescription_stream: Array<Pokemon_V2_Movetargetdescription>;
   /** fetch data from the table: "pokemon_v2_movetargetname" */
   pokemon_v2_movetargetname: Array<Pokemon_V2_Movetargetname>;
   /** fetch aggregated fields from the table: "pokemon_v2_movetargetname" */
   pokemon_v2_movetargetname_aggregate: Pokemon_V2_Movetargetname_Aggregate;
   /** fetch data from the table: "pokemon_v2_movetargetname" using primary key columns */
   pokemon_v2_movetargetname_by_pk?: Maybe<Pokemon_V2_Movetargetname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_movetargetname" */
+  pokemon_v2_movetargetname_stream: Array<Pokemon_V2_Movetargetname>;
   /** fetch data from the table: "pokemon_v2_nature" */
   pokemon_v2_nature: Array<Pokemon_V2_Nature>;
   /** fetch aggregated fields from the table: "pokemon_v2_nature" */
   pokemon_v2_nature_aggregate: Pokemon_V2_Nature_Aggregate;
   /** fetch data from the table: "pokemon_v2_nature" using primary key columns */
   pokemon_v2_nature_by_pk?: Maybe<Pokemon_V2_Nature>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_nature" */
+  pokemon_v2_nature_stream: Array<Pokemon_V2_Nature>;
   /** fetch data from the table: "pokemon_v2_naturebattlestylepreference" */
   pokemon_v2_naturebattlestylepreference: Array<Pokemon_V2_Naturebattlestylepreference>;
   /** fetch aggregated fields from the table: "pokemon_v2_naturebattlestylepreference" */
   pokemon_v2_naturebattlestylepreference_aggregate: Pokemon_V2_Naturebattlestylepreference_Aggregate;
   /** fetch data from the table: "pokemon_v2_naturebattlestylepreference" using primary key columns */
   pokemon_v2_naturebattlestylepreference_by_pk?: Maybe<Pokemon_V2_Naturebattlestylepreference>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_naturebattlestylepreference" */
+  pokemon_v2_naturebattlestylepreference_stream: Array<Pokemon_V2_Naturebattlestylepreference>;
   /** fetch data from the table: "pokemon_v2_naturename" */
   pokemon_v2_naturename: Array<Pokemon_V2_Naturename>;
   /** fetch aggregated fields from the table: "pokemon_v2_naturename" */
   pokemon_v2_naturename_aggregate: Pokemon_V2_Naturename_Aggregate;
   /** fetch data from the table: "pokemon_v2_naturename" using primary key columns */
   pokemon_v2_naturename_by_pk?: Maybe<Pokemon_V2_Naturename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_naturename" */
+  pokemon_v2_naturename_stream: Array<Pokemon_V2_Naturename>;
   /** fetch data from the table: "pokemon_v2_naturepokeathlonstat" */
   pokemon_v2_naturepokeathlonstat: Array<Pokemon_V2_Naturepokeathlonstat>;
   /** fetch aggregated fields from the table: "pokemon_v2_naturepokeathlonstat" */
   pokemon_v2_naturepokeathlonstat_aggregate: Pokemon_V2_Naturepokeathlonstat_Aggregate;
   /** fetch data from the table: "pokemon_v2_naturepokeathlonstat" using primary key columns */
   pokemon_v2_naturepokeathlonstat_by_pk?: Maybe<Pokemon_V2_Naturepokeathlonstat>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_naturepokeathlonstat" */
+  pokemon_v2_naturepokeathlonstat_stream: Array<Pokemon_V2_Naturepokeathlonstat>;
   /** fetch data from the table: "pokemon_v2_palpark" */
   pokemon_v2_palpark: Array<Pokemon_V2_Palpark>;
   /** fetch aggregated fields from the table: "pokemon_v2_palpark" */
   pokemon_v2_palpark_aggregate: Pokemon_V2_Palpark_Aggregate;
   /** fetch data from the table: "pokemon_v2_palpark" using primary key columns */
   pokemon_v2_palpark_by_pk?: Maybe<Pokemon_V2_Palpark>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_palpark" */
+  pokemon_v2_palpark_stream: Array<Pokemon_V2_Palpark>;
   /** fetch data from the table: "pokemon_v2_palparkarea" */
   pokemon_v2_palparkarea: Array<Pokemon_V2_Palparkarea>;
   /** fetch aggregated fields from the table: "pokemon_v2_palparkarea" */
   pokemon_v2_palparkarea_aggregate: Pokemon_V2_Palparkarea_Aggregate;
   /** fetch data from the table: "pokemon_v2_palparkarea" using primary key columns */
   pokemon_v2_palparkarea_by_pk?: Maybe<Pokemon_V2_Palparkarea>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_palparkarea" */
+  pokemon_v2_palparkarea_stream: Array<Pokemon_V2_Palparkarea>;
   /** fetch data from the table: "pokemon_v2_palparkareaname" */
   pokemon_v2_palparkareaname: Array<Pokemon_V2_Palparkareaname>;
   /** fetch aggregated fields from the table: "pokemon_v2_palparkareaname" */
   pokemon_v2_palparkareaname_aggregate: Pokemon_V2_Palparkareaname_Aggregate;
   /** fetch data from the table: "pokemon_v2_palparkareaname" using primary key columns */
   pokemon_v2_palparkareaname_by_pk?: Maybe<Pokemon_V2_Palparkareaname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_palparkareaname" */
+  pokemon_v2_palparkareaname_stream: Array<Pokemon_V2_Palparkareaname>;
   /** fetch data from the table: "pokemon_v2_pokeathlonstat" */
   pokemon_v2_pokeathlonstat: Array<Pokemon_V2_Pokeathlonstat>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokeathlonstat" */
   pokemon_v2_pokeathlonstat_aggregate: Pokemon_V2_Pokeathlonstat_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokeathlonstat" using primary key columns */
   pokemon_v2_pokeathlonstat_by_pk?: Maybe<Pokemon_V2_Pokeathlonstat>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokeathlonstat" */
+  pokemon_v2_pokeathlonstat_stream: Array<Pokemon_V2_Pokeathlonstat>;
   /** fetch data from the table: "pokemon_v2_pokeathlonstatname" */
   pokemon_v2_pokeathlonstatname: Array<Pokemon_V2_Pokeathlonstatname>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokeathlonstatname" */
   pokemon_v2_pokeathlonstatname_aggregate: Pokemon_V2_Pokeathlonstatname_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokeathlonstatname" using primary key columns */
   pokemon_v2_pokeathlonstatname_by_pk?: Maybe<Pokemon_V2_Pokeathlonstatname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokeathlonstatname" */
+  pokemon_v2_pokeathlonstatname_stream: Array<Pokemon_V2_Pokeathlonstatname>;
   /** fetch data from the table: "pokemon_v2_pokedex" */
   pokemon_v2_pokedex: Array<Pokemon_V2_Pokedex>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokedex" */
   pokemon_v2_pokedex_aggregate: Pokemon_V2_Pokedex_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokedex" using primary key columns */
   pokemon_v2_pokedex_by_pk?: Maybe<Pokemon_V2_Pokedex>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokedex" */
+  pokemon_v2_pokedex_stream: Array<Pokemon_V2_Pokedex>;
   /** fetch data from the table: "pokemon_v2_pokedexdescription" */
   pokemon_v2_pokedexdescription: Array<Pokemon_V2_Pokedexdescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokedexdescription" */
   pokemon_v2_pokedexdescription_aggregate: Pokemon_V2_Pokedexdescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokedexdescription" using primary key columns */
   pokemon_v2_pokedexdescription_by_pk?: Maybe<Pokemon_V2_Pokedexdescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokedexdescription" */
+  pokemon_v2_pokedexdescription_stream: Array<Pokemon_V2_Pokedexdescription>;
   /** fetch data from the table: "pokemon_v2_pokedexname" */
   pokemon_v2_pokedexname: Array<Pokemon_V2_Pokedexname>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokedexname" */
   pokemon_v2_pokedexname_aggregate: Pokemon_V2_Pokedexname_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokedexname" using primary key columns */
   pokemon_v2_pokedexname_by_pk?: Maybe<Pokemon_V2_Pokedexname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokedexname" */
+  pokemon_v2_pokedexname_stream: Array<Pokemon_V2_Pokedexname>;
   /** fetch data from the table: "pokemon_v2_pokedexversiongroup" */
   pokemon_v2_pokedexversiongroup: Array<Pokemon_V2_Pokedexversiongroup>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokedexversiongroup" */
   pokemon_v2_pokedexversiongroup_aggregate: Pokemon_V2_Pokedexversiongroup_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokedexversiongroup" using primary key columns */
   pokemon_v2_pokedexversiongroup_by_pk?: Maybe<Pokemon_V2_Pokedexversiongroup>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokedexversiongroup" */
+  pokemon_v2_pokedexversiongroup_stream: Array<Pokemon_V2_Pokedexversiongroup>;
   /** fetch data from the table: "pokemon_v2_pokemon" */
   pokemon_v2_pokemon: Array<Pokemon_V2_Pokemon>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemon" */
   pokemon_v2_pokemon_aggregate: Pokemon_V2_Pokemon_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemon" using primary key columns */
   pokemon_v2_pokemon_by_pk?: Maybe<Pokemon_V2_Pokemon>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemon" */
+  pokemon_v2_pokemon_stream: Array<Pokemon_V2_Pokemon>;
   /** fetch data from the table: "pokemon_v2_pokemonability" */
   pokemon_v2_pokemonability: Array<Pokemon_V2_Pokemonability>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonability" */
   pokemon_v2_pokemonability_aggregate: Pokemon_V2_Pokemonability_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonability" using primary key columns */
   pokemon_v2_pokemonability_by_pk?: Maybe<Pokemon_V2_Pokemonability>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonability" */
+  pokemon_v2_pokemonability_stream: Array<Pokemon_V2_Pokemonability>;
   /** fetch data from the table: "pokemon_v2_pokemoncolor" */
   pokemon_v2_pokemoncolor: Array<Pokemon_V2_Pokemoncolor>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemoncolor" */
   pokemon_v2_pokemoncolor_aggregate: Pokemon_V2_Pokemoncolor_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemoncolor" using primary key columns */
   pokemon_v2_pokemoncolor_by_pk?: Maybe<Pokemon_V2_Pokemoncolor>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemoncolor" */
+  pokemon_v2_pokemoncolor_stream: Array<Pokemon_V2_Pokemoncolor>;
   /** fetch data from the table: "pokemon_v2_pokemoncolorname" */
   pokemon_v2_pokemoncolorname: Array<Pokemon_V2_Pokemoncolorname>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemoncolorname" */
   pokemon_v2_pokemoncolorname_aggregate: Pokemon_V2_Pokemoncolorname_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemoncolorname" using primary key columns */
   pokemon_v2_pokemoncolorname_by_pk?: Maybe<Pokemon_V2_Pokemoncolorname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemoncolorname" */
+  pokemon_v2_pokemoncolorname_stream: Array<Pokemon_V2_Pokemoncolorname>;
   /** fetch data from the table: "pokemon_v2_pokemondexnumber" */
   pokemon_v2_pokemondexnumber: Array<Pokemon_V2_Pokemondexnumber>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemondexnumber" */
   pokemon_v2_pokemondexnumber_aggregate: Pokemon_V2_Pokemondexnumber_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemondexnumber" using primary key columns */
   pokemon_v2_pokemondexnumber_by_pk?: Maybe<Pokemon_V2_Pokemondexnumber>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemondexnumber" */
+  pokemon_v2_pokemondexnumber_stream: Array<Pokemon_V2_Pokemondexnumber>;
   /** fetch data from the table: "pokemon_v2_pokemonegggroup" */
   pokemon_v2_pokemonegggroup: Array<Pokemon_V2_Pokemonegggroup>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonegggroup" */
   pokemon_v2_pokemonegggroup_aggregate: Pokemon_V2_Pokemonegggroup_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonegggroup" using primary key columns */
   pokemon_v2_pokemonegggroup_by_pk?: Maybe<Pokemon_V2_Pokemonegggroup>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonegggroup" */
+  pokemon_v2_pokemonegggroup_stream: Array<Pokemon_V2_Pokemonegggroup>;
   /** fetch data from the table: "pokemon_v2_pokemonevolution" */
   pokemon_v2_pokemonevolution: Array<Pokemon_V2_Pokemonevolution>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonevolution" */
   pokemon_v2_pokemonevolution_aggregate: Pokemon_V2_Pokemonevolution_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonevolution" using primary key columns */
   pokemon_v2_pokemonevolution_by_pk?: Maybe<Pokemon_V2_Pokemonevolution>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonevolution" */
+  pokemon_v2_pokemonevolution_stream: Array<Pokemon_V2_Pokemonevolution>;
   /** fetch data from the table: "pokemon_v2_pokemonform" */
   pokemon_v2_pokemonform: Array<Pokemon_V2_Pokemonform>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonform" */
   pokemon_v2_pokemonform_aggregate: Pokemon_V2_Pokemonform_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonform" using primary key columns */
   pokemon_v2_pokemonform_by_pk?: Maybe<Pokemon_V2_Pokemonform>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonform" */
+  pokemon_v2_pokemonform_stream: Array<Pokemon_V2_Pokemonform>;
   /** fetch data from the table: "pokemon_v2_pokemonformgeneration" */
   pokemon_v2_pokemonformgeneration: Array<Pokemon_V2_Pokemonformgeneration>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonformgeneration" */
   pokemon_v2_pokemonformgeneration_aggregate: Pokemon_V2_Pokemonformgeneration_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonformgeneration" using primary key columns */
   pokemon_v2_pokemonformgeneration_by_pk?: Maybe<Pokemon_V2_Pokemonformgeneration>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonformgeneration" */
+  pokemon_v2_pokemonformgeneration_stream: Array<Pokemon_V2_Pokemonformgeneration>;
   /** fetch data from the table: "pokemon_v2_pokemonformname" */
   pokemon_v2_pokemonformname: Array<Pokemon_V2_Pokemonformname>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonformname" */
   pokemon_v2_pokemonformname_aggregate: Pokemon_V2_Pokemonformname_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonformname" using primary key columns */
   pokemon_v2_pokemonformname_by_pk?: Maybe<Pokemon_V2_Pokemonformname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonformname" */
+  pokemon_v2_pokemonformname_stream: Array<Pokemon_V2_Pokemonformname>;
   /** An array relationship */
   pokemon_v2_pokemonformsprites: Array<Pokemon_V2_Pokemonformsprites>;
   /** An aggregate relationship */
   pokemon_v2_pokemonformsprites_aggregate: Pokemon_V2_Pokemonformsprites_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonformsprites" using primary key columns */
   pokemon_v2_pokemonformsprites_by_pk?: Maybe<Pokemon_V2_Pokemonformsprites>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonformsprites" */
+  pokemon_v2_pokemonformsprites_stream: Array<Pokemon_V2_Pokemonformsprites>;
   /** fetch data from the table: "pokemon_v2_pokemonformtype" */
   pokemon_v2_pokemonformtype: Array<Pokemon_V2_Pokemonformtype>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonformtype" */
   pokemon_v2_pokemonformtype_aggregate: Pokemon_V2_Pokemonformtype_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonformtype" using primary key columns */
   pokemon_v2_pokemonformtype_by_pk?: Maybe<Pokemon_V2_Pokemonformtype>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonformtype" */
+  pokemon_v2_pokemonformtype_stream: Array<Pokemon_V2_Pokemonformtype>;
   /** fetch data from the table: "pokemon_v2_pokemongameindex" */
   pokemon_v2_pokemongameindex: Array<Pokemon_V2_Pokemongameindex>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemongameindex" */
   pokemon_v2_pokemongameindex_aggregate: Pokemon_V2_Pokemongameindex_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemongameindex" using primary key columns */
   pokemon_v2_pokemongameindex_by_pk?: Maybe<Pokemon_V2_Pokemongameindex>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemongameindex" */
+  pokemon_v2_pokemongameindex_stream: Array<Pokemon_V2_Pokemongameindex>;
   /** fetch data from the table: "pokemon_v2_pokemonhabitat" */
   pokemon_v2_pokemonhabitat: Array<Pokemon_V2_Pokemonhabitat>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonhabitat" */
   pokemon_v2_pokemonhabitat_aggregate: Pokemon_V2_Pokemonhabitat_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonhabitat" using primary key columns */
   pokemon_v2_pokemonhabitat_by_pk?: Maybe<Pokemon_V2_Pokemonhabitat>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonhabitat" */
+  pokemon_v2_pokemonhabitat_stream: Array<Pokemon_V2_Pokemonhabitat>;
   /** fetch data from the table: "pokemon_v2_pokemonhabitatname" */
   pokemon_v2_pokemonhabitatname: Array<Pokemon_V2_Pokemonhabitatname>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonhabitatname" */
   pokemon_v2_pokemonhabitatname_aggregate: Pokemon_V2_Pokemonhabitatname_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonhabitatname" using primary key columns */
   pokemon_v2_pokemonhabitatname_by_pk?: Maybe<Pokemon_V2_Pokemonhabitatname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonhabitatname" */
+  pokemon_v2_pokemonhabitatname_stream: Array<Pokemon_V2_Pokemonhabitatname>;
   /** fetch data from the table: "pokemon_v2_pokemonitem" */
   pokemon_v2_pokemonitem: Array<Pokemon_V2_Pokemonitem>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonitem" */
   pokemon_v2_pokemonitem_aggregate: Pokemon_V2_Pokemonitem_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonitem" using primary key columns */
   pokemon_v2_pokemonitem_by_pk?: Maybe<Pokemon_V2_Pokemonitem>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonitem" */
+  pokemon_v2_pokemonitem_stream: Array<Pokemon_V2_Pokemonitem>;
   /** fetch data from the table: "pokemon_v2_pokemonmove" */
   pokemon_v2_pokemonmove: Array<Pokemon_V2_Pokemonmove>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonmove" */
   pokemon_v2_pokemonmove_aggregate: Pokemon_V2_Pokemonmove_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonmove" using primary key columns */
   pokemon_v2_pokemonmove_by_pk?: Maybe<Pokemon_V2_Pokemonmove>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonmove" */
+  pokemon_v2_pokemonmove_stream: Array<Pokemon_V2_Pokemonmove>;
   /** fetch data from the table: "pokemon_v2_pokemonshape" */
   pokemon_v2_pokemonshape: Array<Pokemon_V2_Pokemonshape>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonshape" */
   pokemon_v2_pokemonshape_aggregate: Pokemon_V2_Pokemonshape_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonshape" using primary key columns */
   pokemon_v2_pokemonshape_by_pk?: Maybe<Pokemon_V2_Pokemonshape>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonshape" */
+  pokemon_v2_pokemonshape_stream: Array<Pokemon_V2_Pokemonshape>;
   /** fetch data from the table: "pokemon_v2_pokemonshapename" */
   pokemon_v2_pokemonshapename: Array<Pokemon_V2_Pokemonshapename>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonshapename" */
   pokemon_v2_pokemonshapename_aggregate: Pokemon_V2_Pokemonshapename_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonshapename" using primary key columns */
   pokemon_v2_pokemonshapename_by_pk?: Maybe<Pokemon_V2_Pokemonshapename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonshapename" */
+  pokemon_v2_pokemonshapename_stream: Array<Pokemon_V2_Pokemonshapename>;
   /** An array relationship */
   pokemon_v2_pokemonspecies: Array<Pokemon_V2_Pokemonspecies>;
   /** An aggregate relationship */
   pokemon_v2_pokemonspecies_aggregate: Pokemon_V2_Pokemonspecies_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonspecies" using primary key columns */
   pokemon_v2_pokemonspecies_by_pk?: Maybe<Pokemon_V2_Pokemonspecies>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonspecies" */
+  pokemon_v2_pokemonspecies_stream: Array<Pokemon_V2_Pokemonspecies>;
   /** fetch data from the table: "pokemon_v2_pokemonspeciesdescription" */
   pokemon_v2_pokemonspeciesdescription: Array<Pokemon_V2_Pokemonspeciesdescription>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonspeciesdescription" */
   pokemon_v2_pokemonspeciesdescription_aggregate: Pokemon_V2_Pokemonspeciesdescription_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonspeciesdescription" using primary key columns */
   pokemon_v2_pokemonspeciesdescription_by_pk?: Maybe<Pokemon_V2_Pokemonspeciesdescription>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonspeciesdescription" */
+  pokemon_v2_pokemonspeciesdescription_stream: Array<Pokemon_V2_Pokemonspeciesdescription>;
   /** fetch data from the table: "pokemon_v2_pokemonspeciesflavortext" */
   pokemon_v2_pokemonspeciesflavortext: Array<Pokemon_V2_Pokemonspeciesflavortext>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonspeciesflavortext" */
   pokemon_v2_pokemonspeciesflavortext_aggregate: Pokemon_V2_Pokemonspeciesflavortext_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonspeciesflavortext" using primary key columns */
   pokemon_v2_pokemonspeciesflavortext_by_pk?: Maybe<Pokemon_V2_Pokemonspeciesflavortext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonspeciesflavortext" */
+  pokemon_v2_pokemonspeciesflavortext_stream: Array<Pokemon_V2_Pokemonspeciesflavortext>;
   /** fetch data from the table: "pokemon_v2_pokemonspeciesname" */
   pokemon_v2_pokemonspeciesname: Array<Pokemon_V2_Pokemonspeciesname>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonspeciesname" */
   pokemon_v2_pokemonspeciesname_aggregate: Pokemon_V2_Pokemonspeciesname_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonspeciesname" using primary key columns */
   pokemon_v2_pokemonspeciesname_by_pk?: Maybe<Pokemon_V2_Pokemonspeciesname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonspeciesname" */
+  pokemon_v2_pokemonspeciesname_stream: Array<Pokemon_V2_Pokemonspeciesname>;
   /** An array relationship */
   pokemon_v2_pokemonsprites: Array<Pokemon_V2_Pokemonsprites>;
   /** An aggregate relationship */
   pokemon_v2_pokemonsprites_aggregate: Pokemon_V2_Pokemonsprites_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonsprites" using primary key columns */
   pokemon_v2_pokemonsprites_by_pk?: Maybe<Pokemon_V2_Pokemonsprites>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonsprites" */
+  pokemon_v2_pokemonsprites_stream: Array<Pokemon_V2_Pokemonsprites>;
   /** fetch data from the table: "pokemon_v2_pokemonstat" */
   pokemon_v2_pokemonstat: Array<Pokemon_V2_Pokemonstat>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemonstat" */
   pokemon_v2_pokemonstat_aggregate: Pokemon_V2_Pokemonstat_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemonstat" using primary key columns */
   pokemon_v2_pokemonstat_by_pk?: Maybe<Pokemon_V2_Pokemonstat>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemonstat" */
+  pokemon_v2_pokemonstat_stream: Array<Pokemon_V2_Pokemonstat>;
   /** fetch data from the table: "pokemon_v2_pokemontype" */
   pokemon_v2_pokemontype: Array<Pokemon_V2_Pokemontype>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemontype" */
   pokemon_v2_pokemontype_aggregate: Pokemon_V2_Pokemontype_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemontype" using primary key columns */
   pokemon_v2_pokemontype_by_pk?: Maybe<Pokemon_V2_Pokemontype>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemontype" */
+  pokemon_v2_pokemontype_stream: Array<Pokemon_V2_Pokemontype>;
   /** fetch data from the table: "pokemon_v2_pokemontypepast" */
   pokemon_v2_pokemontypepast: Array<Pokemon_V2_Pokemontypepast>;
   /** fetch aggregated fields from the table: "pokemon_v2_pokemontypepast" */
   pokemon_v2_pokemontypepast_aggregate: Pokemon_V2_Pokemontypepast_Aggregate;
   /** fetch data from the table: "pokemon_v2_pokemontypepast" using primary key columns */
   pokemon_v2_pokemontypepast_by_pk?: Maybe<Pokemon_V2_Pokemontypepast>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_pokemontypepast" */
+  pokemon_v2_pokemontypepast_stream: Array<Pokemon_V2_Pokemontypepast>;
   /** fetch data from the table: "pokemon_v2_region" */
   pokemon_v2_region: Array<Pokemon_V2_Region>;
   /** fetch aggregated fields from the table: "pokemon_v2_region" */
   pokemon_v2_region_aggregate: Pokemon_V2_Region_Aggregate;
   /** fetch data from the table: "pokemon_v2_region" using primary key columns */
   pokemon_v2_region_by_pk?: Maybe<Pokemon_V2_Region>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_region" */
+  pokemon_v2_region_stream: Array<Pokemon_V2_Region>;
   /** fetch data from the table: "pokemon_v2_regionname" */
   pokemon_v2_regionname: Array<Pokemon_V2_Regionname>;
   /** fetch aggregated fields from the table: "pokemon_v2_regionname" */
   pokemon_v2_regionname_aggregate: Pokemon_V2_Regionname_Aggregate;
   /** fetch data from the table: "pokemon_v2_regionname" using primary key columns */
   pokemon_v2_regionname_by_pk?: Maybe<Pokemon_V2_Regionname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_regionname" */
+  pokemon_v2_regionname_stream: Array<Pokemon_V2_Regionname>;
   /** fetch data from the table: "pokemon_v2_stat" */
   pokemon_v2_stat: Array<Pokemon_V2_Stat>;
   /** fetch aggregated fields from the table: "pokemon_v2_stat" */
   pokemon_v2_stat_aggregate: Pokemon_V2_Stat_Aggregate;
   /** fetch data from the table: "pokemon_v2_stat" using primary key columns */
   pokemon_v2_stat_by_pk?: Maybe<Pokemon_V2_Stat>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_stat" */
+  pokemon_v2_stat_stream: Array<Pokemon_V2_Stat>;
   /** fetch data from the table: "pokemon_v2_statname" */
   pokemon_v2_statname: Array<Pokemon_V2_Statname>;
   /** fetch aggregated fields from the table: "pokemon_v2_statname" */
   pokemon_v2_statname_aggregate: Pokemon_V2_Statname_Aggregate;
   /** fetch data from the table: "pokemon_v2_statname" using primary key columns */
   pokemon_v2_statname_by_pk?: Maybe<Pokemon_V2_Statname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_statname" */
+  pokemon_v2_statname_stream: Array<Pokemon_V2_Statname>;
   /** fetch data from the table: "pokemon_v2_supercontestcombo" */
   pokemon_v2_supercontestcombo: Array<Pokemon_V2_Supercontestcombo>;
   /** fetch aggregated fields from the table: "pokemon_v2_supercontestcombo" */
   pokemon_v2_supercontestcombo_aggregate: Pokemon_V2_Supercontestcombo_Aggregate;
   /** fetch data from the table: "pokemon_v2_supercontestcombo" using primary key columns */
   pokemon_v2_supercontestcombo_by_pk?: Maybe<Pokemon_V2_Supercontestcombo>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_supercontestcombo" */
+  pokemon_v2_supercontestcombo_stream: Array<Pokemon_V2_Supercontestcombo>;
   /** fetch data from the table: "pokemon_v2_supercontesteffect" */
   pokemon_v2_supercontesteffect: Array<Pokemon_V2_Supercontesteffect>;
   /** fetch aggregated fields from the table: "pokemon_v2_supercontesteffect" */
   pokemon_v2_supercontesteffect_aggregate: Pokemon_V2_Supercontesteffect_Aggregate;
   /** fetch data from the table: "pokemon_v2_supercontesteffect" using primary key columns */
   pokemon_v2_supercontesteffect_by_pk?: Maybe<Pokemon_V2_Supercontesteffect>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_supercontesteffect" */
+  pokemon_v2_supercontesteffect_stream: Array<Pokemon_V2_Supercontesteffect>;
   /** fetch data from the table: "pokemon_v2_supercontesteffectflavortext" */
   pokemon_v2_supercontesteffectflavortext: Array<Pokemon_V2_Supercontesteffectflavortext>;
   /** fetch aggregated fields from the table: "pokemon_v2_supercontesteffectflavortext" */
   pokemon_v2_supercontesteffectflavortext_aggregate: Pokemon_V2_Supercontesteffectflavortext_Aggregate;
   /** fetch data from the table: "pokemon_v2_supercontesteffectflavortext" using primary key columns */
   pokemon_v2_supercontesteffectflavortext_by_pk?: Maybe<Pokemon_V2_Supercontesteffectflavortext>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_supercontesteffectflavortext" */
+  pokemon_v2_supercontesteffectflavortext_stream: Array<Pokemon_V2_Supercontesteffectflavortext>;
   /** fetch data from the table: "pokemon_v2_type" */
   pokemon_v2_type: Array<Pokemon_V2_Type>;
   /** fetch aggregated fields from the table: "pokemon_v2_type" */
   pokemon_v2_type_aggregate: Pokemon_V2_Type_Aggregate;
   /** fetch data from the table: "pokemon_v2_type" using primary key columns */
   pokemon_v2_type_by_pk?: Maybe<Pokemon_V2_Type>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_type" */
+  pokemon_v2_type_stream: Array<Pokemon_V2_Type>;
   /** fetch data from the table: "pokemon_v2_typeefficacy" */
   pokemon_v2_typeefficacy: Array<Pokemon_V2_Typeefficacy>;
   /** fetch aggregated fields from the table: "pokemon_v2_typeefficacy" */
   pokemon_v2_typeefficacy_aggregate: Pokemon_V2_Typeefficacy_Aggregate;
   /** fetch data from the table: "pokemon_v2_typeefficacy" using primary key columns */
   pokemon_v2_typeefficacy_by_pk?: Maybe<Pokemon_V2_Typeefficacy>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_typeefficacy" */
+  pokemon_v2_typeefficacy_stream: Array<Pokemon_V2_Typeefficacy>;
   /** fetch data from the table: "pokemon_v2_typegameindex" */
   pokemon_v2_typegameindex: Array<Pokemon_V2_Typegameindex>;
   /** fetch aggregated fields from the table: "pokemon_v2_typegameindex" */
   pokemon_v2_typegameindex_aggregate: Pokemon_V2_Typegameindex_Aggregate;
   /** fetch data from the table: "pokemon_v2_typegameindex" using primary key columns */
   pokemon_v2_typegameindex_by_pk?: Maybe<Pokemon_V2_Typegameindex>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_typegameindex" */
+  pokemon_v2_typegameindex_stream: Array<Pokemon_V2_Typegameindex>;
   /** fetch data from the table: "pokemon_v2_typename" */
   pokemon_v2_typename: Array<Pokemon_V2_Typename>;
   /** fetch aggregated fields from the table: "pokemon_v2_typename" */
   pokemon_v2_typename_aggregate: Pokemon_V2_Typename_Aggregate;
   /** fetch data from the table: "pokemon_v2_typename" using primary key columns */
   pokemon_v2_typename_by_pk?: Maybe<Pokemon_V2_Typename>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_typename" */
+  pokemon_v2_typename_stream: Array<Pokemon_V2_Typename>;
   /** fetch data from the table: "pokemon_v2_version" */
   pokemon_v2_version: Array<Pokemon_V2_Version>;
   /** fetch aggregated fields from the table: "pokemon_v2_version" */
   pokemon_v2_version_aggregate: Pokemon_V2_Version_Aggregate;
   /** fetch data from the table: "pokemon_v2_version" using primary key columns */
   pokemon_v2_version_by_pk?: Maybe<Pokemon_V2_Version>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_version" */
+  pokemon_v2_version_stream: Array<Pokemon_V2_Version>;
   /** fetch data from the table: "pokemon_v2_versiongroup" */
   pokemon_v2_versiongroup: Array<Pokemon_V2_Versiongroup>;
   /** fetch aggregated fields from the table: "pokemon_v2_versiongroup" */
   pokemon_v2_versiongroup_aggregate: Pokemon_V2_Versiongroup_Aggregate;
   /** fetch data from the table: "pokemon_v2_versiongroup" using primary key columns */
   pokemon_v2_versiongroup_by_pk?: Maybe<Pokemon_V2_Versiongroup>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_versiongroup" */
+  pokemon_v2_versiongroup_stream: Array<Pokemon_V2_Versiongroup>;
   /** fetch data from the table: "pokemon_v2_versiongroupmovelearnmethod" */
   pokemon_v2_versiongroupmovelearnmethod: Array<Pokemon_V2_Versiongroupmovelearnmethod>;
   /** fetch aggregated fields from the table: "pokemon_v2_versiongroupmovelearnmethod" */
   pokemon_v2_versiongroupmovelearnmethod_aggregate: Pokemon_V2_Versiongroupmovelearnmethod_Aggregate;
   /** fetch data from the table: "pokemon_v2_versiongroupmovelearnmethod" using primary key columns */
   pokemon_v2_versiongroupmovelearnmethod_by_pk?: Maybe<Pokemon_V2_Versiongroupmovelearnmethod>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_versiongroupmovelearnmethod" */
+  pokemon_v2_versiongroupmovelearnmethod_stream: Array<Pokemon_V2_Versiongroupmovelearnmethod>;
   /** fetch data from the table: "pokemon_v2_versiongroupregion" */
   pokemon_v2_versiongroupregion: Array<Pokemon_V2_Versiongroupregion>;
   /** fetch aggregated fields from the table: "pokemon_v2_versiongroupregion" */
   pokemon_v2_versiongroupregion_aggregate: Pokemon_V2_Versiongroupregion_Aggregate;
   /** fetch data from the table: "pokemon_v2_versiongroupregion" using primary key columns */
   pokemon_v2_versiongroupregion_by_pk?: Maybe<Pokemon_V2_Versiongroupregion>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_versiongroupregion" */
+  pokemon_v2_versiongroupregion_stream: Array<Pokemon_V2_Versiongroupregion>;
   /** fetch data from the table: "pokemon_v2_versionname" */
   pokemon_v2_versionname: Array<Pokemon_V2_Versionname>;
   /** fetch aggregated fields from the table: "pokemon_v2_versionname" */
   pokemon_v2_versionname_aggregate: Pokemon_V2_Versionname_Aggregate;
   /** fetch data from the table: "pokemon_v2_versionname" using primary key columns */
   pokemon_v2_versionname_by_pk?: Maybe<Pokemon_V2_Versionname>;
+  /** fetch data from the table in a streaming manner: "pokemon_v2_versionname" */
+  pokemon_v2_versionname_stream: Array<Pokemon_V2_Versionname>;
 };
 
 
@@ -48288,6 +52919,13 @@ export type Subscription_RootPokemon_V2_Ability_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Ability_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Ability_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Ability_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_AbilitychangeArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Abilitychange_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48308,6 +52946,13 @@ export type Subscription_RootPokemon_V2_Abilitychange_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Abilitychange_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Abilitychange_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Abilitychange_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Abilitychange_Bool_Exp>;
 };
 
 
@@ -48334,6 +52979,13 @@ export type Subscription_RootPokemon_V2_Abilitychangeeffecttext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Abilitychangeeffecttext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Abilitychangeeffecttext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_AbilityeffecttextArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Abilityeffecttext_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48354,6 +53006,13 @@ export type Subscription_RootPokemon_V2_Abilityeffecttext_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Abilityeffecttext_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Abilityeffecttext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Abilityeffecttext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Abilityeffecttext_Bool_Exp>;
 };
 
 
@@ -48380,6 +53039,13 @@ export type Subscription_RootPokemon_V2_Abilityflavortext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Abilityflavortext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Abilityflavortext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Abilityflavortext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_AbilitynameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Abilityname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48400,6 +53066,13 @@ export type Subscription_RootPokemon_V2_Abilityname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Abilityname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Abilityname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Abilityname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Abilityname_Bool_Exp>;
 };
 
 
@@ -48426,6 +53099,13 @@ export type Subscription_RootPokemon_V2_Berry_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Berry_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Berry_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Berry_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_BerryfirmnessArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Berryfirmness_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48446,6 +53126,13 @@ export type Subscription_RootPokemon_V2_Berryfirmness_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Berryfirmness_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Berryfirmness_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Berryfirmness_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Berryfirmness_Bool_Exp>;
 };
 
 
@@ -48472,6 +53159,13 @@ export type Subscription_RootPokemon_V2_Berryfirmnessname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Berryfirmnessname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Berryfirmnessname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Berryfirmnessname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_BerryflavorArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Berryflavor_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48492,6 +53186,13 @@ export type Subscription_RootPokemon_V2_Berryflavor_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Berryflavor_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Berryflavor_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Berryflavor_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Berryflavor_Bool_Exp>;
 };
 
 
@@ -48518,6 +53219,13 @@ export type Subscription_RootPokemon_V2_Berryflavormap_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Berryflavormap_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Berryflavormap_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Berryflavormap_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_BerryflavornameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Berryflavorname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48538,6 +53246,13 @@ export type Subscription_RootPokemon_V2_Berryflavorname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Berryflavorname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Berryflavorname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Berryflavorname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Berryflavorname_Bool_Exp>;
 };
 
 
@@ -48564,6 +53279,13 @@ export type Subscription_RootPokemon_V2_Characteristic_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Characteristic_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Characteristic_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Characteristic_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_CharacteristicdescriptionArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Characteristicdescription_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48584,6 +53306,13 @@ export type Subscription_RootPokemon_V2_Characteristicdescription_AggregateArgs 
 
 export type Subscription_RootPokemon_V2_Characteristicdescription_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Characteristicdescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Characteristicdescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Characteristicdescription_Bool_Exp>;
 };
 
 
@@ -48610,6 +53339,13 @@ export type Subscription_RootPokemon_V2_Contestcombo_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Contestcombo_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Contestcombo_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Contestcombo_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ContesteffectArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Contesteffect_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48630,6 +53366,13 @@ export type Subscription_RootPokemon_V2_Contesteffect_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Contesteffect_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Contesteffect_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Contesteffect_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Contesteffect_Bool_Exp>;
 };
 
 
@@ -48656,6 +53399,13 @@ export type Subscription_RootPokemon_V2_Contesteffecteffecttext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Contesteffecteffecttext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Contesteffecteffecttext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Contesteffecteffecttext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ContesteffectflavortextArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Contesteffectflavortext_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48676,6 +53426,13 @@ export type Subscription_RootPokemon_V2_Contesteffectflavortext_AggregateArgs = 
 
 export type Subscription_RootPokemon_V2_Contesteffectflavortext_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Contesteffectflavortext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Contesteffectflavortext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Contesteffectflavortext_Bool_Exp>;
 };
 
 
@@ -48702,6 +53459,13 @@ export type Subscription_RootPokemon_V2_Contesttype_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Contesttype_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Contesttype_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Contesttype_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ContesttypenameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Contesttypename_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48722,6 +53486,13 @@ export type Subscription_RootPokemon_V2_Contesttypename_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Contesttypename_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Contesttypename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Contesttypename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Contesttypename_Bool_Exp>;
 };
 
 
@@ -48748,6 +53519,13 @@ export type Subscription_RootPokemon_V2_Egggroup_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Egggroup_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Egggroup_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Egggroup_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_EgggroupnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Egggroupname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48768,6 +53546,13 @@ export type Subscription_RootPokemon_V2_Egggroupname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Egggroupname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Egggroupname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Egggroupname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Egggroupname_Bool_Exp>;
 };
 
 
@@ -48794,6 +53579,13 @@ export type Subscription_RootPokemon_V2_Encounter_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Encounter_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encounter_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encounter_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_EncounterconditionArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Encountercondition_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48814,6 +53606,13 @@ export type Subscription_RootPokemon_V2_Encountercondition_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Encountercondition_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Encountercondition_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encountercondition_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encountercondition_Bool_Exp>;
 };
 
 
@@ -48840,6 +53639,13 @@ export type Subscription_RootPokemon_V2_Encounterconditionname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Encounterconditionname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encounterconditionname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encounterconditionname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_EncounterconditionvalueArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Encounterconditionvalue_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48860,6 +53666,13 @@ export type Subscription_RootPokemon_V2_Encounterconditionvalue_AggregateArgs = 
 
 export type Subscription_RootPokemon_V2_Encounterconditionvalue_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Encounterconditionvalue_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encounterconditionvalue_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encounterconditionvalue_Bool_Exp>;
 };
 
 
@@ -48886,6 +53699,13 @@ export type Subscription_RootPokemon_V2_Encounterconditionvaluemap_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Encounterconditionvaluemap_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encounterconditionvaluemap_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_EncounterconditionvaluenameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Encounterconditionvaluename_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48906,6 +53726,13 @@ export type Subscription_RootPokemon_V2_Encounterconditionvaluename_AggregateArg
 
 export type Subscription_RootPokemon_V2_Encounterconditionvaluename_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Encounterconditionvaluename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encounterconditionvaluename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encounterconditionvaluename_Bool_Exp>;
 };
 
 
@@ -48932,6 +53759,13 @@ export type Subscription_RootPokemon_V2_Encountermethod_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Encountermethod_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encountermethod_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encountermethod_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_EncountermethodnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Encountermethodname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48952,6 +53786,13 @@ export type Subscription_RootPokemon_V2_Encountermethodname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Encountermethodname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Encountermethodname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encountermethodname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encountermethodname_Bool_Exp>;
 };
 
 
@@ -48978,6 +53819,13 @@ export type Subscription_RootPokemon_V2_Encounterslot_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Encounterslot_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Encounterslot_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Encounterslot_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_EvolutionchainArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Evolutionchain_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -48998,6 +53846,13 @@ export type Subscription_RootPokemon_V2_Evolutionchain_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Evolutionchain_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Evolutionchain_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Evolutionchain_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Evolutionchain_Bool_Exp>;
 };
 
 
@@ -49024,6 +53879,13 @@ export type Subscription_RootPokemon_V2_Evolutiontrigger_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Evolutiontrigger_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Evolutiontrigger_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Evolutiontrigger_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_EvolutiontriggernameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Evolutiontriggername_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49044,6 +53906,13 @@ export type Subscription_RootPokemon_V2_Evolutiontriggername_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Evolutiontriggername_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Evolutiontriggername_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Evolutiontriggername_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Evolutiontriggername_Bool_Exp>;
 };
 
 
@@ -49070,6 +53939,13 @@ export type Subscription_RootPokemon_V2_Experience_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Experience_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Experience_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Experience_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_GenderArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Gender_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49090,6 +53966,13 @@ export type Subscription_RootPokemon_V2_Gender_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Gender_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Gender_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Gender_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Gender_Bool_Exp>;
 };
 
 
@@ -49116,6 +53999,13 @@ export type Subscription_RootPokemon_V2_Generation_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Generation_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Generation_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Generation_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_GenerationnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Generationname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49136,6 +54026,13 @@ export type Subscription_RootPokemon_V2_Generationname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Generationname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Generationname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Generationname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Generationname_Bool_Exp>;
 };
 
 
@@ -49162,6 +54059,13 @@ export type Subscription_RootPokemon_V2_Growthrate_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Growthrate_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Growthrate_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Growthrate_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_GrowthratedescriptionArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Growthratedescription_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49182,6 +54086,13 @@ export type Subscription_RootPokemon_V2_Growthratedescription_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Growthratedescription_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Growthratedescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Growthratedescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Growthratedescription_Bool_Exp>;
 };
 
 
@@ -49208,6 +54119,13 @@ export type Subscription_RootPokemon_V2_Item_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Item_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Item_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Item_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItemattributeArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itemattribute_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49228,6 +54146,13 @@ export type Subscription_RootPokemon_V2_Itemattribute_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itemattribute_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itemattribute_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemattribute_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemattribute_Bool_Exp>;
 };
 
 
@@ -49254,6 +54179,13 @@ export type Subscription_RootPokemon_V2_Itemattributedescription_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Itemattributedescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemattributedescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemattributedescription_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItemattributemapArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itemattributemap_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49274,6 +54206,13 @@ export type Subscription_RootPokemon_V2_Itemattributemap_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itemattributemap_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itemattributemap_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemattributemap_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemattributemap_Bool_Exp>;
 };
 
 
@@ -49300,6 +54239,13 @@ export type Subscription_RootPokemon_V2_Itemattributename_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Itemattributename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemattributename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemattributename_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItemcategoryArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itemcategory_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49320,6 +54266,13 @@ export type Subscription_RootPokemon_V2_Itemcategory_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itemcategory_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itemcategory_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemcategory_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemcategory_Bool_Exp>;
 };
 
 
@@ -49346,6 +54299,13 @@ export type Subscription_RootPokemon_V2_Itemcategoryname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Itemcategoryname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemcategoryname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemcategoryname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItemeffecttextArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itemeffecttext_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49366,6 +54326,13 @@ export type Subscription_RootPokemon_V2_Itemeffecttext_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itemeffecttext_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itemeffecttext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemeffecttext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemeffecttext_Bool_Exp>;
 };
 
 
@@ -49392,6 +54359,13 @@ export type Subscription_RootPokemon_V2_Itemflavortext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Itemflavortext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemflavortext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemflavortext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItemflingeffectArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itemflingeffect_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49412,6 +54386,13 @@ export type Subscription_RootPokemon_V2_Itemflingeffect_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itemflingeffect_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itemflingeffect_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemflingeffect_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemflingeffect_Bool_Exp>;
 };
 
 
@@ -49438,6 +54419,13 @@ export type Subscription_RootPokemon_V2_Itemflingeffecteffecttext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Itemflingeffecteffecttext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemflingeffecteffecttext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItemgameindexArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itemgameindex_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49458,6 +54446,13 @@ export type Subscription_RootPokemon_V2_Itemgameindex_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itemgameindex_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itemgameindex_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemgameindex_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemgameindex_Bool_Exp>;
 };
 
 
@@ -49484,6 +54479,13 @@ export type Subscription_RootPokemon_V2_Itemname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Itemname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItempocketArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itempocket_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49504,6 +54506,13 @@ export type Subscription_RootPokemon_V2_Itempocket_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itempocket_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itempocket_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itempocket_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itempocket_Bool_Exp>;
 };
 
 
@@ -49530,6 +54539,13 @@ export type Subscription_RootPokemon_V2_Itempocketname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Itempocketname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itempocketname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itempocketname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_ItemspritesArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Itemsprites_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49550,6 +54566,13 @@ export type Subscription_RootPokemon_V2_Itemsprites_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Itemsprites_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Itemsprites_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Itemsprites_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Itemsprites_Bool_Exp>;
 };
 
 
@@ -49576,6 +54599,13 @@ export type Subscription_RootPokemon_V2_Language_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Language_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Language_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Language_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_LanguagenameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Languagename_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49596,6 +54626,13 @@ export type Subscription_RootPokemon_V2_Languagename_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Languagename_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Languagename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Languagename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Languagename_Bool_Exp>;
 };
 
 
@@ -49622,6 +54659,13 @@ export type Subscription_RootPokemon_V2_Location_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Location_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Location_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Location_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_LocationareaArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Locationarea_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49642,6 +54686,13 @@ export type Subscription_RootPokemon_V2_Locationarea_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Locationarea_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Locationarea_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Locationarea_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Locationarea_Bool_Exp>;
 };
 
 
@@ -49668,6 +54719,13 @@ export type Subscription_RootPokemon_V2_Locationareaencounterrate_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Locationareaencounterrate_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Locationareaencounterrate_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Locationareaencounterrate_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_LocationareanameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Locationareaname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49688,6 +54746,13 @@ export type Subscription_RootPokemon_V2_Locationareaname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Locationareaname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Locationareaname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Locationareaname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Locationareaname_Bool_Exp>;
 };
 
 
@@ -49714,6 +54779,13 @@ export type Subscription_RootPokemon_V2_Locationgameindex_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Locationgameindex_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Locationgameindex_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Locationgameindex_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_LocationnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Locationname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49734,6 +54806,13 @@ export type Subscription_RootPokemon_V2_Locationname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Locationname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Locationname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Locationname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Locationname_Bool_Exp>;
 };
 
 
@@ -49760,6 +54839,13 @@ export type Subscription_RootPokemon_V2_Machine_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Machine_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Machine_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Machine_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MoveArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Move_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49780,6 +54866,13 @@ export type Subscription_RootPokemon_V2_Move_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Move_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Move_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Move_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Move_Bool_Exp>;
 };
 
 
@@ -49806,6 +54899,13 @@ export type Subscription_RootPokemon_V2_Moveattribute_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Moveattribute_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveattribute_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveattribute_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MoveattributedescriptionArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Moveattributedescription_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49826,6 +54926,13 @@ export type Subscription_RootPokemon_V2_Moveattributedescription_AggregateArgs =
 
 export type Subscription_RootPokemon_V2_Moveattributedescription_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Moveattributedescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveattributedescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveattributedescription_Bool_Exp>;
 };
 
 
@@ -49852,6 +54959,13 @@ export type Subscription_RootPokemon_V2_Moveattributemap_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Moveattributemap_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveattributemap_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveattributemap_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MoveattributenameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Moveattributename_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49872,6 +54986,13 @@ export type Subscription_RootPokemon_V2_Moveattributename_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Moveattributename_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Moveattributename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveattributename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveattributename_Bool_Exp>;
 };
 
 
@@ -49898,6 +55019,13 @@ export type Subscription_RootPokemon_V2_Movebattlestyle_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movebattlestyle_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movebattlestyle_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movebattlestyle_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovebattlestylenameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movebattlestylename_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49918,6 +55046,13 @@ export type Subscription_RootPokemon_V2_Movebattlestylename_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movebattlestylename_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movebattlestylename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movebattlestylename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movebattlestylename_Bool_Exp>;
 };
 
 
@@ -49944,6 +55079,13 @@ export type Subscription_RootPokemon_V2_Movechange_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movechange_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movechange_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movechange_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovedamageclassArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movedamageclass_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -49964,6 +55106,13 @@ export type Subscription_RootPokemon_V2_Movedamageclass_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movedamageclass_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movedamageclass_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movedamageclass_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movedamageclass_Bool_Exp>;
 };
 
 
@@ -49990,6 +55139,13 @@ export type Subscription_RootPokemon_V2_Movedamageclassdescription_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movedamageclassdescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movedamageclassdescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movedamageclassdescription_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovedamageclassnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movedamageclassname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50010,6 +55166,13 @@ export type Subscription_RootPokemon_V2_Movedamageclassname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movedamageclassname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movedamageclassname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movedamageclassname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movedamageclassname_Bool_Exp>;
 };
 
 
@@ -50036,6 +55199,13 @@ export type Subscription_RootPokemon_V2_Moveeffect_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Moveeffect_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveeffect_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveeffect_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MoveeffectchangeArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Moveeffectchange_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50056,6 +55226,13 @@ export type Subscription_RootPokemon_V2_Moveeffectchange_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Moveeffectchange_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Moveeffectchange_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveeffectchange_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveeffectchange_Bool_Exp>;
 };
 
 
@@ -50082,6 +55259,13 @@ export type Subscription_RootPokemon_V2_Moveeffectchangeeffecttext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Moveeffectchangeeffecttext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveeffectchangeeffecttext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MoveeffecteffecttextArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Moveeffecteffecttext_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50102,6 +55286,13 @@ export type Subscription_RootPokemon_V2_Moveeffecteffecttext_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Moveeffecteffecttext_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Moveeffecteffecttext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveeffecteffecttext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveeffecteffecttext_Bool_Exp>;
 };
 
 
@@ -50128,6 +55319,13 @@ export type Subscription_RootPokemon_V2_Moveflavortext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Moveflavortext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Moveflavortext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Moveflavortext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovelearnmethodArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movelearnmethod_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50148,6 +55346,13 @@ export type Subscription_RootPokemon_V2_Movelearnmethod_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movelearnmethod_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movelearnmethod_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movelearnmethod_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movelearnmethod_Bool_Exp>;
 };
 
 
@@ -50174,6 +55379,13 @@ export type Subscription_RootPokemon_V2_Movelearnmethoddescription_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movelearnmethoddescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movelearnmethoddescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movelearnmethoddescription_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovelearnmethodnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movelearnmethodname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50194,6 +55406,13 @@ export type Subscription_RootPokemon_V2_Movelearnmethodname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movelearnmethodname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movelearnmethodname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movelearnmethodname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movelearnmethodname_Bool_Exp>;
 };
 
 
@@ -50220,6 +55439,13 @@ export type Subscription_RootPokemon_V2_Movemeta_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movemeta_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movemeta_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movemeta_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovemetaailmentArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movemetaailment_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50240,6 +55466,13 @@ export type Subscription_RootPokemon_V2_Movemetaailment_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movemetaailment_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movemetaailment_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movemetaailment_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movemetaailment_Bool_Exp>;
 };
 
 
@@ -50266,6 +55499,13 @@ export type Subscription_RootPokemon_V2_Movemetaailmentname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movemetaailmentname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movemetaailmentname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movemetaailmentname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovemetacategoryArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movemetacategory_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50286,6 +55526,13 @@ export type Subscription_RootPokemon_V2_Movemetacategory_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movemetacategory_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movemetacategory_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movemetacategory_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movemetacategory_Bool_Exp>;
 };
 
 
@@ -50312,6 +55559,13 @@ export type Subscription_RootPokemon_V2_Movemetacategorydescription_By_PkArgs = 
 };
 
 
+export type Subscription_RootPokemon_V2_Movemetacategorydescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movemetacategorydescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movemetacategorydescription_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovemetastatchangeArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movemetastatchange_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50332,6 +55586,13 @@ export type Subscription_RootPokemon_V2_Movemetastatchange_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movemetastatchange_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movemetastatchange_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movemetastatchange_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movemetastatchange_Bool_Exp>;
 };
 
 
@@ -50358,6 +55619,13 @@ export type Subscription_RootPokemon_V2_Movename_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movename_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovetargetArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movetarget_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50378,6 +55646,13 @@ export type Subscription_RootPokemon_V2_Movetarget_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movetarget_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movetarget_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movetarget_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movetarget_Bool_Exp>;
 };
 
 
@@ -50404,6 +55679,13 @@ export type Subscription_RootPokemon_V2_Movetargetdescription_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Movetargetdescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movetargetdescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movetargetdescription_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_MovetargetnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Movetargetname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50424,6 +55706,13 @@ export type Subscription_RootPokemon_V2_Movetargetname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Movetargetname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Movetargetname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Movetargetname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Movetargetname_Bool_Exp>;
 };
 
 
@@ -50450,6 +55739,13 @@ export type Subscription_RootPokemon_V2_Nature_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Nature_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Nature_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Nature_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_NaturebattlestylepreferenceArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Naturebattlestylepreference_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50470,6 +55766,13 @@ export type Subscription_RootPokemon_V2_Naturebattlestylepreference_AggregateArg
 
 export type Subscription_RootPokemon_V2_Naturebattlestylepreference_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Naturebattlestylepreference_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Naturebattlestylepreference_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Naturebattlestylepreference_Bool_Exp>;
 };
 
 
@@ -50496,6 +55799,13 @@ export type Subscription_RootPokemon_V2_Naturename_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Naturename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Naturename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Naturename_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_NaturepokeathlonstatArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Naturepokeathlonstat_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50516,6 +55826,13 @@ export type Subscription_RootPokemon_V2_Naturepokeathlonstat_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Naturepokeathlonstat_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Naturepokeathlonstat_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Naturepokeathlonstat_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Naturepokeathlonstat_Bool_Exp>;
 };
 
 
@@ -50542,6 +55859,13 @@ export type Subscription_RootPokemon_V2_Palpark_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Palpark_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Palpark_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Palpark_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PalparkareaArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Palparkarea_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50562,6 +55886,13 @@ export type Subscription_RootPokemon_V2_Palparkarea_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Palparkarea_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Palparkarea_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Palparkarea_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Palparkarea_Bool_Exp>;
 };
 
 
@@ -50588,6 +55919,13 @@ export type Subscription_RootPokemon_V2_Palparkareaname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Palparkareaname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Palparkareaname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Palparkareaname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokeathlonstatArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokeathlonstat_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50608,6 +55946,13 @@ export type Subscription_RootPokemon_V2_Pokeathlonstat_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokeathlonstat_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokeathlonstat_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokeathlonstat_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokeathlonstat_Bool_Exp>;
 };
 
 
@@ -50634,6 +55979,13 @@ export type Subscription_RootPokemon_V2_Pokeathlonstatname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokeathlonstatname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokeathlonstatname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokeathlonstatname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokedexArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokedex_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50654,6 +56006,13 @@ export type Subscription_RootPokemon_V2_Pokedex_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokedex_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokedex_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokedex_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokedex_Bool_Exp>;
 };
 
 
@@ -50680,6 +56039,13 @@ export type Subscription_RootPokemon_V2_Pokedexdescription_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokedexdescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokedexdescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokedexdescription_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokedexnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokedexname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50700,6 +56066,13 @@ export type Subscription_RootPokemon_V2_Pokedexname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokedexname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokedexname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokedexname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokedexname_Bool_Exp>;
 };
 
 
@@ -50726,6 +56099,13 @@ export type Subscription_RootPokemon_V2_Pokedexversiongroup_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokedexversiongroup_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokedexversiongroup_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokedexversiongroup_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemon_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50746,6 +56126,13 @@ export type Subscription_RootPokemon_V2_Pokemon_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemon_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemon_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemon_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemon_Bool_Exp>;
 };
 
 
@@ -50772,6 +56159,13 @@ export type Subscription_RootPokemon_V2_Pokemonability_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonability_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonability_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonability_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemoncolorArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemoncolor_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50792,6 +56186,13 @@ export type Subscription_RootPokemon_V2_Pokemoncolor_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemoncolor_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemoncolor_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemoncolor_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemoncolor_Bool_Exp>;
 };
 
 
@@ -50818,6 +56219,13 @@ export type Subscription_RootPokemon_V2_Pokemoncolorname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemoncolorname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemoncolorname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemoncolorname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemondexnumberArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemondexnumber_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50838,6 +56246,13 @@ export type Subscription_RootPokemon_V2_Pokemondexnumber_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemondexnumber_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemondexnumber_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemondexnumber_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemondexnumber_Bool_Exp>;
 };
 
 
@@ -50864,6 +56279,13 @@ export type Subscription_RootPokemon_V2_Pokemonegggroup_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonegggroup_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonegggroup_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonegggroup_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonevolutionArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonevolution_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50884,6 +56306,13 @@ export type Subscription_RootPokemon_V2_Pokemonevolution_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonevolution_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonevolution_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonevolution_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonevolution_Bool_Exp>;
 };
 
 
@@ -50910,6 +56339,13 @@ export type Subscription_RootPokemon_V2_Pokemonform_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonform_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonform_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonform_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonformgenerationArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonformgeneration_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50930,6 +56366,13 @@ export type Subscription_RootPokemon_V2_Pokemonformgeneration_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonformgeneration_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonformgeneration_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonformgeneration_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonformgeneration_Bool_Exp>;
 };
 
 
@@ -50956,6 +56399,13 @@ export type Subscription_RootPokemon_V2_Pokemonformname_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonformname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonformname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonformname_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonformspritesArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonformsprites_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -50976,6 +56426,13 @@ export type Subscription_RootPokemon_V2_Pokemonformsprites_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonformsprites_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonformsprites_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonformsprites_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonformsprites_Bool_Exp>;
 };
 
 
@@ -51002,6 +56459,13 @@ export type Subscription_RootPokemon_V2_Pokemonformtype_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonformtype_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonformtype_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonformtype_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemongameindexArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemongameindex_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51022,6 +56486,13 @@ export type Subscription_RootPokemon_V2_Pokemongameindex_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemongameindex_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemongameindex_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemongameindex_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemongameindex_Bool_Exp>;
 };
 
 
@@ -51048,6 +56519,13 @@ export type Subscription_RootPokemon_V2_Pokemonhabitat_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonhabitat_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonhabitat_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonhabitat_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonhabitatnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonhabitatname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51068,6 +56546,13 @@ export type Subscription_RootPokemon_V2_Pokemonhabitatname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonhabitatname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonhabitatname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonhabitatname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonhabitatname_Bool_Exp>;
 };
 
 
@@ -51094,6 +56579,13 @@ export type Subscription_RootPokemon_V2_Pokemonitem_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonitem_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonitem_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonitem_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonmoveArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonmove_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51114,6 +56606,13 @@ export type Subscription_RootPokemon_V2_Pokemonmove_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonmove_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonmove_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonmove_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonmove_Bool_Exp>;
 };
 
 
@@ -51140,6 +56639,13 @@ export type Subscription_RootPokemon_V2_Pokemonshape_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonshape_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonshape_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonshape_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonshapenameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonshapename_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51160,6 +56666,13 @@ export type Subscription_RootPokemon_V2_Pokemonshapename_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonshapename_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonshapename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonshapename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonshapename_Bool_Exp>;
 };
 
 
@@ -51186,6 +56699,13 @@ export type Subscription_RootPokemon_V2_Pokemonspecies_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonspecies_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonspecies_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonspecies_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonspeciesdescriptionArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonspeciesdescription_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51206,6 +56726,13 @@ export type Subscription_RootPokemon_V2_Pokemonspeciesdescription_AggregateArgs 
 
 export type Subscription_RootPokemon_V2_Pokemonspeciesdescription_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonspeciesdescription_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonspeciesdescription_Bool_Exp>;
 };
 
 
@@ -51232,6 +56759,13 @@ export type Subscription_RootPokemon_V2_Pokemonspeciesflavortext_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonspeciesflavortext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonspeciesflavortext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonspeciesnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonspeciesname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51252,6 +56786,13 @@ export type Subscription_RootPokemon_V2_Pokemonspeciesname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonspeciesname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonspeciesname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonspeciesname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonspeciesname_Bool_Exp>;
 };
 
 
@@ -51278,6 +56819,13 @@ export type Subscription_RootPokemon_V2_Pokemonsprites_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemonsprites_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonsprites_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonsprites_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemonstatArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemonstat_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51298,6 +56846,13 @@ export type Subscription_RootPokemon_V2_Pokemonstat_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemonstat_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemonstat_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemonstat_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemonstat_Bool_Exp>;
 };
 
 
@@ -51324,6 +56879,13 @@ export type Subscription_RootPokemon_V2_Pokemontype_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Pokemontype_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemontype_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemontype_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_PokemontypepastArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Pokemontypepast_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51344,6 +56906,13 @@ export type Subscription_RootPokemon_V2_Pokemontypepast_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Pokemontypepast_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Pokemontypepast_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Pokemontypepast_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Pokemontypepast_Bool_Exp>;
 };
 
 
@@ -51370,6 +56939,13 @@ export type Subscription_RootPokemon_V2_Region_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Region_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Region_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Region_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_RegionnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Regionname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51390,6 +56966,13 @@ export type Subscription_RootPokemon_V2_Regionname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Regionname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Regionname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Regionname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Regionname_Bool_Exp>;
 };
 
 
@@ -51416,6 +56999,13 @@ export type Subscription_RootPokemon_V2_Stat_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Stat_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Stat_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Stat_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_StatnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Statname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51436,6 +57026,13 @@ export type Subscription_RootPokemon_V2_Statname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Statname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Statname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Statname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Statname_Bool_Exp>;
 };
 
 
@@ -51462,6 +57059,13 @@ export type Subscription_RootPokemon_V2_Supercontestcombo_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Supercontestcombo_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Supercontestcombo_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Supercontestcombo_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_SupercontesteffectArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Supercontesteffect_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51482,6 +57086,13 @@ export type Subscription_RootPokemon_V2_Supercontesteffect_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Supercontesteffect_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Supercontesteffect_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Supercontesteffect_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Supercontesteffect_Bool_Exp>;
 };
 
 
@@ -51508,6 +57119,13 @@ export type Subscription_RootPokemon_V2_Supercontesteffectflavortext_By_PkArgs =
 };
 
 
+export type Subscription_RootPokemon_V2_Supercontesteffectflavortext_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Supercontesteffectflavortext_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_TypeArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Type_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51528,6 +57146,13 @@ export type Subscription_RootPokemon_V2_Type_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Type_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Type_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Type_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Type_Bool_Exp>;
 };
 
 
@@ -51554,6 +57179,13 @@ export type Subscription_RootPokemon_V2_Typeefficacy_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Typeefficacy_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Typeefficacy_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Typeefficacy_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_TypegameindexArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Typegameindex_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51574,6 +57206,13 @@ export type Subscription_RootPokemon_V2_Typegameindex_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Typegameindex_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Typegameindex_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Typegameindex_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Typegameindex_Bool_Exp>;
 };
 
 
@@ -51600,6 +57239,13 @@ export type Subscription_RootPokemon_V2_Typename_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Typename_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Typename_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Typename_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_VersionArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Version_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51620,6 +57266,13 @@ export type Subscription_RootPokemon_V2_Version_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Version_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Version_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Version_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Version_Bool_Exp>;
 };
 
 
@@ -51646,6 +57299,13 @@ export type Subscription_RootPokemon_V2_Versiongroup_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Versiongroup_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Versiongroup_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Versiongroup_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_VersiongroupmovelearnmethodArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Versiongroupmovelearnmethod_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51666,6 +57326,13 @@ export type Subscription_RootPokemon_V2_Versiongroupmovelearnmethod_AggregateArg
 
 export type Subscription_RootPokemon_V2_Versiongroupmovelearnmethod_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Versiongroupmovelearnmethod_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Versiongroupmovelearnmethod_Bool_Exp>;
 };
 
 
@@ -51692,6 +57359,13 @@ export type Subscription_RootPokemon_V2_Versiongroupregion_By_PkArgs = {
 };
 
 
+export type Subscription_RootPokemon_V2_Versiongroupregion_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Versiongroupregion_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Versiongroupregion_Bool_Exp>;
+};
+
+
 export type Subscription_RootPokemon_V2_VersionnameArgs = {
   distinct_on?: InputMaybe<Array<Pokemon_V2_Versionname_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -51712,6 +57386,13 @@ export type Subscription_RootPokemon_V2_Versionname_AggregateArgs = {
 
 export type Subscription_RootPokemon_V2_Versionname_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPokemon_V2_Versionname_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pokemon_V2_Versionname_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pokemon_V2_Versionname_Bool_Exp>;
 };
 
 export type PokemonDetailsQueryVariables = Exact<{
