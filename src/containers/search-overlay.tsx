@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Constants } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
-import { filterUpdate, searchingUpdate } from '@dxtr/redux/actions';
+import { searchingUpdate } from '@dxtr/redux/actions';
 import { PokemonList, PokemonListItem } from '@dxtr/components';
 
 /**
@@ -24,12 +24,13 @@ import { PokemonList, PokemonListItem } from '@dxtr/components';
 
 export default function SearchOverlay() {
   const { state, dispatch } = React.useContext(AppStateContext);
+  const [filter, setFilter] = React.useState('');
   const navigate = useNavigate();
 
   const data = state.pokemon.filter(
     (pokemon) =>
-      state.filter.length >= Constants.Application.SEARCH_TRIGGER_TRESHOLD &&
-      pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) >= 0
+      filter.length >= Constants.Application.SEARCH_TRIGGER_TRESHOLD &&
+      pokemon.name.toLowerCase().indexOf(filter.toLowerCase()) >= 0
   );
 
   return (
@@ -45,11 +46,11 @@ export default function SearchOverlay() {
           <InputGroup size="lg">
             <InputLeftElement children={<Search2Icon color="brand.300" />} />
             <Input
-              value={state.filter}
+              value={filter}
               variant="flushed"
               type="text"
               placeholder={`Search ${Constants.Application.POKEMON_LABEL}`}
-              onChange={(event) => dispatch(filterUpdate(event.target.value))}
+              onChange={(event) => setFilter(event.target.value)}
               // only add a border when we have search results
               _focusVisible={{
                 borderColor: data.length > 0 ? 'inherit' : 'transparent',
@@ -59,7 +60,7 @@ export default function SearchOverlay() {
             {data.length > 0 && (
               <InputRightElement
                 children={<SmallCloseIcon />}
-                onClick={() => dispatch(filterUpdate(''))}
+                onClick={() => setFilter('')}
                 cursor="pointer"
                 opacity="0.5"
               />
@@ -76,6 +77,7 @@ export default function SearchOverlay() {
                   data={pokemon}
                   onClick={(name) => {
                     dispatch(searchingUpdate(false));
+                    setFilter('');
                     navigate(`/${name}`);
                   }}
                 />

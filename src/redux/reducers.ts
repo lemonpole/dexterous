@@ -13,18 +13,6 @@ function featured(
   }
 }
 
-function filter(
-  state: typeof INITIAL_STATE.filter,
-  action: AppAction<typeof INITIAL_STATE.filter>
-) {
-  switch (action.type) {
-    case ReduxActions.FILTER_UPDATE:
-      return action.payload as typeof state;
-    default:
-      return state;
-  }
-}
-
 function pokemon(
   state: typeof INITIAL_STATE.pokemon,
   action: AppAction<typeof INITIAL_STATE.pokemon>
@@ -79,7 +67,6 @@ export default function reducers(state: AppState, action: AppActions) {
       state.featured,
       action as AppAction<typeof state.featured>
     ),
-    filter: filter(state.filter, action as AppAction<typeof state.filter>),
     pokemonGenerations: pokemonGenerations(
       state.pokemonGenerations,
       action as AppAction<typeof state.pokemonGenerations>
