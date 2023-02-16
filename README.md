@@ -16,7 +16,7 @@ Uses the following APIs and technologies:
 
 ```bash
 npm install
-yarn dev
+npm run dev
 ```
 
 Open [http://localhost:3000/](http://localhost:3000/) to view it in the browser.
