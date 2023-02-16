@@ -2,14 +2,20 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search2Icon, SmallCloseIcon } from '@chakra-ui/icons';
 import {
-  Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay,
-  InputGroup, InputLeftElement, Input, InputRightElement,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  InputRightElement,
 } from '@chakra-ui/react';
 import { Constants } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
 import { filterUpdate, searchingUpdate } from '@dxtr/redux/actions';
 import { PokemonList, PokemonListItem } from '@dxtr/components';
-
 
 /**
  * @component
@@ -17,18 +23,19 @@ import { PokemonList, PokemonListItem } from '@dxtr/components';
  */
 
 export default function SearchOverlay() {
-  const { state, dispatch } = React.useContext( AppStateContext );
+  const { state, dispatch } = React.useContext(AppStateContext);
   const navigate = useNavigate();
 
-  const data = state.pokemon.filter( pokemon => (
-    state.filter.length >= Constants.Application.SEARCH_TRIGGER_TRESHOLD
-    && pokemon.name.toLowerCase().indexOf( state.filter.toLowerCase() ) >= 0
-  ));
+  const data = state.pokemon.filter(
+    (pokemon) =>
+      state.filter.length >= Constants.Application.SEARCH_TRIGGER_TRESHOLD &&
+      pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) >= 0
+  );
 
   return (
     <Modal
       isOpen={state.searching}
-      onClose={() => dispatch( searchingUpdate( false ) )}
+      onClose={() => dispatch(searchingUpdate(false))}
       scrollBehavior="inside"
       size="xl"
     >
@@ -42,15 +49,17 @@ export default function SearchOverlay() {
               variant="flushed"
               type="text"
               placeholder={`Search ${Constants.Application.POKEMON_LABEL}`}
-              onChange={event => dispatch( filterUpdate( event.target.value ))}
+              onChange={(event) => dispatch(filterUpdate(event.target.value))}
               // only add a border when we have search results
-              _focusVisible={{ borderColor: data.length > 0 ? 'inherit' : 'transparent' }}
+              _focusVisible={{
+                borderColor: data.length > 0 ? 'inherit' : 'transparent',
+              }}
               borderColor={data.length > 0 ? 'inherit' : 'transparent'}
             />
             {data.length > 0 && (
               <InputRightElement
                 children={<SmallCloseIcon />}
-                onClick={() => dispatch( filterUpdate( '' ) )}
+                onClick={() => dispatch(filterUpdate(''))}
                 cursor="pointer"
                 opacity="0.5"
               />
@@ -60,14 +69,14 @@ export default function SearchOverlay() {
         {data.length > 0 && (
           <ModalBody>
             <PokemonList>
-              {data.map( pokemon => (
+              {data.map((pokemon) => (
                 <PokemonListItem
                   key={pokemon.id}
                   backgroundColor="foreground"
                   data={pokemon}
-                  onClick={name => {
-                    dispatch( searchingUpdate( false ) );
-                    navigate( `/${name}` );
+                  onClick={(name) => {
+                    dispatch(searchingUpdate(false));
+                    navigate(`/${name}`);
                   }}
                 />
               ))}

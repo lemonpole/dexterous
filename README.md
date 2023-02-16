@@ -11,7 +11,6 @@ Uses the following APIs and technologies:
 - [GraphQL Code Generator](https://www.graphql-code-generator.com/docs/getting-started)
 - [Chakra UI](https://chakra-ui.com/getting-started)
 
-
 ## Getting Started
 
 ```bash
@@ -20,7 +19,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000/](http://localhost:3000/) to view it in the browser.
-
 
 ## Service Worker
 
@@ -34,7 +32,7 @@ REACT_APP_SW_ENABLED=true yarn dev
 
 Additionally, the app _must_ be accessed with a trailing slash, otherwise the service worker will not be properly loaded.
 
-| Status                                            | URL                                               |
-|---------------------------------------------------|---------------------------------------------------|
-| <span style="color:salmon">_INVALID_</span>       | [http://localhost:3000](http://localhost:3000)    |
-| <span style="color:forestgreen">_CORRECT_</span>  | [http://localhost:3000/](http://localhost:3000/)  |
+| Status                                           | URL                                              |
+| ------------------------------------------------ | ------------------------------------------------ |
+| <span style="color:salmon">_INVALID_</span>      | [http://localhost:3000](http://localhost:3000)   |
+| <span style="color:forestgreen">_CORRECT_</span> | [http://localhost:3000/](http://localhost:3000/) |

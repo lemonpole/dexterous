@@ -5,12 +5,16 @@ import { ExternalLink } from '@dxtr/components';
 import { PokemonGrid } from '@dxtr/containers';
 import { CheckCircleIcon, InfoIcon, WarningIcon } from '@chakra-ui/icons';
 import {
-  Box, Heading, Text,
-  List, ListIcon, ListItem,
-  Stack, VStack,
+  Box,
+  Heading,
+  Text,
+  List,
+  ListIcon,
+  ListItem,
+  Stack,
+  VStack,
   SimpleGrid,
 } from '@chakra-ui/react';
-
 
 /**
  * @component
@@ -19,11 +23,7 @@ import {
 
 export default function Home() {
   return (
-    <Box
-      mt={Constants.Application.HEADER_HEIGHT}
-      px="2"
-      py="4"
-    >
+    <Box mt={Constants.Application.HEADER_HEIGHT} px="2" py="4">
       <Outlet />
 
       <VStack align="flex-start">
@@ -31,18 +31,17 @@ export default function Home() {
         <PokemonGrid />
       </VStack>
 
-      <SimpleGrid
-        spacing="5"
-        textAlign="justify"
-        columns={[ 1, null, 2 ]}
-        pt="4"
-      >
+      <SimpleGrid spacing="5" textAlign="justify" columns={[1, null, 2]} pt="4">
         <Stack>
-          <Heading as="h2">
-            About
-          </Heading>
-          <Text>An <em>ad-free</em> and lightweight Pokédex.</Text>
-          <Text>Contains the essentials (types, weaknesses, evolutions) and an intuitive interface to seamlessly navigate through Pokédex entries while playing your favorite Pokémon game.</Text>
+          <Heading as="h2">About</Heading>
+          <Text>
+            An <em>ad-free</em> and lightweight Pokédex.
+          </Text>
+          <Text>
+            Contains the essentials (types, weaknesses, evolutions) and an
+            intuitive interface to seamlessly navigate through Pokédex entries
+            while playing your favorite Pokémon game.
+          </Text>
         </Stack>
         <Stack>
           <Heading as="h2" textAlign="left">

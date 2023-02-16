@@ -1,6 +1,5 @@
 import { ComponentDefaultProps, Tag, useStyleConfig } from '@chakra-ui/react';
 
-
 /**
  * Custom component that must consume the chakra ui style configuration.
  *
@@ -9,15 +8,11 @@ import { ComponentDefaultProps, Tag, useStyleConfig } from '@chakra-ui/react';
  * @name PokemonBadge
  */
 
-export default function PokemonBadge( props: ComponentDefaultProps ) {
+export default function PokemonBadge(props: ComponentDefaultProps) {
   const { variant, children, ...rest } = props;
-  const styles = useStyleConfig( 'PokemonBadge', { variant });
+  const styles = useStyleConfig('PokemonBadge', { variant });
   return (
-    <Tag
-      variant="solid"
-      sx={styles}
-      {...rest}
-    >
+    <Tag variant="solid" sx={styles} {...rest}>
       {children}
     </Tag>
   );

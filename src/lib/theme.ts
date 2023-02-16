@@ -5,8 +5,11 @@
  * @module
  */
 
-import { ComponentMultiStyleConfig, ComponentSingleStyleConfig, ComponentStyleConfig } from '@chakra-ui/react';
-
+import {
+  ComponentMultiStyleConfig,
+  ComponentSingleStyleConfig,
+  ComponentStyleConfig,
+} from '@chakra-ui/react';
 
 // pokemon type colors and variant styles
 const pokemonTypeBase = {
@@ -17,7 +20,6 @@ const pokemonTypeBase = {
   textShadow: '1px 1px black',
   textTransform: 'uppercase',
 };
-
 
 const pokemonTypeVariants = {
   bug: {
@@ -94,7 +96,6 @@ const pokemonTypeVariants = {
   },
 };
 
-
 // damage modifier variants
 const damageModifierVariants = {
   0.25: {
@@ -110,7 +111,6 @@ const damageModifierVariants = {
     color: '#73d216',
   },
 };
-
 
 // custom chakra components
 const NavBar: ComponentSingleStyleConfig = {
@@ -138,15 +138,13 @@ const NavBar: ComponentSingleStyleConfig = {
       justifyContent: 'space-around',
       borderTop: '1px',
       borderTopColor: 'chakra-border-color',
-    }
-  }
+    },
+  },
 };
-
 
 const PokemonBadge: ComponentSingleStyleConfig = {
   variants: pokemonTypeVariants,
 };
-
 
 const PokemonCard: ComponentSingleStyleConfig = {
   baseStyle: {
@@ -158,12 +156,11 @@ const PokemonCard: ComponentSingleStyleConfig = {
     height: '220px',
     border: '1px',
     borderColor: 'chakra-border-color',
-  }
+  },
 };
 
-
 const PokemonList: ComponentMultiStyleConfig = {
-  parts: [ 'list', 'item' ],
+  parts: ['list', 'item'],
   baseStyle: {
     item: {
       display: 'flex',
@@ -177,22 +174,19 @@ const PokemonList: ComponentMultiStyleConfig = {
   },
 };
 
-
 const ProgressiveImage: ComponentSingleStyleConfig = {
   baseStyle: {
-    transition: 'filter 0.3s ease-out'
-  }
+    transition: 'filter 0.3s ease-out',
+  },
 };
-
 
 // chakra component overrides
 const Heading: ComponentStyleConfig = {
   baseStyle: {
     textTransform: 'uppercase',
-    fontVariant: [ 'small-caps' ]
+    fontVariant: ['small-caps'],
   },
 };
-
 
 const Text: ComponentStyleConfig = {
   variants: {
@@ -203,12 +197,11 @@ const Text: ComponentStyleConfig = {
     },
     pokemon: {
       textTransform: 'uppercase',
-      fontVariant: [ 'small-caps' ],
+      fontVariant: ['small-caps'],
       fontWeight: 'hairline',
-    }
-  }
+    },
+  },
 };
-
 
 // chakra theme object
 const Theme = {
@@ -233,14 +226,14 @@ const Theme = {
       700: '#372958',
       800: '#211736',
       900: '#0d0617',
-    }
+    },
   },
   styles: {
     global: {
       a: {
         color: 'brand.300',
-      }
-    }
+      },
+    },
   },
   components: {
     Heading,
@@ -250,8 +243,7 @@ const Theme = {
     PokemonList,
     ProgressiveImage,
     Text,
-  }
+  },
 };
-
 
 export default Theme;

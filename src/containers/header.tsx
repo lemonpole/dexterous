@@ -1,11 +1,15 @@
 import React from 'react';
 import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
-import { useColorMode, IconButton, Stack, StackDivider } from '@chakra-ui/react';
+import {
+  useColorMode,
+  IconButton,
+  Stack,
+  StackDivider,
+} from '@chakra-ui/react';
 import { AppStateContext } from '@dxtr/redux';
 import { searchingUpdate } from '@dxtr/redux/actions';
 import { Constants } from '@dxtr/lib';
 import { NavBar, TextLogo } from '@dxtr/components';
-
 
 /**
  * @component
@@ -26,14 +30,13 @@ function ThemeToggleButton() {
   );
 }
 
-
 /**
  * @component
  * @name Header
  */
 
 export default function Header() {
-  const { dispatch } = React.useContext( AppStateContext );
+  const { dispatch } = React.useContext(AppStateContext);
 
   return (
     <NavBar as="header" variant="header">
@@ -41,16 +44,12 @@ export default function Header() {
       <TextLogo />
 
       {/* SEARCH AND THEME BUTTONS */}
-      <Stack
-        as="article"
-        direction="row"
-        divider={<StackDivider />}
-      >
+      <Stack as="article" direction="row" divider={<StackDivider />}>
         <IconButton
           aria-label={`Search ${Constants.Application.POKEMON_LABEL}`}
           variant="ghost"
           icon={<SearchIcon />}
-          onClick={() => dispatch( searchingUpdate( true ) )}
+          onClick={() => dispatch(searchingUpdate(true))}
         />
         <ThemeToggleButton />
       </Stack>

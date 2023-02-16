@@ -5,7 +5,6 @@ import { Constants } from '@dxtr/lib';
 import { DeviceDetector } from '@dxtr/components';
 import { Pokedex } from '@dxtr/containers';
 
-
 /**
  * @component
  * @name Details
@@ -22,7 +21,7 @@ export default function Details() {
         <Drawer
           isOpen
           size="lg"
-          onClose={() => navigate( '/' )}
+          onClose={() => navigate('/')}
           // @note: resolves a chakra scroll bar error
           blockScrollOnMount={false}
         >

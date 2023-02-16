@@ -1,7 +1,6 @@
 import { useStyleConfig, ComponentDefaultProps, Box } from '@chakra-ui/react';
 import { Constants } from '@dxtr/lib';
 
-
 /**
  * Custom component that must consume the chakra ui style configuration.
  *
@@ -10,16 +9,17 @@ import { Constants } from '@dxtr/lib';
  * @name NavBar
  */
 
-export default function NavBar( props: ComponentDefaultProps ) {
+export default function NavBar(props: ComponentDefaultProps) {
   const { variant, children, ...rest } = props;
-  const styles = useStyleConfig( 'NavBar', { variant });
+  const styles = useStyleConfig('NavBar', { variant });
 
   return (
     <Box
       sx={styles}
-      h={variant === 'footer'
-        ? Constants.Application.FOOTER_HEIGHT
-        : Constants.Application.HEADER_HEIGHT
+      h={
+        variant === 'footer'
+          ? Constants.Application.FOOTER_HEIGHT
+          : Constants.Application.HEADER_HEIGHT
       }
       {...rest}
     >

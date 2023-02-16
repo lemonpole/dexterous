@@ -3,16 +3,24 @@ import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
 import PackageInfo from '@dxtr/package';
 import { HashRouter } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client';
 import { LocalStorageWrapper, persistCache } from 'apollo3-cache-persist';
 import { AppStateProvider } from '@dxtr/redux';
 import { Theme, ServiceWorkerRegistration } from '@dxtr/lib';
 import {
-  extendTheme, theme,
-  ChakraProvider, ColorModeScript,
-  Spinner, Text, VStack,
+  extendTheme,
+  theme,
+  ChakraProvider,
+  ColorModeScript,
+  Spinner,
+  Text,
+  VStack,
 } from '@chakra-ui/react';
-
 
 /**
  * The index component waits for the apollo client cache
@@ -24,29 +32,30 @@ import {
 
 function Index() {
   type IApolloClient = ApolloClient<NormalizedCacheObject>;
-  const [ client, setClient ] = React.useState<IApolloClient>();
+  const [client, setClient] = React.useState<IApolloClient>();
 
   // restore the cache (if any)
-  React.useEffect( () => {
+  React.useEffect(() => {
     const cache = new InMemoryCache();
-    const storage = new LocalStorageWrapper( window.localStorage );
+    const storage = new LocalStorageWrapper(window.localStorage);
 
     persistCache({ cache, storage })
-      .then( () => setClient(
-        new ApolloClient({
-          uri: PackageInfo.codegen.schema,
-          cache,
-        })
-      ))
-      .catch( console.error )
-    ;
+      .then(() =>
+        setClient(
+          new ApolloClient({
+            uri: PackageInfo.codegen.schema,
+            cache,
+          })
+        )
+      )
+      .catch(console.error);
   }, []);
 
   // wait for cache to be restored
-  if( !client ) {
+  if (!client) {
     return (
       <React.StrictMode>
-        <ChakraProvider theme={extendTheme( Theme )}>
+        <ChakraProvider theme={extendTheme(Theme)}>
           <VStack w="100vw" h="100vh" align="center" justify="center">
             <Spinner size="xl" color="brand.300" />
             <Text>Loading cache...</Text>
@@ -60,7 +69,7 @@ function Index() {
   return (
     <React.StrictMode>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <ChakraProvider theme={extendTheme( Theme )}>
+      <ChakraProvider theme={extendTheme(Theme)}>
         <ApolloProvider client={client as IApolloClient}>
           <AppStateProvider>
             <HashRouter>
@@ -73,7 +82,6 @@ function Index() {
   );
 }
 
-
 /**
  * React bootstrapping logic.
  *
@@ -83,17 +91,14 @@ function Index() {
 
 (() => {
   // grab the root container
-  const container = document.getElementById( 'root' );
+  const container = document.getElementById('root');
 
-  if( !container ) {
-    throw new Error( 'Failed to find the root element.' );
+  if (!container) {
+    throw new Error('Failed to find the root element.');
   }
 
   // render the react application
-  ReactDOM
-    .createRoot( container )
-    .render( <Index /> )
-  ;
+  ReactDOM.createRoot(container).render(<Index />);
 
   // register service worker
   ServiceWorkerRegistration.register();

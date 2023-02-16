@@ -1,6 +1,5 @@
 import { useStyleConfig, ComponentDefaultProps, Stack } from '@chakra-ui/react';
 
-
 /**
  * Custom component that must consume the chakra ui style configuration.
  *
@@ -9,15 +8,12 @@ import { useStyleConfig, ComponentDefaultProps, Stack } from '@chakra-ui/react';
  * @name PokemonCard
  */
 
-export default function PokemonCard( props: ComponentDefaultProps ) {
+export default function PokemonCard(props: ComponentDefaultProps) {
   const { children, ...rest } = props;
-  const styles = useStyleConfig( 'PokemonCard' );
+  const styles = useStyleConfig('PokemonCard');
 
   return (
-    <Stack
-      sx={styles}
-      {...rest}
-    >
+    <Stack sx={styles} {...rest}>
       {children}
     </Stack>
   );

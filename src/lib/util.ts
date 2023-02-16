@@ -1,6 +1,5 @@
 import * as GraphQL from './graphql';
 
-
 /**
  * A simple string templating formatter.
  *
@@ -8,23 +7,21 @@ import * as GraphQL from './graphql';
  * @param values    An array of values to inject into the template string.
  */
 
-export function formatString( template: string, values: string[] ) {
+export function formatString(template: string, values: string[]) {
   let out = '';
 
-  if( values.length ) {
-    const args: any = typeof values[ 0 ] === 'string' || typeof values[ 0 ] === 'number'
-      ? Array.prototype.slice.call(values)
-      : values[ 0 ]
-    ;
-
-    for( const key in args ) {
-      out = template.replace(new RegExp("\\{" + key + "\\}", "gi"), args[key]);
+  if (values.length) {
+    const args: any =
+      typeof values[0] === 'string' || typeof values[0] === 'number'
+        ? Array.prototype.slice.call(values)
+        : values[0];
+    for (const key in args) {
+      out = template.replace(new RegExp('\\{' + key + '\\}', 'gi'), args[key]);
     }
   }
 
   return out;
 }
-
 
 /**
  * Left pad the provided number if it is lower
@@ -34,14 +31,13 @@ export function formatString( template: string, values: string[] ) {
  * @param min The minimum amount of digits to pad for.
  */
 
-export function leftPadInt( num: number, min = 2 ) {
+export function leftPadInt(num: number, min = 2) {
   let numStr = num.toString();
-  while( numStr.length < min ) {
+  while (numStr.length < min) {
     numStr = '0' + numStr;
   }
   return numStr;
 }
-
 
 /**
  * Calculates final damage modifier value by
@@ -54,7 +50,9 @@ export function leftPadInt( num: number, min = 2 ) {
  * @param modifierList The list of damage modifiers to parse.
  */
 
-export function calculateDamageModifier( modifierList: GraphQL.PokemonTypesQuery['pokemon_v2_type'][number]['pokemon_v2_typeefficacies'] ) {
+export function calculateDamageModifier(
+  modifierList: GraphQL.PokemonTypesQuery['pokemon_v2_type'][number]['pokemon_v2_typeefficacies']
+) {
   // base damage is 100 so we'll divide by this amount
   // to get more meaningful damage numbers like:
   //
@@ -64,11 +62,9 @@ export function calculateDamageModifier( modifierList: GraphQL.PokemonTypesQuery
 
   // calculate the total and return
   return modifierList
-    .map( modifier => modifier.damage_factor )
-    .reduce( ( total, modifier ) => ( modifier * total ) / modifierOffset, 1.0 )
-  ;
+    .map((modifier) => modifier.damage_factor)
+    .reduce((total, modifier) => (modifier * total) / modifierOffset, 1.0);
 }
-
 
 /**
  * Randomly generate a number between the
@@ -78,10 +74,9 @@ export function calculateDamageModifier( modifierList: GraphQL.PokemonTypesQuery
  * @param max   The upper bounds for random numbers.
  */
 
-export function random( min: number, max: number ) {
-  return Math.floor( Math.random() * ( max - min + 1 ) + min );
+export function random(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
 
 /**
  * Populate array of specified length
@@ -92,18 +87,18 @@ export function random( min: number, max: number ) {
  * @param max   The upper bounds for random numbers.
  */
 
-export function randomArray( limit: number, min: number, max: number ) {
+export function randomArray(limit: number, min: number, max: number) {
   // bail early to avoid a stack overflow
-  if( max < min ) {
+  if (max < min) {
     return [];
   }
 
   // fill up the array with unique numbers
   const nums = new Set<number>();
 
-  while( nums.size !== limit ) {
-    nums.add( random( min, max ) );
+  while (nums.size !== limit) {
+    nums.add(random(min, max));
   }
 
-  return Array.from( nums.values() );
+  return Array.from(nums.values());
 }

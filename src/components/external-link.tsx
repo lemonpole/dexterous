@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
-
-export default function ExternalLink( props: { children: React.ReactNode, href: string }) {
+export default function ExternalLink(props: {
+  children: React.ReactNode;
+  href: string;
+}) {
   return (
     <Link
       isExternal
