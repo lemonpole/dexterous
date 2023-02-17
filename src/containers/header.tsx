@@ -1,11 +1,13 @@
 import React from 'react';
-import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 import {
   useColorMode,
   IconButton,
   Stack,
   StackDivider,
+  Icon,
 } from '@chakra-ui/react';
+import { FaHome, FaSearch, FaMoon, FaSun } from 'react-icons/fa';
 import { AppStateContext } from '@dxtr/redux';
 import { searchingUpdate } from '@dxtr/redux/actions';
 import { Constants } from '@dxtr/lib';
@@ -25,7 +27,7 @@ function ThemeToggleButton() {
       aria-label="Toggle Dark/Light Theme"
       variant="ghost"
       onClick={toggleColorMode}
-      icon={isLightMode ? <MoonIcon /> : <SunIcon />}
+      icon={isLightMode ? <Icon as={FaSun} /> : <Icon as={FaMoon} />}
     />
   );
 }
@@ -37,6 +39,7 @@ function ThemeToggleButton() {
 
 export default function Header() {
   const { dispatch } = React.useContext(AppStateContext);
+  const navigate = useNavigate();
 
   return (
     <NavBar as="header" variant="header">
@@ -48,10 +51,16 @@ export default function Header() {
         <IconButton
           aria-label={`Search ${Constants.Application.POKEMON_LABEL}`}
           variant="ghost"
-          icon={<SearchIcon />}
+          icon={<Icon as={FaSearch} />}
           onClick={() => dispatch(searchingUpdate(true))}
         />
         <ThemeToggleButton />
+        <IconButton
+          aria-label="Home"
+          variant="ghost"
+          icon={<Icon as={FaHome} />}
+          onClick={() => navigate('/')}
+        />
       </Stack>
     </NavBar>
   );
