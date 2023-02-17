@@ -6,6 +6,7 @@ import {
   Stack,
   StackDivider,
   Icon,
+  HStack,
 } from '@chakra-ui/react';
 import { FaHome, FaSearch, FaMoon, FaSun } from 'react-icons/fa';
 import { AppStateContext } from '@dxtr/redux';
@@ -48,13 +49,15 @@ export default function Header() {
 
       {/* SEARCH AND THEME BUTTONS */}
       <Stack as="article" direction="row" divider={<StackDivider />}>
-        <IconButton
-          aria-label={`Search ${Constants.Application.POKEMON_LABEL}`}
-          variant="ghost"
-          icon={<Icon as={FaSearch} />}
-          onClick={() => dispatch(searchingUpdate(true))}
-        />
-        <ThemeToggleButton />
+        <HStack as="aside">
+          <IconButton
+            aria-label={`Search ${Constants.Application.POKEMON_LABEL}`}
+            variant="ghost"
+            icon={<Icon as={FaSearch} />}
+            onClick={() => dispatch(searchingUpdate(true))}
+          />
+          <ThemeToggleButton />
+        </HStack>
         <IconButton
           aria-label="Home"
           variant="ghost"
