@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/dexterous/static/js/main.f6dfec91.js",
+    "main.js": "/dexterous/static/js/main.4ecd88b9.js",
     "workbox-27f8bbbd.js.map": "/dexterous/workbox-27f8bbbd.js.map",
     "workbox-27f8bbbd.js": "/dexterous/workbox-27f8bbbd.js",
     "sw.js.map": "/dexterous/sw.js.map",
     "sw.js": "/dexterous/sw.js",
     "index.html": "/dexterous/index.html",
-    "main.f6dfec91.js.map": "/dexterous/static/js/main.f6dfec91.js.map"
+    "main.4ecd88b9.js.map": "/dexterous/static/js/main.4ecd88b9.js.map"
   },
   "entrypoints": [
-    "static/js/main.f6dfec91.js"
+    "static/js/main.4ecd88b9.js"
   ]
 }
