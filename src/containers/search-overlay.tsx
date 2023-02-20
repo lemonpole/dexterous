@@ -41,7 +41,14 @@ export default function SearchOverlay() {
       size="xl"
     >
       <ModalOverlay />
-      <ModalContent background="chakra-body-bg" my="24">
+      <ModalContent
+        background="chakra-body-bg"
+        my="24"
+        // render search modal slightly
+        // different on mobile devices
+        mt={[0, 24]}
+        borderRadius={[0, 'md']}
+      >
         <ModalHeader>
           <InputGroup size="lg">
             <InputLeftElement children={<Search2Icon color="brand.300" />} />
