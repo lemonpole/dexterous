@@ -40,14 +40,19 @@ export default function SearchOverlay() {
       scrollBehavior="inside"
       size="xl"
     >
-      <ModalOverlay />
+      <ModalOverlay
+        // render search overlay slightly
+        // different on mobile devices
+        backgroundColor={['foreground', 'blackAlpha.600']}
+      />
       <ModalContent
-        background="chakra-body-bg"
+        background="foreground"
         my="24"
         // render search modal slightly
         // different on mobile devices
         mt={[0, 24]}
         borderRadius={[0, 'md']}
+        boxShadow={[0, 'lg']}
       >
         <ModalHeader>
           <InputGroup size="lg">
