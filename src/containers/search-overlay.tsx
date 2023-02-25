@@ -53,6 +53,7 @@ export default function SearchOverlay() {
         mt={[0, 24]}
         borderRadius={[0, 'md']}
         boxShadow={[0, 'lg']}
+        maxHeight={['full', 'calc(100% - 7.5rem)']}
       >
         <ModalHeader>
           <InputGroup size="lg">
