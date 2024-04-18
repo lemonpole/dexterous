@@ -1,6 +1,6 @@
 import React from 'react';
 import PackageInfo from '@dxtr/package';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, ScrollRestoration } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Constants, GraphQL, util } from '@dxtr/lib';
 import { AppStateContext } from '@dxtr/redux';
@@ -76,6 +76,7 @@ export default function App() {
   return (
     <React.Fragment>
       {/* RENDER HEADER */}
+      <ScrollRestoration />
       <SearchOverlay />
       <Header />
 

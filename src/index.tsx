@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '@dxtr/app';
 import PackageInfo from '@dxtr/package';
-import { HashRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 import {
   ApolloClient,
   ApolloProvider,
@@ -23,13 +23,23 @@ import {
 } from '@chakra-ui/react';
 
 /**
+ * The root router.
+ *
+ * @constant
+ */
+const router = createHashRouter([
+  {
+    path: '*',
+    element: <App />,
+  },
+]);
+
+/**
  * The index component waits for the apollo client cache
  * to be loaded before rendering the rest of the app.
  *
- * @component
- * @name Index
+ * @function
  */
-
 function Index() {
   type IApolloClient = ApolloClient<NormalizedCacheObject>;
   const [client, setClient] = React.useState<IApolloClient>();
@@ -72,9 +82,7 @@ function Index() {
       <ChakraProvider theme={extendTheme(Theme)}>
         <ApolloProvider client={client as IApolloClient}>
           <AppStateProvider>
-            <HashRouter>
-              <App />
-            </HashRouter>
+            <RouterProvider router={router} />
           </AppStateProvider>
         </ApolloProvider>
       </ChakraProvider>
@@ -85,10 +93,9 @@ function Index() {
 /**
  * React bootstrapping logic.
  *
- * @function
  * @name anonymous
+ * @function
  */
-
 (() => {
   // grab the root container
   const container = document.getElementById('root');
