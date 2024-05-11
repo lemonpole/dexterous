@@ -252,6 +252,8 @@ export default function Pokedex(props: PokedexProps) {
     return <PokedexSkeleton />;
   }
 
+  console.log(speciesInfo);
+
   // render the loaded content
   return (
     <React.Fragment>
@@ -358,6 +360,11 @@ export default function Pokedex(props: PokedexProps) {
           <Heading as="h3" size="md">
             Evolutions
           </Heading>
+          {speciesInfo.pokemon_v2_pokemonspecies_by_pk
+            ?.pokemon_v2_evolutionchain?.pokemon_v2_pokemonspecies_aggregate
+            .nodes.length === 1 && (
+            <Text>{basicInfo.name.toUpperCase()} does not evolve.</Text>
+          )}
           {speciesInfo.pokemon_v2_pokemonspecies_by_pk?.pokemon_v2_evolutionchain?.pokemon_v2_pokemonspecies_aggregate.nodes.map(
             (evolution) => {
               // bail early if no previous evolution exists
