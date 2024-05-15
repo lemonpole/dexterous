@@ -76,7 +76,6 @@ export default function App() {
   return (
     <React.Fragment>
       {/* RENDER HEADER */}
-      <ScrollRestoration />
       <SearchOverlay />
       <Header />
 
@@ -91,6 +90,7 @@ export default function App() {
 
       {/* RENDER ROUTE HIERARCHY FOR MOBILE */}
       <DeviceDetector.MobileView>
+        <ScrollRestoration />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path=":name" element={<Details />} />

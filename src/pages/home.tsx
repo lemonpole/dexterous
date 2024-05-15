@@ -26,15 +26,16 @@ function Welcome() {
       <Stack>
         <Heading as="h2">About</Heading>
         <Text>
-          An <em>ad-free</em> and lightweight Pokédex.
+          An <em>ad-free</em> and lightweight Pokédex for casual players diving
+          back into the Pokémon franchise after a long hiatus.
         </Text>
         <Text>
-          Offers a sleek, intuitive interface for effortlessly navigating
-          Pokémon entries while you play your favorite Pokémon game.
+          This companion app focuses on the essentials—types, weaknesses, and
+          evolutions—perfect for navigating new generations with ease.
         </Text>
         <Text>
-          Get all the essentials—types, weaknesses, and evolutions—to master
-          battles and plan your evolutions with ease.
+          Offers a sleek, intuitive interface to effortlessly browse Pokémon
+          entries while playing your favorite Pokémon game.
         </Text>
       </Stack>
       <Stack>
