@@ -4,13 +4,11 @@ import { Outlet } from 'react-router-dom';
 import { Constants } from '@dxtr/lib';
 import { ExternalLink } from '@dxtr/components';
 import { PokemonGrid } from '@dxtr/containers';
-import { CheckCircleIcon, InfoIcon, WarningIcon } from '@chakra-ui/icons';
 import {
   Box,
   Heading,
   Text,
   List,
-  ListIcon,
   ListItem,
   Stack,
   VStack,
@@ -18,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 
 /**
- * The welcome component contains the about and support blurbs.
+ * The welcome component contains the about and info blurbs.
  *
  * @function
  */
@@ -37,25 +35,22 @@ function Welcome() {
         </Text>
       </Stack>
       <Stack>
-        <Heading as="h2">Support / Contributing</Heading>
-        <List>
+        <Heading as="h2">Info</Heading>
+        <List spacing="2">
           <ListItem>
-            <ListIcon as={InfoIcon} />
-            How does it work?&nbsp;
+            ✅ How does it work?&nbsp;
             <ExternalLink href={PackageInfo.repository.url}>
               View the source code.
             </ExternalLink>
           </ListItem>
           <ListItem>
-            <ListIcon as={CheckCircleIcon} />
-            Want to contribute?&nbsp;
+            🤝 Want to contribute?&nbsp;
             <ExternalLink href={PackageInfo.repository.url + 'pulls'}>
               Submit a Pull Request.
             </ExternalLink>
           </ListItem>
           <ListItem>
-            <ListIcon as={WarningIcon} />
-            Found a bug?&nbsp;
+            🐛 Found a bug?&nbsp;
             <ExternalLink href={PackageInfo.bugs.url}>
               Please file an issue.
             </ExternalLink>
