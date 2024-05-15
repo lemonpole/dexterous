@@ -29,9 +29,12 @@ function Welcome() {
           An <em>ad-free</em> and lightweight Pokédex.
         </Text>
         <Text>
-          Contains the essentials (types, weaknesses, evolutions) and an
-          intuitive interface to seamlessly navigate through Pokédex entries
-          while playing your favorite Pokémon game.
+          Offers a sleek, intuitive interface for effortlessly navigating
+          Pokémon entries while you play your favorite Pokémon game.
+        </Text>
+        <Text>
+          Get all the essentials—types, weaknesses, and evolutions—to master
+          battles and plan your evolutions with ease.
         </Text>
       </Stack>
       <Stack>
