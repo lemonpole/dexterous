@@ -164,6 +164,7 @@ function MoveSet(props: { speciesInfo: GraphQL.PokemonDetailsQuery }) {
           setSelectedPokemonGeneration(parseInt(event.target.value))
         }
         value={selectedPokemonGeneration}
+        disabled={pokemonGenerations.length === 1}
       >
         {pokemonGenerations.map((generation) => (
           <option key={generation.id} value={generation.id}>
@@ -251,8 +252,6 @@ export default function Pokedex(props: PokedexProps) {
   if (!basicInfo || !speciesInfo) {
     return <PokedexSkeleton />;
   }
-
-  console.log(speciesInfo);
 
   // render the loaded content
   return (
